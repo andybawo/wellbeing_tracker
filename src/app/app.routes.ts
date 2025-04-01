@@ -9,11 +9,13 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'layout',
-    component: LayoutComponent,
-  },
-  {
     path: 'home',
-    component: HomeComponent,
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        component: HomeComponent,
+      },
+    ],
   },
 ];

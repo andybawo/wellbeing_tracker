@@ -1,7 +1,9 @@
-<app-button btnClass="secondary" (click)="toggleAlert()">Click Me</app-button>
-
-<app-alert
-  type="error"
-  message="Alert is working!"
-  [visible]="showAlert"
-></app-alert>
+<main class="main-container">
+  <h1>Welcome to the Home Page</h1>
+  <app-button btnClass="secondary" (click)="toggleAlert()">Click Me</app-button>
+  <app-alert
+    [message]="'This is a success alert!'"
+    [type]="'error'"
+    [visible]="showAlert"
+  ></app-alert>
+</main>

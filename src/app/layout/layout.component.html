@@ -1,10 +1,15 @@
 <div class="grid-container">
-  <!-- header -->
+  <!-- Header Section -->
+  <header class="header">
+    <app-navbar></app-navbar>
+  </header>
 
-  <header class="header"></header>
+  <!-- Sidebar Section -->
   <app-sidebar [sidebarOpen]="true"></app-sidebar>
-  <!-- Main -->
+
+  <!-- Main Content Section -->
   <main class="main-container">
     <router-outlet></router-outlet>
+    <!-- This will render routed components -->
   </main>
 </div>

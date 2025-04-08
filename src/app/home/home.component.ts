@@ -6,7 +6,7 @@ import { SharedModule } from '../shared/shared.module';
   selector: 'app-home',
   imports: [SharedModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   showAlert: boolean = false;

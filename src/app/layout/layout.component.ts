@@ -7,7 +7,7 @@ import { SharedModule } from '../shared/shared.module';
   selector: 'app-layout',
   imports: [RouterOutlet, CommonModule, SharedModule],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.css',
+  styleUrl: './layout.component.scss',
 })
 export class LayoutComponent {
   sidebarOpen = false;

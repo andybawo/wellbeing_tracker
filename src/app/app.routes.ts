@@ -1,6 +1,11 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
-import { HomeComponent } from './home/home.component';
+import { LayoutComponent } from '../pages/layout/layout.component';
+import { HomeComponent } from '../pages/home/home.component';
+import { WelcomeComponent } from '../pages/welcome/welcome.component';
+import { SignupComponent } from '../pages/signup/signup.component';
+import { StartComponent } from '../pages/start/start.component';
+import { LoginComponent } from '../pages/login/login.component';
+import { CompanyRegComponent } from '../pages/company-reg/company-reg.component';
 
 export const routes: Routes = [
   {
@@ -17,5 +22,27 @@ export const routes: Routes = [
         component: HomeComponent,
       },
     ],
+  },
+  {
+    path: 'start',
+    component: WelcomeComponent,
+    children: [
+      {
+        path: '',
+        component: StartComponent,
+      },
+      {
+        path: 'signup',
+        component: SignupComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+    ],
+  },
+  {
+    path: 'company-reg',
+    component: CompanyRegComponent,
   },
 ];

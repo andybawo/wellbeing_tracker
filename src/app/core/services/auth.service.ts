@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   private isAuthenticated = false;
+  private token = 'mock-token';
 
   login(): void {
     this.isAuthenticated = true;
@@ -16,6 +17,10 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return this.isAuthenticated;
+  }
+
+  getToken(): string | null {
+    return this.isAuthenticated ? this.token : null;
   }
 
   constructor() {}

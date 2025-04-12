@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, NgModule } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../../app/shared/shared.module';
 
 @Component({
   selector: 'app-layout',

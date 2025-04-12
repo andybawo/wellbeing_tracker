@@ -1,0 +1,15 @@
+.grid-container {
+  background-color: #cec8c8;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 100%;
+  place-items: center;
+}
+
+.registration-content {
+  width: 890px;
+  height: 570px;
+  border: 2px solid black;
+  align-items: center;
+  justify-content: center;
+}

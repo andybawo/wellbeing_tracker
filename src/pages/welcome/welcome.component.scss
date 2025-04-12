@@ -1,0 +1,23 @@
+.grid-container {
+  background-color: #cec8c8;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  grid-template-areas: "main main2";
+
+  padding: 0;
+}
+
+.onboard-content {
+  background-color: var(--background-color);
+
+  border-radius: 0 68px 68px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-logo {
+  background-color: #cec8c8;
+}

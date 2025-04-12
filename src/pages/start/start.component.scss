@@ -1,0 +1,51 @@
+.display {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  height: 500px;
+  justify-content: center;
+  padding-left: 40px;
+}
+
+.display h1:nth-child(1) {
+  position: relative;
+  bottom: 90px;
+  font-weight: 300;
+}
+
+.display h1:nth-child(2) {
+  font-size: 48px;
+}
+
+.display h4 {
+  position: relative;
+  top: 40px;
+  font-weight: 300;
+}
+.start {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 200px;
+}
+.start button {
+  width: 200px;
+  height: 48px;
+  border: 1px solid rgb(195, 189, 189);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.start button:nth-child(1) {
+  background-color: var(--background-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.start button:nth-child(1):hover {
+  background-color: rgb(40, 38, 38);
+  color: white;
+}
+.start button:nth-child(2) {
+  background-color: rgb(40, 38, 38);
+  color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

@@ -7,18 +7,59 @@
 
     <div class="form">
       <label for="fName">Full Name</label>
-      <input type="text" placeholder="Enter full name" />
+      <input
+        type="text"
+        placeholder="Enter full name"
+        style="
+          background-image: url('/images/user.png');
+          background-repeat: no-repeat;
+          background-position: 10px center;
+          padding-left: 35px;
+        "
+      />
       <label for="email">Email Address</label>
-      <input type="email" placeholder="Enter email address" />
+      <input
+        type="email"
+        placeholder="Enter email address"
+        style="
+          background-image: url('/images/sms.png');
+          background-repeat: no-repeat;
+          background-position: 10px center;
+          padding-left: 35px;
+        "
+      />
       <label for="password">Password</label>
-      <input type="password" placeholder="Enter Password" />
+      <input
+        type="password"
+        placeholder="Enter Password"
+        style="
+          background-image: url('/images/lock.png');
+          background-repeat: no-repeat;
+          background-position: 10px center;
+          padding-left: 35px;
+        "
+      />
     </div>
   </div>
 
   <div class="bottom-display">
-    <button [routerLink]="['/start/login']">Log in</button>
+    <button [routerLink]="['/start/verify']">Sign Up</button>
     <span>Or</span>
-    <button>Google</button>
-    <button>Microsoft Azure</button>
+    <button>
+      <img
+        src="/images/Symbol.png"
+        alt="Microsoft Logo"
+        style="width: 20px; height: 20px"
+      />
+      Google
+    </button>
+    <button>
+      <img
+        src="/images/microsoft.png"
+        alt="Microsoft Logo"
+        style="width: 20px; height: 20px"
+      />
+      Microsoft Azure
+    </button>
   </div>
 </div>

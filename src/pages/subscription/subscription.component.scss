@@ -1,0 +1,289 @@
+.logo {
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  background-color: #f0eeee;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  margin: 20px;
+}
+
+.duration {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.main-content {
+  width: 1200px;
+  margin: 20px;
+  height: fit-content;
+}
+
+.sub-length {
+  height: 55px;
+  width: 190px;
+  background-color: #f0eeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 25px;
+
+  button {
+    width: 100px;
+    height: 40px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: white;
+    }
+  }
+}
+
+.sub-length button.active {
+  background-color: white;
+  color: black;
+}
+.packages-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.packages {
+  display: flex;
+  width: 380px;
+  height: 400px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  padding: 20px;
+  cursor: pointer;
+
+  span {
+    width: 100px;
+    height: 50px;
+    background-color: #f0eeee;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+}
+
+.packages.selected {
+  background-color: #f0eeee;
+  height: 430px;
+  position: relative;
+  bottom: 20px;
+}
+li {
+  list-style: none;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.package-details {
+  h1 {
+    font-weight: 600;
+  }
+  h4 {
+    font-weight: 300;
+    font-size: 15px;
+    color: #5c8503;
+    position: relative;
+    bottom: 10px;
+  }
+
+  ul {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+  height: 280px;
+}
+
+.sub-button {
+  display: flex;
+  justify-content: center;
+}
+
+.select-plan {
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0.5, 0, 0.05);
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #f0eeee;
+  }
+
+  &.active {
+    background-color: rgb(46, 44, 44) !important;
+    color: white;
+  }
+}
+
+.custom-btn.clicked {
+  background-color: rgb(65, 62, 62);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 999; /* Ensure it's below the modal */
+}
+
+.payment {
+  min-width: 770px;
+  min-height: 570px;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  border-radius: 5px;
+}
+
+.payment-method {
+  padding-left: 20px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  background-color: #f0eeee;
+  height: 570px;
+  border-radius: 5px;
+
+  span {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pay-card {
+    height: 52px;
+    border-bottom: 0.5px solid rgb(204, 199, 199);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: #d2cccc;
+      cursor: pointer;
+    }
+  }
+}
+
+.payment-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+
+  // margin-left: 20px;
+  // margin-right: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-top: 20px;
+  margin-bottom: 80px;
+
+  img {
+    height: 25px;
+    width: 24px;
+  }
+}
+h3 {
+  margin-top: 40px;
+  font-weight: 500;
+}
+
+.support {
+  display: flex;
+  flex-direction: column;
+
+  h4 {
+    align-self: flex-end;
+  }
+
+  a {
+    text-decoration: none;
+    color: rgb(48, 46, 46);
+  }
+}
+
+.pay-form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 30px;
+  gap: 20px;
+
+  input {
+    height: 62px;
+    outline: none;
+    padding: 20px;
+    border: 0.5px solid lightgrey;
+    border-radius: 3px;
+  }
+
+  span {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+
+    input {
+      width: 100%;
+      height: 62px;
+      padding: 20px;
+    }
+  }
+}
+
+.close-pay {
+  display: flex;
+  align-self: flex-end;
+}
+
+.pay-button {
+  margin-top: 30px;
+  width: 90%;
+
+  button {
+    height: 48px;
+    width: 100%;
+    background-color: rgb(55, 52, 52);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}

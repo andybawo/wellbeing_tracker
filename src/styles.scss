@@ -5,7 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", "Open Sans", Arial;
+  font-family: "Poppins", "Times New Roman";
 }
 
 :root {
@@ -19,4 +19,48 @@
 
   --btn-primary-bg: var(--primary-color);
   --btn-secondary-bg: var(--secondary-color);
+}
+
+h1 {
+  font-weight: 400;
+}
+
+h3 {
+  font-weight: 200;
+}
+
+h4 {
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "HKNova";
+  src: url("/assets/fonts/HK_Nova_Full_Family/HKNova-Regular.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HKNova";
+  src: url("/assets/fonts/HK_Nova_Full_Family/HKNova-Bold.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HKNova";
+  src: url("/assets/fonts/HK_Nova_Full_Family/HKNova-Italic.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "HKNova";
+  src: url("/assets/fonts/HK_Nova_Full_Family/HKNova-BoldItalic.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: italic;
 }

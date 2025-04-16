@@ -1,0 +1,314 @@
+<div class="subscription">
+  <div class="logo">LOGO</div>
+
+  <div class="main-content">
+    <h2>Powerful Features</h2>
+
+    <div class="duration">
+      <h4>Enjoy our 30 days free trial with full package on each plan</h4>
+      <div class="sub-length">
+        <button [class.active]="!isYearClicked" (click)="closeYear()">
+          Month
+        </button>
+        <button [class.active]="isYearClicked" (click)="openYear()">
+          Year
+        </button>
+      </div>
+    </div>
+
+    <ng-container *ngIf="!isYearClicked">
+      <div class="packages-container">
+        <div class="packages" [class.selected]="selectedPackage === 'free'">
+          <span>Starter</span>
+          <div class="package-details">
+            <h1>Free</h1>
+            <h4>30 days trial</h4>
+            <ul>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Limited integrations
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Limited dashboard
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Fewer Custom Alerts
+              </li>
+            </ul>
+          </div>
+
+          <div class="sub-button">
+            <button
+              class="select-plan"
+              [class.active]="selectedPackage === 'free'"
+              (click)="selectPlan('free'); openModal()"
+            >
+              Select Plan
+            </button>
+          </div>
+        </div>
+
+        <div class="packages" [class.selected]="selectedPackage === 'basic'">
+          <span>Basic</span>
+          <div class="package-details">
+            <h1>$10</h1>
+            <h4>Save 5% on annual subscription</h4>
+            <ul>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Limited integrations
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Limited dashboard
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Fewer Custom Alerts
+              </li>
+            </ul>
+          </div>
+
+          <div class="sub-button">
+            <button
+              class="select-plan"
+              [class.active]="selectedPackage === 'basic'"
+              (click)="selectPlan('basic'); openModal()"
+            >
+              Select Plan
+            </button>
+          </div>
+        </div>
+
+        <div class="packages" [class.selected]="selectedPackage === 'pro'">
+          <span>Pro</span>
+          <div class="package-details">
+            <h1>$30</h1>
+            <h4>Save 10% on annual subscription</h4>
+            <ul>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Expanded
+                integrations
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Customized dashboard
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Additional Alerts
+                Creation
+              </li>
+            </ul>
+          </div>
+
+          <div class="sub-button">
+            <button
+              class="select-plan"
+              [class.active]="selectedPackage === 'pro'"
+              (click)="selectPlan('pro'); openModal()"
+            >
+              Select Plan
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="packages"
+          [class.selected]="selectedPackage === 'enterprise'"
+        >
+          <span>Enterprise</span>
+          <div class="package-details">
+            <h1>$50</h1>
+            <h4>Save 20% on annual subscription</h4>
+            <ul>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Full feature set
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Unlimited custom
+                alerts
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Priority support
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Enhanced data
+                retention
+              </li>
+            </ul>
+          </div>
+          <div class="sub-button">
+            <button
+              class="select-plan"
+              [class.active]="selectedPackage === 'enterprise'"
+              (click)="selectPlan('enterprise'); openModal()"
+            >
+              Select Plan
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div *ngIf="isModalOpen" class="overlay" (click)="closeModal()"></div>
+    <app-modal *ngIf="isModalOpen" (close)="closeModal()">
+      <div class="modal-content">
+        <div class="payment">
+          <div class="payment-method">
+            <span>Pay with</span>
+            <div class="pay-card">Card</div>
+            <div class="pay-card">Bank</div>
+            <div class="pay-card">USSD</div>
+          </div>
+          <div class="payment-details">
+            <div class="header">
+              <img src="/images/paystack.png" alt="" />
+
+              <div class="support">
+                <a href="">support&commat;paystack.com</a>
+                <h4>Pay 50 USD</h4>
+              </div>
+            </div>
+            <hr style="width: 90%" />
+            <h3>Enter your card details to pay</h3>
+            <div class="pay-form">
+              <input type="text" placeholder="Card Number" />
+              <span
+                ><input type="date" placeholder="exp date" />
+                <input type="password" placeholder="CVV"
+              /></span>
+            </div>
+
+            <div class="pay-button">
+              <button>Make Payment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-modal>
+
+    <ng-container *ngIf="isYearClicked">
+      <div class="packages-container">
+        <div class="packages" [class.selected]="selectedPackage === 'free'">
+          <span>Starter</span>
+          <div class="package-details">
+            <h1>Free</h1>
+            <h4>30 days trial</h4>
+            <ul>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Limited integrations
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Limited dashboard
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Fewer Custom Alerts
+              </li>
+            </ul>
+          </div>
+
+          <div class="sub-button">
+            <button
+              class="select-plan"
+              [class.active]="selectedPackage === 'free'"
+              (click)="selectPlan('free'); openModal()"
+            >
+              Select Plan
+            </button>
+          </div>
+        </div>
+
+        <div class="packages" [class.selected]="selectedPackage === 'basic'">
+          <span>Basic</span>
+          <div class="package-details">
+            <h1>$10</h1>
+            <h4>Annual</h4>
+            <ul>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Limited integrations
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Limited dashboard
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Fewer Custom Alerts
+              </li>
+            </ul>
+          </div>
+
+          <div class="sub-button">
+            <button
+              class="select-plan"
+              [class.active]="selectedPackage === 'basic'"
+              (click)="selectPlan('basic'); openModal()"
+            >
+              Select Plan
+            </button>
+          </div>
+        </div>
+
+        <div class="packages" [class.selected]="selectedPackage === 'pro'">
+          <span>Pro</span>
+          <div class="package-details">
+            <h1>$30</h1>
+            <h4>Annual</h4>
+            <ul>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Expanded
+                integrations
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Customized dashboard
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Additional Alerts
+                Creation
+              </li>
+            </ul>
+          </div>
+
+          <div class="sub-button">
+            <button
+              class="select-plan"
+              [class.active]="selectedPackage === 'pro'"
+              (click)="selectPlan('pro'); openModal()"
+            >
+              Select Plan
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="packages"
+          [class.selected]="selectedPackage === 'enterprise'"
+        >
+          <span>Enterprise</span>
+          <div class="package-details">
+            <h1>$50</h1>
+            <h4>Annual</h4>
+            <ul>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Full feature set
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Unlimited custom
+                alerts
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Priority support
+              </li>
+              <li>
+                <img src="/images/tick-square.png" alt="" />Enhanced data
+                retention
+              </li>
+            </ul>
+          </div>
+          <div class="sub-button">
+            <button
+              class="select-plan"
+              [class.active]="selectedPackage === 'enterprise'"
+              (click)="selectPlan('enterprise'); openModal()"
+            >
+              Select Plan
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

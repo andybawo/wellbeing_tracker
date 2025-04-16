@@ -7,11 +7,14 @@ import { StartComponent } from '../pages/start/start.component';
 import { LoginComponent } from '../pages/login/login.component';
 import { CompanyRegComponent } from '../pages/company-reg/company-reg.component';
 import { VerifyComponent } from '../pages/verify/verify.component';
+import { IntegrationComponent } from '../pages/integration/integration.component';
+import { RegistrationComponent } from '../pages/registration/registration.component';
+import { SubscriptionComponent } from '../pages/subscription/subscription.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'start',
     pathMatch: 'full',
   },
   {
@@ -47,7 +50,21 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'company-reg',
+    path: 'registration',
     component: CompanyRegComponent,
+    children: [
+      {
+        path: '',
+        component: RegistrationComponent,
+      },
+      {
+        path: 'integration',
+        component: IntegrationComponent,
+      },
+      {
+        path: 'subscription',
+        component: SubscriptionComponent,
+      },
+    ],
   },
 ];

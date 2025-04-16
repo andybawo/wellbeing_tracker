@@ -8,17 +8,47 @@
 
     <div class="form">
       <label for="email">Email Address</label>
-      <input type="email" placeholder="Enter email address" />
+      <input
+        type="email"
+        placeholder="Enter email address"
+        style="
+          background-image: url('/images/sms.png');
+          background-repeat: no-repeat;
+          background-position: 10px center;
+          padding-left: 35px;
+        "
+      />
       <label for="password">Password</label>
-      <input type="password" placeholder="Enter Password" />
+      <input
+        type="password"
+        placeholder="Enter Password"
+        style="
+          background-image: url('/images/lock.png');
+          background-repeat: no-repeat;
+          background-position: 10px center;
+          padding-left: 35px;
+        "
+      />
       <span class="forgot">Forgot Password?</span>
     </div>
   </div>
 
   <div class="bottom-display">
-    <button>Log in</button>
+    <button [routerLink]="['/home']">Log in</button>
     <span>Or</span>
-    <button>Google</button>
-    <button>Microsoft Azure</button>
+    <button>
+      <img
+        src="/images/Symbol.png"
+        alt="Microsoft Logo"
+        style="width: 20px; height: 20px"
+      />Google
+    </button>
+    <button>
+      <img
+        src="/images/microsoft.png"
+        alt="Microsoft Logo"
+        style="width: 20px; height: 20px"
+      />Microsoft Azure
+    </button>
   </div>
 </div>

@@ -147,6 +147,7 @@ input[type="checkbox"]:focus {
   justify-content: space-between;
   position: relative;
   top: 50px;
+  align-items: center;
 }
 
 .bottom button {
@@ -267,4 +268,84 @@ input[type="checkbox"]:focus {
   gap: 10px;
   position: relative;
   top: 20px;
+}
+
+.modal-load {
+  min-width: 576px;
+  width: fit-content;
+  height: 260px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: white;
+  // padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  flex-direction: column;
+}
+
+.loading-bar-wrapper {
+  width: 80%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.loading-bar {
+  width: 50%;
+  height: 100%;
+  background-color: #3a3838; // Tailwind indigo-600 or change to your theme
+  animation: slide 1.5s infinite ease-in-out;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.load-bottom {
+  width: 416px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 50px;
+  align-items: center;
+}
+
+.load-bottom button {
+  height: 40px;
+  width: 160px;
+  border-radius: 5px;
+  border: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  bottom: 20px;
+}
+
+.load-title {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
 }

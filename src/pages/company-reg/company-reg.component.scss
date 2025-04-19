@@ -18,3 +18,56 @@
   flex-direction: column;
   border-radius: 5px;
 }
+
+/* ==== Responsive Media Queries ==== */
+
+/* Large screens (≤1440px) */
+@media screen and (max-width: 1440px) {
+  .registration-content {
+    min-width: 800px;
+    min-height: 90%;
+  }
+}
+
+/* Medium screens (≤1024px - laptops/tablets) */
+@media screen and (max-width: 1024px) {
+  .grid-container {
+    height: 100vh;
+    padding: 2rem 0;
+  }
+
+  .registration-content {
+    min-width: 90%;
+    min-height: 90%;
+    padding: 2rem;
+  }
+}
+
+/* Small screens (≤768px - tablets/large phones) */
+@media screen and (max-width: 800px) {
+  .registration-content {
+    padding: 1.5rem;
+    border-radius: 8px;
+    min-width: 70%;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .registration-content {
+    width: 700px;
+    background-color: pink;
+  }
+}
+
+/* Extra small screens (≤480px - small phones) */
+@media screen and (max-width: 480px) {
+  .grid-container {
+    padding: 1rem 0;
+  }
+
+  .registration-content {
+    min-width: 95%;
+    padding: 1rem;
+    border-radius: 6px;
+  }
+}

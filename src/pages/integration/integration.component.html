@@ -30,6 +30,20 @@
     </div>
 
     <div *ngIf="isModalOpen" class="overlay" (click)="closeModal()"></div>
+    <div *ngIf="isLoading" class="overlay" (click)="closeModal()"></div>
+
+    <div class="modal-load" *ngIf="isLoading">
+      <div class="loading-bar-wrapper">
+        <div class="loading-bar"></div>
+      </div>
+      <div class="load-title">
+        <h1>Fetching Data</h1>
+        <h4>Hang on this may take a few seconds</h4>
+      </div>
+      <div class="load-bottom">
+        <button (click)="closeModal()">Cancel</button>
+      </div>
+    </div>
 
     <app-modal *ngIf="isModalOpen" (close)="closeModal()">
       <ng-container [ngSwitch]="selectedModalContent">

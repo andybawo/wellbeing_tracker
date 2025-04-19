@@ -1,16 +1,16 @@
+/* Grid Container */
 .grid-container {
   background-color: #cec8c8;
   height: 100vh;
   display: grid;
   grid-template-columns: 55% 45%;
   grid-template-areas: "main main2";
-
   padding: 0;
 }
 
+/* Onboarding Content */
 .onboard-content {
   background-color: var(--background-color);
-
   border-radius: 0 68px 68px 0;
   display: flex;
   flex-direction: column;
@@ -18,6 +18,71 @@
   align-items: center;
 }
 
+/* Side Logo */
 .side-logo {
   background-color: #cec8c8;
+}
+
+/* Responsive Media Queries */
+
+/* Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: 100%;
+    grid-template-areas: "main";
+  }
+
+  .onboard-content {
+    border-radius: 0;
+    padding: 1rem;
+  }
+
+  .side-logo {
+    display: none;
+  }
+}
+
+/* Tablet (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 100%;
+    grid-template-areas: "main";
+  }
+
+  .onboard-content {
+    border-radius: 0;
+    padding: 2rem;
+  }
+
+  .side-logo {
+    display: none;
+  }
+}
+
+/* Small Desktop (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: 70% 30%;
+    grid-template-areas: "main main2";
+  }
+
+  .onboard-content {
+    padding: 2rem;
+  }
+}
+
+/* Large Desktop (> 1024px) */
+@media (min-width: 1025px) and (max-width: 1270px) {
+  .grid-container {
+    grid-template-columns: 70% 30%;
+    grid-template-areas: "main main2";
+  }
+
+  .onboard-content {
+    padding: 3rem;
+  }
+
+  .side-logo {
+    display: block;
+  }
 }

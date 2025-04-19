@@ -14,14 +14,21 @@ export class IntegrationComponent {
   isModalOpen = false;
   showApiKeyfield = false;
   isToolinfoOpen: boolean = false;
+  isLoading = false;
 
   openModal(content: string) {
     this.resetModalState();
     this.selectedModalContent = content;
-    this.isModalOpen = true;
+    this.isLoading = true;
+
+    setTimeout(() => {
+      this.isLoading = false;
+      this.isModalOpen = true;
+    }, 5000);
   }
 
   closeModal() {
+    this.isLoading = false;
     this.isModalOpen = false;
   }
 

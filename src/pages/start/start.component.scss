@@ -1,3 +1,4 @@
+/* Display */
 .display {
   display: flex;
   flex-direction: column;
@@ -22,11 +23,14 @@
   top: 40px;
   font-weight: 300;
 }
+
+/* Start */
 .start {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 200px;
 }
+
 .start button {
   width: 200px;
   height: 48px;
@@ -44,8 +48,142 @@
   background-color: rgb(40, 38, 38);
   color: white;
 }
+
 .start button:nth-child(2) {
   background-color: rgb(40, 38, 38);
   color: white;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Responsive Media Queries */
+
+/* Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .display {
+    width: 100%;
+    height: auto;
+    padding-left: 20px;
+  }
+
+  .display h1:nth-child(1) {
+    bottom: 40px;
+    font-size: 1.2rem;
+  }
+
+  .display h1:nth-child(2) {
+    font-size: 2.5rem;
+  }
+
+  .display h4 {
+    font-size: 1rem;
+    top: 20px;
+  }
+
+  .start {
+    display: block;
+    // gap: 30px;
+    margin-top: 60px;
+  }
+
+  .start button {
+    width: 100%;
+  }
+}
+
+/* Tablet (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .display {
+    width: 100%;
+    height: auto;
+    padding-left: 30px;
+  }
+
+  .display h1:nth-child(1) {
+    bottom: 60px;
+    font-size: 1.5rem;
+  }
+
+  .display h1:nth-child(2) {
+    font-size: 3rem;
+  }
+
+  .display h4 {
+    font-size: 1.1rem;
+    top: 30px;
+  }
+
+  .start {
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    margin-top: 90px;
+  }
+
+  .start button {
+    width: 160px;
+  }
+}
+
+/* Small Desktop (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .display {
+    width: 80%;
+    height: auto;
+    padding-left: 40px;
+  }
+
+  .display h1:nth-child(1) {
+    bottom: 80px;
+    font-size: 1.8rem;
+  }
+
+  .display h1:nth-child(2) {
+    font-size: 4rem;
+  }
+
+  .display h4 {
+    font-size: 1.3rem;
+    top: 35px;
+  }
+
+  .start {
+    grid-template-columns: 1fr 1fr;
+    gap: 150px;
+    margin-top: 120px;
+  }
+
+  .start button {
+    width: 180px;
+  }
+}
+
+/* Large Desktop (> 1024px) */
+@media (min-width: 1025px) {
+  .display {
+    width: 700px;
+    height: 500px;
+    padding-left: 40px;
+  }
+
+  .display h1:nth-child(1) {
+    bottom: 90px;
+    font-size: 2rem;
+  }
+
+  .display h1:nth-child(2) {
+    font-size: 48px;
+  }
+
+  .display h4 {
+    font-size: 1.5rem;
+    top: 40px;
+  }
+
+  .start {
+    grid-template-columns: 1fr 1fr;
+    gap: 200px;
+  }
+
+  .start button {
+    width: 200px;
+  }
 }

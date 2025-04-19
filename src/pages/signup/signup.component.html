@@ -1,65 +1,36 @@
-<div class="onboard-content">
-  <div class="logo">
-    <h1>LOGO</h1>
-  </div>
-  <div class="display">
-    <h3>Please enter your details to signup</h3>
+<div class="logo">
+  <h1>LOGO</h1>
+</div>
+<div class="display">
+  <h3>Please enter your details to signup</h3>
 
-    <div class="form">
-      <label for="fName">Full Name</label>
-      <input
-        type="text"
-        placeholder="Enter full name"
-        style="
-          background-image: url('/images/user.png');
-          background-repeat: no-repeat;
-          background-position: 10px center;
-          padding-left: 35px;
-        "
-      />
-      <label for="email">Email Address</label>
-      <input
-        type="email"
-        placeholder="Enter email address"
-        style="
-          background-image: url('/images/sms.png');
-          background-repeat: no-repeat;
-          background-position: 10px center;
-          padding-left: 35px;
-        "
-      />
-      <label for="password">Password</label>
-      <input
-        type="password"
-        placeholder="Enter Password"
-        style="
-          background-image: url('/images/lock.png');
-          background-repeat: no-repeat;
-          background-position: 10px center;
-          padding-left: 35px;
-        "
-      />
-    </div>
+  <div class="form">
+    <label for="fName">Full Name</label>
+    <input type="text" placeholder="Enter full name" />
+    <label for="email">Email Address</label>
+    <input type="email" placeholder="Enter email address" />
+    <label for="password">Password</label>
+    <input type="password" placeholder="Enter Password" />
   </div>
+</div>
 
-  <div class="bottom-display">
-    <button [routerLink]="['/start/verify']">Sign Up</button>
-    <span>Or</span>
-    <button>
-      <img
-        src="/images/Symbol.png"
-        alt="Microsoft Logo"
-        style="width: 20px; height: 20px"
-      />
-      Google
-    </button>
-    <button>
-      <img
-        src="/images/microsoft.png"
-        alt="Microsoft Logo"
-        style="width: 20px; height: 20px"
-      />
-      Microsoft Azure
-    </button>
-  </div>
+<div class="bottom-display">
+  <button [routerLink]="['/start/verify']">Sign Up</button>
+  <span>Or</span>
+  <button>
+    <img
+      src="/images/Symbol.png"
+      alt="Microsoft Logo"
+      style="width: 20px; height: 20px"
+    />
+    Google
+  </button>
+  <button>
+    <img
+      src="/images/microsoft.png"
+      alt="Microsoft Logo"
+      style="width: 20px; height: 20px"
+    />
+    Microsoft Azure
+  </button>
 </div>

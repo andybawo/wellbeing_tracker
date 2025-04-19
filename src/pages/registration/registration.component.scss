@@ -2,6 +2,7 @@
   position: relative;
   bottom: 60px;
 }
+
 .details h1:nth-child(2) {
   font-size: 20px;
   position: relative;
@@ -11,6 +12,7 @@
 .details h4 {
   font-weight: 300;
 }
+
 .details {
   height: 452px;
   width: 730px;
@@ -21,6 +23,7 @@
   gap: 20px;
   width: 730px;
 }
+
 .form-details label {
   width: 144px;
   font-size: 12px;
@@ -34,17 +37,19 @@
   border: 1px solid rgb(221, 212, 212);
   background-color: #f0eeee;
   border-radius: 5px;
-  padding-left: 35px;
+  padding-left: 20px;
 }
 
 input:focus {
   border: none;
   outline: none;
 }
-.form-details input ::placeholder {
-  color: blue;
-  font-size: 20px;
-}
+
+// .form-details input::placeholder {
+//   color: blue;
+//   font-size: 20px;
+// }
+
 .form {
   gap: 20px;
   display: flex;
@@ -58,13 +63,13 @@ input:focus {
   flex-wrap: nowrap;
 }
 
-.select select {
+.form-details select {
   height: 48px;
-  width: 50%;
+  width: 100%;
   background-color: #f0eeee;
   border: none;
   border-radius: 5px;
-  padding-left: 30px;
+  padding-left: 20px;
   padding-right: 30px;
   cursor: pointer;
 }
@@ -80,12 +85,13 @@ input:focus {
   height: 48px;
   border-radius: 5px;
 }
+
 .bottom button:hover {
   cursor: pointer;
 }
 
 .bottom button:nth-child(1) {
-  background-color: #f0eeee;
+  background-color: #f9f7f7;
   border: none;
 }
 
@@ -93,8 +99,150 @@ input:focus {
   background-color: black;
   color: white;
 }
+
 .bottom button:nth-child(2) {
   background-color: black;
   border: none;
   color: white;
+}
+
+/* ==== Responsive Media Queries ==== */
+
+/* Large screens (≤1440px) */
+@media screen and (max-width: 1440px) {
+  .details,
+  .form-details,
+  .bottom {
+    width: 730px;
+  }
+
+  .form-details label {
+    width: 130px;
+  }
+}
+
+/* Medium screens (≤1024px - laptops/tablets) */
+@media screen and (max-width: 1024px) {
+  .details,
+  .form-details,
+  .bottom {
+    width: 730px;
+  }
+
+  .form-details {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .form-details label {
+    width: 130px;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .select {
+    flex-direction: row;
+  }
+
+  .select select {
+    width: 100%;
+  }
+
+  .bottom {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .bottom button {
+    width: 100%;
+  }
+}
+
+/* Small screens (≤768px - tablets/large phones) */
+@media (max-width: 800px) {
+  .logo h1 {
+    bottom: 40px;
+    font-size: 1.5rem;
+  }
+
+  .details h1:nth-child(2) {
+    font-size: 18px;
+    bottom: 15px;
+  }
+
+  .form-details input::placeholder {
+    font-size: 16px;
+  }
+  .details,
+  .form-details,
+  .bottom {
+    width: 650px;
+  }
+
+  .form-details {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-details label {
+    width: 130px;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .form {
+    flex-direction: column;
+    display: flex;
+  }
+
+  .select {
+    flex-direction: row;
+  }
+
+  .select select {
+    width: 100%;
+  }
+
+  .bottom {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .bottom button {
+    width: 100%;
+  }
+}
+
+/* Extra small screens (≤480px - small phones) */
+@media screen and (max-width: 480px) {
+  .details {
+    padding: 1rem;
+  }
+
+  .form {
+    margin-top: 20px;
+    gap: 15px;
+  }
+
+  .form-details input {
+    height: 40px;
+    padding-left: 30px;
+  }
+
+  .form-details input::placeholder {
+    font-size: 14px;
+  }
+
+  .select select {
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .bottom button {
+    height: 42px;
+    font-size: 14px;
+  }
 }

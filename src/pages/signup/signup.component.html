@@ -4,18 +4,30 @@
 <div class="display">
   <h3>Please enter your details to signup</h3>
 
-  <div class="form">
-    <label for="fName">Full Name</label>
-    <input type="text" placeholder="Enter full name" />
+  <form class="form" [formGroup]="userForm" (ngSubmit)="onUserSave()">
+    <label for="fullName">Full Name</label>
+    <input
+      type="text"
+      formControlName="fullName"
+      placeholder="Enter full name"
+    />
     <label for="email">Email Address</label>
-    <input type="email" placeholder="Enter email address" />
+    <input
+      type="email"
+      formControlName="email"
+      placeholder="Enter email address"
+    />
     <label for="password">Password</label>
-    <input type="password" placeholder="Enter Password" />
-  </div>
+    <input
+      type="password"
+      formControlName="password"
+      placeholder="Enter Password"
+    />
+    <button type="submit">Sign Up</button>
+  </form>
 </div>
 
 <div class="bottom-display">
-  <button [routerLink]="['/start/verify']">Sign Up</button>
   <span>Or</span>
   <button>
     <img

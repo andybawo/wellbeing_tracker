@@ -24,7 +24,7 @@ export class IntegrationComponent {
     setTimeout(() => {
       this.isLoading = false;
       this.isModalOpen = true;
-    }, 5000);
+    }, 3000);
   }
 
   closeModal() {

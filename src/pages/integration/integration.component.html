@@ -114,7 +114,7 @@
                 <button *ngIf="!isToolinfoOpen" (click)="openPermission('hrm')">
                   Connect
                 </button>
-                <button *ngIf="isToolinfoOpen" (click)="allowPermission()">
+                <button *ngIf="isToolinfoOpen" (click)="closeModal()">
                   Allow
                 </button>
               </div>
@@ -225,7 +225,7 @@
                 <button *ngIf="!isToolinfoOpen" (click)="openPermission('com')">
                   Connect
                 </button>
-                <button *ngIf="isToolinfoOpen" (click)="openPermission('com')">
+                <button *ngIf="isToolinfoOpen" (click)="closeModal()">
                   Allow
                 </button>
               </div>

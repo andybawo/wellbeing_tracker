@@ -1,0 +1,27 @@
+<div class="subscription">
+  <div *ngIf="isLoading" class="modal-load">
+    <div class="loading-bar-wrapper">
+      <div class="loading-bar"></div>
+    </div>
+    <div class="load-title">
+      <h1>Completing payment</h1>
+      <h4>Hang on, this may take a few seconds</h4>
+    </div>
+  </div>
+  <div *ngIf="isLoading" class="loading-indicator">
+    Verifying your payment... Please wait.
+  </div>
+  <div *ngIf="isSuccess && !isLoading" class="success-message">
+    <h1>Subscription Successful</h1>
+    <h4>You will be redirected to the integration page shortly....</h4>
+  </div>
+  <div
+    *ngIf="!isLoading && !isSuccess && failureMessage"
+    class="failure-message"
+  >
+    <h1>Subscription Failed</h1>
+    <h4>
+      {{ failureMessage }}
+    </h4>
+  </div>
+</div>

@@ -1,17 +1,89 @@
-<div class="logo">
-  <h1>LOGO</h1>
+<app-alert
+  [message]="alertMessage"
+  [type]="alertType"
+  [visible]="showAlert"
+></app-alert>
+
+<div class="logo-pic">
+  <img src="/images/logo.png" alt="" />
 </div>
 <div class="display">
   <h1>Verify your account</h1>
   <h3>Enter 6 digits code sent to your email to complete verification</h3>
 
-  <div class="form">
-    <input type="text" placeholder="Enter OTP" />
-  </div>
-  <div class="code">
-    <a href="">Resend Code</a>
-  </div>
-  <div class="bottom-display">
-    <button [routerLink]="['/registration']">Verify</button>
+  <form class="form" [formGroup]="verifyForm" (ngSubmit)="onVerifyCode()">
+    <div class="otp-input-container">
+      <input
+        type="text"
+        maxLength="1"
+        formControlName="digit1"
+        class="otp-digit-input"
+        (input)="focusNext($event, 'digit2')"
+        #digit1Input
+      />
+      <input
+        type="text"
+        maxLength="1"
+        formControlName="digit2"
+        class="otp-digit-input"
+        (input)="focusNext($event, 'digit3')"
+        (keydown)="focusPrevious($event, 'digit1')"
+        #digit2Input
+      />
+      <input
+        type="text"
+        maxLength="1"
+        formControlName="digit3"
+        class="otp-digit-input"
+        (input)="focusNext($event, 'digit4')"
+        (keydown)="focusPrevious($event, 'digit2')"
+        #digit3Input
+      />
+      <input
+        type="text"
+        maxLength="1"
+        formControlName="digit4"
+        class="otp-digit-input"
+        (input)="focusNext($event, 'digit5')"
+        (keydown)="focusPrevious($event, 'digit3')"
+        #digit4Input
+      />
+
+      <input
+        type="text"
+        maxLength="1"
+        formControlName="digit5"
+        class="otp-digit-input"
+        (input)="focusNext($event, 'digit6')"
+        (keydown)="focusPrevious($event, 'digit4')"
+        #digit4Input
+      />
+      <input
+        type="text"
+        maxLength="1"
+        formControlName="digit6"
+        class="otp-digit-input"
+        (keydown)="focusPrevious($event, 'digit5')"
+        #digit4Input
+      />
+    </div>
+
+    <div class="code">
+      <a href="">Resend Code</a>
+    </div>
+    <div class="bottom-display">
+      <button type="submit">Verify</button>
+    </div>
+  </form>
+
+  <div *ngIf="isLoading" class="overlay" (click)="closeModal()"></div>
+  <div class="modal-load" *ngIf="isLoading">
+    <div class="loading-bar-wrapper">
+      <div class="loading-bar"></div>
+    </div>
+    <div class="load-title">
+      <h1>Sending OTP</h1>
+      <h4>Hang on this may take a few seconds</h4>
+    </div>
   </div>
 </div>

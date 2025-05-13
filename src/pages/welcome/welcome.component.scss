@@ -1,6 +1,6 @@
 /* Grid Container */
 .grid-container {
-  background-color: #cec8c8;
+  background-color: white;
   height: 100vh;
   display: grid;
   grid-template-columns: 55% 45%;
@@ -14,13 +14,18 @@
   border-radius: 0 68px 68px 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
 /* Side Logo */
 .side-logo {
-  background-color: #cec8c8;
+  background-color: #f3e6f5;
+  border-radius: 15px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Responsive Media Queries */

@@ -15,21 +15,26 @@ export class IntegrationComponent {
   showApiKeyfield = false;
   isToolinfoOpen: boolean = false;
   isLoading = false;
+  shouldOpenModal = false;
 
   openModal(content: string) {
     this.resetModalState();
     this.selectedModalContent = content;
     this.isLoading = true;
+    this.shouldOpenModal = true;
 
     setTimeout(() => {
-      this.isLoading = false;
-      this.isModalOpen = true;
+      if (this.shouldOpenModal) {
+        this.isLoading = false;
+        this.isModalOpen = true;
+      }
     }, 3000);
   }
 
   closeModal() {
     this.isLoading = false;
     this.isModalOpen = false;
+    this.shouldOpenModal = false;
   }
 
   resetModalState() {

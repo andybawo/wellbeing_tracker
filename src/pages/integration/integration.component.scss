@@ -1,18 +1,32 @@
 .integration {
-  width: 1100px;
-  margin-left: 40px;
-  margin-right: 40px;
-  height: 405px;
+  width: 1200px;
+  height: 505px;
   position: relative;
-  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-pic {
+  position: relative;
+  bottom: 60px;
+  margin-top: 40px;
+}
+
+.learn {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  flex-direction: row;
+  position: relative;
+  top: 50px;
+  gap: 5px;
 }
 
 .tool-card {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
+
   margin-top: 30px;
   justify-content: center;
   align-items: center;
@@ -40,13 +54,13 @@
 }
 
 .cards {
-  width: 355px;
+  width: 33.3%;
   height: 217px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: #f0eeee;
+  background-color: #f3e6f5;
   border-radius: 5px;
 }
 
@@ -159,16 +173,16 @@ input[type="checkbox"]:focus {
 
 .bottom button:nth-child(1) {
   cursor: pointer;
-  background-color: #fcf7f7;
+  background-color: white;
 
   &:hover {
-    background-color: black;
+    background-color: #3e1f69;
     color: white;
   }
 }
 
 .bottom button:nth-child(2) {
-  background-color: black;
+  background-color: #3e1f69;
   color: white;
   cursor: pointer;
 }
@@ -303,7 +317,7 @@ input[type="checkbox"]:focus {
 .loading-bar {
   width: 50%;
   height: 100%;
-  background-color: #3a3838; // Tailwind indigo-600 or change to your theme
+  background-color: #f3e6f5; // Tailwind indigo-600 or change to your theme
   animation: slide 1.5s infinite ease-in-out;
 }
 
@@ -334,11 +348,11 @@ input[type="checkbox"]:focus {
   width: 160px;
   border-radius: 5px;
   border: none;
-  background-color: black;
+  background-color: #3e1f69;
   color: white;
   cursor: pointer;
   position: relative;
-  bottom: 20px;
+  bottom: 30px;
 }
 
 .load-title {

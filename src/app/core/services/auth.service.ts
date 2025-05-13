@@ -1,27 +1,67 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticated = false;
-  private token = 'mock-token';
+  private apiUrl = environment.apiUrl;
+  constructor(private http: HttpClient) {}
 
-  login(): void {
-    this.isAuthenticated = true;
+  //user sign up
+  registerUser(userData: any): Observable<any> {
+    console.log('User data being sent to backend:', userData);
+
+    return this.http.post(`${this.apiUrl}/auth/register`, userData);
   }
 
-  logout(): void {
-    this.isAuthenticated = false;
+  loginUser(loginData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/login`, loginData);
   }
 
-  isLoggedIn(): boolean {
-    return this.isAuthenticated;
+  // Email Verification code
+
+  sendVerification(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/api/email-verification/send-code`, {
+      email,
+    });
+  }
+
+  // Verify email from code sent
+  verifyCode(email: string, verificationCode: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/api/email-verification/verify`, {
+      email,
+      verificationCode,
+    });
+  }
+
+  //Company Registration
+  registerCompany(companyData: { [key: string]: any }): Observable<any> {
+    return this.http.post(
+      `${this.apiUrl}/api/Company/registerCompany`,
+      companyData
+    );
   }
 
   getToken(): string | null {
-    return this.isAuthenticated ? this.token : null;
+    return localStorage.getItem('authToken');
   }
 
-  constructor() {}
+  forgotPassword(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/forgotpassword`, { email });
+  }
+
+  resetPassword(
+    token: string,
+    email: string,
+    newPassword: string
+  ): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/resetpassword`, {
+      token,
+      email,
+      newPassword,
+    });
+  }
 }

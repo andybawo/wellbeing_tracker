@@ -1,5 +1,5 @@
 .grid-container {
-  background-color: #cec8c8;
+  background-color: white;
   height: 100vh;
   display: grid;
   grid-template-columns: 100%;
@@ -10,7 +10,7 @@
   width: fit-content;
   min-width: 890px;
   height: fit-content;
-  min-height: 650px;
+  min-height: 100vh;
   align-items: center;
   justify-content: center;
   background-color: white;

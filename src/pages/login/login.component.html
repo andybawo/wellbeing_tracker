@@ -1,36 +1,51 @@
-<div class="onboard-content">
-  <div class="logo">
-    <h1>LOGO</h1>
-  </div>
-  <div class="display">
-    <h1>Welcome Back!</h1>
-    <h3>Please enter your details to signup</h3>
+<app-alert
+  [message]="alertMessage"
+  [type]="alertType"
+  [visible]="showAlert"
+></app-alert>
 
-    <div class="form">
-      <label for="email">Email Address</label>
-      <input type="email" placeholder="Enter email address" />
-      <label for="password">Password</label>
-      <input type="password" placeholder="Enter Password" />
-      <span class="forgot">Forgot Password?</span>
+<div class="logo-pic">
+  <img src="/images/logo.png" alt="" />
+</div>
+<div class="display">
+  <h1>Welcome Back!</h1>
+  <h3>Please enter your details to signup</h3>
+
+  <form class="form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <label for="emailAddress">Email Address</label>
+    <input
+      formControlName="emailAddress"
+      type="email"
+      placeholder="Enter Email"
+    />
+    <label for="password">Password</label>
+    <input
+      formControlName="password"
+      type="password"
+      placeholder="Enter Password"
+    />
+    <span class="forgot" [routerLink]="">Forgot Password?</span>
+
+    <div class="bottom-display">
+      <button type="submit" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Log in</span>
+        <div *ngIf="isLoading" class="dual-ring"></div>
+      </button>
+      <span>Or</span>
+      <button>
+        <img
+          src="/images/Symbol.png"
+          alt="Microsoft Logo"
+          style="width: 20px; height: 20px"
+        />Google
+      </button>
+      <button>
+        <img
+          src="/images/microsoft.png"
+          alt="Microsoft Logo"
+          style="width: 20px; height: 20px"
+        />Microsoft Azure
+      </button>
     </div>
-  </div>
-
-  <div class="bottom-display">
-    <button [routerLink]="['/home']">Log in</button>
-    <span>Or</span>
-    <button>
-      <img
-        src="/images/Symbol.png"
-        alt="Microsoft Logo"
-        style="width: 20px; height: 20px"
-      />Google
-    </button>
-    <button>
-      <img
-        src="/images/microsoft.png"
-        alt="Microsoft Logo"
-        style="width: 20px; height: 20px"
-      />Microsoft Azure
-    </button>
-  </div>
+  </form>
 </div>

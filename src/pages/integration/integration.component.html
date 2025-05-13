@@ -1,6 +1,7 @@
 <div class="integration">
   <div class="header">
-    <div class="logo">LOGO</div>
+    <div class="logo-pic"><img src="/images/logo.png" alt="" /></div>
+
     <h1>Connect Integrations</h1>
     <h4>
       Select one tool from each category to sync data with Cultural Wellbeing
@@ -9,21 +10,21 @@
 
   <div class="tool-card">
     <div class="cards" (click)="openModal('hrm')">
-      <img src="/images/Frame 39.png" alt="" />
+      <img src="/images/people.png" alt="" />
       <div class="title">
         HRM Tool <img src="/images/arrow-right.png" alt="" />
       </div>
     </div>
 
     <div class="cards" (click)="openModal('communication')">
-      <img src="/images/Frame 39.png" alt="" />
+      <img src="/images/communication.png" alt="" />
       <div class="title">
         Communication Tool <img src="/images/arrow-right.png" alt="" />
       </div>
     </div>
 
     <div class="cards" (click)="openModal('project')">
-      <img src="/images/Frame 39.png" alt="" />
+      <img src="/images/task.png" alt="" />
       <div class="title">
         Project Tool <img src="/images/arrow-right.png" alt="" />
       </div>
@@ -50,7 +51,7 @@
         <div class="modal-content">
           <div *ngSwitchCase="'hrm'">
             <div class="integrate">
-              <img src="/images/Frame 39.png" alt="" />
+              <img src="/images/Subtract.png" alt="" />
               <div class="arrow">
                 <img src="/images/new-right.png" alt="" />
                 <img src="/images/arrow-left.png" alt="" />
@@ -123,7 +124,7 @@
 
           <div *ngSwitchCase="'communication'">
             <div class="integrate">
-              <img src="/images/Frame 39.png" alt="" />
+              <img src="/images/Subtract.png" alt="" />
               <div class="arrow">
                 <img src="/images/new-right.png" alt="" />
                 <img src="/images/arrow-left.png" alt="" />
@@ -234,7 +235,7 @@
 
           <div *ngSwitchCase="'project'">
             <div class="integrate">
-              <img src="/images/Frame 39.png" alt="" />
+              <img src="/images/Subtract.png" alt="" />
               <div class="arrow">
                 <img src="/images/new-right.png" alt="" />
                 <img src="/images/arrow-left.png" alt="" />
@@ -324,7 +325,7 @@
                 <button
                   *ngIf="isToolinfoOpen"
                   (click)="openPermission('proj')"
-                  [routerLink]="['/registration/subscription']"
+                  [routerLink]="['/integration/subscription']"
                 >
                   Allow
                 </button>
@@ -335,4 +336,5 @@
       </ng-container>
     </app-modal>
   </div>
+  <div class="learn"><img src="/images/book.png" alt="" /> Learn More</div>
 </div>

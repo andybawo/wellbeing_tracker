@@ -6,11 +6,48 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class DataService {
-  private apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+  private userData: any = null;
+  private companyData: any = null;
+  private authToken: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  setUserData(data: any) {
+    this.userData = data;
+  }
 
-  getData(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getUserData(): any {
+    return this.userData;
+  }
+
+  setCompanyData(data: any) {
+    this.companyData = data;
+  }
+
+  getCompanyData(): any {
+    return this.companyData;
+  }
+
+  setHasRegisteredUser(status: boolean) {
+    localStorage.setItem('hasRegisteredUser', JSON.stringify(status));
+  }
+
+  getHasRegisteredUser(): boolean {
+    return JSON.parse(localStorage.getItem('hasRegisteredUser') || 'false');
+  }
+
+  clearData() {
+    this.userData = null;
+    this.companyData = null;
+    localStorage.removeItem('hasRegisteredUser');
+    this.authToken = null;
+  }
+
+  setAuthToken(token: string) {
+    localStorage.setItem('authToken', token);
+    this.authToken = token; // Keep the property updated for in-memory access
+  }
+
+  getAuthToken(): string | null {
+    this.authToken = localStorage.getItem('authToken'); //check local storage
+    return this.authToken;
   }
 }

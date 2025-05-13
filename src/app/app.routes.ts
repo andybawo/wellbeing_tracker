@@ -10,6 +10,10 @@ import { VerifyComponent } from '../pages/verify/verify.component';
 import { IntegrationComponent } from '../pages/integration/integration.component';
 import { RegistrationComponent } from '../pages/registration/registration.component';
 import { SubscriptionComponent } from '../pages/subscription/subscription.component';
+import { ProfileComponent } from '../pages/profile/profile.component';
+import { SubSuccessfulComponent } from '../pages/sub-successful/sub-successful.component';
+import { ForgotPasswordComponent } from '../pages/forgot-password/forgot-password.component';
+// import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +28,10 @@ export const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
       },
     ],
   },
@@ -40,9 +48,21 @@ export const routes: Routes = [
         component: SignupComponent,
       },
       {
+        path: 'registration',
+        component: RegistrationComponent,
+      },
+      {
         path: 'login',
         component: LoginComponent,
       },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+      },
+      // {
+      //   path: 'reset-password',
+      //   component: ResetPasswordComponent,
+      // },
       {
         path: 'verify',
         component: VerifyComponent,
@@ -50,20 +70,24 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'registration',
+    path: 'subscription',
     component: CompanyRegComponent,
     children: [
-      {
-        path: '',
-        component: RegistrationComponent,
-      },
+      // {
+      //   path: '',
+      //   component: RegistrationComponent,
+      // },
       {
         path: 'integration',
         component: IntegrationComponent,
       },
       {
-        path: 'subscription',
+        path: '',
         component: SubscriptionComponent,
+      },
+      {
+        path: 'sub-successful',
+        component: SubSuccessfulComponent,
       },
     ],
   },

@@ -1,6 +1,14 @@
+<app-alert
+  [message]="alertMessage"
+  [type]="alertType"
+  [visible]="showAlert"
+></app-alert>
+
 <div class="grid-container">
   <div class="onboard-content">
     <router-outlet></router-outlet>
   </div>
-  <div class="side-logo"></div>
+  <div class="side-logo">
+    <img src="/images/high-fi.png" alt="" />
+  </div>
 </div>

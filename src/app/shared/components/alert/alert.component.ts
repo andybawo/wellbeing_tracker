@@ -25,11 +25,15 @@ import { Component, Input } from '@angular/core';
         background: #f8d7da;
         color: black;
         padding: 10px;
-        width: 50%;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: auto;
+        margin-top: auto;
+        position: fixed; /* Make it a fixed overlay */
+        top: 0; /* Position it at the top of the viewport */
+        left: 0; /* Position it at the left of the viewport */
+        z-index: 1001; /* Ensure it's above other content (adjust as needed) */
       }
     `,
   ],

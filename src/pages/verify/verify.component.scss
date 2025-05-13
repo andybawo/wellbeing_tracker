@@ -2,24 +2,60 @@
 
 .code {
   margin-top: 30px;
+  position: relative;
+  top: 20px;
 }
 
 .code a {
   text-decoration: underline;
   padding-bottom: 3px;
   color: black;
+  text-underline-offset: 2px;
 }
 
-.logo h1 {
+.logo-pic {
   position: relative;
-  bottom: 90px;
+  bottom: -30px;
+  margin-top: 40px;
 }
 
-h1 {
-  font-size: 30px;
-  font-weight: 500;
+.form {
+  position: relative;
+  top: 50px;
+  margin-top: 60px;
 }
 
-h3 {
-  font-size: 15px;
+.display {
+  position: relative;
+  top: 120px;
+
+  h3 {
+    font-size: 20px;
+  }
+}
+
+.otp-input-container {
+  display: flex;
+  gap: 10px; /* Adjust the spacing between the boxes */
+}
+
+.otp-digit-input {
+  width: 90px;
+  height: 74px;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.5em;
+  appearance: textfield;
+  -moz-appearance: textfield;
+  background-color: #f3e6f5;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(200, 150, 197, 0.5);
+  }
+}
+
+.otp-digit-input:not(:empty) {
+  background-color: beige;
 }

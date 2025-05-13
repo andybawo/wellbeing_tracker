@@ -22,8 +22,9 @@
 
 .main-content {
   width: 1200px;
-  margin: 20px;
   height: fit-content;
+  position: relative;
+  top: 50px;
 }
 
 .sub-length {
@@ -69,10 +70,12 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   flex-direction: column;
   padding: 20px;
+
   cursor: pointer;
 
   span {
-    width: 100px;
+    width: fit-content;
+    min-width: 100px;
     height: 50px;
     background-color: #f0eeee;
     border-radius: 25px;
@@ -80,14 +83,69 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    padding: 5px;
+  }
+}
+.packages:hover {
+  background-color: #3e1f69;
+  button {
+    background-color: white;
+    color: black;
+  }
+  .package-details {
+    h1 {
+      font-weight: 600;
+      color: white;
+    }
+    h4 {
+      font-weight: 300;
+      font-size: 15px;
+      color: #b3f524;
+      position: relative;
+      bottom: 10px;
+    }
+
+    ul {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      color: white;
+    }
+    height: 280px;
   }
 }
 
 .packages.selected {
-  background-color: #f0eeee;
+  background-color: #3e1f69;
   height: 430px;
   position: relative;
   bottom: 20px;
+
+  button {
+    background-color: white;
+    color: black;
+  }
+  .package-details {
+    h1 {
+      font-weight: 600;
+      color: white;
+    }
+    h4 {
+      font-weight: 300;
+      font-size: 15px;
+      color: #b3f524;
+      position: relative;
+      bottom: 10px;
+    }
+
+    ul {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      color: white;
+    }
+    height: 280px;
+  }
 }
 li {
   list-style: none;
@@ -136,8 +194,8 @@ li {
   }
 
   &.active {
-    background-color: rgb(46, 44, 44) !important;
-    color: white;
+    background-color: white !important;
+    color: black;
   }
 }
 
@@ -155,135 +213,99 @@ li {
   z-index: 999; /* Ensure it's below the modal */
 }
 
-.payment {
-  min-width: 770px;
-  min-height: 570px;
-  height: fit-content;
-  width: fit-content;
+.modal-pay {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+
+  .logo-pic {
+    align-self: flex-start;
+    position: relative;
+    bottom: 30px;
+    left: 30px;
+  }
+}
+
+.payment-button {
   display: flex;
   flex-direction: row;
-  margin: 0;
-  border-radius: 5px;
-}
-
-.payment-method {
-  padding-left: 20px;
-  padding-top: 20px;
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-  background-color: #f0eeee;
-  height: 570px;
-  border-radius: 5px;
-
-  span {
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .pay-card {
-    height: 52px;
-    border-bottom: 0.5px solid rgb(204, 199, 199);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-      background-color: #d2cccc;
-      cursor: pointer;
-    }
-  }
-}
-
-.payment-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 80%;
-
-  // margin-left: 20px;
-  // margin-right: 20px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-  margin-top: 20px;
-  margin-bottom: 80px;
-
-  img {
-    height: 25px;
-    width: 24px;
-  }
-}
-h3 {
-  margin-top: 40px;
-  font-weight: 500;
-}
-
-.support {
-  display: flex;
-  flex-direction: column;
-
-  h4 {
-    align-self: flex-end;
-  }
-
-  a {
-    text-decoration: none;
-    color: rgb(48, 46, 46);
-  }
-}
-
-.pay-form {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 30px;
-  gap: 20px;
-
-  input {
-    height: 62px;
-    outline: none;
-    padding: 20px;
-    border: 0.5px solid lightgrey;
-    border-radius: 3px;
-  }
-
-  span {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    justify-content: center;
-
-    input {
-      width: 100%;
-      height: 62px;
-      padding: 20px;
-    }
-  }
-}
-
-.close-pay {
-  display: flex;
-  align-self: flex-end;
-}
-
-.pay-button {
-  margin-top: 30px;
-  width: 90%;
+  gap: 40px;
 
   button {
     height: 48px;
-    width: 100%;
-    background-color: rgb(55, 52, 52);
-    color: white;
-    border-radius: 5px;
+    width: 160px;
+    justify-content: space-between;
     cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid rgb(141, 135, 135);
+    position: relative;
+    top: 30px;
+    background-color: white;
+    color: black;
+    font-weight: 800;
+  }
+
+  button:hover {
+    background-color: #3e1f69;
+    color: white;
+  }
+}
+
+.modal-load {
+  min-width: 576px;
+  width: fit-content;
+  height: 260px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: white;
+  // padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  flex-direction: column;
+}
+
+.loading-bar-wrapper {
+  width: 80%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.loading-bar {
+  width: 50%;
+  height: 100%;
+  background-color: #3e1f69; // Tailwind indigo-600 or change to your theme
+  animation: slide 1.5s infinite ease-in-out;
+}
+
+.load-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }

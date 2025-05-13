@@ -1,5 +1,11 @@
-<div class="logo">
-  <h1>LOGO</h1>
+<app-alert
+  [message]="alertMessage"
+  [type]="alertType"
+  [visible]="showAlert"
+></app-alert>
+
+<div class="logo-pic">
+  <img src="/images/logo.png" alt="" />
 </div>
 <div class="display">
   <h3>Please enter your details to signup</h3>
@@ -7,42 +13,61 @@
   <form class="form" [formGroup]="userForm" (ngSubmit)="onUserSave()">
     <label for="fullName">Full Name</label>
     <input
+      id="fullName"
       type="text"
       formControlName="fullName"
       placeholder="Enter full name"
     />
-    <label for="email">Email Address</label>
+    <label for="emailAddress">Email Address</label>
     <input
+      id="emailAddress"
       type="email"
-      formControlName="email"
-      placeholder="Enter email address"
+      formControlName="emailAddress"
+      placeholder="Enter Email address"
     />
     <label for="password">Password</label>
     <input
+      id="password"
       type="password"
       formControlName="password"
       placeholder="Enter Password"
     />
-    <button type="submit">Sign Up</button>
+
+    <div class="bottom-display">
+      <button type="submit" [disabled]="isButtonLoading">
+        <span *ngIf="!isButtonLoading">Sign Up</span>
+        <span *ngIf="isButtonLoading" class="button-loader">
+          <span class="spinner"></span>
+          Signing up...
+        </span>
+      </button>
+      <span>Or</span>
+      <button>
+        <img
+          src="/images/Symbol.png"
+          alt="Microsoft Logo"
+          style="width: 20px; height: 20px"
+        />
+        Google
+      </button>
+      <button>
+        <img
+          src="/images/microsoft.png"
+          alt="Microsoft Logo"
+          style="width: 20px; height: 20px"
+        />
+        Microsoft Azure
+      </button>
+    </div>
   </form>
 </div>
 
-<div class="bottom-display">
-  <span>Or</span>
-  <button>
-    <img
-      src="/images/Symbol.png"
-      alt="Microsoft Logo"
-      style="width: 20px; height: 20px"
-    />
-    Google
-  </button>
-  <button>
-    <img
-      src="/images/microsoft.png"
-      alt="Microsoft Logo"
-      style="width: 20px; height: 20px"
-    />
-    Microsoft Azure
-  </button>
+<div class="modal-load" *ngIf="isLoading">
+  <div class="loading-bar-wrapper">
+    <div class="loading-bar"></div>
+  </div>
+  <div class="load-title">
+    <h1>Fetching Data</h1>
+    <h4>Hang on this may take a few seconds</h4>
+  </div>
 </div>

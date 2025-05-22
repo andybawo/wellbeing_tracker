@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.option-divider-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* Two flexible columns for lines, 'auto' for text */
+  align-items: center; /* Vertically align items in the grid row */
+  width: 550px; /* Adjust the overall width of the divider */
+}
+
+.line {
+  height: 1px;
+  background-color: #ccc;
+}
+
+.or-text {
+  color: #555;
+  font-size: 1em;
+  white-space: nowrap;
+  padding: 0 0.5em; /* Adjust padding to control space around 'or' */
+  text-align: center; /* Center the 'or' text within its grid cell */
+}

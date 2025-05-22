@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 .logo {
   height: 100px;
   width: 100px;
@@ -86,6 +88,12 @@
     padding: 5px;
   }
 }
+
+.package-details {
+  h1 {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
 .packages:hover {
   background-color: #3e1f69;
   button {
@@ -96,6 +104,7 @@
     h1 {
       font-weight: 600;
       color: white;
+      font-family: "Arial";
     }
     h4 {
       font-weight: 300;
@@ -229,10 +238,25 @@ li {
   }
 }
 
-.payment-button {
+.payment-option {
+  width: 90%;
+  height: fit-content;
+  height: 300px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-card {
+  height: 150px;
+  border: 0.5px solid lightgray;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 40px;
+  border-radius: 5px;
+  padding: 10px;
 
   button {
     height: 48px;
@@ -242,7 +266,7 @@ li {
     border-radius: 8px;
     border: 1px solid rgb(141, 135, 135);
     position: relative;
-    top: 30px;
+    // top: 30px;
     background-color: white;
     color: black;
     font-weight: 800;

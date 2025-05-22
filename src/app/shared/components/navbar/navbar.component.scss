@@ -1,29 +1,45 @@
 /* Navbar Styles */
 .navbar {
-  width: 100%;
+  width: 1314px;
   padding: 10px 20px;
-  box-sizing: border-box;
-}
-
-.navbar ul {
   display: flex;
-  padding: 0;
-  margin: 0;
-  list-style: none;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.left-end,
+.right-end {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* spacing between items */
+
+  img {
+    cursor: pointer;
+  }
 }
 
-.navbar li {
-  margin-right: 20px;
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  padding: 5px 15px;
-  transition: color 0.3s ease;
+.search-container input {
+  padding-left: 25px; /* space for the icon */
+  height: 20px; /* optional: control height */
+  border: none;
+  border-radius: 4px;
+  width: 230px;
 }
 
-.navbar a:hover {
-  color: #f39c12;
+.search-container img {
+  position: absolute;
+  left: 1px;
+  width: 16px;
+  height: 16px;
+  pointer-events: none; /* allows clicks to pass through */
+}
+
+.right-end select {
+  border: none;
 }

@@ -1,0 +1,61 @@
+// integration.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { v4 as uuidv4 } from 'uuid';
+import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IntegrationService {
+  private apiUrl = environment.apiUrl;
+  private jiraApiKeyEndpoint =
+    'https://cultural-health.azurewebsites.net/api/Jira/connect/Jira/key';
+  private jiraOAuthAuthorizeUrl = 'https://auth.atlassian.com/authorize';
+  private jiraClientId = 'gWwrLlmqy36TJ0P4GKALS6W74LCaosUq';
+  private jiraOAuthRedirectUri = `${window.location.origin}/subscription/jira-redirect`;
+  private jiraOAuthScope =
+    'read:project:jira read:project-info:jira read:issue-details:jira read:issue-status:jira read:user:jira read:issue:jira-software read:sprint:jira-software read:operations-info:jira read:comment-info:jira read:conversation-info:jira read:calendar-info:jira read:customer-org:jira read:role:jira read:status:jira read:workflow:jira read:project.feature:jira read:project.component:jira read:issue-worklog:jira read:issue:jira read:group:jira read:dashboard:jira';
+
+  constructor(private http: HttpClient, private router: Router) {}
+
+  connectJiraWithApiKey(apiKey: string, email: string) {
+    return this.http.post(this.jiraApiKeyEndpoint, { apiKey, email });
+  }
+
+  initiateJiraOAuth() {
+    const state = uuidv4();
+    const authorizationUrl = `${
+      this.jiraOAuthAuthorizeUrl
+    }?audience=api.atlassian.com&client_id=${
+      this.jiraClientId
+    }&scope=${encodeURIComponent(
+      this.jiraOAuthScope
+    )}&redirect_uri=${encodeURIComponent(
+      this.jiraOAuthRedirectUri
+    )}&state=${state}&response_type=code&prompt=consent`;
+    localStorage.setItem('jira_oauth_state', state);
+    window.location.href = authorizationUrl;
+  }
+
+  exchangeJiraCodeForToken(code: string, state: string, jwtToken: string) {
+    console.log('Code being sent:', code);
+    console.log('State being sent:', state);
+    console.log('JWT Token:', jwtToken);
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${jwtToken}`,
+    });
+
+    const params = new HttpParams().set('code', code).set('state', state);
+
+    return this.http.post(
+      `${this.apiUrl}/api/Jira/connect/Jira/OAuth`,
+      {
+        code,
+        state,
+      },
+      { headers, params }
+    );
+  }
+}

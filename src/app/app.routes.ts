@@ -13,6 +13,8 @@ import { SubscriptionComponent } from '../pages/subscription/subscription.compon
 import { ProfileComponent } from '../pages/profile/profile.component';
 import { SubSuccessfulComponent } from '../pages/sub-successful/sub-successful.component';
 import { ForgotPasswordComponent } from '../pages/forgot-password/forgot-password.component';
+import { JiraRedirectComponent } from '../pages/jira-redirect/jira-redirect.component';
+import { HrOverviewComponent } from '../pages/hr-overview/hr-overview.component';
 // import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 
 export const routes: Routes = [
@@ -32,6 +34,10 @@ export const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+      },
+      {
+        path: 'hr-overview',
+        component: HrOverviewComponent,
       },
     ],
   },
@@ -88,6 +94,10 @@ export const routes: Routes = [
       {
         path: 'sub-successful',
         component: SubSuccessfulComponent,
+      },
+      {
+        path: 'jira-redirect',
+        component: JiraRedirectComponent,
       },
     ],
   },

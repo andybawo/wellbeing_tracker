@@ -3,7 +3,7 @@
   margin-top: 40px;
 }
 
-.details h1:nth-child(2) {
+.display h1:nth-child(2) {
   font-size: 20px;
   position: relative;
   bottom: 20px;
@@ -19,19 +19,19 @@
   top: 20px;
 }
 
-.details h4 {
-  font-weight: 300;
-}
+// .details h4 {
+//   font-weight: 300;
+// }
 
-.details {
+.display {
   height: 452px;
-  width: 730px;
+  width: 500px;
 }
 
 .form-details {
   display: flex;
   gap: 10px;
-  width: 730px;
+  width: 100%;
   flex-direction: column;
 }
 
@@ -85,10 +85,17 @@ input:focus {
   padding-left: 20px;
   padding-right: 30px;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url("/images/arrow-down.png");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
 }
 
 .bottom {
-  width: 730px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -99,6 +106,7 @@ input:focus {
   width: 200px;
   height: 48px;
   border-radius: 5px;
+  gap: 40px;
 }
 
 .bottom button:hover {

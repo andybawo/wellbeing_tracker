@@ -1,9 +1,32 @@
 <div class="sidebar" [class.open]="sidebarOpen">
-  <ul>
-    <li><a href="">Dashboard</a></li>
-    <li><a href="">Settings</a></li>
-    <li>
-      <a [routerLink]="['/home/profile']">Profile</a>
-    </li>
-  </ul>
+  <div class="sidebar-item">
+    <img src="/images/logo-dash.png" alt="" />
+    <div class="sidebar-list">
+      <ul>
+        <li [routerLink]="['/home']">
+          <img src="/images/tick-square-dash.png" alt="" />Dashboard
+        </li>
+        <li [routerLink]="['/home/hr-overview']">
+          <img src="/images/people-dash.png" alt="" />HR Overview
+        </li>
+        <li [routerLink]="['/home/profile']">
+          <img src="/images/messages-dash.png" alt="" />Communication Tool
+        </li>
+
+        <li>
+          <img src="/images/task-square-dash.png" alt="" />Project Managememt
+        </li>
+        <li><img src="/images/sms-tracking-dash.png" alt="" />Alerts</li>
+        <li><img src="/images/integrate-dash.png" alt="" />Integration</li>
+        <li><img src="/images/subscription-dash.png" alt="" />Subscription</li>
+        <li>
+          <img src="/images/user-square-dash.png" alt="" />User Management
+        </li>
+        <li><img src="/images/user-search-dash.png" alt="" />Audit Logs</li>
+      </ul>
+      <ul>
+        <li><img src="/images/logout-dash.png" alt="" />Logout</li>
+      </ul>
+    </div>
+  </div>
 </div>

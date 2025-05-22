@@ -1,8 +1,8 @@
 /* Grid Layout for the entire page */
 .grid-container {
   display: grid;
-  grid-template-columns: 260px 1fr; /* Sidebar and Main content */
-  grid-template-rows: 60px 1fr; /* Header height and main content height */
+  grid-template-columns: 222px 1fr; /* Sidebar and Main content */
+  grid-template-rows: 55px 1fr; /* Header height and main content height */
   grid-template-areas:
     "sidebar header"
     "sidebar main"; /* Sidebar and main content layout */
@@ -11,19 +11,18 @@
 
 /* Header styles */
 .header {
-  background-color: #2c3e50; /* Dark background for header */
+  background-color: white; /* Dark background for header */
   color: white;
   grid-area: header; /* Position header in the grid */
-  width: 100%; /* Ensure header spans across the full width */
   display: flex; /* Flexbox to align content inside */
-  justify-content: center; /* Center the header content */
   align-items: center; /* Vertically center the content */
 }
 
 /* Main content area styles */
 .main-container {
   grid-area: main; /* Assign the main area in the grid */
-  background-color: white; /* Main content background color */
-  padding: 20px; /* Padding for spacing */
+  background-color: #f0eeee; /* Main content background color */
+  padding: 16px 16px 0 16px; /* Padding for spacing */
   overflow-y: auto; /* Allow vertical scrolling */
+  box-sizing: border-box;
 }

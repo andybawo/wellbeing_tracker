@@ -16,7 +16,7 @@
 .logo-pic {
   position: relative;
   bottom: -30px;
-  margin-top: 40px;
+  margin-top: 0;
 }
 
 .form {
@@ -49,6 +49,10 @@
   appearance: textfield;
   -moz-appearance: textfield;
   background-color: #f3e6f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 
   &:focus {
     outline: none;

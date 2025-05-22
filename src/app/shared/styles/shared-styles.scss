@@ -1,6 +1,6 @@
 /* Display */
 .display {
-  width: 640px;
+  width: 560px;
   height: 362px;
   display: flex;
   flex-direction: column;
@@ -12,12 +12,13 @@
 .display h1 {
   position: relative;
   top: 50px;
+  font-weight: 600;
 }
 
 .display h3 {
   position: relative;
   top: 60px;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 /* Logo */
@@ -42,6 +43,8 @@ input {
   background-color: #f0eeee;
   border-radius: 5px;
   padding-left: 30px;
+  width: 560px;
+  align-self: center;
 
   &:focus {
     outline: none;
@@ -51,7 +54,7 @@ input {
 /* Bottom Display */
 .bottom-display {
   height: 218px;
-  width: 640px;
+  width: 560px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,6 +93,12 @@ input {
 }
 
 .bottom-display button:nth-child(3) {
+  background-color: white;
+  color: black;
+  border: 1px solid #3e1f69;
+}
+
+.bottom-display button:nth-child(4) {
   background-color: white;
   color: black;
   border: 1px solid #3e1f69;
@@ -234,7 +243,7 @@ input {
 /* Large Desktop (> 1024px) */
 @media (min-width: 1025px) {
   .display {
-    width: 640px;
+    width: 560px;
     height: 362px;
   }
 
@@ -255,7 +264,7 @@ input {
   }
 
   .bottom-display {
-    width: 640px;
+    width: 560px;
   }
 
   .bottom-display button {

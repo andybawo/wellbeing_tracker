@@ -1,11 +1,14 @@
+// integration.component.ts
 import { Component } from '@angular/core';
 import { ModalComponent } from '../../app/shared/modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { IntegrationService } from '../../app/core/services/integration.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-integration',
-  imports: [ModalComponent, CommonModule, RouterModule],
+  imports: [ModalComponent, CommonModule, RouterModule, FormsModule],
   templateUrl: './integration.component.html',
   styleUrl: './integration.component.scss',
 })
@@ -16,6 +19,15 @@ export class IntegrationComponent {
   isToolinfoOpen: boolean = false;
   isLoading = false;
   shouldOpenModal = false;
+
+  selectedHrTool: string = 'seamless';
+  selectedComTools: string = 'slack';
+  selectedProjTools: string = 'jira';
+
+  jiraApiKey = '';
+  jiraApiEmail = '';
+
+  constructor(private integrationService: IntegrationService) {}
 
   openModal(content: string) {
     this.resetModalState();
@@ -43,19 +55,18 @@ export class IntegrationComponent {
     this.selectedProjTools = 'jira';
     this.showApiKeyfield = false;
     this.isToolinfoOpen = false;
+    this.jiraApiKey = '';
+    this.jiraApiEmail = '';
   }
 
-  selectedHrTool: string = 'seamless';
   toggleToolhr(tool: string) {
     this.selectedHrTool = tool;
   }
 
-  selectedComTools: string = 'slack';
   toggleTool(tool: string) {
     this.selectedComTools = tool;
   }
 
-  selectedProjTools: string = 'jira';
   toggleToolproj(tool: string) {
     this.selectedProjTools = tool;
   }
@@ -64,9 +75,44 @@ export class IntegrationComponent {
     this.showApiKeyfield = (event.target as HTMLInputElement).checked;
   }
 
-  openPermission(value: string) {
+  openPermission(tool: string) {
     this.isToolinfoOpen = true;
+    this.selectedModalContent = tool; // Ensure the correct modal content is active
   }
 
-  allowPermission() {}
+  connectJiraApiKey() {
+    if (this.jiraApiKey && this.jiraApiEmail) {
+      this.integrationService
+        .connectJiraWithApiKey(this.jiraApiKey, this.jiraApiEmail)
+        .subscribe({
+          next: (response) => {
+            console.log('Jira API Key connected successfully', response);
+            this.closeModal();
+            // Handle success (e.g., show a notification)
+          },
+          error: (error) => {
+            console.error('Error connecting Jira with API Key', error);
+            // Handle error (e.g., show an error message)
+          },
+        });
+    } else {
+      // Handle case where API key or email is missing
+      console.warn('Please provide both API Key and Email');
+    }
+  }
+
+  connectJiraOAuth() {
+    this.integrationService.initiateJiraOAuth();
+  }
+
+  allowPermission() {
+    if (
+      this.selectedModalContent === 'project' &&
+      this.selectedProjTools === 'jira'
+    ) {
+      this.connectJiraOAuth();
+    } else {
+      this.closeModal(); // For other tools, just close the modal for now
+    }
+  }
 }

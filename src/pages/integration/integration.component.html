@@ -10,21 +10,21 @@
 
   <div class="tool-card">
     <div class="cards" (click)="openModal('hrm')">
-      <img src="/images/people.png" alt="" />
+      <img src="/images/people (2).png" alt="" />
       <div class="title">
         HRM Tool <img src="/images/arrow-right.png" alt="" />
       </div>
     </div>
 
     <div class="cards" (click)="openModal('communication')">
-      <img src="/images/communication.png" alt="" />
+      <img src="/images/messages-3 (1).png" alt="" />
       <div class="title">
         Communication Tool <img src="/images/arrow-right.png" alt="" />
       </div>
     </div>
 
     <div class="cards" (click)="openModal('project')">
-      <img src="/images/task.png" alt="" />
+      <img src="/images/task-square.png" alt="" />
       <div class="title">
         Project Tool <img src="/images/arrow-right.png" alt="" />
       </div>
@@ -48,288 +48,327 @@
 
     <app-modal *ngIf="isModalOpen" (close)="closeModal()">
       <ng-container [ngSwitch]="selectedModalContent">
-        <div class="modal-content">
-          <div *ngSwitchCase="'hrm'">
-            <div class="integrate">
-              <img src="/images/Subtract.png" alt="" />
-              <div class="arrow">
-                <img src="/images/new-right.png" alt="" />
-                <img src="/images/arrow-left.png" alt="" />
-              </div>
-              <img src="/images/seamless.png" alt="" />
+        <div *ngSwitchCase="'hrm'">
+          <div class="integrate">
+            <img src="/images/Subtract.png" alt="" />
+            <div class="arrow">
+              <img src="/images/new-right.png" alt="" />
+              <img src="/images/arrow-left.png" alt="" />
             </div>
-            <div class="info">
-              <div class="checkbox-hr">
+            <img src="/images/seamless.png" alt="" />
+          </div>
+          <div class="info">
+            <div class="checkbox-hr">
+              <input
+                type="checkbox"
+                [checked]="selectedHrTool === 'seamless'"
+                (change)="toggleToolhr('seamless')"
+              />
+              <span>Seamless HR</span>
+            </div>
+
+            <ng-container *ngIf="!isToolinfoOpen">
+              <h1>Connect to Seamless HR</h1>
+              <h3>Connect tool to sync data across devices</h3>
+              <div class="checkbox-container">
                 <input
                   type="checkbox"
-                  [checked]="selectedHrTool === 'seamless'"
-                  (change)="toggleToolhr('seamless')"
-                />
-                <span>Seamless HR</span>
+                  (change)="toggleApiKeyField($event)"
+                /><span>If having issues link with API</span>
               </div>
 
-              <ng-container *ngIf="!isToolinfoOpen">
-                <h1>Connect to Seamless HR</h1>
-                <h3>Connect tool to sync data across devices</h3>
-                <div class="checkbox-container">
-                  <input
-                    type="checkbox"
-                    (change)="toggleApiKeyField($event)"
-                  /><span>If having issues link with API</span>
+              <div class="api-key" *ngIf="showApiKeyfield">
+                <div class="api-key-details">
+                  <label for="">API Key</label>
+                  <input type="text" placeholder="Enter API Key" />
                 </div>
 
-                <div class="api-key" *ngIf="showApiKeyfield">
-                  <div class="api-key-details">
-                    <label for="">API Key</label>
-                    <input type="text" placeholder="Enter API Key" />
-                  </div>
+                <span class="verify"><a href="">Verify</a></span>
+                <a href=""
+                  >Click here for more information on how to get API Key</a
+                >
+              </div>
+            </ng-container>
 
-                  <span class="verify"><a href="">Verify</a></span>
-                  <a href=""
-                    >Click here for more information on how to get API Key</a
-                  >
-                </div>
-              </ng-container>
-
-              <div class="tool-permission" *ngIf="isToolinfoOpen">
-                <div class="permission-header">
-                  <h1>Data Permission</h1>
-                  <h4>
-                    Give system access to review permission and confirm
-                    integration
-                  </h4>
-                </div>
-
-                <div class="permission-list">
-                  <ul>
-                    <li><input type="checkbox" />Employee Records</li>
-                    <li><input type="checkbox" />HR Events</li>
-                    <li><input type="checkbox" />Performance Metrics</li>
-                    <li><input type="checkbox" />Organizational Structure</li>
-                  </ul>
-                </div>
+            <div class="tool-permission" *ngIf="isToolinfoOpen">
+              <div class="permission-header">
+                <h1>Data Permission</h1>
+                <h4>
+                  Give system access to review permission and confirm
+                  integration
+                </h4>
               </div>
 
-              <div class="bottom">
-                <button (click)="closeModal()">Cancel</button>
-                <button *ngIf="!isToolinfoOpen" (click)="openPermission('hrm')">
-                  Connect
-                </button>
-                <button *ngIf="isToolinfoOpen" (click)="closeModal()">
-                  Allow
-                </button>
+              <div class="permission-list">
+                <ul>
+                  <li><input type="checkbox" />Employee Records</li>
+                  <li><input type="checkbox" />HR Events</li>
+                  <li><input type="checkbox" />Performance Metrics</li>
+                  <li><input type="checkbox" />Organizational Structure</li>
+                </ul>
               </div>
+            </div>
+
+            <div class="bottom">
+              <button (click)="closeModal()">Cancel</button>
+              <button *ngIf="!isToolinfoOpen" (click)="openPermission('hrm')">
+                Connect
+              </button>
+              <button *ngIf="isToolinfoOpen" (click)="closeModal()">
+                Allow
+              </button>
             </div>
           </div>
+        </div>
 
-          <div *ngSwitchCase="'communication'">
-            <div class="integrate">
-              <img src="/images/Subtract.png" alt="" />
-              <div class="arrow">
-                <img src="/images/new-right.png" alt="" />
-                <img src="/images/arrow-left.png" alt="" />
-              </div>
-              <img
-                *ngIf="selectedComTools === 'slack'"
-                src="/images/slack.png"
-                alt=""
-              />
-              <img
-                *ngIf="selectedComTools === 'outlook'"
-                src="/images/outlook.png"
-                alt=""
-              />
-              <img
-                *ngIf="selectedComTools === 'teams'"
-                src="/images/teams.png"
-                alt=""
-              />
+        <div *ngSwitchCase="'communication'">
+          <div class="integrate">
+            <img src="/images/Subtract.png" alt="" />
+            <div class="arrow">
+              <img src="/images/new-right.png" alt="" />
+              <img src="/images/arrow-left.png" alt="" />
             </div>
-            <div class="checkbox-com">
-              <input
-                type="checkbox"
-                [checked]="selectedComTools === 'slack'"
-                (change)="toggleTool('slack')"
-              />Slack
-              <input
-                type="checkbox"
-                [checked]="selectedComTools === 'outlook'"
-                (change)="toggleTool('outlook')"
-              />Outlook
-              <input
-                type="checkbox"
-                [checked]="selectedComTools === 'teams'"
-                (change)="toggleTool('teams')"
-              />Teams
-            </div>
-
-            <div class="info">
-              <!-- <h2>{{ selectedComTools | titlecase }}</h2> -->
-              <ng-container *ngIf="!isToolinfoOpen">
-                <h1>Connect to {{ selectedComTools | titlecase }}</h1>
-                <h3>Connect tool to sync data across devices</h3>
-                <div class="checkbox-container">
-                  <input
-                    type="checkbox"
-                    (change)="toggleApiKeyField($event)"
-                  /><span>If having issues link with API</span>
-                </div>
-
-                <div class="api-key" *ngIf="showApiKeyfield">
-                  <div class="api-key-details">
-                    <label for="">API Key</label>
-                    <input type="text" placeholder="Enter API Key" />
-                  </div>
-
-                  <span class="verify"><a href="">Verify</a></span>
-                  <a href=""
-                    >Click here for more information on how to get API Key</a
-                  >
-                </div>
-              </ng-container>
-
-              <div class="tool-permission" *ngIf="isToolinfoOpen">
-                <div class="permission-header">
-                  <h1>Data Permission</h1>
-                  <h4>
-                    Give system access to review permission and confirm
-                    integration
-                  </h4>
-                </div>
-
-                <div class="permission-list">
-                  <ul *ngIf="selectedComTools === 'slack'">
-                    <li><input type="checkbox" />Employee Records</li>
-                    <li><input type="checkbox" />HR Events</li>
-                    <li><input type="checkbox" />Performance Metrics</li>
-                    <li><input type="checkbox" />Organizational Structure</li>
-                  </ul>
-
-                  <ul *ngIf="selectedComTools === 'outlook'">
-                    <li><input type="checkbox" />Inbox &amp; Records</li>
-                    <li><input type="checkbox" />Company Wide Announcements</li>
-                    <li><input type="checkbox" />Email Contacts</li>
-                    <li><input type="checkbox" />Email Attachments</li>
-                  </ul>
-
-                  <ul *ngIf="selectedComTools === 'teams'">
-                    <li><input type="checkbox" />Team Chats</li>
-                    <li><input type="checkbox" />Group Announcement</li>
-                    <li><input type="checkbox" />Direct Messaging</li>
-                    <li><input type="checkbox" />Video Calls</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="bottom">
-                <button (click)="closeModal()">Cancel</button>
-                <button *ngIf="!isToolinfoOpen" (click)="openPermission('com')">
-                  Connect
-                </button>
-                <button *ngIf="isToolinfoOpen" (click)="closeModal()">
-                  Allow
-                </button>
-              </div>
-            </div>
+            <img
+              *ngIf="selectedComTools === 'slack'"
+              src="/images/slack.png"
+              alt=""
+            />
+            <img
+              *ngIf="selectedComTools === 'outlook'"
+              src="/images/outlook.png"
+              alt=""
+            />
+            <img
+              *ngIf="selectedComTools === 'teams'"
+              src="/images/teams.png"
+              alt=""
+            />
+          </div>
+          <div class="checkbox-com">
+            <input
+              type="checkbox"
+              [checked]="selectedComTools === 'slack'"
+              (change)="toggleTool('slack')"
+            />Slack
+            <input
+              type="checkbox"
+              [checked]="selectedComTools === 'outlook'"
+              (change)="toggleTool('outlook')"
+            />Outlook
+            <input
+              type="checkbox"
+              [checked]="selectedComTools === 'teams'"
+              (change)="toggleTool('teams')"
+            />Teams
           </div>
 
-          <div *ngSwitchCase="'project'">
-            <div class="integrate">
-              <img src="/images/Subtract.png" alt="" />
-              <div class="arrow">
-                <img src="/images/new-right.png" alt="" />
-                <img src="/images/arrow-left.png" alt="" />
+          <div class="info">
+            <!-- <h2>{{ selectedComTools | titlecase }}</h2> -->
+            <ng-container *ngIf="!isToolinfoOpen">
+              <h1>Connect to {{ selectedComTools | titlecase }}</h1>
+              <h3>Connect tool to sync data across devices</h3>
+              <div class="checkbox-container">
+                <input
+                  type="checkbox"
+                  (change)="toggleApiKeyField($event)"
+                /><span>If having issues link with API</span>
               </div>
-              <img
-                *ngIf="selectedProjTools === 'jira'"
-                src="/images/jira.png"
-                alt=""
-              />
-              <img
-                *ngIf="selectedProjTools === 'planner'"
-                src="/images/teams.png"
-                alt=""
-              />
-            </div>
-            <div class="checkbox-proj">
-              <input
-                type="checkbox"
-                [checked]="selectedProjTools === 'jira'"
-                (change)="toggleToolproj('jira')"
-              />Jira
-              <input
-                type="checkbox"
-                [checked]="selectedProjTools === 'planner'"
-                (change)="toggleToolproj('planner')"
-              />Planner
+
+              <div class="api-key" *ngIf="showApiKeyfield">
+                <div class="api-key-details">
+                  <label for="">API Key</label>
+                  <input type="text" placeholder="Enter API Key" />
+                </div>
+
+                <span class="verify"><a href="">Verify</a></span>
+                <a href=""
+                  >Click here for more information on how to get API Key</a
+                >
+              </div>
+            </ng-container>
+
+            <div class="tool-permission" *ngIf="isToolinfoOpen">
+              <div class="permission-header">
+                <h1>Data Permission</h1>
+                <h4>
+                  Give system access to review permission and confirm
+                  integration
+                </h4>
+              </div>
+
+              <div class="permission-list">
+                <ul *ngIf="selectedComTools === 'slack'">
+                  <li><input type="checkbox" />Employee Records</li>
+                  <li><input type="checkbox" />HR Events</li>
+                  <li><input type="checkbox" />Performance Metrics</li>
+                  <li><input type="checkbox" />Organizational Structure</li>
+                </ul>
+
+                <ul *ngIf="selectedComTools === 'outlook'">
+                  <li><input type="checkbox" />Inbox &amp; Records</li>
+                  <li><input type="checkbox" />Company Wide Announcements</li>
+                  <li><input type="checkbox" />Email Contacts</li>
+                  <li><input type="checkbox" />Email Attachments</li>
+                </ul>
+
+                <ul *ngIf="selectedComTools === 'teams'">
+                  <li><input type="checkbox" />Team Chats</li>
+                  <li><input type="checkbox" />Group Announcement</li>
+                  <li><input type="checkbox" />Direct Messaging</li>
+                  <li><input type="checkbox" />Video Calls</li>
+                </ul>
+              </div>
             </div>
 
-            <div class="info">
-              <ng-container *ngIf="!isToolinfoOpen">
-                <h1>Connect to {{ selectedProjTools | titlecase }}</h1>
-                <h3>Connect tool to sync data across devices</h3>
-                <div class="checkbox-container">
+            <div class="bottom">
+              <button (click)="closeModal()">Cancel</button>
+              <button *ngIf="!isToolinfoOpen" (click)="openPermission('com')">
+                Connect
+              </button>
+              <button *ngIf="isToolinfoOpen" (click)="closeModal()">
+                Allow
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'project'">
+          <div class="integrate">
+            <img src="/images/Subtract.png" alt="" />
+            <div class="arrow">
+              <img src="/images/new-right.png" alt="" />
+              <img src="/images/arrow-left.png" alt="" />
+            </div>
+            <img
+              *ngIf="selectedProjTools === 'jira'"
+              src="/images/jira.png"
+              alt=""
+            />
+            <img
+              *ngIf="selectedProjTools === 'planner'"
+              src="/images/teams.png"
+              alt=""
+            />
+          </div>
+          <div class="checkbox-proj">
+            <input
+              type="checkbox"
+              [checked]="selectedProjTools === 'jira'"
+              (change)="toggleToolproj('jira')"
+            />Jira
+            <input
+              type="checkbox"
+              [checked]="selectedProjTools === 'planner'"
+              (change)="toggleToolproj('planner')"
+            />Planner
+          </div>
+
+          <div class="info">
+            <ng-container *ngIf="!isToolinfoOpen">
+              <h1>Connect to {{ selectedProjTools | titlecase }}</h1>
+              <h3>Connect tool to sync data across devices</h3>
+              <div class="checkbox-container">
+                <input
+                  type="checkbox"
+                  (change)="toggleApiKeyField($event)"
+                /><span>If having issues link with API</span>
+              </div>
+
+              <div
+                class="api-key"
+                *ngIf="showApiKeyfield && selectedProjTools === 'jira'"
+              >
+                <div class="api-key-details">
+                  <label for="">API Key</label>
                   <input
-                    type="checkbox"
-                    (change)="toggleApiKeyField($event)"
-                  /><span>If having issues link with API</span>
+                    type="text"
+                    placeholder="Enter API Key"
+                    [(ngModel)]="jiraApiKey"
+                  />
+                </div>
+                <div class="api-key-details">
+                  <label for="">Email Address</label>
+                  <input
+                    type="email"
+                    placeholder="Enter Email Address"
+                    [(ngModel)]="jiraApiEmail"
+                  />
                 </div>
 
-                <div class="api-key" *ngIf="showApiKeyfield">
-                  <div class="api-key-details">
-                    <label for="">API Key</label>
-                    <input type="text" placeholder="Enter API Key" />
-                  </div>
+                <span class="verify"
+                  ><button (click)="connectJiraApiKey()">Verify</button></span
+                >
+                <a href=""
+                  >Click here for more information on how to get API Key</a
+                >
+              </div>
+            </ng-container>
 
-                  <span class="verify"><a href="">Verify</a></span>
-                  <a href=""
-                    >Click here for more information on how to get API Key</a
-                  >
-                </div>
-              </ng-container>
-
-              <div class="tool-permission" *ngIf="isToolinfoOpen">
-                <div class="permission-header">
-                  <h1>Data Permission</h1>
-                  <h4>
-                    Give system access to review permission and confirm
-                    integration
-                  </h4>
-                </div>
-
-                <div class="permission-list">
-                  <ul *ngIf="selectedProjTools === 'jira'">
-                    <li><input type="checkbox" />Project Boards</li>
-                    <li><input type="checkbox" />Task Assignment</li>
-                    <li><input type="checkbox" />Issue Tracking</li>
-                    <li><input type="checkbox" />Sprint Progress</li>
-                  </ul>
-
-                  <ul *ngIf="selectedProjTools === 'planner'">
-                    <li><input type="checkbox" />Task List</li>
-                    <li><input type="checkbox" />Due Dates &amp; Reminders</li>
-                    <li><input type="checkbox" />Team Progress</li>
-                    <li><input type="checkbox" />Attached Files</li>
-                  </ul>
-                </div>
+            <div class="tool-permission" *ngIf="isToolinfoOpen">
+              <div class="permission-header">
+                <h1>Data Permission</h1>
+                <h4>
+                  Give system access to review permission and confirm
+                  integration
+                </h4>
               </div>
 
-              <div class="bottom">
-                <button (click)="closeModal()">Cancel</button>
-                <button
-                  *ngIf="!isToolinfoOpen"
-                  (click)="openPermission('proj')"
-                >
-                  Connect
-                </button>
-                <button
-                  *ngIf="isToolinfoOpen"
-                  (click)="openPermission('proj')"
-                  [routerLink]="['/integration/subscription']"
-                >
-                  Allow
-                </button>
+              <div class="permission-list">
+                <ul *ngIf="selectedProjTools === 'jira'">
+                  <li><input type="checkbox" />Project Boards</li>
+                  <li><input type="checkbox" />Task Assignment</li>
+                  <li><input type="checkbox" />Issue Tracking</li>
+                  <li><input type="checkbox" />Sprint Progress</li>
+                </ul>
+
+                <ul *ngIf="selectedProjTools === 'planner'">
+                  <li><input type="checkbox" />Task List</li>
+                  <li><input type="checkbox" />Due Dates &amp; Reminders</li>
+                  <li><input type="checkbox" />Team Progress</li>
+                  <li><input type="checkbox" />Attached Files</li>
+                </ul>
               </div>
+            </div>
+
+            <div class="bottom">
+              <button (click)="closeModal()">Cancel</button>
+              <button
+                *ngIf="
+                  !isToolinfoOpen &&
+                  selectedProjTools === 'jira' &&
+                  !showApiKeyfield
+                "
+                (click)="openPermission('project')"
+              >
+                Connect
+              </button>
+              <button
+                *ngIf="
+                  !isToolinfoOpen &&
+                  selectedProjTools === 'jira' &&
+                  showApiKeyfield
+                "
+              >
+                Connect with API Key
+              </button>
+              <button
+                *ngIf="isToolinfoOpen && selectedProjTools === 'jira'"
+                (click)="allowPermission()"
+              >
+                Allow
+              </button>
+              <button
+                *ngIf="!isToolinfoOpen && selectedProjTools === 'planner'"
+                (click)="openPermission('project')"
+              >
+                Connect
+              </button>
+              <button
+                *ngIf="isToolinfoOpen && selectedProjTools === 'planner'"
+                (click)="closeModal()"
+              >
+                Allow
+              </button>
             </div>
           </div>
         </div>

@@ -2,26 +2,21 @@
 .display {
   display: flex;
   flex-direction: column;
-  width: 700px;
+  width: 446px;
   height: 500px;
   justify-content: center;
-  padding-left: 40px;
 }
 
-.display h1:nth-child(1) {
+.display h1 {
   position: relative;
-  bottom: 90px;
-  font-weight: 300;
-}
-
-.display h1:nth-child(2) {
-  font-size: 48px;
+  font-weight: 700;
+  font-size: 45px;
 }
 
 .display h4 {
   position: relative;
   top: 40px;
-  font-weight: 300;
+  font-weight: 400;
 }
 .logo-pic {
   position: relative;
@@ -31,9 +26,12 @@
 
 /* Start */
 .start {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 200px;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  position: relative;
+  top: 100px;
+  align-self: center;
 }
 
 .start button {
@@ -129,66 +127,66 @@
 }
 
 /* Small Desktop (769px to 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .display {
-    width: 80%;
-    height: auto;
-    padding-left: 40px;
-  }
+// @media (min-width: 769px) and (max-width: 1024px) {
+//   .display {
+//     width: 560px;
+//     height: auto;
+//     padding-left: 40px;
+//   }
 
-  .display h1:nth-child(1) {
-    bottom: 80px;
-    font-size: 1.8rem;
-  }
+//   .display h1:nth-child(1) {
+//     bottom: 80px;
+//     font-size: 1.8rem;
+//   }
 
-  .display h1:nth-child(2) {
-    font-size: 4rem;
-  }
+//   .display h1:nth-child(2) {
+//     font-size: 4rem;
+//   }
 
-  .display h4 {
-    font-size: 1.3rem;
-    top: 35px;
-  }
+//   .display h4 {
+//     font-size: 1.3rem;
+//     top: 35px;
+//   }
 
-  .start {
-    grid-template-columns: 1fr 1fr;
-    gap: 150px;
-    margin-top: 120px;
-  }
+//   .start {
+//     grid-template-columns: 1fr 1fr;
+//     gap: 150px;
+//     margin-top: 120px;
+//   }
 
-  .start button {
-    width: 180px;
-  }
-}
+//   .start button {
+//     width: 180px;
+//   }
+// }
 
 /* Large Desktop (> 1024px) */
-@media (min-width: 1025px) {
-  .display {
-    width: 700px;
-    height: 500px;
-    padding-left: 40px;
-  }
+// @media (min-width: 1025px) {
+//   .display {
+//     width: 560px;
+//     height: 500px;
+//     padding-left: 40px;
+//   }
 
-  .display h1:nth-child(1) {
-    bottom: 90px;
-    font-size: 2rem;
-  }
+//   .display h1:nth-child(1) {
+//     bottom: 90px;
+//     font-size: 2rem;
+//   }
 
-  .display h1:nth-child(2) {
-    font-size: 48px;
-  }
+//   .display h1:nth-child(2) {
+//     font-size: 48px;
+//   }
 
-  .display h4 {
-    font-size: 1.5rem;
-    top: 40px;
-  }
+//   .display h4 {
+//     font-size: 1.5rem;
+//     top: 40px;
+//   }
 
-  .start {
-    grid-template-columns: 1fr 1fr;
-    gap: 200px;
-  }
+//   .start {
+//     grid-template-columns: 1fr 1fr;
+//     gap: 200px;
+//   }
 
-  .start button {
-    width: 200px;
-  }
-}
+//   .start button {
+//     width: 200px;
+//   }
+// }

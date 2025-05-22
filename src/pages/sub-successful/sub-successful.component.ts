@@ -9,6 +9,7 @@ import {
 import { AuthService } from '../../app/core/services/auth.service';
 import { PaymentService } from '../../app/core/services/payment.service';
 import { PackagesService } from '../../app/core/services/packages.service';
+import { DataService } from '../../app/core/services/data.service';
 
 @Component({
   selector: 'app-sub-successful',
@@ -28,7 +29,8 @@ export class SubSuccessfulComponent implements OnInit {
     private route: ActivatedRoute,
     private paymentService: PaymentService,
     private packagesService: PackagesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dataService: DataService
   ) {
     this.packageId = 1;
   }
@@ -54,7 +56,7 @@ export class SubSuccessfulComponent implements OnInit {
 
   processPayment(): void {
     if (this.transactionRef && this.packageId) {
-      const token = this.authService.getToken();
+      const token = this.dataService.getAuthToken();
       if (token) {
         this.paymentService
           .verifyAndCreateSubscription(

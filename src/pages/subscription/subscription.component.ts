@@ -17,6 +17,9 @@ import {
   FlutterwavePaymentInitiationResponse,
 } from '../../app/interfaces/payment-response';
 
+import { registerLocaleData } from '@angular/common';
+import localeNg from '@angular/common/locales/en-NG';
+registerLocaleData(localeNg, 'ng');
 @Component({
   selector: 'app-subscription',
   standalone: true,
@@ -85,7 +88,9 @@ export class SubscriptionComponent implements OnInit {
     // Filter yearly packages (365 days duration or "Yearly" in name)
     this.yearlyPackages = this.packages.filter(
       (pkg) =>
-        pkg.durationInDays === 365 || pkg.name.toLowerCase().includes('yearly')
+        pkg.durationInDays === 365 ||
+        pkg.name.toLowerCase().includes('yearly') ||
+        pkg.name.toLowerCase() === 'free trial'
     );
 
     console.log('Monthly packages:', this.monthlyPackages);

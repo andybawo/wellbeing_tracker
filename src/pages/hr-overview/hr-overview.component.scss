@@ -1,0 +1,306 @@
+.top-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 50px;
+  align-items: center;
+  padding: 0 20px 0 20px;
+  position: relative;
+  bottom: 15px;
+
+  .left-end h3 {
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #3e1f69;
+    font-size: 15px;
+  }
+
+  .right-end select {
+    border: none;
+    background-color: #f0eeee;
+  }
+
+  .right-end {
+    display: flex;
+    gap: 16px;
+  }
+  .right-end button {
+    width: 80px;
+    height: 40px;
+    background-color: #3e1f69;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+}
+hr {
+  background-color: white;
+  height: 2px;
+  border: none;
+  position: relative;
+  bottom: 12px;
+}
+
+.hrm-tab {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px 16px 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  height: fit-content;
+
+  .heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hrm-emp-tab {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .card {
+    width: 25%;
+    background-color: #f0eeee;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    height: 76px;
+    // justify-content: center;
+    align-items: center;
+    padding: 16px;
+    gap: 20px;
+
+    li {
+      list-style: none;
+    }
+  }
+}
+
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  gap: 10px;
+
+  .left-side {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .attendance,
+  .performance-alert {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    padding: 16px 20px 16px 20px;
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .attendance-dets {
+    width: 100%;
+    background-color: #f0eeee;
+    border-radius: 5px;
+    height: 48px;
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    align-items: center;
+    padding: 10px 16px 10px 16px;
+
+    img {
+      justify-self: end;
+    }
+
+    h2 {
+      font-size: 15px;
+      font-weight: 400;
+    }
+  }
+  table {
+    text-align: center;
+    width: 100%;
+
+    th {
+      font-weight: 700;
+      color: #000000;
+      font-size: 12px;
+      width: fit-content;
+      min-width: 146px;
+      align-items: center;
+    }
+    td {
+      font-size: 12px;
+      text-align: center;
+    }
+
+    thead {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      height: 40px;
+      background-color: #f0eeee;
+      align-items: center;
+      border-radius: 5px;
+      padding: 10px;
+      opacity: 40%;
+    }
+    tbody {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    tr {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      height: 40px;
+      align-items: center;
+      padding: 0 50px 0 50px;
+    }
+  }
+}
+
+.box {
+  border: 1px solid #f0eeee;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.right-side {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.attrition-rate {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+  height: 178px;
+  border-radius: 5px;
+
+  .values {
+    width: fit-content;
+    position: relative;
+    left: 30px;
+  }
+}
+
+.values {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+
+  ul {
+    position: relative;
+    top: 30px;
+  }
+  li {
+    list-style: none;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    line-height: 40px;
+  }
+}
+
+.pie-chart {
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+
+/* Chart 1: 120x120 */
+.chart-1 {
+  position: relative;
+  top: 10px;
+  width: 120px;
+  height: 120px;
+  background: conic-gradient(#e00f0f 0% 20%, #8fc715 20% 100%);
+}
+
+/* Chart 2: 200x200 */
+.chart-2 {
+  width: 200px;
+  height: 200px;
+  background: conic-gradient(#e00f0f 0% 10%, #f9b51e 10% 30%, #8fc715 30% 100%);
+}
+
+/* Labels shared */
+.label {
+  position: absolute;
+  font-weight: bold;
+  color: black;
+}
+
+/* Chart 1 Labels */
+.chart-1 .label-20 {
+  top: 20%;
+  right: 15%;
+  font-size: 12px;
+}
+
+.chart-1 .label-80 {
+  bottom: 20%;
+  left: 25%;
+  font-size: 12px;
+}
+
+/* Chart 2 Labels */
+.chart-2 .label-10 {
+  top: 35%;
+  right: 10%;
+  font-size: 16px;
+}
+
+.chart-2 .label-20 {
+  top: 10%;
+  left: 55%;
+  font-size: 16px;
+}
+
+.chart-2 .label-70 {
+  bottom: 25%;
+  left: 30%;
+  font-size: 16px;
+}
+
+.performance {
+  background-color: white;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  .values {
+    margin-top: 10px;
+    gap: 40px;
+    width: fit-content;
+  }
+}

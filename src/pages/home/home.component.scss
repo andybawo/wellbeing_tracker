@@ -61,7 +61,7 @@
   justify-content: center;
   align-items: center;
   height: fit-content;
-  min-height: 220px;
+  min-height: 200px;
   padding: 0 20px 16px 20px;
   background-color: white;
   border-radius: 5px;
@@ -155,7 +155,7 @@
   padding: 0 20px 16px 20px;
   display: flex;
   flex-direction: column;
-  min-height: 355px;
+  min-height: 375px;
 }
 .alert-tab-content {
   height: 304px;
@@ -168,7 +168,7 @@
 }
 
 .content {
-  height: 72px;
+  height: 75px;
   width: 100%;
   background-color: #f0eeee;
   border-radius: 5px;

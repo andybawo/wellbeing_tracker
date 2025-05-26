@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { IntegrationService } from '../../app/core/services/integration.service';
 import { FormsModule } from '@angular/forms';
+import { DataService } from '../../app/core/services/data.service';
 
 @Component({
   selector: 'app-integration',
@@ -27,7 +28,10 @@ export class IntegrationComponent {
   jiraApiKey = '';
   jiraApiEmail = '';
 
-  constructor(private integrationService: IntegrationService) {}
+  constructor(
+    private integrationService: IntegrationService,
+    private dataService: DataService
+  ) {}
 
   openModal(content: string) {
     this.resetModalState();
@@ -82,22 +86,26 @@ export class IntegrationComponent {
 
   connectJiraApiKey() {
     if (this.jiraApiKey && this.jiraApiEmail) {
-      this.integrationService
-        .connectJiraWithApiKey(this.jiraApiKey, this.jiraApiEmail)
-        .subscribe({
-          next: (response) => {
-            console.log('Jira API Key connected successfully', response);
-            this.closeModal();
-            // Handle success (e.g., show a notification)
-          },
-          error: (error) => {
-            console.error('Error connecting Jira with API Key', error);
-            // Handle error (e.g., show an error message)
-          },
-        });
-    } else {
-      // Handle case where API key or email is missing
-      console.warn('Please provide both API Key and Email');
+      const token = this.dataService.getAuthToken();
+
+      if (token) {
+        this.integrationService
+          .connectJiraWithApiKey(this.jiraApiKey, this.jiraApiEmail, token)
+          .subscribe({
+            next: (response) => {
+              console.log('Jira API Key connected successfully', response);
+              this.closeModal();
+              // Handle success (e.g., show a notification)
+            },
+            error: (error) => {
+              console.error('Error connecting Jira with API Key', error);
+              // Handle error (e.g., show an error message)
+            },
+          });
+      } else {
+        // Handle case where API key or email is missing
+        console.warn('Please provide both API Key and Email');
+      }
     }
   }
 

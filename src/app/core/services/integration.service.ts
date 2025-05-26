@@ -20,8 +20,21 @@ export class IntegrationService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  connectJiraWithApiKey(apiKey: string, email: string) {
-    return this.http.post(this.jiraApiKeyEndpoint, { apiKey, email });
+  connectJiraWithApiKey(apiKey: string, email: string, jwtToken: string) {
+    console.log('API Key being sent:', apiKey);
+    console.log('Email being sent:', email);
+    console.log('JWT Token present:', !!jwtToken);
+
+    // 2. Base64 encode the combined credentials
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${jwtToken}`,
+      'Content-Type': 'application/json',
+    });
+
+    const params = new HttpParams().set('key', apiKey).set('jiraEmail', email);
+    console.log('Query params:', params.toString());
+    console.log('Request URL:', this.jiraApiKeyEndpoint);
+    return this.http.post(this.jiraApiKeyEndpoint, null, { headers, params });
   }
 
   initiateJiraOAuth() {

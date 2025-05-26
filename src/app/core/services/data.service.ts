@@ -12,9 +12,14 @@ export class DataService {
 
   setUserData(data: any) {
     this.userData = data;
+    localStorage.setItem('userData', JSON.stringify(data));
   }
 
   getUserData(): any {
+    if (!this.userData) {
+      const storedUser = localStorage.getItem('userData');
+      this.userData = storedUser ? JSON.parse(storedUser) : null;
+    }
     return this.userData;
   }
 

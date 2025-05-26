@@ -10,11 +10,11 @@ import { VerifyComponent } from '../pages/verify/verify.component';
 import { IntegrationComponent } from '../pages/integration/integration.component';
 import { RegistrationComponent } from '../pages/registration/registration.component';
 import { SubscriptionComponent } from '../pages/subscription/subscription.component';
-import { ProfileComponent } from '../pages/profile/profile.component';
 import { SubSuccessfulComponent } from '../pages/sub-successful/sub-successful.component';
 import { ForgotPasswordComponent } from '../pages/forgot-password/forgot-password.component';
 import { JiraRedirectComponent } from '../pages/jira-redirect/jira-redirect.component';
 import { HrOverviewComponent } from '../pages/hr-overview/hr-overview.component';
+import { CommunicationComponent } from '../pages/communication/communication.component';
 // import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 
 export const routes: Routes = [
@@ -32,8 +32,8 @@ export const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'profile',
-        component: ProfileComponent,
+        path: 'communication',
+        component: CommunicationComponent,
       },
       {
         path: 'hr-overview',

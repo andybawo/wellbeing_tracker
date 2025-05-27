@@ -1,8 +1,8 @@
 /* Grid Layout for the entire page */
 .grid-container {
   display: grid;
-  grid-template-columns: 222px 1fr; /* Sidebar and Main content */
-  grid-template-rows: 55px 1fr; /* Header height and main content height */
+  grid-template-columns: 14.45% 85.55%; /* Sidebar and Main content */
+  grid-template-rows: 7.54% 92.46%; /* Header height and main content height */
   grid-template-areas:
     "sidebar header"
     "sidebar main"; /* Sidebar and main content layout */
@@ -11,11 +11,15 @@
 
 /* Header styles */
 .header {
-  background-color: white; /* Dark background for header */
-  color: white;
-  grid-area: header; /* Position header in the grid */
-  display: flex; /* Flexbox to align content inside */
+  background-color: white;
+  grid-area: header;
   align-items: center; /* Vertically center the content */
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar {
+  grid-area: sidebar;
 }
 
 /* Main content area styles */

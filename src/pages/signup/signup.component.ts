@@ -66,6 +66,7 @@ export class SignupComponent {
     } else {
       this.isLoading = false;
       this.showAlert = true;
+      this.isButtonLoading = false;
       let errorMessage = 'Please ensure all fields are filled correctly.';
 
       if (this.userForm.controls['password'].invalid) {

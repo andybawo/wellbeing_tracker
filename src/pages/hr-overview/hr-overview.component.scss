@@ -6,6 +6,7 @@
   flex-direction: row;
   margin-top: 10px;
   gap: 10px;
+  height: 66.24%;
 
   .left-side {
     width: 60%;
@@ -23,6 +24,14 @@
     padding: 16px 20px 16px 20px;
     background-color: white;
     border-radius: 5px;
+  }
+
+  .attendance {
+    height: 51.03%;
+  }
+
+  .performance-alert {
+    height: 46.73%;
   }
 
   .attendance-dets {
@@ -111,7 +120,7 @@
   width: 100%;
   background-color: white;
   padding: 10px;
-  height: 178px;
+  height: 39.84%;
   border-radius: 5px;
 
   .values {
@@ -214,4 +223,5 @@
     gap: 40px;
     width: fit-content;
   }
+  height: fit-content;
 }

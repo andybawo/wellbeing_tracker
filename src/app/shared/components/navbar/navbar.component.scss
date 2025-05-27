@@ -1,11 +1,12 @@
 /* Navbar Styles */
 .navbar {
-  width: 1314px;
+  width: 100%;
   padding: 10px 20px;
   display: flex;
-  flex-direction: row;
+  // flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
 }
 .left-end,
 .right-end {

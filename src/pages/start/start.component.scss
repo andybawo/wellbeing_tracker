@@ -2,9 +2,10 @@
 .display {
   display: flex;
   flex-direction: column;
-  width: 446px;
+  width: 64.52%;
   height: 500px;
   justify-content: center;
+  justify-self: center;
 }
 
 .display h1 {

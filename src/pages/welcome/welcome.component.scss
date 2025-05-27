@@ -3,7 +3,7 @@
   background-color: white;
   height: 100vh;
   display: grid;
-  grid-template-columns: 45% 55%;
+  grid-template-columns: 45% 54%;
   grid-template-areas: "main main2";
   padding: 0;
 }
@@ -16,78 +16,78 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  height: 100vh;
+  grid-area: main;
 }
 
 /* Side Logo */
 .side-logo {
   background-color: #f3e6f5;
-  border-radius: 15px;
+  border-radius: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 28px 20px 28px 20px;
+  height: 95vh;
+  // margin: 28px 20px 28px 20px;
+  grid-area: main2;
+  position: relative;
+  top: 20px;
 }
 
-/* Responsive Media Queries */
+// @media (max-width: 480px) {
+//   .grid-container {
+//     grid-template-columns: 100%;
+//     grid-template-areas: "main";
+//   }
 
-/* Mobile (<= 480px) */
-@media (max-width: 480px) {
-  .grid-container {
-    grid-template-columns: 100%;
-    grid-template-areas: "main";
-  }
+//   .onboard-content {
+//     border-radius: 0;
+//     padding: 1rem;
+//   }
 
-  .onboard-content {
-    border-radius: 0;
-    padding: 1rem;
-  }
+//   .side-logo {
+//     display: none;
+//   }
+// }
 
-  .side-logo {
-    display: none;
-  }
-}
+// @media (min-width: 481px) and (max-width: 768px) {
+//   .grid-container {
+//     grid-template-columns: 100%;
+//     grid-template-areas: "main";
+//   }
 
-/* Tablet (481px to 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
-  .grid-container {
-    grid-template-columns: 100%;
-    grid-template-areas: "main";
-  }
+//   .onboard-content {
+//     border-radius: 0;
+//     padding: 2rem;
+//   }
 
-  .onboard-content {
-    border-radius: 0;
-    padding: 2rem;
-  }
+//   .side-logo {
+//     display: none;
+//   }
+// }
 
-  .side-logo {
-    display: none;
-  }
-}
+// @media (min-width: 769px) and (max-width: 1024px) {
+//   .grid-container {
+//     grid-template-columns: 70% 30%;
+//     grid-template-areas: "main main2";
+//   }
 
-/* Small Desktop (769px to 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .grid-container {
-    grid-template-columns: 70% 30%;
-    grid-template-areas: "main main2";
-  }
+//   .onboard-content {
+//     padding: 2rem;
+//   }
+// }
 
-  .onboard-content {
-    padding: 2rem;
-  }
-}
+// @media (min-width: 1025px) and (max-width: 1270px) {
+//   .grid-container {
+//     grid-template-columns: 70% 30%;
+//     grid-template-areas: "main main2";
+//   }
 
-/* Large Desktop (> 1024px) */
-@media (min-width: 1025px) and (max-width: 1270px) {
-  .grid-container {
-    grid-template-columns: 70% 30%;
-    grid-template-areas: "main main2";
-  }
+//   .onboard-content {
+//     padding: 3rem;
+//   }
 
-  .onboard-content {
-    padding: 3rem;
-  }
-
-  .side-logo {
-    display: block;
-  }
-}
+//   .side-logo {
+//     display: block;
+//   }
+// }

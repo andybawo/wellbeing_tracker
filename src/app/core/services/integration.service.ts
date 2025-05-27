@@ -22,18 +22,34 @@ export class IntegrationService {
 
   connectJiraWithApiKey(apiKey: string, email: string, jwtToken: string) {
     console.log('API Key being sent:', apiKey);
+    console.log('API Key length:', apiKey.length);
     console.log('Email being sent:', email);
     console.log('JWT Token present:', !!jwtToken);
 
-    // 2. Base64 encode the combined credentials
     const headers = new HttpHeaders({
       Authorization: `Bearer ${jwtToken}`,
       'Content-Type': 'application/json',
+      Accept: '*/*',
     });
 
+    // Match the exact parameter names and format used in Swagger
     const params = new HttpParams().set('key', apiKey).set('jiraEmail', email);
+
     console.log('Query params:', params.toString());
-    console.log('Request URL:', this.jiraApiKeyEndpoint);
+    console.log(
+      'Full URL will be:',
+      `${this.jiraApiKeyEndpoint}?${params.toString()}`
+    );
+
+    // Check if URL is too long (browsers have limits around 2048-8192 chars)
+    const fullUrl = `${this.jiraApiKeyEndpoint}?${params.toString()}`;
+    console.log('URL length:', fullUrl.length);
+
+    if (fullUrl.length > 2048) {
+      console.warn('URL might be too long for some browsers/servers');
+    }
+
+    // Use the same format as the successful Swagger test
     return this.http.post(this.jiraApiKeyEndpoint, null, { headers, params });
   }
 

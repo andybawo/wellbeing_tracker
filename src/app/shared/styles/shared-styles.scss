@@ -178,14 +178,15 @@ input {
 /* ===== RESPONSIVE MEDIA QUERIES ===== */
 
 /* Large Desktop Screens (1440px and above) */
-@media screen and (min-width: 1540px) {
+@media screen and (min-width: 1530px) {
   .display {
     width: 60%;
     height: 550px;
   }
 
   .display h1 {
-    font-size: 50px;
+    top: 25px;
+    font-size: 30px;
     line-height: 1.2;
   }
 

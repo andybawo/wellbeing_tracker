@@ -1,1 +1,14 @@
-<p>slack-oauth-redirect works!</p>
+<div class="jira-redirect-container">
+  <div *ngIf="processing" class="processing">
+    <p>Processing Slack authorization...</p>
+  </div>
+  <div *ngIf="success" class="success">
+    <h2>Slack Integration Successful!</h2>
+    <p>You can now access Slack data.</p>
+  </div>
+  <div *ngIf="error" class="error">
+    <h2>Slack Integration Failed</h2>
+    <p>{{ errorMessage }}</p>
+    <a routerLink="/subscription/integration">Try again</a>
+  </div>
+</div>

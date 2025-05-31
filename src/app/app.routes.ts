@@ -101,7 +101,7 @@ export const routes: Routes = [
         component: JiraRedirectComponent,
       },
       {
-        path: 'slackoauth-redirect',
+        path: 'slack-oauth-redirect',
         component: SlackOauthRedirectComponent,
       },
     ],

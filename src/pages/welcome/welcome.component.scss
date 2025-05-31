@@ -34,60 +34,120 @@
   top: 20px;
 }
 
-// @media (max-width: 480px) {
-//   .grid-container {
-//     grid-template-columns: 100%;
-//     grid-template-areas: "main";
-//   }
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
 
-//   .onboard-content {
-//     border-radius: 0;
-//     padding: 1rem;
-//   }
+/* Large Desktop Screens (1440px and above) */
+@media screen and (min-width: 1440px) {
+  .grid-container {
+    grid-template-columns: 42% 56%;
+    gap: 1%;
+  }
+}
 
-//   .side-logo {
-//     display: none;
-//   }
-// }
+/* Standard Laptop Screens (1024px - 1439px) */
+@media screen and (max-width: 1539px) and (min-width: 1024px) {
+  .grid-container {
+    grid-template-columns: 48% 50%;
+    gap: 1%;
+  }
 
-// @media (min-width: 481px) and (max-width: 768px) {
-//   .grid-container {
-//     grid-template-columns: 100%;
-//     grid-template-areas: "main";
-//   }
+  .side-logo {
+    height: 92vh;
+    top: 25px;
+  }
+}
 
-//   .onboard-content {
-//     border-radius: 0;
-//     padding: 2rem;
-//   }
+/* Small Laptop/Large Tablet Screens (768px - 1023px) */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: 55% 40%;
+    gap: 1%;
+  }
 
-//   .side-logo {
-//     display: none;
-//   }
-// }
+  .onboard-content {
+    border-radius: 0 40px 40px 0;
+  }
 
-// @media (min-width: 769px) and (max-width: 1024px) {
-//   .grid-container {
-//     grid-template-columns: 70% 30%;
-//     grid-template-areas: "main main2";
-//   }
+  .side-logo {
+    height: 80vh;
+    top: 30px;
+    border-radius: 25px;
+  }
+}
 
-//   .onboard-content {
-//     padding: 2rem;
-//   }
-// }
+/* Tablet Portrait Mode (600px - 767px) */
+@media screen and (max-width: 767px) and (min-width: 600px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-areas: "main";
+    height: auto;
+    min-height: 100vh;
+  }
 
-// @media (min-width: 1025px) and (max-width: 1270px) {
-//   .grid-container {
-//     grid-template-columns: 70% 30%;
-//     grid-template-areas: "main main2";
-//   }
+  .onboard-content {
+    border-radius: 0;
+    height: auto;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
 
-//   .onboard-content {
-//     padding: 3rem;
-//   }
+  .side-logo {
+    display: none;
+  }
+}
 
-//   .side-logo {
-//     display: block;
-//   }
-// }
+/* Mobile Landscape (480px - 599px) */
+@media screen and (max-width: 599px) and (min-width: 480px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-areas: "main";
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .onboard-content {
+    border-radius: 0;
+    height: auto;
+    min-height: 100vh;
+    padding: 30px 15px;
+  }
+
+  .side-logo {
+    display: none;
+  }
+}
+
+/* Mobile Portrait (320px - 479px) */
+@media screen and (max-width: 479px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-areas: "main";
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .onboard-content {
+    border-radius: 0;
+    height: auto;
+    min-height: 100vh;
+    padding: 20px 10px;
+  }
+
+  .side-logo {
+    display: none;
+  }
+}
+
+/* ===== UTILITY CLASSES FOR BETTER RESPONSIVENESS ===== */
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Smooth transitions for responsive changes */
+.grid-container,
+.onboard-content {
+  transition: all 0.3s ease;
+}

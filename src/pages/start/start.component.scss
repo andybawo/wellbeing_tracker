@@ -61,133 +61,278 @@
 
 /* Responsive Media Queries */
 
-/* Mobile (<= 480px) */
-@media (max-width: 480px) {
+/* Standard Laptop Screens (1024px - 1439px) */
+@media screen and (max-width: 1539px) and (min-width: 1024px) {
   .display {
-    width: 100%;
-    height: auto;
-    padding-left: 20px;
+    width: 70%;
+    height: 480px;
   }
 
-  .display h1:nth-child(1) {
-    bottom: 40px;
-    font-size: 1.2rem;
-  }
-
-  .display h1:nth-child(2) {
-    font-size: 2.5rem;
+  .display h1 {
+    top: 70px;
+    font-size: 45px;
+    line-height: 1.2;
   }
 
   .display h4 {
-    font-size: 1rem;
-    top: 20px;
+    font-size: 16px;
+    top: 100px;
+  }
+
+  .logo-pic {
+    bottom: 30px;
   }
 
   .start {
-    display: block;
-    // gap: 30px;
-    margin-top: 60px;
+    top: 150px;
+    gap: 40px;
+    width: 100%;
   }
 
   .start button {
-    width: 100%;
+    width: 180px;
+    height: 45px;
+    font-size: 14px;
+    align-self: flex-start;
+  }
+
+  .side-logo {
+    height: 92vh;
+    top: 25px;
   }
 }
 
-/* Tablet (481px to 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
+/* Small Laptop/Large Tablet Screens (768px - 1023px) */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
   .display {
-    width: 100%;
-    height: auto;
-    padding-left: 30px;
+    width: 85%;
+    height: 450px;
   }
 
-  .display h1:nth-child(1) {
-    bottom: 60px;
-    font-size: 1.5rem;
-  }
-
-  .display h1:nth-child(2) {
-    font-size: 3rem;
+  .display h1 {
+    font-size: 32px;
+    line-height: 1.3;
   }
 
   .display h4 {
-    font-size: 1.1rem;
+    font-size: 15px;
     top: 30px;
   }
 
+  .logo-pic {
+    bottom: 40px;
+    margin-top: 30px;
+  }
+
+  .logo-pic img {
+    max-width: 80%;
+    height: auto;
+  }
+
   .start {
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    margin-top: 90px;
+    top: 60px;
+    gap: 30px;
   }
 
   .start button {
     width: 160px;
+    height: 42px;
+    font-size: 13px;
+  }
+
+  .side-logo {
+    height: 90vh;
+    top: 30px;
+    border-radius: 25px;
   }
 }
 
-/* Small Desktop (769px to 1024px) */
-// @media (min-width: 769px) and (max-width: 1024px) {
-//   .display {
-//     width: 560px;
-//     height: auto;
-//     padding-left: 40px;
-//   }
+/* Tablet Portrait Mode (600px - 767px) */
+@media screen and (max-width: 767px) and (min-width: 600px) {
+  .display {
+    width: 90%;
+    height: auto;
+    text-align: center;
+    margin-top: 60px;
+  }
 
-//   .display h1:nth-child(1) {
-//     bottom: 80px;
-//     font-size: 1.8rem;
-//   }
+  .display h1 {
+    font-size: 28px;
+    line-height: 1.3;
+  }
 
-//   .display h1:nth-child(2) {
-//     font-size: 4rem;
-//   }
+  .display h4 {
+    font-size: 16px;
+    top: 25px;
+    margin-bottom: 60px;
+  }
 
-//   .display h4 {
-//     font-size: 1.3rem;
-//     top: 35px;
-//   }
+  .logo-pic {
+    bottom: 30px;
+    margin-top: 20px;
+  }
 
-//   .start {
-//     grid-template-columns: 1fr 1fr;
-//     gap: 150px;
-//     margin-top: 120px;
-//   }
+  .logo-pic img {
+    max-width: 200px;
+    height: auto;
+  }
 
-//   .start button {
-//     width: 180px;
-//   }
-// }
+  .start {
+    flex-direction: column;
+    gap: 20px;
+    top: 40px;
+    align-items: center;
+  }
 
-/* Large Desktop (> 1024px) */
-// @media (min-width: 1025px) {
-//   .display {
-//     width: 560px;
-//     height: 500px;
-//     padding-left: 40px;
-//   }
+  .start button {
+    width: 250px;
+    height: 48px;
+    font-size: 16px;
+  }
+}
 
-//   .display h1:nth-child(1) {
-//     bottom: 90px;
-//     font-size: 2rem;
-//   }
+/* Mobile Landscape (480px - 599px) */
+@media screen and (max-width: 599px) and (min-width: 480px) {
+  .display {
+    width: 95%;
+    height: auto;
+    text-align: center;
+    margin-top: 40px;
+  }
 
-//   .display h1:nth-child(2) {
-//     font-size: 48px;
-//   }
+  .display h1 {
+    font-size: 24px;
+    line-height: 1.4;
+  }
 
-//   .display h4 {
-//     font-size: 1.5rem;
-//     top: 40px;
-//   }
+  .display h4 {
+    font-size: 15px;
+    top: 20px;
+    margin-bottom: 50px;
+  }
 
-//   .start {
-//     grid-template-columns: 1fr 1fr;
-//     gap: 200px;
-//   }
+  .logo-pic {
+    bottom: 20px;
+    margin-top: 15px;
+  }
 
-//   .start button {
-//     width: 200px;
-//   }
-// }
+  .logo-pic img {
+    max-width: 180px;
+    height: auto;
+  }
+
+  .start {
+    flex-direction: column;
+    gap: 15px;
+    top: 30px;
+    align-items: center;
+  }
+
+  .start button {
+    width: 220px;
+    height: 46px;
+    font-size: 15px;
+  }
+}
+
+/* Mobile Portrait (320px - 479px) */
+@media screen and (max-width: 479px) {
+  .side-logo {
+    display: none;
+  }
+
+  .display {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: 30px;
+    padding: 0 10px;
+  }
+
+  .display h1 {
+    font-size: 20px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  .display h4 {
+    font-size: 14px;
+    top: 15px;
+    margin-bottom: 40px;
+    padding: 0 10px;
+  }
+
+  .logo-pic {
+    bottom: 15px;
+    margin-top: 10px;
+  }
+
+  .logo-pic img {
+    max-width: 150px;
+    height: auto;
+  }
+
+  .start {
+    flex-direction: column;
+    gap: 12px;
+    top: 25px;
+    align-items: center;
+  }
+
+  .start button {
+    width: 200px;
+    height: 44px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+}
+
+/* Extra Small Mobile (max-width: 320px) */
+@media screen and (max-width: 320px) {
+  .display h1 {
+    font-size: 18px;
+  }
+
+  .display h4 {
+    font-size: 13px;
+    padding: 0 5px;
+  }
+
+  .logo-pic img {
+    max-width: 130px;
+  }
+
+  .start button {
+    width: 180px;
+    height: 42px;
+    font-size: 13px;
+  }
+}
+
+/* ===== UTILITY CLASSES FOR BETTER RESPONSIVENESS ===== */
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Smooth transitions for responsive changes */
+
+.display,
+.start {
+  transition: all 0.3s ease;
+}
+
+/* Focus styles for better accessibility on mobile */
+@media (max-width: 768px) {
+  .start button:focus {
+    outline: 2px solid #3e1f69;
+    outline-offset: 2px;
+  }
+
+  /* Increase touch target size for mobile */
+  .start button {
+    min-height: 44px; /* Apple's recommended minimum touch target */
+  }
+}

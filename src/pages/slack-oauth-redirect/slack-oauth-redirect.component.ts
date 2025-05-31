@@ -12,7 +12,7 @@ import { DataService } from '../../app/core/services/data.service';
 })
 export class SlackOauthRedirectComponent implements OnInit {
   processing = true;
-  success = false;
+  isSuccess = false;
   error = false;
   errorMessage = '';
   constructor(
@@ -48,6 +48,11 @@ export class SlackOauthRedirectComponent implements OnInit {
           .subscribe({
             next: (response) => {
               console.log('Slack OAuth successful', response);
+              if (this.isSuccess === true) {
+                setTimeout(() => {
+                  this.router.navigate(['/subscription/integration']);
+                }, 5000);
+              }
               this.router.navigate(['/subscription/integration']);
             },
             error: (error) => {

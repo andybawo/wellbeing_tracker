@@ -1,3 +1,9 @@
+<app-alert
+  [message]="alertMessage"
+  [type]="alertType"
+  [visible]="showAlert"
+></app-alert>
+
 <div class="integration">
   <div class="header">
     <div class="logo-pic"><img src="/images/logo.png" alt="" /></div>
@@ -222,10 +228,43 @@
 
             <div class="bottom">
               <button (click)="closeModal()">Cancel</button>
-              <button *ngIf="!isToolinfoOpen" (click)="openPermission('com')">
+              <button
+                *ngIf="
+                  !isToolinfoOpen &&
+                  selectedComTools === 'slack' &&
+                  !showApiKeyfield
+                "
+                (click)="openPermission('communication')"
+              >
                 Connect
               </button>
-              <button *ngIf="isToolinfoOpen" (click)="closeModal()">
+              <button
+                *ngIf="
+                  !isToolinfoOpen &&
+                  selectedProjTools === 'slack' &&
+                  showApiKeyfield
+                "
+                (click)="connectSlackApiKey()"
+              >
+                Connect with API Key
+              </button>
+
+              <button
+                *ngIf="isToolinfoOpen && selectedComTools === 'slack'"
+                (click)="allowPermission()"
+              >
+                Allow
+              </button>
+              <button
+                *ngIf="!isToolinfoOpen && selectedProjTools === 'planner'"
+                (click)="openPermission('project')"
+              >
+                Connect
+              </button>
+              <button
+                *ngIf="isToolinfoOpen && selectedProjTools === 'planner'"
+                (click)="closeModal()"
+              >
                 Allow
               </button>
             </div>
@@ -295,9 +334,6 @@
                   />
                 </div>
 
-                <span class="verify"
-                  ><button (click)="connectJiraApiKey()">Verify</button></span
-                >
                 <a href=""
                   >Click here for more information on how to get API Key</a
                 >
@@ -348,9 +384,11 @@
                   selectedProjTools === 'jira' &&
                   showApiKeyfield
                 "
+                (click)="connectJiraApiKey()"
               >
                 Connect with API Key
               </button>
+
               <button
                 *ngIf="isToolinfoOpen && selectedProjTools === 'jira'"
                 (click)="allowPermission()"

@@ -6,10 +6,17 @@ import { RouterModule } from '@angular/router';
 import { IntegrationService } from '../../app/core/services/integration.service';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../../app/core/services/data.service';
+import { SharedModule } from '../../app/shared/shared.module';
 
 @Component({
   selector: 'app-integration',
-  imports: [ModalComponent, CommonModule, RouterModule, FormsModule],
+  imports: [
+    ModalComponent,
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    SharedModule,
+  ],
   templateUrl: './integration.component.html',
   styleUrl: './integration.component.scss',
 })
@@ -20,6 +27,10 @@ export class IntegrationComponent {
   isToolinfoOpen: boolean = false;
   isLoading = false;
   shouldOpenModal = false;
+  showAlert: boolean = false; // Control alert visibility
+  alertMessage: string = ''; // Alert message
+  alertType: 'success' | 'error' = 'success'; // Alert typ
+  isButtonLoading: boolean = false;
 
   selectedHrTool: string = 'seamless';
   selectedComTools: string = 'slack';
@@ -85,6 +96,8 @@ export class IntegrationComponent {
   }
 
   connectJiraApiKey() {
+    this.isButtonLoading = true; // Start button loading
+
     if (this.jiraApiKey && this.jiraApiEmail) {
       const token = this.dataService.getAuthToken();
 
@@ -93,11 +106,21 @@ export class IntegrationComponent {
           .connectJiraWithApiKey(this.jiraApiKey, this.jiraApiEmail, token)
           .subscribe({
             next: (response) => {
+              this.isButtonLoading = false; // Stop button loading
+
+              this.showAlert = true;
+              this.alertMessage = '🎉🎉Jira Successfully Integrated';
+              this.alertType = 'success';
               console.log('Jira API Key connected successfully', response);
               this.closeModal();
               // Handle success (e.g., show a notification)
             },
             error: (error) => {
+              this.isButtonLoading = false; // Stop button loading
+
+              this.showAlert = true;
+              this.alertMessage = 'Error connecting Jira with API Key';
+              this.alertType = 'success';
               console.error('Error connecting Jira with API Key', error);
               // Handle error (e.g., show an error message)
             },
@@ -113,14 +136,29 @@ export class IntegrationComponent {
     this.integrationService.initiateJiraOAuth();
   }
 
+  connectSlackOAuth() {
+    this.integrationService.initiateSlackOAuth();
+  }
+
+  connectSlackApiKey() {}
+
   allowPermission() {
     if (
       this.selectedModalContent === 'project' &&
       this.selectedProjTools === 'jira'
     ) {
       this.connectJiraOAuth();
-    } else {
-      this.closeModal(); // For other tools, just close the modal for now
+    }
+
+    if (
+      this.selectedModalContent === 'communication' &&
+      this.selectedComTools === 'slack'
+    ) {
+      this.connectSlackOAuth();
+    }
+
+    if (!this.selectedProjTools && !this.selectedComTools) {
+      this.closeModal();
     }
   }
 }

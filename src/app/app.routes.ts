@@ -15,6 +15,7 @@ import { ForgotPasswordComponent } from '../pages/forgot-password/forgot-passwor
 import { JiraRedirectComponent } from '../pages/jira-redirect/jira-redirect.component';
 import { HrOverviewComponent } from '../pages/hr-overview/hr-overview.component';
 import { CommunicationComponent } from '../pages/communication/communication.component';
+import { SlackOauthRedirectComponent } from '../pages/slack-oauth-redirect/slack-oauth-redirect.component';
 // import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 
 export const routes: Routes = [
@@ -98,6 +99,10 @@ export const routes: Routes = [
       {
         path: 'jira-redirect',
         component: JiraRedirectComponent,
+      },
+      {
+        path: 'slackoauth-redirect',
+        component: SlackOauthRedirectComponent,
       },
     ],
   },

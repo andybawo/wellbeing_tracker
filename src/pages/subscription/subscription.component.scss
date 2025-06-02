@@ -1,19 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-.logo {
-  height: 100px;
-  width: 100px;
-  border-radius: 100%;
-  background-color: #f0eeee;
-  position: relative;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
-  margin: 20px;
-}
-
+// Base styles (for 1530px and above) - Your existing styles
 .duration {
   display: flex;
   flex-direction: row;
@@ -58,6 +44,7 @@
   background-color: white;
   color: black;
 }
+
 .packages-container {
   display: flex;
   flex-direction: row;
@@ -72,7 +59,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   flex-direction: column;
   padding: 20px;
-
   cursor: pointer;
 
   span {
@@ -92,8 +78,23 @@
 .package-details {
   h1 {
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
   }
+  h4 {
+    font-weight: 300;
+    font-size: 15px;
+    color: #5c8503;
+    position: relative;
+    bottom: 10px;
+  }
+  ul {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+  height: 280px;
 }
+
 .packages:hover {
   background-color: #3e1f69;
   button {
@@ -113,7 +114,6 @@
       position: relative;
       bottom: 10px;
     }
-
     ul {
       display: flex;
       gap: 10px;
@@ -146,7 +146,6 @@
       position: relative;
       bottom: 10px;
     }
-
     ul {
       display: flex;
       gap: 10px;
@@ -156,31 +155,12 @@
     height: 280px;
   }
 }
+
 li {
   list-style: none;
   gap: 10px;
   display: flex;
   align-items: center;
-}
-
-.package-details {
-  h1 {
-    font-weight: 600;
-  }
-  h4 {
-    font-weight: 300;
-    font-size: 15px;
-    color: #5c8503;
-    position: relative;
-    bottom: 10px;
-  }
-
-  ul {
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-  }
-  height: 280px;
 }
 
 .sub-button {
@@ -208,18 +188,14 @@ li {
   }
 }
 
-.custom-btn.clicked {
-  background-color: rgb(65, 62, 62);
-}
-
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-  z-index: 999; /* Ensure it's below the modal */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 .modal-pay {
@@ -266,7 +242,6 @@ li {
     border-radius: 8px;
     border: 1px solid rgb(141, 135, 135);
     position: relative;
-    // top: 30px;
     background-color: white;
     color: black;
     font-weight: 800;
@@ -288,7 +263,6 @@ li {
   transform: translate(-50%, -50%);
   z-index: 1000;
   background-color: white;
-  // padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
@@ -311,7 +285,7 @@ li {
 .loading-bar {
   width: 50%;
   height: 100%;
-  background-color: #3e1f69; // Tailwind indigo-600 or change to your theme
+  background-color: #3e1f69;
   animation: slide 1.5s infinite ease-in-out;
 }
 
@@ -331,5 +305,575 @@ li {
   }
   100% {
     transform: translateX(100%);
+  }
+}
+
+// ==================== RESPONSIVE MEDIA QUERIES ====================
+
+// Large Laptops (1200px - 1529px)
+@media screen and (max-width: 1529px) {
+  .main-content {
+    width: 1100px;
+    top: 40px;
+  }
+
+  .packages {
+    width: 350px;
+    height: 380px;
+  }
+
+  .packages.selected {
+    height: 410px;
+  }
+
+  .package-details {
+    height: 260px;
+  }
+}
+
+// Standard Laptops (1024px - 1199px)
+@media screen and (max-width: 1199px) {
+  .main-content {
+    width: 950px;
+    top: 30px;
+  }
+
+  .duration {
+    margin-bottom: 25px;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    h4 {
+      font-size: 1rem;
+    }
+  }
+
+  .sub-length {
+    height: 50px;
+    width: 180px;
+
+    button {
+      width: 85px;
+      height: 35px;
+      font-size: 0.9rem;
+    }
+  }
+
+  .packages {
+    width: 300px;
+    height: 360px;
+    padding: 18px;
+    gap: 15px;
+  }
+
+  .packages.selected {
+    height: 390px;
+    bottom: 15px;
+  }
+
+  .package-details {
+    height: 240px;
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    h4 {
+      font-size: 14px;
+    }
+
+    ul li {
+      font-size: 0.9rem;
+    }
+  }
+
+  .modal-load {
+    min-width: 500px;
+    height: 240px;
+  }
+}
+
+// Small Laptops / Large Tablets (768px - 1023px)
+@media screen and (max-width: 1023px) {
+  .main-content {
+    width: 100%;
+    max-width: 720px;
+    top: 20px;
+    padding: 0 20px;
+  }
+
+  .duration {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .packages-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .packages {
+    width: 100%;
+    max-width: 400px;
+    height: 350px;
+  }
+
+  .packages.selected {
+    height: 380px;
+    bottom: 0;
+  }
+
+  .payment-option {
+    width: 95%;
+    height: 280px;
+  }
+
+  .payment-card {
+    height: 120px;
+    gap: 20px;
+
+    h4 {
+      font-size: 0.9rem;
+    }
+
+    button {
+      width: 140px;
+      height: 44px;
+    }
+  }
+
+  .modal-load {
+    min-width: 450px;
+    height: 220px;
+  }
+}
+
+// Tablets (600px - 767px)
+@media screen and (max-width: 767px) {
+  .main-content {
+    width: 100%;
+    max-width: 550px;
+    top: 15px;
+    padding: 0 15px;
+  }
+
+  .duration {
+    h2 {
+      font-size: 1.3rem;
+    }
+
+    h4 {
+      font-size: 0.9rem;
+    }
+  }
+
+  .sub-length {
+    height: 45px;
+    width: 160px;
+
+    button {
+      width: 70px;
+      height: 32px;
+      font-size: 0.8rem;
+    }
+  }
+
+  .packages {
+    width: 100%;
+    max-width: 350px;
+    height: 320px;
+    padding: 15px;
+  }
+
+  .packages.selected {
+    height: 350px;
+  }
+
+  .package-details {
+    height: 200px;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    h4 {
+      font-size: 13px;
+    }
+
+    ul li {
+      font-size: 0.85rem;
+      gap: 8px;
+    }
+  }
+
+  .payment-card {
+    flex-direction: column;
+    height: 140px;
+    gap: 15px;
+    text-align: center;
+
+    button {
+      width: 120px;
+      height: 40px;
+    }
+  }
+
+  .modal-load {
+    min-width: 350px;
+    width: 90vw;
+    height: 200px;
+  }
+}
+
+// Large Mobile (480px - 599px)
+@media screen and (max-width: 599px) {
+  .main-content {
+    width: 100%;
+    top: 10px;
+    padding: 0 10px;
+  }
+
+  .duration {
+    gap: 15px;
+    margin-bottom: 25px;
+
+    h2 {
+      font-size: 1.2rem;
+    }
+
+    h4 {
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  }
+
+  .sub-length {
+    height: 40px;
+    width: 140px;
+    padding: 0 8px;
+
+    button {
+      width: 60px;
+      height: 28px;
+      font-size: 0.75rem;
+    }
+  }
+
+  .packages {
+    width: 100%;
+    height: 300px;
+    padding: 12px;
+  }
+
+  .packages.selected {
+    height: 330px;
+  }
+
+  .package-details {
+    height: 180px;
+
+    h1 {
+      font-size: 1.3rem;
+    }
+
+    h4 {
+      font-size: 12px;
+    }
+
+    ul li {
+      font-size: 0.8rem;
+      gap: 6px;
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  .select-plan {
+    height: 35px;
+    font-size: 0.9rem;
+  }
+
+  .modal-pay .logo-pic {
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .payment-option {
+    width: 95%;
+    height: 260px;
+    gap: 15px;
+  }
+
+  .payment-card {
+    height: 120px;
+    padding: 8px;
+
+    h4 {
+      font-size: 0.8rem;
+    }
+
+    button {
+      width: 100px;
+      height: 36px;
+      font-size: 0.8rem;
+    }
+  }
+
+  .modal-load {
+    min-width: 300px;
+    width: 85vw;
+    height: 180px;
+  }
+
+  .load-title {
+    h1 {
+      font-size: 1.2rem;
+    }
+
+    h4 {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Small Mobile (320px - 479px)
+@media screen and (max-width: 479px) {
+  .main-content {
+    width: 100%;
+    top: 8px;
+    padding: 0 8px;
+  }
+
+  .duration {
+    gap: 12px;
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 1.1rem;
+    }
+
+    h4 {
+      font-size: 0.75rem;
+    }
+  }
+
+  .sub-length {
+    height: 35px;
+    width: 120px;
+    padding: 0 6px;
+
+    button {
+      width: 50px;
+      height: 25px;
+      font-size: 0.7rem;
+    }
+  }
+
+  .packages {
+    width: 100%;
+    height: 280px;
+    padding: 10px;
+  }
+
+  .packages.selected {
+    height: 310px;
+  }
+
+  .package-details {
+    height: 160px;
+
+    h1 {
+      font-size: 1.1rem;
+    }
+
+    h4 {
+      font-size: 11px;
+    }
+
+    ul {
+      gap: 6px;
+    }
+
+    ul li {
+      font-size: 0.75rem;
+      gap: 5px;
+
+      img {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  .select-plan {
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .modal-pay .logo-pic {
+    bottom: 15px;
+    left: 15px;
+  }
+
+  .payment-option {
+    width: 98%;
+    height: 240px;
+    gap: 12px;
+  }
+
+  .payment-card {
+    height: 100px;
+    padding: 6px;
+
+    h4 {
+      font-size: 0.75rem;
+    }
+
+    button {
+      width: 90px;
+      height: 32px;
+      font-size: 0.75rem;
+    }
+  }
+
+  .modal-load {
+    min-width: 280px;
+    width: 90vw;
+    height: 160px;
+  }
+
+  .load-title {
+    h1 {
+      font-size: 1rem;
+    }
+
+    h4 {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+// Extra Small Mobile (below 320px)
+@media screen and (max-width: 319px) {
+  .main-content {
+    width: 100%;
+    top: 5px;
+    padding: 0 5px;
+  }
+
+  .duration {
+    gap: 10px;
+    margin-bottom: 15px;
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    h4 {
+      font-size: 0.7rem;
+    }
+  }
+
+  .sub-length {
+    height: 32px;
+    width: 110px;
+    padding: 0 4px;
+
+    button {
+      width: 45px;
+      height: 22px;
+      font-size: 0.65rem;
+    }
+  }
+
+  .packages {
+    width: 100%;
+    height: 260px;
+    padding: 8px;
+  }
+
+  .packages.selected {
+    height: 290px;
+  }
+
+  .package-details {
+    height: 140px;
+
+    h1 {
+      font-size: 1rem;
+    }
+
+    h4 {
+      font-size: 10px;
+    }
+
+    ul {
+      gap: 4px;
+    }
+
+    ul li {
+      font-size: 0.7rem;
+      gap: 4px;
+
+      img {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  .select-plan {
+    height: 30px;
+    font-size: 0.75rem;
+  }
+
+  .modal-pay .logo-pic {
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .payment-option {
+    width: 98%;
+    height: 220px;
+    gap: 10px;
+  }
+
+  .payment-card {
+    height: 90px;
+    padding: 4px;
+
+    h4 {
+      font-size: 0.7rem;
+    }
+
+    button {
+      width: 80px;
+      height: 28px;
+      font-size: 0.7rem;
+    }
+  }
+
+  .modal-load {
+    min-width: 260px;
+    width: 95vw;
+    height: 140px;
+  }
+
+  .load-title {
+    h1 {
+      font-size: 0.9rem;
+    }
+
+    h4 {
+      font-size: 0.75rem;
+    }
   }
 }

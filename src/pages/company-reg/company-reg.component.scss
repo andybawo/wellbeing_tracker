@@ -1,3 +1,4 @@
+// Base styles (for 1530px and above)
 .grid-container {
   background-color: white;
   height: 100vh;
@@ -19,55 +20,87 @@
   border-radius: 5px;
 }
 
-/* ==== Responsive Media Queries ==== */
-
-/* Large screens (≤1440px) */
-@media screen and (max-width: 1440px) {
+// Large Laptops (1200px - 1529px)
+@media screen and (max-width: 1529px) {
   .registration-content {
-    min-width: 800px;
-    min-height: 90%;
+    min-width: 780px;
+    padding: 20px;
+    height: 90%;
   }
 }
 
-/* Medium screens (≤1024px - laptops/tablets) */
-@media screen and (max-width: 1024px) {
-  .grid-container {
-    height: 100vh;
-    padding: 2rem 0;
-  }
-
+// Standard Laptops (1024px - 1199px)
+@media screen and (max-width: 1199px) {
   .registration-content {
-    min-width: 90%;
-    min-height: 90%;
-    padding: 2rem;
+    min-width: 680px;
+    padding: 20px 15px;
   }
 }
 
-/* Small screens (≤768px - tablets/large phones) */
-@media screen and (max-width: 800px) {
+// Small Laptops / Large Tablets (768px - 1023px)
+@media screen and (max-width: 1023px) {
   .registration-content {
-    padding: 1.5rem;
+    min-width: 600px;
+    max-width: 90vw;
+    padding: 20px 15px;
     border-radius: 8px;
-    min-width: 70%;
   }
 }
 
-@media screen and (max-width: 780px) {
-  .registration-content {
-    width: 700px;
-    background-color: pink;
-  }
-}
-
-/* Extra small screens (≤480px - small phones) */
-@media screen and (max-width: 480px) {
+// Tablets (600px - 767px)
+@media screen and (max-width: 767px) {
   .grid-container {
-    padding: 1rem 0;
+    padding: 15px;
   }
 
   .registration-content {
-    min-width: 95%;
-    padding: 1rem;
+    min-width: 480px;
+    max-width: 95vw;
+    padding: 20px 12px;
+    border-radius: 8px;
+  }
+}
+
+// Large Mobile (480px - 599px)
+@media screen and (max-width: 599px) {
+  .grid-container {
+    padding: 10px;
+  }
+
+  .registration-content {
+    min-width: 350px;
+    max-width: 98vw;
+    padding: 15px 10px;
     border-radius: 6px;
+  }
+}
+
+// Small Mobile (320px - 479px)
+@media screen and (max-width: 479px) {
+  .grid-container {
+    padding: 5px;
+  }
+
+  .registration-content {
+    min-width: 280px;
+    max-width: 100vw;
+    padding: 15px 8px;
+    border-radius: 4px;
+    min-height: calc(100vh - 10px);
+  }
+}
+
+// Extra Small Mobile (below 320px)
+@media screen and (max-width: 319px) {
+  .grid-container {
+    padding: 2px;
+  }
+
+  .registration-content {
+    min-width: 260px;
+    max-width: 100vw;
+    padding: 10px 5px;
+    border-radius: 2px;
+    min-height: calc(100vh - 4px);
   }
 }

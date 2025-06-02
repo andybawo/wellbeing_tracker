@@ -42,19 +42,23 @@ export class SlackOauthRedirectComponent implements OnInit {
       const token = this.dataService.getAuthToken();
 
       if (token) {
+        this.processing = true;
         localStorage.removeItem('slack');
         this.integrationService
           .exchangeSlackCodeForToken(code, state, token)
           .subscribe({
             next: (response) => {
               console.log('Slack OAuth successful', response);
-              if (this.isSuccess === true) {
-                setTimeout(() => {
-                  this.router.navigate(['/subscription/integration']);
-                }, 5000);
-              }
-              this.router.navigate(['/subscription/integration']);
+              this.processing = false;
+              this.isSuccess = true;
+              this.error = false;
+
+              // Wait 3 seconds to show success message, then redirect
+              setTimeout(() => {
+                this.router.navigate(['/subscription/integration']);
+              }, 3000);
             },
+
             error: (error) => {
               console.error('Slack OAuth failed', error);
               this.router.navigate(['/subscription/integration']);

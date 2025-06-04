@@ -209,7 +209,7 @@ li {
   .logo-pic {
     align-self: flex-start;
     position: relative;
-    bottom: 30px;
+    bottom: 20px;
     left: 30px;
   }
 }
@@ -311,7 +311,7 @@ li {
 // ==================== RESPONSIVE MEDIA QUERIES ====================
 
 // Large Laptops (1200px - 1529px)
-@media screen and (max-width: 1529px) {
+@media screen and (min-width: 1530x) {
   .main-content {
     width: 1100px;
     top: 40px;
@@ -328,6 +328,94 @@ li {
 
   .package-details {
     height: 260px;
+    h4 {
+      top: 1px;
+    }
+    ul {
+      margin-top: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 1439px) and (min-width: 1328px) {
+  .main-content {
+    width: 1000px;
+    top: 30px;
+  }
+
+  .packages {
+    width: 350px;
+    height: 350px;
+  }
+
+  .packages.selected {
+    height: 390px;
+  }
+
+  .package-details {
+    height: 260px;
+    h1 {
+      font-size: 25px;
+    }
+    h4 {
+      top: 1px;
+    }
+    ul {
+      margin-top: 10px;
+    }
+    li {
+      font-size: 12px;
+    }
+  }
+}
+
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .main-content {
+    width: 900px;
+    top: 10px;
+  }
+
+  .packages {
+    width: 350px;
+    height: 350px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+
+  .sub-length {
+    height: 45px;
+    width: 180px;
+
+    .button {
+      width: 90px;
+      height: 25px;
+    }
+  }
+
+  .packages.selected {
+    height: 380px;
+  }
+
+  .package-details {
+    height: 250px;
+    h1 {
+      font-size: 25px;
+    }
+    h4 {
+      font-size: 15px;
+      top: 1px;
+    }
+    img {
+      width: 15px;
+      height: 15px;
+    }
+    ul {
+      margin-top: 20px;
+    }
+    li {
+      font-size: 10px;
+    }
   }
 }
 

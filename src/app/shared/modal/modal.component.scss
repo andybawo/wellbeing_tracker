@@ -18,3 +18,13 @@
   padding-top: 0px;
   padding-bottom: 0px;
 }
+
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .modal-content {
+    height: 400px;
+    img {
+      width: 70px;
+      height: 80px;
+    }
+  }
+}

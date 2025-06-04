@@ -27,12 +27,14 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@fortawesome/fontawesome-free/webfonts",
+                "output": "./webfonts/"
               }
             ],
-            "styles": [
-              "src/styles.scss",
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {

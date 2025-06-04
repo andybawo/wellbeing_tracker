@@ -89,6 +89,7 @@
   width: 300px;
   position: relative;
   bottom: 50px;
+  align-items: center;
 }
 
 .arrow {
@@ -224,15 +225,12 @@ input[type="checkbox"]:focus {
   height: 120px;
   justify-content: center;
 }
-.verify {
-  align-self: flex-end;
+a {
+  color: #333;
+  text-decoration: underline;
   position: relative;
-  top: 25px;
-
-  a {
-    color: #333;
-    text-decoration: none;
-  }
+  top: 40px;
+  font-size: 12px;
 }
 
 .api-key-details {
@@ -402,3 +400,77 @@ input[type="checkbox"]:focus {
 //     transform: rotate(360deg);
 //   }
 // }
+
+//Media Query
+
+@media screen and (min-width: 1530x) {
+  .integration {
+    width: 1200px;
+    height: 505px;
+  }
+}
+
+@media screen and (max-width: 1439px) and (min-width: 1328px) {
+  .integration {
+    width: 1100px;
+    height: 450px;
+  }
+}
+
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .integration {
+    width: 1000px;
+    height: 400px;
+    bottom: 30px;
+    justify-content: center;
+
+    .header {
+      h1 {
+        font-size: 25px;
+        bottom: 20px;
+      }
+      h4 {
+        font-size: 15px;
+        bottom: 50px;
+      }
+    }
+  }
+
+  .integrate {
+    img[src="/images/Subtract.png"],
+    [src="/images/slack.png"],
+    [src="/images/outlook.png"],
+    [src="/images/teams.png"],
+    [src="/images/seamless.png"],
+    [src="/images/jira.png"] {
+      height: 60px;
+      width: 60px;
+    }
+    .arrow {
+      width: 20px;
+      height: 50px;
+    }
+  }
+
+  .info {
+    h1 {
+      font-size: 16px;
+    }
+    h3 {
+      font-size: 13px;
+    }
+  }
+
+  .api-key {
+    height: 70px;
+    .api-key-details {
+      label {
+        font-size: 12px;
+      }
+    }
+  }
+  .bottom button {
+    height: 35px;
+    margin-top: 10px;
+  }
+}

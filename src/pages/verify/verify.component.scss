@@ -82,19 +82,25 @@
 }
 
 /* Standard Laptop Screens (1024px - 1439px) */
-@media screen and (max-width: 1439px) and (min-width: 1024px) {
+@media screen and (max-width: 1439px) and (min-width: 1328px) {
   .display {
     width: 70%;
     height: 480px;
   }
 
   .display h1 {
-    font-size: 40px;
+    font-size: 30px;
     line-height: 1.2;
+    top: 15px;
   }
 
   .display h4 {
     font-size: 16px;
+    top: 35px;
+  }
+
+  .display h3 {
+    font-size: 10px;
     top: 35px;
   }
 
@@ -318,7 +324,7 @@
 }
 
 /* Standard Laptop Screens (1024px - 1439px) */
-@media screen and (max-width: 1439px) and (min-width: 1024px) {
+@media screen and (max-width: 1439px) and (min-width: 1324px) {
   /* Signup Form Styles */
   .display {
     width: 520px;
@@ -327,9 +333,13 @@
   .logo-pic {
     top: 20px;
   }
+
+  .display h1 {
+    top: 35px;
+  }
   .display h3 {
-    font-size: 22px;
-    top: 65px;
+    font-size: 15px;
+    top: 35px;
   }
 
   .otp-input-container {
@@ -364,9 +374,73 @@
 
   .bottom-display {
     width: 520px;
-    height: 220px;
+    top: 25px;
+    gap: 20px;
+  }
+
+  .bottom-display button {
+    height: 48px;
+    font-size: 15px;
+  }
+
+  .modal-load {
+    min-width: 560px;
+    height: 260px;
+  }
+}
+
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .display {
+    width: 520px;
+    height: auto;
+  }
+  .logo-pic {
+    top: 20px;
+  }
+
+  .display h1 {
+    top: 35px;
+  }
+  .display h3 {
+    font-size: 14px;
+    top: 35px;
+  }
+
+  .otp-input-container {
+    display: flex;
+    gap: 10px; /* Adjust the spacing between the boxes */
+  }
+
+  .form .otp-digit-input {
+    width: 14.69%;
+    height: 70px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.5em;
+    appearance: textfield;
+    -moz-appearance: textfield;
+    background-color: #f3e6f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(200, 150, 197, 0.5);
+    }
+  }
+
+  .otp-digit-input:not(:empty) {
+    background-color: beige;
+  }
+
+  .bottom-display {
+    width: 520px;
     top: 45px;
     gap: 20px;
+    height: fit-content;
   }
 
   .bottom-display button {

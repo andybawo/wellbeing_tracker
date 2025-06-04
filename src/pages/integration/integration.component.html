@@ -58,8 +58,8 @@
           <div class="integrate">
             <img src="/images/Subtract.png" alt="" />
             <div class="arrow">
-              <img src="/images/new-right.png" alt="" />
-              <img src="/images/arrow-left.png" alt="" />
+              <img src="/images/new-right.png" alt="" class="arrow-icon" />
+              <img src="/images/arrow-left.png" alt="" class="arrow-icon" />
             </div>
             <img src="/images/seamless.png" alt="" />
           </div>
@@ -89,7 +89,6 @@
                   <input type="text" placeholder="Enter API Key" />
                 </div>
 
-                <span class="verify"><a href="">Verify</a></span>
                 <a href=""
                   >Click here for more information on how to get API Key</a
                 >
@@ -186,7 +185,6 @@
                   <input type="text" placeholder="Enter API Key" />
                 </div>
 
-                <span class="verify"><a href="">Verify</a></span>
                 <a href=""
                   >Click here for more information on how to get API Key</a
                 >
@@ -228,6 +226,8 @@
 
             <div class="bottom">
               <button (click)="closeModal()">Cancel</button>
+
+              <!-- Slack Integrations button -->
               <button
                 *ngIf="
                   !isToolinfoOpen &&
@@ -241,7 +241,7 @@
               <button
                 *ngIf="
                   !isToolinfoOpen &&
-                  selectedProjTools === 'slack' &&
+                  selectedComTools === 'slack' &&
                   showApiKeyfield
                 "
                 (click)="connectSlackApiKey()"
@@ -255,15 +255,61 @@
               >
                 Allow
               </button>
+
+              <!-- Outlook Integration button -->
               <button
-                *ngIf="!isToolinfoOpen && selectedProjTools === 'planner'"
-                (click)="openPermission('project')"
+                *ngIf="
+                  !isToolinfoOpen &&
+                  selectedComTools === 'outlook' &&
+                  !showApiKeyfield
+                "
+                (click)="openPermission('communication')"
               >
                 Connect
               </button>
               <button
-                *ngIf="isToolinfoOpen && selectedProjTools === 'planner'"
-                (click)="closeModal()"
+                *ngIf="
+                  !isToolinfoOpen &&
+                  selectedComTools === 'outlook' &&
+                  showApiKeyfield
+                "
+                (click)="connectSlackApiKey()"
+              >
+                Connect with API Key
+              </button>
+
+              <button
+                *ngIf="isToolinfoOpen && selectedComTools === 'outlook'"
+                (click)="allowPermission()"
+              >
+                Allow
+              </button>
+
+              <!-- Teams Integration button -->
+              <button
+                *ngIf="
+                  !isToolinfoOpen &&
+                  selectedComTools === 'teams' &&
+                  !showApiKeyfield
+                "
+                (click)="openPermission('communication')"
+              >
+                Connect
+              </button>
+              <button
+                *ngIf="
+                  !isToolinfoOpen &&
+                  selectedComTools === 'teams' &&
+                  showApiKeyfield
+                "
+                (click)="connectSlackApiKey()"
+              >
+                Connect with API Key
+              </button>
+
+              <button
+                *ngIf="isToolinfoOpen && selectedComTools === 'teams'"
+                (click)="allowPermission()"
               >
                 Allow
               </button>
@@ -316,6 +362,32 @@
               <div
                 class="api-key"
                 *ngIf="showApiKeyfield && selectedProjTools === 'jira'"
+              >
+                <div class="api-key-details">
+                  <label for="">API Key</label>
+                  <input
+                    type="text"
+                    placeholder="Enter API Key"
+                    [(ngModel)]="jiraApiKey"
+                  />
+                </div>
+                <div class="api-key-details">
+                  <label for="">Email Address</label>
+                  <input
+                    type="email"
+                    placeholder="Enter Email Address"
+                    [(ngModel)]="jiraApiEmail"
+                  />
+                </div>
+
+                <a href=""
+                  >Click here for more information on how to get API Key</a
+                >
+              </div>
+
+              <div
+                class="api-key"
+                *ngIf="showApiKeyfield && selectedProjTools === 'planner'"
               >
                 <div class="api-key-details">
                   <label for="">API Key</label>

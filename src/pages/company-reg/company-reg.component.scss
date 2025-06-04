@@ -21,9 +21,9 @@
 }
 
 // Large Laptops (1200px - 1529px)
-@media screen and (max-width: 1529px) {
+@media screen and (min-width: 1549px) {
   .registration-content {
-    min-width: 780px;
+    width: fit-content;
     padding: 20px;
   }
 }

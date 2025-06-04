@@ -34,14 +34,21 @@
   gap: 8px;
   position: relative;
   top: 70px;
+  a {
+    text-decoration: none;
+    font-size: 14px;
+    &:active {
+      color: black;
+    }
+  }
 }
 
 input {
-  height: 48px;
+  height: 68px;
   border: 1px solid rgb(221, 212, 212);
   background-color: #f0eeee;
   border-radius: 5px;
-  padding-left: 30px;
+  padding-left: 80px;
   width: 100%;
   align-self: center;
 
@@ -276,6 +283,16 @@ hr {
   gap: 40px;
 }
 
+.link {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  a {
+    text-decoration: none;
+  }
+}
+
 //Media Queries//
 
 /* ===== RESPONSIVE MEDIA QUERIES ===== */
@@ -488,19 +505,61 @@ hr {
   }
 
   .form {
-    top: 40px;
+    top: 30px;
     gap: 12px;
   }
 
   .form input {
     height: 40px;
     font-size: 16px;
-    padding-left: 35px;
+    padding-left: 10px;
   }
 
   .form label {
     font-size: 14px;
     font-weight: 300;
+  }
+
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 42%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .eye-icon-login {
+    position: absolute;
+    right: 10px;
+    top: 31.5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
   }
 
   .bottom-display {
@@ -522,45 +581,185 @@ hr {
 }
 
 /* Standard Laptop Screens (1024px - 1439px) */
-@media screen and (max-width: 1439px) and (min-width: 1024px) {
+@media screen and (max-width: 1439px) and (min-width: 1328px) {
   /* Signup Form Styles */
   .display {
     width: 520px;
     height: auto;
   }
   .logo-pic {
-    top: 20px;
+    top: 5px;
+  }
+
+  .display h1 {
+    font-size: 20px;
+    top: 5px;
   }
   .display h3 {
-    font-size: 22px;
-    top: 65px;
+    font-size: 18px;
+    top: 5px;
   }
 
   .form {
-    top: 75px;
+    top: 10px;
     gap: 10px;
   }
 
   .form input {
     height: 40px;
     font-size: 15px;
-    padding-left: 30px;
+    padding-left: 10px;
   }
 
   .form label {
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 300;
+  }
+
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 44%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .eye-icon-login {
+    position: absolute;
+    right: 10px;
+    top: 32.5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
   }
 
   .bottom-display {
     width: 520px;
     height: 220px;
-    top: 45px;
+    top: 5px;
     gap: 20px;
   }
 
   .bottom-display button {
-    height: 48px;
+    height: 40px;
+    font-size: 15px;
+  }
+
+  .modal-load {
+    min-width: 560px;
+    height: 260px;
+  }
+}
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .display {
+    width: 520px;
+    height: auto;
+  }
+  .logo-pic {
+    top: -15px;
+  }
+  .display h3 {
+    font-size: 18px;
+    top: -20px;
+  }
+
+  .display h1 {
+    font-size: 20px;
+    top: -20px;
+  }
+
+  .form {
+    top: -15px;
+    gap: 10px;
+  }
+
+  .form input {
+    height: 35px;
+    font-size: 15px;
+    padding-left: 10px;
+  }
+
+  .form label {
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 39.5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .eye-icon-login {
+    position: absolute;
+    right: 10px;
+    top: 29%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .bottom-display {
+    width: 520px;
+    height: 220px;
+    top: 5px;
+    gap: 20px;
+  }
+
+  .bottom-display button {
+    height: 40px;
     font-size: 15px;
   }
 
@@ -603,6 +802,48 @@ hr {
     height: 40px;
     font-size: 14px;
     padding-left: 25px;
+  }
+
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 44.5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .eye-icon-login {
+    position: absolute;
+    right: 10px;
+    top: 33.5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
   }
 
   .form label {
@@ -676,6 +917,48 @@ hr {
     font-weight: 500;
   }
 
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 45%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .eye-icon-login {
+    position: absolute;
+    right: 10px;
+    top: 31.5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+
   .bottom-display {
     width: 100%;
     height: auto;
@@ -741,6 +1024,48 @@ hr {
   .form label {
     font-size: 13px;
     font-weight: 500;
+  }
+
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 45%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .eye-icon-login {
+    position: absolute;
+    right: 10px;
+    top: 31.5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
   }
 
   .bottom-display {
@@ -817,6 +1142,48 @@ hr {
   .form label {
     font-size: 12px;
     font-weight: 500;
+  }
+
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 45%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .eye-icon-login {
+    position: absolute;
+    right: 10px;
+    top: 31.5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
   }
 
   .bottom-display {
@@ -898,6 +1265,48 @@ hr {
 
   .form label {
     font-size: 11px;
+  }
+
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 45%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .eye-icon-login {
+    position: absolute;
+    right: 10px;
+    top: 31.5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
   }
 
   .bottom-display button {

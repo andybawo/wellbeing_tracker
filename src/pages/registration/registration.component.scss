@@ -350,12 +350,16 @@ input:focus {
   .form input {
     height: 40px;
     font-size: 16px;
-    padding-left: 35px;
+    padding-left: 10px;
   }
 
   .form label {
     font-size: 14px;
     font-weight: 300;
+  }
+  .form-details select {
+    height: 30px;
+    padding-left: 10px;
   }
 
   .bottom {
@@ -375,7 +379,7 @@ input:focus {
 }
 
 /* Standard Laptop Screens (1024px - 1439px) */
-@media screen and (max-width: 1439px) and (min-width: 1024px) {
+@media screen and (max-width: 1439px) and (min-width: 1330px) {
   /* Signup Form Styles */
   .display {
     width: 490px;
@@ -395,20 +399,79 @@ input:focus {
   }
 
   .form input {
-    height: 40px;
+    height: 35px;
     font-size: 15px;
-    padding-left: 30px;
+    padding-left: 10px;
+  }
+
+  .form-details select {
+    height: 30px;
+    padding-left: 10px;
   }
 
   .form label {
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 300;
   }
 
   .bottom {
     width: 100%;
-    top: 45px;
     gap: 20px;
+  }
+
+  .bottom button {
+    height: 40px;
+    font-size: 15px;
+  }
+
+  .modal-load {
+    min-width: 560px;
+    height: 260px;
+  }
+}
+
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .display {
+    width: 490px;
+    height: fit-content;
+  }
+  .logo-pic {
+    top: -10px;
+  }
+  .display h4 {
+    font-size: 15px;
+    top: 10px;
+  }
+  .display h1 {
+    font-size: 15px;
+    top: 0px;
+  }
+
+  .form {
+    top: -10px;
+    gap: 10px;
+  }
+
+  .form input {
+    height: 30px;
+    font-size: 12px;
+    padding-left: 10px;
+  }
+
+  .form-details select {
+    height: 30px;
+    padding-left: 10px;
+  }
+
+  .form label {
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  .bottom {
+    width: 100%;
+    gap: 20px;
+    top: 10px;
   }
 
   .bottom button {

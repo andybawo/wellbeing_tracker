@@ -62,7 +62,7 @@
 /* Responsive Media Queries */
 
 /* Standard Laptop Screens (1024px - 1439px) */
-@media screen and (max-width: 1539px) and (min-width: 1024px) {
+@media screen and (max-width: 1539px) and (min-width: 1324px) {
   .display {
     width: 70%;
     height: 480px;
@@ -85,6 +85,46 @@
 
   .start {
     top: 150px;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .start button {
+    width: 180px;
+    height: 45px;
+    font-size: 14px;
+    align-self: flex-start;
+  }
+
+  .side-logo {
+    height: 92vh;
+    top: 25px;
+  }
+}
+
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .display {
+    width: 70%;
+    height: 480px;
+  }
+
+  .display h1 {
+    top: 30px;
+    font-size: 25px;
+    line-height: 1.2;
+  }
+
+  .display h4 {
+    font-size: 16px;
+    top: 50px;
+  }
+
+  .logo-pic {
+    bottom: 30px;
+  }
+
+  .start {
+    top: 100px;
     gap: 40px;
     width: 100%;
   }

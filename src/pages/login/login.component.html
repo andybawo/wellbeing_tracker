@@ -20,16 +20,27 @@
     />
     <label for="password">Password</label>
     <input
+      id="password"
+      [type]="showPassword ? 'text' : 'password'"
       formControlName="password"
-      type="password"
       placeholder="Enter Password"
     />
-    <span class="forgot" [routerLink]="">Forgot Password?</span>
+    <div (click)="togglePasswordVisibility()" class="eye-icon-login">
+      <i [class]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+    </div>
+
+    <div class="link">
+      <a [routerLink]="['/start']">Back</a>
+      <span class="forgot" [routerLink]="">Forgot Password?</span>
+    </div>
 
     <div class="bottom-display">
-      <button type="submit" [disabled]="isLoading">
-        <span *ngIf="!isLoading">Log in</span>
-        <div *ngIf="isLoading" class="dual-ring"></div>
+      <button type="submit" [disabled]="isButtonLoading">
+        <span *ngIf="!isButtonLoading">Log In</span>
+        <span *ngIf="isButtonLoading" class="button-loader">
+          <span class="spinner"></span>
+          Logging In...
+        </span>
       </button>
       <span>Or</span>
       <button>

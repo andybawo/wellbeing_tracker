@@ -28,10 +28,15 @@
     <label for="password">Password</label>
     <input
       id="password"
-      type="password"
+      [type]="showPassword ? 'text' : 'password'"
       formControlName="password"
       placeholder="Enter Password"
     />
+    <div (click)="togglePasswordVisibility()" class="eye-icon">
+      <i [class]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+    </div>
+
+    <a [routerLink]="['/start/login']">Already have an account? Log in</a>
 
     <div class="bottom-display">
       <button type="submit" [disabled]="isButtonLoading">

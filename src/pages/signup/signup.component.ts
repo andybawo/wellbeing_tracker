@@ -34,6 +34,7 @@ export class SignupComponent {
   showAlert: boolean = false; // Control alert visibility
   alertMessage: string = ''; // Alert message
   alertType: 'success' | 'error' = 'success'; // Alert typ
+  showPassword: boolean = false;
 
   constructor(
     private router: Router,
@@ -87,5 +88,9 @@ export class SignupComponent {
         this.showAlert = false;
       }, 3000);
     }
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }

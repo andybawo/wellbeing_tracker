@@ -23,20 +23,22 @@ export class LoginComponent {
   });
 
   isLoading: boolean = false;
+  isButtonLoading: boolean = false;
   showAlert: boolean = false;
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
+  showPassword: boolean = false;
   constructor(private authservice: AuthService, private router: Router) {}
 
   onLogin() {
     if (this.loginForm.valid) {
-      this.isLoading = true;
+      this.isButtonLoading = true;
       const loginData = this.loginForm.value;
       console.log('loggin in with:', loginData);
 
       this.authservice.loginUser(loginData).subscribe({
         next: (res) => {
-          this.isLoading = false;
+          this.isButtonLoading = false;
           const token = res.data;
           if (token) {
             localStorage.setItem('authToken', token);
@@ -46,7 +48,7 @@ export class LoginComponent {
         },
 
         error: (err) => {
-          this.isLoading = false;
+          this.isButtonLoading = false;
           this.showAlert = true;
           this.alertMessage = 'Login failed. Please check your credentials.';
           this.alertType = 'error';
@@ -58,5 +60,9 @@ export class LoginComponent {
         },
       });
     }
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }

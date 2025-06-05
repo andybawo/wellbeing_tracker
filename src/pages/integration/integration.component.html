@@ -76,26 +76,28 @@
             <ng-container *ngIf="!isToolinfoOpen">
               <h1>Connect to Seamless HR</h1>
               <h3>Connect tool to sync data across devices</h3>
-              <div class="checkbox-container">
-                <input
-                  type="checkbox"
-                  (change)="toggleApiKeyField($event)"
-                /><span>If having issues link with API</span>
-              </div>
 
-              <div class="api-key" *ngIf="showApiKeyfield">
+              <div class="api-key">
                 <div class="api-key-details">
-                  <label for="">API Key</label>
-                  <input type="text" placeholder="Enter API Key" />
+                  <label for="">Client Id</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Client Id"
+                    [(ngModel)]="seamlessClientId"
+                  />
                 </div>
-
-                <a href=""
-                  >Click here for more information on how to get API Key</a
-                >
+                <div class="api-key-details">
+                  <label for="">Client Secret Key</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Secret Key"
+                    [(ngModel)]="seamlessClientSecret"
+                  />
+                </div>
               </div>
             </ng-container>
 
-            <div class="tool-permission" *ngIf="isToolinfoOpen">
+            <!-- <div class="tool-permission" *ngIf="isToolinfoOpen">
               <div class="permission-header">
                 <h1>Data Permission</h1>
                 <h4>
@@ -112,12 +114,19 @@
                   <li><input type="checkbox" />Organizational Structure</li>
                 </ul>
               </div>
-            </div>
+            </div> -->
 
             <div class="bottom">
               <button (click)="closeModal()">Cancel</button>
-              <button *ngIf="!isToolinfoOpen" (click)="openPermission('hrm')">
-                Connect
+              <button
+                *ngIf="!isToolinfoOpen && selectedHrTool === 'seamless'"
+                (click)="connectSeamlessHR()"
+              >
+                <span *ngIf="!isButtonLoading">Connect</span>
+                <span *ngIf="isButtonLoading" class="button-loader">
+                  <span class="spinner"></span>
+                  Integrating...
+                </span>
               </button>
               <button *ngIf="isToolinfoOpen" (click)="closeModal()">
                 Allow
@@ -380,7 +389,7 @@
                   />
                 </div>
 
-                <a href=""
+                <a href="" class="project-a"
                   >Click here for more information on how to get API Key</a
                 >
               </div>
@@ -451,6 +460,8 @@
                 Connect
               </button>
               <button
+                type="submit"
+                [disabled]="isButtonLoading"
                 *ngIf="
                   !isToolinfoOpen &&
                   selectedProjTools === 'jira' &&
@@ -458,7 +469,11 @@
                 "
                 (click)="connectJiraApiKey()"
               >
-                Connect with API Key
+                <span *ngIf="!isButtonLoading">Connect With Api Key</span>
+                <span *ngIf="isButtonLoading" class="button-loader">
+                  <span class="spinner"></span>
+                  Integrating...
+                </span>
               </button>
 
               <button

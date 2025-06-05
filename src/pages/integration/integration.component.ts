@@ -39,6 +39,9 @@ export class IntegrationComponent {
   jiraApiKey = '';
   jiraApiEmail = '';
 
+  seamlessClientId: string = '';
+  seamlessClientSecret: string = '';
+
   constructor(
     private integrationService: IntegrationService,
     private dataService: DataService
@@ -159,6 +162,53 @@ export class IntegrationComponent {
 
     if (!this.selectedProjTools && !this.selectedComTools) {
       this.closeModal();
+    }
+  }
+
+  connectSeamlessHR() {
+    this.isButtonLoading = true; // Start button loading
+
+    if (this.seamlessClientId && this.seamlessClientSecret) {
+      const token = this.dataService.getAuthToken();
+      if (token) {
+        this.integrationService
+          .connectSeamlessHRWithCredentials(
+            this.seamlessClientId,
+            this.seamlessClientSecret,
+            token
+          )
+          .subscribe({
+            next: (response) => {
+              this.isButtonLoading = false; // Stop button loading
+              this.showAlert = true;
+              this.alertMessage = '🎉🎉SeamlessHR Successfully Integrated';
+              setTimeout(() => {
+                this.showAlert = false;
+              }, 3000);
+              this.alertType = 'success';
+              console.log('SeamlessHR connected successfully', response);
+              this.closeModal();
+              // Handle success (e.g., show a notification)
+            },
+            error: (error) => {
+              this.isButtonLoading = false; // Stop button loading
+              this.showAlert = true;
+              this.alertMessage = 'Error connecting SeamlessHR';
+              setTimeout(() => {
+                this.showAlert = false;
+              }, 3000);
+              this.alertType = 'error'; // Fixed: should be 'error' not 'success'
+              console.error('Error connecting SeamlessHR', error);
+              // Handle error (e.g., show an error message)
+            },
+          });
+      } else {
+        this.isButtonLoading = false;
+        console.warn('No authentication token found');
+      }
+    } else {
+      this.isButtonLoading = false;
+      console.warn('Please provide both Client ID and Client Secret');
     }
   }
 }

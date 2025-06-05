@@ -26,6 +26,38 @@ export class IntegrationService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  private seamlessIntegrateEndpoint =
+    'https://cultural-health.azurewebsites.net/api/SeamlessHR/connect/seamlessHR/key';
+
+  connectSeamlessHRWithCredentials(
+    clientId: string,
+    clientSecret: string,
+    jwtToken: string
+  ) {
+    console.log('Client ID being sent:', clientId);
+    console.log('Client ID length:', clientId.length);
+    console.log('Client Secret present:', !!clientSecret);
+    console.log('JWT Token present:', !!jwtToken);
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${jwtToken}`,
+      'Content-Type': 'application/json',
+      Accept: '*/*',
+    });
+
+    const requestBody = {
+      clientId: clientId,
+      clientSecret: clientSecret,
+    };
+
+    console.log('Request Body:', requestBody);
+    console.log('Full URL will be:', this.seamlessIntegrateEndpoint);
+
+    return this.http.post(this.seamlessIntegrateEndpoint, requestBody, {
+      headers,
+    });
+  }
+
   connectJiraWithApiKey(apiKey: string, email: string, jwtToken: string) {
     console.log('API Key being sent:', apiKey);
     console.log('API Key length:', apiKey.length);

@@ -232,7 +232,13 @@ a {
   top: 40px;
   font-size: 12px;
 }
-
+.project-a {
+  color: #333;
+  text-decoration: underline;
+  position: relative;
+  top: 40px;
+  font-size: 12px;
+}
 .api-key-details {
   display: flex;
   justify-content: space-evenly;
@@ -250,6 +256,7 @@ a {
 
   label {
     width: 100px;
+    margin-right: 5px;
   }
 }
 
@@ -365,41 +372,39 @@ a {
   margin-top: 20px;
 }
 
-// .button-loader {
-//   button[type="submit"] {
-//     position: relative;
-//     min-width: 120px;
-//     transition: all 0.3s ease;
+button[type="submit"] {
+  position: relative;
+  min-width: 120px;
+  transition: all 0.3s ease;
 
-//     &:disabled {
-//       opacity: 0.7;
-//       cursor: not-allowed;
-//     }
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 
-//     .button-loader {
-//       display: flex;
-//       align-items: center;
-//       justify-content: center;
-//       gap: 8px;
+  .button-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 
-//       .spinner {
-//         display: inline-block;
-//         width: 14px;
-//         height: 14px;
-//         border: 2px solid rgba(255, 255, 255, 0.3);
-//         border-radius: 50%;
-//         border-top-color: #fff;
-//         animation: spin 0.8s ease-in-out infinite;
-//       }
-//     }
-//   }
-// }
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 0.8s ease-in-out infinite;
+    }
+  }
+}
 
-// @keyframes spin {
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 //Media Query
 
@@ -436,6 +441,14 @@ a {
     }
   }
 
+  a {
+    font-size: 10px;
+  }
+
+  .project-a {
+    font-size: 10px;
+  }
+
   .integrate {
     img[src="/images/Subtract.png"],
     [src="/images/slack.png"],
@@ -463,14 +476,40 @@ a {
 
   .api-key {
     height: 70px;
+    gap: 8px;
     .api-key-details {
       label {
-        font-size: 12px;
+        font-size: 10px;
+      }
+      input {
+        height: 35px;
       }
     }
   }
   .bottom button {
-    height: 35px;
+    height: 30px;
     margin-top: 10px;
+    font-size: 12px;
+  }
+
+  .permission-header {
+    h1 {
+      font-size: 14px;
+    }
+    h4 {
+      font-size: 12px;
+    }
+  }
+  .permission-list {
+    ul {
+      li {
+        font-size: 12px;
+      }
+    }
+  }
+  .checkbox-container {
+    span {
+      font-size: 12px;
+    }
   }
 }

@@ -63,9 +63,9 @@ export class RegistrationComponent {
   }
 
   onCompanyRegister() {
-    console.log('Company Form Value:', this.companyForm.value);
+    // console.log('Company Form Value:', this.companyForm.value);
     if (this.companyForm.invalid) {
-      console.log('Company form is invalid');
+      // console.log('Company form is invalid');
       this.showAlert = true;
       this.alertMessage = 'Please fill in all company details correctly.';
       this.alertType = 'error';
@@ -78,7 +78,7 @@ export class RegistrationComponent {
 
     const userData = this.dataService.getUserData();
     if (!userData || !userData.emailAddress) {
-      console.error('User data not found. Please signup again.');
+      // console.error('User data not found. Please signup again.');
       this.isLoading = false;
       this.showAlert = true;
       this.alertMessage = 'User data not found. Please signup again.';
@@ -98,9 +98,9 @@ export class RegistrationComponent {
         // Store the JWT token from the registration response
         if (res && res.data) {
           this.dataService.setAuthToken(res.data);
-          console.log('JWT Token stored:', res.data);
+          // console.log('JWT Token stored:', res.data);
         } else {
-          console.warn('JWT Token not found in the registration response.');
+          // console.warn('JWT Token not found in the registration response.');
         }
 
         this.router.navigate(['/start/verify']);
@@ -112,7 +112,7 @@ export class RegistrationComponent {
           err.error?.message ||
           'Company registration failed. Please try again.';
         this.alertType = 'error';
-        console.error('Company registration error:', err);
+        // console.error('Company registration error:', err);
       },
     });
   }

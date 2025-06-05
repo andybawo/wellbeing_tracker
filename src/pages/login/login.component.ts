@@ -34,7 +34,6 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.isButtonLoading = true;
       const loginData = this.loginForm.value;
-      console.log('loggin in with:', loginData);
 
       this.authservice.loginUser(loginData).subscribe({
         next: (res) => {
@@ -42,7 +41,7 @@ export class LoginComponent {
           const token = res.data;
           if (token) {
             localStorage.setItem('authToken', token);
-            console.log('JWT token stored in localStorage:', token);
+            // console.log('JWT token stored in localStorage:', token);
           }
           this.router.navigate(['/home']);
         },
@@ -55,7 +54,7 @@ export class LoginComponent {
           setTimeout(() => {
             this.showAlert = false;
           }, 1000000);
-          console.error('Login error:', err);
+          // console.error('Login error:', err);
           // You can show error to user here
         },
       });

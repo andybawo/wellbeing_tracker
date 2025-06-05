@@ -111,7 +111,7 @@ export class IntegrationComponent {
               this.showAlert = true;
               this.alertMessage = '🎉🎉Jira Successfully Integrated';
               this.alertType = 'success';
-              console.log('Jira API Key connected successfully', response);
+              // console.log('Jira API Key connected successfully', response);
               this.closeModal();
               // Handle success (e.g., show a notification)
             },
@@ -121,13 +121,13 @@ export class IntegrationComponent {
               this.showAlert = true;
               this.alertMessage = 'Error connecting Jira with API Key';
               this.alertType = 'success';
-              console.error('Error connecting Jira with API Key', error);
+              // console.error('Error connecting Jira with API Key', error);
               // Handle error (e.g., show an error message)
             },
           });
       } else {
         // Handle case where API key or email is missing
-        console.warn('Please provide both API Key and Email');
+        // console.warn('Please provide both API Key and Email');
       }
     }
   }

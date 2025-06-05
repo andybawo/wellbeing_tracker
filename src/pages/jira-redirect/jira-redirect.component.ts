@@ -48,7 +48,11 @@ export class JiraRedirectComponent implements OnInit {
           .subscribe({
             next: (response) => {
               console.log('Jira OAuth successful', response);
-              this.router.navigate(['/subscription/integration']); // Redirect to a success page
+              this.success = true;
+              setTimeout(() => {
+                this.router.navigate(['/subscription/integration']);
+              }, 3000);
+              // Redirect to a success page
               // Handle success (e.g., store tokens)
             },
             error: (error) => {

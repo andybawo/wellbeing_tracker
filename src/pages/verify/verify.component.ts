@@ -68,7 +68,7 @@ export class VerifyComponent {
       // Send the verification code when the verify component loads
       this.sendVerificationEmail(userData.emailAddress);
     } else {
-      console.error('User email not found, cannot send verification code.');
+      // console.error('User email not found, cannot send verification code.');
       this.router.navigate(['/start/signup']); // Or a relevant error route
     }
   }
@@ -105,7 +105,10 @@ export class VerifyComponent {
         this.showAlert = true;
         this.alertMessage = 'Verification code Sent successfully.';
         this.alertType = 'success';
-        console.log('Verification code sent:', res);
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 3000);
+        // console.log('Verification code sent:', res);
       },
       error: (err) => {
         this.isLoading = false;
@@ -113,7 +116,10 @@ export class VerifyComponent {
         this.alertMessage =
           err.error?.message || 'Error resending verification code.';
         this.alertType = 'error';
-        console.error('Error sending verification code:', err);
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 3000);
+        // console.error('Error sending verification code:', err);
       },
     });
   }
@@ -123,7 +129,7 @@ export class VerifyComponent {
     if (userData?.emailAddress) {
       this.sendVerificationEmail(userData.emailAddress);
     } else {
-      console.error('User email not found, cannot resend verification code.');
+      // console.error('User email not found, cannot resend verification code.');
       this.showAlert = true;
       this.alertMessage = 'User email not found. Please signup again.';
       this.alertType = 'error';
@@ -138,11 +144,14 @@ export class VerifyComponent {
       const userData = this.dataService.getUserData();
 
       if (!userData || !userData.emailAddress) {
-        console.error('user data not found');
+        // console.error('user data not found');
         this.isLoading = false;
         this.showAlert = true;
         this.alertMessage = 'User data not found. Please signup again.';
         this.alertType = 'error';
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 3000);
         this.router.navigate(['/start/signup']);
         return;
       }
@@ -166,14 +175,20 @@ export class VerifyComponent {
             this.alertMessage =
               err.error?.message || 'Verification failed. Please try again.';
             this.alertType = 'error';
-            console.error('Verification failed:', err);
+            setTimeout(() => {
+              this.showAlert = false;
+            }, 3000);
+            // console.error('Verification failed:', err);
           },
         });
     } else {
       this.showAlert = true;
       this.alertMessage = 'Please enter the verification code.';
+      setTimeout(() => {
+        this.showAlert = false;
+      }, 3000);
       this.alertType = 'error';
-      console.log('Verification form is invalid');
+      // console.log('Verification form is invalid');
     }
   }
 }

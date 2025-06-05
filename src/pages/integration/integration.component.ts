@@ -186,29 +186,28 @@ export class IntegrationComponent {
                 this.showAlert = false;
               }, 3000);
               this.alertType = 'success';
-              console.log('SeamlessHR connected successfully', response);
+              // console.log('SeamlessHR connected successfully', response);
               this.closeModal();
               // Handle success (e.g., show a notification)
             },
             error: (error) => {
               this.isButtonLoading = false; // Stop button loading
               this.showAlert = true;
-              this.alertMessage = 'Error connecting SeamlessHR';
+              this.alertMessage =
+                'Error connecting SeamlessHR. Try again Later';
               setTimeout(() => {
                 this.showAlert = false;
               }, 3000);
               this.alertType = 'error'; // Fixed: should be 'error' not 'success'
-              console.error('Error connecting SeamlessHR', error);
-              // Handle error (e.g., show an error message)
             },
           });
       } else {
         this.isButtonLoading = false;
-        console.warn('No authentication token found');
+        // console.warn('No authentication token found');
       }
     } else {
       this.isButtonLoading = false;
-      console.warn('Please provide both Client ID and Client Secret');
+      // console.warn('Please provide both Client ID and Client Secret');
     }
   }
 }

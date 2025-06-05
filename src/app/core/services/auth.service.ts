@@ -12,7 +12,7 @@ export class AuthService {
 
   //user sign up
   registerUser(userData: any): Observable<any> {
-    console.log('User data being sent to backend:', userData);
+    // console.log('User data being sent to backend:', userData);
 
     return this.http.post(`${this.apiUrl}/auth/register`, userData);
   }

@@ -27,11 +27,11 @@ export class SlackOauthRedirectComponent implements OnInit {
       const code = params['code'];
       const state = params['state'];
 
-      console.log('Received code:', code);
-      console.log('Received state:', state);
+      // console.log('Received code:', code);
+      // console.log('Received state:', state);
 
       if (!code) {
-        console.error('Code is missing from the redirect URL');
+        // console.error('Code is missing from the redirect URL');
         this.error = true;
         this.errorMessage = 'Authorization code is missing';
         this.processing = false;
@@ -48,7 +48,7 @@ export class SlackOauthRedirectComponent implements OnInit {
           .exchangeSlackCodeForToken(code, state, token)
           .subscribe({
             next: (response) => {
-              console.log('Slack OAuth successful', response);
+              // console.log('Slack OAuth successful', response);
               this.processing = false;
               this.isSuccess = true;
               this.error = false;
@@ -60,12 +60,12 @@ export class SlackOauthRedirectComponent implements OnInit {
             },
 
             error: (error) => {
-              console.error('Slack OAuth failed', error);
+              // console.error('Slack OAuth failed', error);
               this.router.navigate(['/subscription/integration']);
             },
           });
       } else {
-        console.error('Invalid state or missing code');
+        // console.error('Invalid state or missing code');
         this.router.navigate(['/subscription/integration']);
       }
     });

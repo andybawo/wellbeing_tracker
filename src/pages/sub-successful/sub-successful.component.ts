@@ -45,9 +45,9 @@ export class SubSuccessfulComponent implements OnInit {
         this.packageId = queryPackageId;
         this.processPayment();
       } else {
-        console.warn(
-          'Package ID or Transaction Reference is missing in query parameters.'
-        );
+        // console.warn(
+        //   'Package ID or Transaction Reference is missing in query parameters.'
+        // );
         this.router.navigate(['/subscription']);
         return;
       }
@@ -69,7 +69,7 @@ export class SubSuccessfulComponent implements OnInit {
               this.isLoading = false;
               this.isSuccess = response.success === true;
               this.failureMessage = response.message || 'Unknown error';
-              console.log('Payment and subscription result:', response);
+              // console.log('Payment and subscription result:', response);
               if (response.success) {
                 setTimeout(() => {
                   this.router.navigate(['/subscription/integration']);
@@ -85,14 +85,14 @@ export class SubSuccessfulComponent implements OnInit {
               this.isSuccess = false;
               this.failureMessage =
                 'An unexpected error occurred. Please try again.';
-              console.error('Error processing payment:', error);
+              // console.error('Error processing payment:', error);
               this.router.navigate(['/subscription-failed']);
             },
           });
       }
     } else {
       this.isLoading = false;
-      console.warn('Transaction reference or package ID is missing.');
+      // console.warn('Transaction reference or package ID is missing.');
       alert('Invalid payment information. Please try again.');
       this.router.navigate(['/subscription']);
     }

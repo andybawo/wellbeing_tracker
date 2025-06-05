@@ -577,6 +577,10 @@ hr {
   .modal-load {
     min-width: 620px;
     height: 280px;
+    h1 {
+      top: 10px;
+      font-size: 20px;
+    }
   }
 }
 
@@ -673,6 +677,10 @@ hr {
   .modal-load {
     min-width: 560px;
     height: 260px;
+    h1 {
+      top: 10px;
+      font-size: 20px;
+    }
   }
 }
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
@@ -766,6 +774,11 @@ hr {
   .modal-load {
     min-width: 560px;
     height: 260px;
+    .load-title {
+      h1 {
+        top: 10px;
+      }
+    }
   }
 }
 

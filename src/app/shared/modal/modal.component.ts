@@ -24,7 +24,7 @@ export class ModalComponent {
     if (this.bankDetailsForm.valid) {
       this.paymentDetails.emit(this.bankDetailsForm.value);
     } else {
-      console.warn('Bank details are invalid.');
+      // console.warn('Bank details are invalid.');
     }
   }
 }

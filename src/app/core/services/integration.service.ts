@@ -34,10 +34,10 @@ export class IntegrationService {
     clientSecret: string,
     jwtToken: string
   ) {
-    console.log('Client ID being sent:', clientId);
-    console.log('Client ID length:', clientId.length);
-    console.log('Client Secret present:', !!clientSecret);
-    console.log('JWT Token present:', !!jwtToken);
+    // console.log('Client ID being sent:', clientId);
+    // console.log('Client ID length:', clientId.length);
+    // console.log('Client Secret present:', !!clientSecret);
+    // console.log('JWT Token present:', !!jwtToken);
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${jwtToken}`,
@@ -50,8 +50,8 @@ export class IntegrationService {
       clientSecret: clientSecret,
     };
 
-    console.log('Request Body:', requestBody);
-    console.log('Full URL will be:', this.seamlessIntegrateEndpoint);
+    // console.log('Request Body:', requestBody);
+    // console.log('Full URL will be:', this.seamlessIntegrateEndpoint);
 
     return this.http.post(this.seamlessIntegrateEndpoint, requestBody, {
       headers,
@@ -59,10 +59,10 @@ export class IntegrationService {
   }
 
   connectJiraWithApiKey(apiKey: string, email: string, jwtToken: string) {
-    console.log('API Key being sent:', apiKey);
-    console.log('API Key length:', apiKey.length);
-    console.log('Email being sent:', email);
-    console.log('JWT Token present:', !!jwtToken);
+    // console.log('API Key being sent:', apiKey);
+    // console.log('API Key length:', apiKey.length);
+    // console.log('Email being sent:', email);
+    // console.log('JWT Token present:', !!jwtToken);
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${jwtToken}`,
@@ -73,18 +73,18 @@ export class IntegrationService {
     // Match the exact parameter names and format used in Swagger
     const params = new HttpParams().set('key', apiKey).set('jiraEmail', email);
 
-    console.log('Query params:', params.toString());
-    console.log(
-      'Full URL will be:',
-      `${this.jiraApiKeyEndpoint}?${params.toString()}`
-    );
+    // console.log('Query params:', params.toString());
+    // console.log(
+    //   'Full URL will be:',
+    //   `${this.jiraApiKeyEndpoint}?${params.toString()}`
+    // );
 
     // Check if URL is too long (browsers have limits around 2048-8192 chars)
     const fullUrl = `${this.jiraApiKeyEndpoint}?${params.toString()}`;
-    console.log('URL length:', fullUrl.length);
+    // console.log('URL length:', fullUrl.length);
 
     if (fullUrl.length > 2048) {
-      console.warn('URL might be too long for some browsers/servers');
+      // console.warn('URL might be too long for some browsers/servers');
     }
 
     // Use the same format as the successful Swagger test
@@ -107,9 +107,9 @@ export class IntegrationService {
   }
 
   exchangeJiraCodeForToken(code: string, state: string, jwtToken: string) {
-    console.log('Code being sent:', code);
-    console.log('State being sent:', state);
-    console.log('JWT Token:', jwtToken);
+    // console.log('Code being sent:', code);
+    // console.log('State being sent:', state);
+    // console.log('JWT Token:', jwtToken);
     const headers = new HttpHeaders({
       Authorization: `Bearer ${jwtToken}`,
     });
@@ -140,9 +140,9 @@ export class IntegrationService {
   }
 
   exchangeSlackCodeForToken(code: string, state: string, jwtToken: string) {
-    console.log('Code being sent:', code);
-    console.log('State being sent:', state);
-    console.log('JWT Token:', jwtToken);
+    // console.log('Code being sent:', code);
+    // console.log('State being sent:', state);
+    // console.log('JWT Token:', jwtToken);
     const headers = new HttpHeaders({
       Authorization: `Bearer ${jwtToken}`,
     });

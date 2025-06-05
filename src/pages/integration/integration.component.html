@@ -119,6 +119,8 @@
             <div class="bottom">
               <button (click)="closeModal()">Cancel</button>
               <button
+                type="submit"
+                [disabled]="isButtonLoading"
                 *ngIf="!isToolinfoOpen && selectedHrTool === 'seamless'"
                 (click)="connectSeamlessHR()"
               >

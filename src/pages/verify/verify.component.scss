@@ -320,6 +320,12 @@
   .modal-load {
     min-width: 620px;
     height: 280px;
+    .load-title {
+      h1 {
+        top: 10px;
+        font-size: 20px;
+      }
+    }
   }
 }
 
@@ -386,6 +392,12 @@
   .modal-load {
     min-width: 560px;
     height: 260px;
+    .load-title {
+      h1 {
+        top: 10px;
+        font-size: 18px;
+      }
+    }
   }
 }
 
@@ -451,6 +463,12 @@
   .modal-load {
     min-width: 560px;
     height: 260px;
+
+    .load-title {
+      h1 {
+        top: 10px;
+      }
+    }
   }
 }
 

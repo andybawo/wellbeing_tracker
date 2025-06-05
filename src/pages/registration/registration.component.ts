@@ -69,6 +69,9 @@ export class RegistrationComponent {
       this.showAlert = true;
       this.alertMessage = 'Please fill in all company details correctly.';
       this.alertType = 'error';
+      setTimeout(() => {
+        this.showAlert = false;
+      }, 3000);
       return;
     }
 

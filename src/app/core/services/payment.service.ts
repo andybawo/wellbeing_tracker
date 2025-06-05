@@ -50,7 +50,7 @@ export class PaymentService {
       id: packageId,
     };
 
-    console.log('Initiate Payment Request Body:', JSON.stringify(body)); // Log the request body
+    // console.log('Initiate Payment Request Body:', JSON.stringify(body)); // Log the request body
 
     return this.http.post<PaymentResponse>(url, packageId, { headers }).pipe(
       tap((response) =>
@@ -58,12 +58,12 @@ export class PaymentService {
       ), // Log successful responses
       catchError((error: any) => {
         // Use 'any' to capture the full error object
-        console.error(`Error initiating payment with ${gateway}:`, error);
-        console.error('Full Error Response:', error); // Log the entire error object
-        console.error(
-          'Backend Validation Errors (if any):',
-          error?.error?.errors
-        ); // Keep logging validation errors
+        // console.error(`Error initiating payment with ${gateway}:`, error);
+        // console.error('Full Error Response:', error); // Log the entire error object
+        // console.error(
+        //   'Backend Validation Errors (if any):',
+        //   error?.error?.errors
+        // ); // Keep logging validation errors
 
         return of({
           status: false, // Assuming your PaymentResponse has a 'status' property
@@ -98,7 +98,7 @@ export class PaymentService {
           console.log('Payment verification response:', response)
         ),
         catchError((error) => {
-          console.error('Error verifying payment:', error);
+          // console.error('Error verifying payment:', error);
           return of({
             status: false,
             message: 'Payment verification failed',
@@ -135,7 +135,7 @@ export class PaymentService {
       })
       .pipe(
         map((response: HttpResponse<string>) => {
-          console.log('Raw subscription response:', response.body);
+          // console.log('Raw subscription response:', response.body);
           // Convert the text response to our PaymentResponse format
           return {
             status: response.ok,
@@ -145,7 +145,7 @@ export class PaymentService {
           } as PaymentResponse;
         }),
         catchError((error) => {
-          console.error('Error creating new subscription:', error);
+          // console.error('Error creating new subscription:', error);
           return of({
             status: false,
             success: false,
@@ -178,7 +178,7 @@ export class PaymentService {
           verificationResponse.status === true ||
           verificationResponse.status === 'true';
 
-        console.log('Is payment verified?', isVerified, verificationResponse);
+        // console.log('Is payment verified?', isVerified, verificationResponse);
 
         if (isVerified) {
           return this.newSubscription(packageId, token);
@@ -195,7 +195,7 @@ export class PaymentService {
         }
       }),
       catchError((error) => {
-        console.error('Error in verifyAndCreateSubscription:', error);
+        // console.error('Error in verifyAndCreateSubscription:', error);
         return of({
           status: false,
           success: false,

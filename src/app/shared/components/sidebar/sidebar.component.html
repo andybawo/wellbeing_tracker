@@ -3,13 +3,25 @@
     <img src="/images/logo-dash.png" alt="" />
     <div class="sidebar-list">
       <ul>
-        <li [routerLink]="['/home']">
+        <li
+          [routerLink]="['/home']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <img src="/images/tick-square-dash.png" alt="" />Dashboard
         </li>
-        <li [routerLink]="['/home/hr-overview']">
+        <li
+          [routerLink]="['/home/hr-overview']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <img src="/images/people-dash.png" alt="" />HR Overview
         </li>
-        <li [routerLink]="['/home/communication']">
+        <li
+          [routerLink]="['/home/communication']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <img src="/images/messages-dash.png" alt="" />Communication Tool
         </li>
 

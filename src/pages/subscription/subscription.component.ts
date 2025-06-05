@@ -54,7 +54,7 @@ export class SubscriptionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('ngOnInit: Initial packages value:', this.packages);
+    // console.log('ngOnInit: Initial packages value:', this.packages);
     this.isLoading = true;
 
     this.loadPackages();
@@ -65,14 +65,14 @@ export class SubscriptionComponent implements OnInit {
       next: (response) => {
         this.isLoading = false;
 
-        console.log('loadPackages: Data from service:', response);
+        // console.log('loadPackages: Data from service:', response);
         this.packages = response.data;
-        console.log('Packages loaded:', this.packages);
+        // console.log('Packages loaded:', this.packages);
 
         this.filterPackages();
       },
       error: (error) => {
-        console.error('Error loading packages:', error);
+        // console.error('Error loading packages:', error);
         alert('Failed to load packages. Please try again.');
       },
     });
@@ -93,8 +93,8 @@ export class SubscriptionComponent implements OnInit {
         pkg.name.toLowerCase() === 'free trial'
     );
 
-    console.log('Monthly packages:', this.monthlyPackages);
-    console.log('Yearly packages:', this.yearlyPackages);
+    // console.log('Monthly packages:', this.monthlyPackages);
+    // console.log('Yearly packages:', this.yearlyPackages);
   }
 
   openYear(): void {
@@ -107,24 +107,24 @@ export class SubscriptionComponent implements OnInit {
 
   selectPackageDiv(packageName: string): void {
     this.selectedPackage = packageName;
-    console.log('Selected package div:', this.selectedPackage);
+    // console.log('Selected package div:', this.selectedPackage);
   }
 
   selectPlan(packageName: string): void {
     this.selectedPackage = packageName;
-    console.log('Selected package', this.selectedPackage);
+    // console.log('Selected package', this.selectedPackage);
 
     const selectedPackageData = this.packages.find(
       (pkg) => pkg.name?.toLowerCase() === packageName
     );
 
     if (selectedPackageData && selectedPackageData.id) {
-      console.log('Selected package ID:', selectedPackageData.id); // Add logging here
+      // console.log('Selected package ID:', selectedPackageData.id); // Add logging here
 
       this.packagesService.setPackageId(selectedPackageData.id);
       this.openModal();
     } else {
-      console.error('Package ID not found for package name:', packageName);
+      // console.error('Package ID not found for package name:', packageName);
       alert('Error: Could not find package information.');
     }
   }
@@ -139,7 +139,7 @@ export class SubscriptionComponent implements OnInit {
 
   initiatePaymentLinkRequest(): void {
     if (!this.selectedGateway) {
-      console.warn('Payment gateway not selected.');
+      // console.warn('Payment gateway not selected.');
       alert('Please select a payment method');
       return;
     }
@@ -151,10 +151,10 @@ export class SubscriptionComponent implements OnInit {
       const packageId = parseInt(selectedPackageData.id, 10);
       this.isLoadingpayment = true;
 
-      console.log('Package ID before sending:', packageId); // Log packageId
+      // console.log('Package ID before sending:', packageId); // Log packageId
 
       const token = this.dataService.getAuthToken();
-      console.log('Token before sending:', token); // Log token
+      // console.log('Token before sending:', token); // Log token
 
       if (!token) {
         this.isLoadingpayment = false;
@@ -167,7 +167,7 @@ export class SubscriptionComponent implements OnInit {
 
       if (isNaN(packageId)) {
         this.isLoadingpayment = false;
-        console.error('Invalid package ID:', selectedPackageData.id);
+        // console.error('Invalid package ID:', selectedPackageData.id);
         alert('Error: Invalid package ID. Please select a valid plan.');
         return;
       }
@@ -192,13 +192,13 @@ export class SubscriptionComponent implements OnInit {
             }
 
             if (paymentUrl) {
-              console.log('Redirecting to payment URL:', paymentUrl);
+              // console.log('Redirecting to payment URL:', paymentUrl);
               setTimeout(() => {
                 window.location.href = paymentUrl;
               }, 500);
             } else {
               this.isLoadingpayment = false;
-              console.error('Payment URL not found in the response:', response);
+              // console.error('Payment URL not found in the response:', response);
               alert(
                 'Error: Could not retrieve the payment URL. Please try again.'
               );
@@ -207,18 +207,18 @@ export class SubscriptionComponent implements OnInit {
           error: (error) => {
             // Only set to false on error
             this.isLoadingpayment = false;
-            console.error('Payment initiation error:', error);
+            // console.error('Payment initiation error:', error);
             alert('Error: Failed to initiate payment. Please try again.');
           },
         });
     } else {
-      console.warn('Could not find package ID for:', this.selectedPackage);
+      // console.warn('Could not find package ID for:', this.selectedPackage);
       alert('Error: Could not process the selected plan.');
     }
   }
   setPaymentGateway(gateway: 'paystack' | 'flutterwave') {
     this.selectedGateway = gateway;
-    console.log('Selected payment gateway:', this.selectedGateway); // Add logging here
+    // console.log('Selected payment gateway:', this.selectedGateway); // Add logging here
 
     this.closeModal();
 

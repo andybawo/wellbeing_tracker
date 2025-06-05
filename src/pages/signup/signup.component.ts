@@ -43,14 +43,14 @@ export class SignupComponent {
   ) {}
 
   async onUserSave() {
-    console.log('User save triggered');
+    // console.log('User save triggered');
     this.isButtonLoading = true; // Start button loading
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
     if (this.userForm.valid) {
       this.isLoading = true;
       const userData = this.userForm.value;
-      console.log('User Data stored:', userData);
+      // console.log('User Data stored:', userData);
 
       this.dataService.setUserData(userData);
       this.isLoading = false;
@@ -81,7 +81,7 @@ export class SignupComponent {
         }
       }
 
-      console.log('Generated Error Message:', errorMessage);
+      // console.log('Generated Error Message:', errorMessage);
       this.alertMessage = errorMessage;
       this.alertType = 'error';
       setTimeout(() => {

@@ -390,3 +390,646 @@ li {
   margin-top: 10px;
   height: fit-content;
 }
+/* ===== MEDIA QUERIES FOR DASHBOARD RESPONSIVENESS ===== */
+
+/* Large Screens - 1536px and above (your original design) */
+@media screen and (min-width: 1536px) {
+  .search-container input {
+    width: 230px;
+  }
+
+  .content-box {
+    .left-side {
+      width: 60%;
+    }
+    .right-side {
+      width: 40%;
+    }
+  }
+
+  .hrm-cards .cards {
+    width: 33%;
+  }
+
+  .comm-dets {
+    width: 85%;
+  }
+
+  .proj-status {
+    width: 340px;
+  }
+}
+
+/* Medium-Large Screens - 1328px to 1439px */
+@media screen and (max-width: 1439px) and (min-width: 1328px) {
+  /* Navbar adjustments */
+  .search-container input {
+    width: 200px; /* Reduce search width */
+  }
+
+  .left-end,
+  .right-end {
+    gap: 15px; /* Reduce gaps */
+  }
+
+  .top-header {
+    height: 7%;
+    margin-bottom: 10px;
+
+    .right-end button {
+      width: 160px;
+      height: 30px;
+    }
+  }
+
+  /* Home page adjustments */
+  .content-box {
+    .left-side {
+      width: 58%;
+    }
+    .right-side {
+      width: 42%;
+    }
+  }
+
+  .hrm-cards {
+    gap: 6px;
+
+    .cards {
+      width: 32%;
+      height: 70px; /* Slightly shorter */
+      padding-left: 12px;
+    }
+  }
+
+  .tool-box {
+    max-height: 265px;
+    padding: 10px 15px 10px 15px;
+  }
+
+  .comm-dets {
+    width: 90%;
+
+    .circle {
+      width: 100px;
+      height: 100px;
+    }
+
+    .circle::before {
+      width: 90px;
+      height: 90px;
+    }
+
+    .value {
+      font-size: 24px;
+    }
+  }
+
+  .proj-status {
+    width: 300px;
+    font-size: 12px;
+  }
+
+  .integrate-tab {
+    padding: 0 10px 10px 10px;
+  }
+
+  .alerts-tab {
+    padding: 0 10px 10px 10px;
+    min-height: fit-content;
+    h3 {
+      font-size: 14px;
+    }
+    a {
+      font-size: 14px;
+    }
+    .content {
+      height: 68px;
+      h2 {
+        font-size: 12px;
+      }
+      ul li:first-child {
+        font-weight: 700;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .tables {
+    gap: 15px;
+  }
+}
+
+/* Medium Screens - 1024px to 1329px */
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .search-container input {
+    width: 200px; /* Reduce search width */
+  }
+
+  .left-end,
+  .right-end {
+    gap: 15px; /* Reduce gaps */
+    font-size: 12px;
+    select {
+      font-size: 12px;
+    }
+  }
+
+  .top-header {
+    height: 6.5%;
+    margin-bottom: 10px;
+
+    .right-end button {
+      width: 160px;
+      height: 27px;
+      font-size: 12px;
+    }
+  }
+
+  /* Home page adjustments */
+  .content-box {
+    .left-side {
+      width: 58%;
+    }
+    .right-side {
+      width: 42%;
+    }
+  }
+
+  .hrm-cards {
+    gap: 6px;
+
+    .cards {
+      width: 32%;
+      height: 70px; /* Slightly shorter */
+
+      gap: 5px;
+
+      padding-left: 10px;
+
+      li {
+        font-size: 12px;
+        font-weight: 400;
+        span {
+          font-weight: 700;
+          font-size: 18px;
+        }
+        span + span {
+          font-size: 8px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .tool-box {
+    min-height: fit-content;
+    padding: 10px 15px 12px 15px;
+    .tool-title {
+      h3 {
+        font-size: 13px;
+      }
+      a {
+        font-size: 10px;
+      }
+    }
+  }
+
+  .proj-dets {
+    h2 {
+      font-size: 12px;
+      margin-bottom: 0;
+    }
+    span {
+      font-size: 12px;
+    }
+    .proj-visual-dets {
+      .green,
+      .amber,
+      .red {
+        height: 5px;
+      }
+    }
+    .proj-status {
+      margin-top: 5px;
+      ul {
+        li {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+
+  .comm-dets {
+    width: 90%;
+    height: fit-content;
+
+    .circle {
+      width: 90px;
+      height: 90px;
+    }
+    .circle.sentiment,
+    .circle.message,
+    .circle.workspace {
+      margin-bottom: 5px;
+    }
+
+    .circle::before {
+      width: 80px;
+      height: 80px;
+    }
+
+    .value {
+      font-size: 24px;
+    }
+  }
+
+  .circle-container {
+    h2 {
+      font-size: 12px;
+    }
+    ul {
+      li {
+        font-size: 10px;
+      }
+    }
+    height: fit-content;
+  }
+
+  .proj-status {
+    width: 300px;
+    font-size: 12px;
+  }
+
+  .integrate-tab {
+    padding: 0 10px 20px 10px;
+    h3 {
+      font-size: 12px;
+    }
+    a {
+      font-size: 12px;
+    }
+    min-height: 160px;
+  }
+
+  .tools-integrated {
+    .seamlesshr-tool,
+    .communication-tool,
+    .project-tool {
+      height: 35px;
+    }
+  }
+
+  .alerts-tab {
+    padding: 0 10px 16px 10px;
+    min-height: fit-content;
+    h3 {
+      font-size: 12px;
+    }
+    a {
+      font-size: 12px;
+    }
+    .content {
+      height: 60px;
+      h2 {
+        font-size: 10px;
+      }
+      ul li:first-child {
+        font-weight: 700;
+        font-size: 12px;
+      }
+    }
+    .alert-tab-content {
+      height: fit-content;
+      flex-grow: 1;
+    }
+  }
+
+  .tables {
+    gap: 15px;
+  }
+}
+
+/* Small-Medium Screens - 768px to 1023px */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* Single column layout */
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main";
+  }
+
+  .sidebar {
+    position: relative; /* Change from fixed to relative */
+    width: 100%;
+    height: auto; /* Remove fixed height */
+    left: 0; /* Reset position */
+    flex-direction: row; /* Horizontal layout */
+    justify-content: space-around;
+    padding: 10px 0;
+  }
+
+  .sidebar-item {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+
+    > img {
+      position: static; /* Reset logo position */
+      top: 0;
+      width: 100px;
+    }
+  }
+
+  .sidebar-list {
+    width: auto;
+    height: auto;
+    flex-direction: row;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      overflow-x: auto; /* Allow horizontal scrolling */
+    }
+
+    ul:last-of-type {
+      margin-top: 0;
+    }
+
+    li {
+      white-space: nowrap;
+      font-size: 11px;
+    }
+  }
+
+  .navbar {
+    padding: 6px 12px;
+  }
+
+  .search-container input {
+    width: 150px;
+  }
+
+  .left-end,
+  .right-end {
+    gap: 8px;
+  }
+
+  .right-end button {
+    width: 120px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .main-container {
+    padding: 12px;
+  }
+
+  .top-header {
+    height: auto;
+    padding: 10px 12px;
+
+    .left-end h3 {
+      font-size: 16px;
+    }
+
+    .right-end {
+      gap: 10px;
+    }
+  }
+
+  .content-box {
+    margin-top: 8px;
+    flex-direction: column;
+  }
+
+  .tool-box {
+    padding: 10px 12px;
+  }
+
+  .hrm-cards .cards {
+    height: 60px;
+    gap: 6px;
+    padding-left: 10px;
+  }
+
+  .comm-dets .circle {
+    width: 80px;
+    height: 80px;
+  }
+
+  .comm-dets .circle::before {
+    width: 70px;
+    height: 70px;
+  }
+
+  .comm-dets .value {
+    font-size: 18px;
+  }
+}
+
+/* Mobile Screens - up to 767px */
+@media screen and (max-width: 767px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main";
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    left: 0;
+    padding: 8px 0;
+  }
+
+  .sidebar-item > img {
+    width: 80px;
+  }
+
+  .sidebar-list {
+    ul {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    li {
+      font-size: 10px;
+      min-width: fit-content;
+    }
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 8px;
+  }
+
+  .left-end,
+  .right-end {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .search-container input {
+    width: 200px;
+  }
+
+  .main-container {
+    padding: 8px;
+  }
+
+  .top-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 8px;
+  }
+
+  .content-box {
+    margin-top: 6px;
+  }
+
+  .tool-box {
+    padding: 8px 10px;
+  }
+
+  .hrm-cards {
+    .cards {
+      flex-direction: column;
+      height: 80px;
+      text-align: center;
+      padding: 8px;
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+
+  .comm-dets {
+    gap: 15px;
+
+    .circle {
+      width: 70px;
+      height: 70px;
+    }
+
+    .circle::before {
+      width: 60px;
+      height: 60px;
+    }
+
+    .value {
+      font-size: 16px;
+    }
+
+    h2 {
+      font-size: 13px;
+    }
+  }
+
+  .integrate-tab,
+  .alerts-tab {
+    padding: 0 8px 8px 8px;
+  }
+
+  .seamlesshr-tool,
+  .communication-tool,
+  .project-tool {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .tables {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .alert-tab-content .content {
+    height: auto;
+    padding: 8px;
+
+    .content-list {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+
+      ul {
+        flex-direction: row;
+        gap: 8px;
+      }
+    }
+  }
+}
+
+/* Ultra-wide screens - 1920px and above */
+@media screen and (min-width: 1920px) {
+  .grid-container {
+    max-width: 1920px;
+    margin: 0 auto; /* Center the entire layout */
+  }
+
+  .sidebar {
+    width: 260px; /* Increase sidebar width for ultra-wide */
+    left: -260px; /* Match sidebar width */
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .sidebar-list {
+    width: 220px;
+
+    li {
+      font-size: 15px;
+      gap: 10px;
+    }
+  }
+
+  .search-container input {
+    width: 280px;
+  }
+
+  .content-box {
+    .left-side {
+      width: 62%;
+    }
+    .right-side {
+      width: 38%;
+    }
+  }
+
+  .comm-dets {
+    width: 80%;
+
+    .circle {
+      width: 120px;
+      height: 120px;
+    }
+
+    .circle::before {
+      width: 110px;
+      height: 110px;
+    }
+
+    .value {
+      font-size: 32px;
+    }
+  }
+
+  .proj-status {
+    width: 400px;
+  }
+}

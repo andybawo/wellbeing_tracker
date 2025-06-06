@@ -39,6 +39,8 @@ export class IntegrationComponent {
   jiraApiKey = '';
   jiraApiEmail = '';
 
+  slackApiKey: string = '';
+
   seamlessClientId: string = '';
   seamlessClientSecret: string = '';
 
@@ -135,6 +137,51 @@ export class IntegrationComponent {
     }
   }
 
+  connectSlackApiKey() {
+    this.isButtonLoading = true;
+
+    if (this.slackApiKey) {
+      const token = this.dataService.getAuthToken();
+
+      if (token) {
+        this.integrationService
+          .connectSlackwithApi(this.slackApiKey, token)
+          .subscribe({
+            next: (response) => {
+              // console.log('Slack integration successful:', response);
+              this.isButtonLoading = false;
+              this.alertMessage = '🎉🎉Slack Successfully Integrated';
+              setTimeout(() => {
+                this.showAlert = true;
+              }, 3000);
+              this.alertType = 'success';
+              this.closeModal();
+            },
+            error: (error) => {
+              // console.error('Slack integration error:', error);
+              this.isButtonLoading = false;
+              this.showAlert = true;
+              this.alertMessage = 'Error connecting Slack with API Key';
+              this.alertType = 'error'; // Fixed: changed from 'success' to 'error'
+            },
+          });
+      } else {
+        // Handle missing token case
+        // console.error('No auth token available');
+        this.isButtonLoading = false;
+        this.showAlert = true;
+        this.alertMessage = 'Authentication token not found';
+        this.alertType = 'error';
+      }
+    } else {
+      // Handle missing API key case
+      // console.error('No Slack API key provided');
+      this.isButtonLoading = false;
+      this.showAlert = true;
+      this.alertMessage = 'Please enter a valid Slack API key';
+      this.alertType = 'error';
+    }
+  }
   connectJiraOAuth() {
     this.integrationService.initiateJiraOAuth();
   }
@@ -142,8 +189,6 @@ export class IntegrationComponent {
   connectSlackOAuth() {
     this.integrationService.initiateSlackOAuth();
   }
-
-  connectSlackApiKey() {}
 
   allowPermission() {
     if (

@@ -26,6 +26,32 @@ export class IntegrationService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  private slackApiKeyEndpoint =
+    'https://cultural-health.azurewebsites.net/api/Slack/connect/slack/key';
+
+  connectSlackwithApi(apiKey: string, jwtToken: string) {
+    // console.log('API Key being sent:', apiKey);
+    // console.log('API Key length:', apiKey.length);
+    // console.log('JWT Token present:', !!jwtToken);
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${jwtToken}`,
+      'Content-Type': 'application/json',
+      Accept: '*/*',
+    });
+
+    const params = new HttpParams().set('key', apiKey);
+    // console.log('Query params:', params.toString());
+
+    // Fixed: Use slackApiKeyEndpoint instead of jiraApiKeyEndpoint
+    // console.log(
+    //   'Full URL will be:',
+    //   `${this.slackApiKeyEndpoint}?${params.toString()}`
+    // );
+
+    return this.http.post(this.slackApiKeyEndpoint, null, { headers, params });
+  }
+
   private seamlessIntegrateEndpoint =
     'https://cultural-health.azurewebsites.net/api/SeamlessHR/connect/seamlessHR/key';
 

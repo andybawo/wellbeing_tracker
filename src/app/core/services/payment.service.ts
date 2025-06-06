@@ -45,7 +45,10 @@ export class PaymentService {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
-    const url = `${this.apiUrl}/payment/${gateway}`;
+    const baseUrl = this.apiUrl.endsWith('/')
+      ? this.apiUrl.slice(0, -1)
+      : this.apiUrl;
+    const url = `${baseUrl}/payment/${gateway}`;
     const body = {
       id: packageId,
     };
@@ -86,11 +89,41 @@ export class PaymentService {
     transactionRef: string,
     token: string
   ): Observable<PaymentResponse> {
-    const verificationUrl = `${this.apiUrl}/payment/verify/${transactionRef}`;
+    let cleanRef = transactionRef?.trim();
+
+    if (!cleanRef) {
+      // console.error('Invalid transaction reference:', transactionRef);
+      return of({
+        status: false,
+        message: 'Invalid transaction reference',
+        data: null,
+        errors: ['Invalid transaction reference'],
+      });
+    }
+
+    // Additional cleaning in case the reference still contains duplicates
+    if (cleanRef.includes(',')) {
+      cleanRef = cleanRef.split(',')[0].trim();
+      // console.log('Payment service cleaned duplicate reference:', cleanRef);
+    }
+
+    // console.log('Original transactionRef:', transactionRef);
+    // console.log('Cleaned transactionRef:', cleanRef);
+
+    const baseUrl = this.apiUrl.endsWith('/')
+      ? this.apiUrl.slice(0, -1)
+      : this.apiUrl;
+    const verificationUrl = `${baseUrl}/payment/verify/${cleanRef}`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
+
+    // console.log('Payment verification request:', {
+    //   url: verificationUrl,
+    //   transactionRef: cleanRef,
+    //   token: token ? 'Present' : 'Missing',
+    // });
     return this.http
       .post<PaymentResponse>(verificationUrl, {}, { headers })
       .pipe(
@@ -120,11 +153,20 @@ export class PaymentService {
     packageId: number,
     token: string
   ): Observable<PaymentResponse> {
-    const subscriptionUrl = `${this.apiUrl}/payment/newsubscription`;
+    const baseUrl = this.apiUrl.endsWith('/')
+      ? this.apiUrl.slice(0, -1)
+      : this.apiUrl;
+    const subscriptionUrl = `${baseUrl}/payment/newsubscription`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
+
+    // console.log('New subscription request:', {
+    //   url: subscriptionUrl,
+    //   packageId,
+    //   token: token ? 'Present' : 'Missing',
+    // });
 
     // Modified to handle plain text response
     return this.http
@@ -170,6 +212,11 @@ export class PaymentService {
     token: string,
     packageId: number
   ): Observable<PaymentResponse> {
+    // console.log('Starting verifyAndCreateSubscription:', {
+    //   transactionRef,
+    //   packageId,
+    //   token: token ? 'Present' : 'Missing',
+    // });
     return this.verifyPayment(transactionRef, token).pipe(
       switchMap((verificationResponse: PaymentResponse) => {
         // Check for both success and status fields to handle inconsistent backend responses

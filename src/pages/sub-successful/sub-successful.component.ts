@@ -37,16 +37,59 @@ export class SubSuccessfulComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
+      // console.log('=== DEBUGGING QUERY PARAMS ===');
+      // console.log('All query parameters:', params);
+      // console.log('Raw tx_ref:', params['tx_ref']);
+      // console.log('Type of tx_ref:', typeof params['tx_ref']);
+      // console.log('Is tx_ref an array?', Array.isArray(params['tx_ref']));
       const queryPackageId = parseInt(params['packageId'], 10);
-      this.transactionRef = params['tx_ref'] || null; // Assign transactionRef first
+      let rawTransactionRef =
+        params['tx_ref'] ||
+        params['reference'] ||
+        params['trxref'] ||
+        params['transaction_id'] ||
+        null;
 
+      // console.log('Raw transaction reference:', rawTransactionRef);
+      // console.log('Extracted package ID:', queryPackageId);
+
+      // Handle cases where the parameter might be an array or comma-separated string
+      if (rawTransactionRef) {
+        if (Array.isArray(rawTransactionRef)) {
+          // If it's an array, take the first element
+          this.transactionRef = rawTransactionRef[0];
+          // console.log(
+          //   'Transaction ref was array, using first element:',
+          //   this.transactionRef
+          // );
+        } else if (
+          typeof rawTransactionRef === 'string' &&
+          rawTransactionRef.includes(',')
+        ) {
+          // If it's a comma-separated string, take the first part
+          this.transactionRef = rawTransactionRef.split(',')[0].trim();
+          // console.log(
+          //   'Transaction ref was comma-separated, using first part:',
+          //   this.transactionRef
+          // );
+        } else {
+          // It's a clean string
+          this.transactionRef = rawTransactionRef.trim();
+        }
+      } else {
+        this.transactionRef = null;
+      }
+
+      // console.log('Final cleaned transaction reference:', this.transactionRef);
+
+      // Now check if both packageId and transactionRef are valid
       if (!isNaN(queryPackageId) && this.transactionRef) {
-        // Check if both are valid
         this.packageId = queryPackageId;
         this.processPayment();
       } else {
         // console.warn(
-        //   'Package ID or Transaction Reference is missing in query parameters.'
+        //   'Package ID or Transaction Reference is missing in query parameters.',
+        //   { packageId: queryPackageId, transactionRef: this.transactionRef }
         // );
         this.router.navigate(['/subscription']);
         return;
@@ -56,8 +99,24 @@ export class SubSuccessfulComponent implements OnInit {
 
   processPayment(): void {
     if (this.transactionRef && this.packageId) {
+      let cleanRef = this.transactionRef;
+      if (cleanRef.includes(',')) {
+        cleanRef = cleanRef.split(',')[0].trim();
+        // console.log(
+        //   'processPayment: Further cleaned ref from',
+        //   this.transactionRef,
+        //   'to',
+        //   cleanRef
+        // );
+        this.transactionRef = cleanRef; // Update the instance variable
+      }
       const token = this.dataService.getAuthToken();
       if (token) {
+        // console.log('Processing payment with:', {
+        //   transactionRef: this.transactionRef,
+        //   packageId: this.packageId,
+        //   token: token ? 'Present' : 'Missing',
+        // });
         this.paymentService
           .verifyAndCreateSubscription(
             this.transactionRef,
@@ -67,10 +126,15 @@ export class SubSuccessfulComponent implements OnInit {
           .subscribe({
             next: (response: any) => {
               this.isLoading = false;
-              this.isSuccess = response.success === true;
               this.failureMessage = response.message || 'Unknown error';
               // console.log('Payment and subscription result:', response);
-              if (response.success) {
+              const isSuccessful =
+                response.success === true ||
+                response.status === true ||
+                response.status === 'true';
+              this.isSuccess = isSuccessful;
+
+              if (isSuccessful) {
                 setTimeout(() => {
                   this.router.navigate(['/subscription/integration']);
                 }, 5000);

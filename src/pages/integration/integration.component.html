@@ -193,10 +193,14 @@
               <div class="api-key" *ngIf="showApiKeyfield">
                 <div class="api-key-details">
                   <label for="">API Key</label>
-                  <input type="text" placeholder="Enter API Key" />
+                  <input
+                    type="text"
+                    placeholder="Enter API Key"
+                    [(ngModel)]="slackApiKey"
+                  />
                 </div>
 
-                <a href=""
+                <a href="https://api.slack.com/tutorials/tracks/getting-a-token"
                   >Click here for more information on how to get API Key</a
                 >
               </div>
@@ -250,6 +254,8 @@
                 Connect
               </button>
               <button
+                type="submit"
+                [disabled]="isButtonLoading"
                 *ngIf="
                   !isToolinfoOpen &&
                   selectedComTools === 'slack' &&
@@ -257,7 +263,11 @@
                 "
                 (click)="connectSlackApiKey()"
               >
-                Connect with API Key
+                <span *ngIf="!isButtonLoading">Connect With Api Key</span>
+                <span *ngIf="isButtonLoading" class="button-loader">
+                  <span class="spinner"></span>
+                  Integrating...
+                </span>
               </button>
 
               <button
@@ -279,6 +289,7 @@
                 Connect
               </button>
               <button
+                type="submit"
                 *ngIf="
                   !isToolinfoOpen &&
                   selectedComTools === 'outlook' &&

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DataService } from '../../../core/services/data.service';
+import { SignupComponent } from '../../../../pages/signup/signup.component';
 
 @Component({
   selector: 'app-navbar',

@@ -58,8 +58,6 @@ export class SignupComponent {
       this.alertMessage =
         'Signup successful! Please proceed to register your company.';
       this.alertType = 'success';
-      this.router.navigate(['/start/registration']); // Navigate to company registration
-
       setTimeout(() => {
         this.isButtonLoading = false; // Stop button loading
         this.router.navigate(['/start/registration']);

@@ -650,14 +650,9 @@
 
 /* Ultra-wide screens - 1920px and above */
 @media screen and (min-width: 1920px) {
-  .grid-container {
-    max-width: 1920px;
-    margin: 0 auto; /* Center the entire layout */
-  }
-
   .sidebar {
-    width: 260px; /* Increase sidebar width for ultra-wide */
-    left: -260px; /* Match sidebar width */
+    width: 276px; /* Increase sidebar width for ultra-wide */
+    left: -276px; /* Match sidebar width */
   }
 
   .sidebar.open {
@@ -665,46 +660,11 @@
   }
 
   .sidebar-list {
-    width: 220px;
+    width: 225px;
 
     li {
-      font-size: 15px;
+      font-size: 16px;
       gap: 10px;
     }
-  }
-
-  .search-container input {
-    width: 280px;
-  }
-
-  .content-box {
-    .left-side {
-      width: 62%;
-    }
-    .right-side {
-      width: 38%;
-    }
-  }
-
-  .comm-dets {
-    width: 80%;
-
-    .circle {
-      width: 120px;
-      height: 120px;
-    }
-
-    .circle::before {
-      width: 110px;
-      height: 110px;
-    }
-
-    .value {
-      font-size: 32px;
-    }
-  }
-
-  .proj-status {
-    width: 400px;
   }
 }

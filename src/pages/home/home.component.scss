@@ -55,18 +55,6 @@
   width: 40%;
 }
 
-.integrate-tab {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  min-height: 200px;
-  padding: 0 20px 16px 20px;
-  background-color: white;
-  border-radius: 5px;
-}
-
 .tab-title,
 .alerts-title {
   display: flex;
@@ -147,6 +135,16 @@
   gap: 20px;
 }
 
+.integrate-tab {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: white;
+  border-radius: 5px;
+}
+
 ///Alerts tab on dahboard screen
 .alerts-tab {
   background-color: white;
@@ -207,7 +205,6 @@
   flex-direction: column;
   width: 100%;
   height: fit-content;
-  max-height: 273px;
   padding: 16px 20px 16px 20px;
   background-color: white;
   border-radius: 5px;
@@ -392,6 +389,9 @@ li {
 }
 /* ===== MEDIA QUERIES FOR DASHBOARD RESPONSIVENESS ===== */
 
+/*Tall screens*/
+/* For screens with height of 913px and above (equivalent to your 1536px+ width query) */
+
 /* Large Screens - 1536px and above (your original design) */
 @media screen and (min-width: 1536px) {
   .search-container input {
@@ -415,8 +415,18 @@ li {
     width: 85%;
   }
 
+  .tool-box {
+    height: fit-content;
+    padding: 12px 20px 12px 20px;
+  }
+
   .proj-status {
     width: 340px;
+  }
+  .integrate-tab {
+    height: fit-content;
+    min-height: 200px;
+    padding: 0 20px 16px 20px;
   }
 }
 
@@ -492,6 +502,8 @@ li {
 
   .integrate-tab {
     padding: 0 10px 10px 10px;
+    height: fit-content;
+    min-height: 200px;
   }
 
   .alerts-tab {
@@ -662,13 +674,15 @@ li {
   }
 
   .integrate-tab {
-    padding: 0 10px 20px 10px;
+    padding: 0 10px 10px 10px;
     h3 {
       font-size: 12px;
     }
     a {
       font-size: 12px;
     }
+
+    height: fit-content;
     min-height: 160px;
   }
 
@@ -975,31 +989,13 @@ li {
 
 /* Ultra-wide screens - 1920px and above */
 @media screen and (min-width: 1920px) {
-  .grid-container {
-    max-width: 1920px;
-    margin: 0 auto; /* Center the entire layout */
-  }
+  .top-header {
+    height: 80px;
 
-  .sidebar {
-    width: 260px; /* Increase sidebar width for ultra-wide */
-    left: -260px; /* Match sidebar width */
-  }
-
-  .sidebar.open {
-    left: 0;
-  }
-
-  .sidebar-list {
-    width: 220px;
-
-    li {
-      font-size: 15px;
-      gap: 10px;
+    .right-end button {
+      height: 50px;
+      font-size: 20px;
     }
-  }
-
-  .search-container input {
-    width: 280px;
   }
 
   .content-box {
@@ -1011,25 +1007,146 @@ li {
     }
   }
 
+  .tool-box {
+    height: fit-content;
+    padding: 16px 20px 16px 20px;
+
+    .tool-title {
+      h3 {
+        font-size: 25px;
+      }
+      a {
+        font-size: 15px;
+      }
+    }
+    .hrm-cards {
+      height: 80px;
+      .cards {
+        height: 80px;
+        li {
+          font-size: 20px;
+          font-weight: 400;
+          span {
+            font-weight: 700;
+            font-size: 26px;
+          }
+          span + span {
+            font-size: 12px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
   .comm-dets {
     width: 80%;
 
     .circle {
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 150px;
     }
 
     .circle::before {
-      width: 110px;
-      height: 110px;
+      width: 120px;
+      height: 120px;
     }
 
     .value {
       font-size: 32px;
     }
+
+    .circle-container {
+      h2 {
+        font-size: 20px;
+      }
+      ul {
+        li {
+          font-size: 15px;
+        }
+      }
+      height: 290px;
+    }
   }
 
   .proj-status {
     width: 400px;
+    ul {
+      li {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .proj-dets {
+    h2 {
+      font-size: 20px;
+    }
+    span {
+      font-size: 15px;
+    }
+  }
+
+  .alerts-tab {
+    .alerts-title {
+      h3 {
+        font-size: 25px;
+      }
+      a {
+        font-size: 20px;
+      }
+    }
+    .alert-tab-content {
+      height: fit-content;
+    }
+    .content {
+      height: 95px;
+      top: 20px;
+      h2 {
+        font-size: 18px;
+      }
+      .content-list {
+        ul li {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  .integrate-tab {
+    .tab-title {
+      h3 {
+        font-size: 25px;
+      }
+      a {
+        font-size: 20px;
+      }
+    }
+    height: fit-content;
+    min-height: 250px;
+    padding: 0 20px 16px 20px;
+
+    .tools-integrated {
+      height: 160px;
+      .seamlesshr-tool,
+      .communication-tool,
+      .project-tool {
+        height: 50px;
+        h3 {
+          font-size: 18px;
+        }
+      }
+    }
+    table {
+      thead {
+        tr th {
+          font-size: 18px;
+        }
+      }
+      tbody {
+        tr td {
+          font-size: 13px;
+        }
+      }
+    }
   }
 }

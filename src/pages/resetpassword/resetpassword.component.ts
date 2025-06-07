@@ -110,7 +110,7 @@ export class ResetpasswordComponent implements OnInit {
           // Redirect to login page after 2 seconds
           setTimeout(() => {
             this.router.navigate(['/start']); // or your login route
-          }, 2000);
+          }, 5000);
         },
         error: (error) => {
           this.isButtonLoading = false;

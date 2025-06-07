@@ -10,7 +10,7 @@ export class LocationService {
 
   getCountries() {
     return this.http
-      .get<any[]>('https://restcountries.com/v3.1/all')
+      .get<any[]>('https://restcountries.com/v3.1/all?fields=name')
       .pipe(map((data) => data.map((c) => c.name.common).sort()));
   }
 

@@ -14,7 +14,7 @@ import { Component, Input } from '@angular/core';
         background: #d4edda;
         color: black;
         padding: 10px;
-        width: 50%;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;

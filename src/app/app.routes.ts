@@ -16,6 +16,8 @@ import { JiraRedirectComponent } from '../pages/jira-redirect/jira-redirect.comp
 import { HrOverviewComponent } from '../pages/hr-overview/hr-overview.component';
 import { CommunicationComponent } from '../pages/communication/communication.component';
 import { SlackOauthRedirectComponent } from '../pages/slack-oauth-redirect/slack-oauth-redirect.component';
+import { AuthenticationComponent } from '../pages/authentication/authentication.component';
+import { ResetpasswordComponent } from '../pages/resetpassword/resetpassword.component';
 // import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 
 export const routes: Routes = [
@@ -39,6 +41,16 @@ export const routes: Routes = [
       {
         path: 'hr-overview',
         component: HrOverviewComponent,
+      },
+    ],
+  },
+  {
+    path: 'authentication',
+    component: AuthenticationComponent,
+    children: [
+      {
+        path: 'resetpassword',
+        component: ResetpasswordComponent,
       },
     ],
   },

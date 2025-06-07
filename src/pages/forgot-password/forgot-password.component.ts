@@ -21,7 +21,7 @@ export class ForgotPasswordComponent {
     emailAddress: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  isLoading: boolean = false;
+  isButtonLoading: boolean = false;
   showAlert: boolean = false;
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
@@ -30,25 +30,21 @@ export class ForgotPasswordComponent {
 
   onSubmit() {
     if (this.forgotPasswordForm.valid) {
-      this.isLoading = true;
+      this.isButtonLoading = true;
       const email = this.forgotPasswordForm.value.emailAddress;
 
       this.authService.forgotPassword(email).subscribe({
         next: (response) => {
-          this.isLoading = false;
+          this.isButtonLoading = false;
           this.showAlert = true;
           this.alertMessage =
             'Password reset link has been sent to your email.';
           this.alertType = 'success';
 
           localStorage.setItem('resetEmail', email);
-
-          setTimeout(() => {
-            this.router.navigate(['/start/reset-password']);
-          }, 3000);
         },
         error: (error) => {
-          this.isLoading = false;
+          this.isButtonLoading = false;
           this.showAlert = true;
           this.alertMessage =
             error.error?.message ||

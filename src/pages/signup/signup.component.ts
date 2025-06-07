@@ -86,7 +86,7 @@ export class SignupComponent {
       this.alertType = 'error';
       setTimeout(() => {
         this.showAlert = false;
-      }, 3000);
+      }, 6000);
     }
   }
 

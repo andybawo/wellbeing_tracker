@@ -116,18 +116,17 @@ export class IntegrationComponent {
               this.showAlert = true;
               this.alertMessage = '🎉🎉Jira Successfully Integrated';
               this.alertType = 'success';
-              // console.log('Jira API Key connected successfully', response);
+              setTimeout(() => {
+                this.showAlert = false;
+              }, 3000);
               this.closeModal();
-              // Handle success (e.g., show a notification)
             },
             error: (error) => {
-              this.isButtonLoading = false; // Stop button loading
+              this.isButtonLoading = false;
 
               this.showAlert = true;
               this.alertMessage = 'Error connecting Jira with API Key';
               this.alertType = 'success';
-              // console.error('Error connecting Jira with API Key', error);
-              // Handle error (e.g., show an error message)
             },
           });
       } else {
@@ -150,9 +149,11 @@ export class IntegrationComponent {
             next: (response) => {
               // console.log('Slack integration successful:', response);
               this.isButtonLoading = false;
+              this.showAlert = true;
+
               this.alertMessage = '🎉🎉Slack Successfully Integrated';
               setTimeout(() => {
-                this.showAlert = true;
+                this.showAlert = false;
               }, 3000);
               this.alertType = 'success';
               this.closeModal();

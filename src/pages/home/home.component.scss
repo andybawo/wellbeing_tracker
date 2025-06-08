@@ -430,12 +430,138 @@ li {
   }
 }
 
+@media screen and (max-width: 1535px) and (min-width: 1470px) and (min-height: 798px) {
+  .left-end,
+  .right-end {
+    gap: 15px; /* Reduce gaps */
+  }
+
+  .top-header {
+    height: 8%;
+    margin-bottom: 10px;
+
+    .right-end button {
+      width: 160px;
+      height: 40px;
+    }
+  }
+
+  /* Home page adjustments */
+  .content-box {
+    .left-side {
+      width: 58%;
+    }
+    .right-side {
+      width: 42%;
+    }
+  }
+
+  .hrm-cards {
+    gap: 6px;
+
+    .cards {
+      width: 32%;
+      height: 100px; /* Slightly shorter */
+      padding-left: 12px;
+
+      img {
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+
+  .tool-box {
+    max-height: fit-content;
+    padding: 15px 15px 12px 15px;
+  }
+
+  .comm-dets {
+    width: 90%;
+
+    .circle {
+      width: 130px;
+      height: 130px;
+    }
+
+    .circle::before {
+      width: 120px;
+      height: 120px;
+    }
+
+    .value {
+      font-size: 24px;
+    }
+    .circle-container {
+      h2 {
+        font-size: 17px;
+      }
+      ul li {
+        gap: 10px;
+        font-size: 15px;
+      }
+    }
+  }
+
+  .proj-status {
+    width: 400px;
+    font-size: 20px;
+  }
+
+  .proj-dets {
+    h2 {
+      font-size: 18px;
+      margin-bottom: 0;
+    }
+    span {
+      font-size: 18px;
+    }
+    .proj-visual-dets {
+      .green,
+      .amber,
+      .red {
+        height: 12px;
+      }
+    }
+  }
+
+  .integrate-tab {
+    padding: 0 10px 10px 10px;
+    height: fit-content;
+    min-height: 240px;
+  }
+
+  .alerts-tab {
+    padding: 0 10px 20px 10px;
+    min-height: fit-content;
+    h3 {
+      font-size: 15px;
+    }
+    a {
+      font-size: 14px;
+    }
+    .alert-tab-content {
+      height: fit-content;
+      .content {
+        height: 84px;
+        h2 {
+          font-size: 18px;
+        }
+        ul li:first-child {
+          font-weight: 700;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .tables {
+    gap: 15px;
+  }
+}
 /* Medium-Large Screens - 1328px to 1439px */
 @media screen and (max-width: 1439px) and (min-width: 1328px) {
   /* Navbar adjustments */
-  .search-container input {
-    width: 200px; /* Reduce search width */
-  }
 
   .left-end,
   .right-end {

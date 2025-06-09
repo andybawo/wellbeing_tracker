@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,7 @@ export class SidebarComponent {
 
   @Output() routeChanged = new EventEmitter<string>();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
@@ -22,5 +23,10 @@ export class SidebarComponent {
   navigateTo(route: string) {
     this.router.navigateByUrl(route);
     this.routeChanged.emit(route);
+  }
+
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/start/login']);
   }
 }

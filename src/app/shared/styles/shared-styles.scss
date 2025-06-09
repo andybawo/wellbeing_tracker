@@ -1480,3 +1480,14 @@ img {
     min-height: 44px; /* Apple's recommended minimum touch target */
   }
 }
+
+@media screen and (max-width: 1535px) and (min-width: 1470px) and (min-height: 798px) {
+  .display {
+    h3 {
+      top: 55px;
+    }
+    .form {
+      top: 60px;
+    }
+  }
+}

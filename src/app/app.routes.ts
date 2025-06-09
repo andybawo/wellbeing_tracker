@@ -19,7 +19,7 @@ import { SlackOauthRedirectComponent } from '../pages/slack-oauth-redirect/slack
 import { AuthenticationComponent } from '../pages/authentication/authentication.component';
 import { ResetpasswordComponent } from '../pages/resetpassword/resetpassword.component';
 // import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
-
+import { AuthGuard } from './core/guards/auth.guard';
 export const routes: Routes = [
   {
     path: '',
@@ -29,6 +29,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: LayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',

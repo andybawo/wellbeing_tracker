@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -8,12 +8,16 @@ import { environment } from '../../../environments/environment';
 })
 export class AuthService {
   private apiUrl = environment.apiUrl;
+
+  private isAuthenticatedUser = new BehaviorSubject<boolean>(
+    this.hasValidToken()
+  );
+  public isAuthenticated$ = this.isAuthenticatedUser.asObservable();
+
   constructor(private http: HttpClient) {}
 
   //user sign up
   registerUser(userData: any): Observable<any> {
-    // console.log('User data being sent to backend:', userData);
-
     return this.http.post(`${this.apiUrl}/auth/register`, userData);
   }
 
@@ -59,5 +63,33 @@ export class AuthService {
     newPassword: string;
   }): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/resetpassword`, resetData);
+  }
+
+  isLoggedIn(): boolean {
+    return this.hasValidToken();
+  }
+
+  private hasValidToken(): boolean {
+    const token = this.getToken();
+    if (!token) return false;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1])); // Decode JWT payload
+      const currentTime = Date.now() / 1000;
+      return payload.exp > currentTime; // Check if token is not expired
+    } catch (error) {
+      // If token is not a valid JWT or can't be decoded, assume it's valid
+      return !!token;
+    }
+  }
+
+  saveToken(token: string): void {
+    localStorage.setItem('authToken', token);
+    this.isAuthenticatedUser.next(true);
+  }
+
+  logout(): void {
+    localStorage.removeItem('authToken');
+    this.isAuthenticatedUser.next(false);
   }
 }

@@ -28,7 +28,11 @@ export class LoginComponent {
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
   showPassword: boolean = false;
-  constructor(private authservice: AuthService, private router: Router) {}
+  constructor(private authservice: AuthService, private router: Router) {
+    if (this.authservice.isLoggedIn()) {
+      this.router.navigate(['/home']);
+    }
+  }
 
   onLogin() {
     if (this.loginForm.valid) {
@@ -40,10 +44,20 @@ export class LoginComponent {
           this.isButtonLoading = false;
           const token = res.data;
           if (token) {
-            localStorage.setItem('authToken', token);
-            // console.log('JWT token stored in localStorage:', token);
+            this.authservice.saveToken(token); // console.log('JWT token stored in localStorage:', token);
+            this.showAlert = true;
+            this.alertMessage = 'Login successful! Redirecting...';
+            this.alertType = 'success';
+
+            // Check if there's a redirect URL (from auth guard)
+            const redirectUrl = localStorage.getItem('redirectUrl') || '/home';
+            localStorage.removeItem('redirectUrl');
+
+            // Small delay for better UX
+            setTimeout(() => {
+              this.router.navigate([redirectUrl]);
+            }, 1000);
           }
-          this.router.navigate(['/home']);
         },
 
         error: (err) => {
@@ -53,7 +67,7 @@ export class LoginComponent {
           this.alertType = 'error';
           setTimeout(() => {
             this.showAlert = false;
-          }, 1000000);
+          }, 10000);
           // console.error('Login error:', err);
           // You can show error to user here
         },

@@ -133,6 +133,9 @@ export class VerifyComponent {
       this.showAlert = true;
       this.alertMessage = 'User email not found. Please signup again.';
       this.alertType = 'error';
+      setTimeout(() => {
+        this.showAlert = false;
+      }, 10000);
       this.router.navigate(['/start/signup']);
     }
   }

@@ -9,6 +9,7 @@ import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../app/core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../app/shared/shared.module';
+import { DataService } from '../../app/core/services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,11 @@ export class LoginComponent {
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
   showPassword: boolean = false;
-  constructor(private authservice: AuthService, private router: Router) {
+  constructor(
+    private authservice: AuthService,
+    private dataService: DataService,
+    private router: Router
+  ) {
     if (this.authservice.isLoggedIn()) {
       this.router.navigate(['/home']);
     }
@@ -44,12 +49,11 @@ export class LoginComponent {
           this.isButtonLoading = false;
           const token = res.data;
           if (token) {
-            this.authservice.saveToken(token); // console.log('JWT token stored in localStorage:', token);
+            this.authservice.saveToken(token);
             this.showAlert = true;
             this.alertMessage = 'Login successful! Redirecting...';
             this.alertType = 'success';
 
-            // Check if there's a redirect URL (from auth guard)
             const redirectUrl = localStorage.getItem('redirectUrl') || '/home';
             localStorage.removeItem('redirectUrl');
 
@@ -59,17 +63,40 @@ export class LoginComponent {
             }, 1000);
           }
         },
-
         error: (err) => {
           this.isButtonLoading = false;
-          this.showAlert = true;
-          this.alertMessage = 'Login failed. Please check your credentials.';
-          this.alertType = 'error';
-          setTimeout(() => {
-            this.showAlert = false;
-          }, 10000);
-          // console.error('Login error:', err);
-          // You can show error to user here
+
+          if (
+            err.error &&
+            err.error.message &&
+            err.error.message.toLowerCase().includes('not verified')
+          ) {
+            if (err.error.data) {
+              this.dataService.setUserData({
+                emailAddress: err.error.data,
+              });
+            }
+
+            this.showAlert = true;
+            this.alertMessage = 'Please verify your email to continue.';
+            this.alertType = 'error';
+
+            setTimeout(() => {
+              this.showAlert = false;
+              this.router.navigate(['/start/verify']);
+            }, 2000);
+          } else {
+            this.showAlert = true;
+            this.alertMessage =
+              err.error?.message ||
+              'Login failed. Please check your credentials.';
+            this.alertType = 'error';
+            setTimeout(() => {
+              this.showAlert = false;
+            }, 5000);
+          }
+
+          console.error('Login error:', err);
         },
       });
     }

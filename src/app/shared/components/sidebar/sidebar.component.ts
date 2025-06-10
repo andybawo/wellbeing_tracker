@@ -25,8 +25,10 @@ export class SidebarComponent {
     this.routeChanged.emit(route);
   }
 
-  onLogout() {
-    this.authService.logout();
-    this.router.navigate(['/start/login']);
+  onLogout(): void {
+    if (confirm('Are you sure you want to logout?')) {
+      this.authService.logout();
+      this.router.navigate(['/start/login']);
+    }
   }
 }

@@ -48,7 +48,6 @@ export class ResetpasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Try getting the token directly from the URL to avoid Angular's automatic decoding
     const urlParams = new URLSearchParams(window.location.search);
     const rawTokenFromUrl = urlParams.get('token');
     const rawEmailFromUrl = urlParams.get('email');
@@ -57,10 +56,6 @@ export class ResetpasswordComponent implements OnInit {
       // Fix the token by replacing spaces with + signs
       this.token = rawTokenFromUrl.replace(/ /g, '+');
       this.email = rawEmailFromUrl;
-
-      // console.log('Raw token from URL (direct):', rawTokenFromUrl);
-      // console.log('Fixed token (spaces replaced with +):', this.token);
-      // console.log('Email:', this.email);
     } else {
       // Fallback to Angular's route params
       this.route.queryParams.subscribe((params) => {

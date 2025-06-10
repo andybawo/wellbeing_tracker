@@ -44,6 +44,12 @@ export class DataService {
     this.companyData = null;
     localStorage.removeItem('hasRegisteredUser');
     this.authToken = null;
+    localStorage.removeItem('userData');
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('fullName');
+    localStorage.removeItem('hasRegisteredUser');
+    localStorage.removeItem('resetEmail');
+    localStorage.removeItem('authToken');
   }
 
   setAuthToken(token: string) {

@@ -85,6 +85,18 @@ export class AuthService {
 
   saveToken(token: string): void {
     localStorage.setItem('authToken', token);
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const userData = {
+        email: payload.email,
+        fullName: payload.given_name,
+        // Add any other fields from the token you need
+      };
+      localStorage.setItem('userData', JSON.stringify(userData));
+    } catch (error) {
+      console.error('Error parsing token:', error);
+    }
+
     this.isAuthenticatedUser.next(true);
   }
 

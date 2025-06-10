@@ -49,6 +49,7 @@ export class LoginComponent {
           this.isButtonLoading = false;
           const token = res.data;
           if (token) {
+            this.dataService.clearData();
             this.authservice.saveToken(token);
             this.showAlert = true;
             this.alertMessage = 'Login successful! Redirecting...';

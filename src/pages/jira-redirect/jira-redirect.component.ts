@@ -57,7 +57,10 @@ export class JiraRedirectComponent implements OnInit {
             },
             error: (error) => {
               // console.error('Jira OAuth failed', error);
-              this.router.navigate(['/subscription/integration']); // Redirect to a failure page
+              this.error = true;
+              setTimeout(() => {
+                this.router.navigate(['/subscription/integration']); // Redirect to a failure page
+              }, 3000);
               // Handle error (e.g., show an error message)
             },
           });

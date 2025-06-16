@@ -389,10 +389,6 @@ li {
 }
 /* ===== MEDIA QUERIES FOR DASHBOARD RESPONSIVENESS ===== */
 
-/*Tall screens*/
-/* For screens with height of 913px and above (equivalent to your 1536px+ width query) */
-
-/* Large Screens - 1536px and above (your original design) */
 @media screen and (min-width: 1536px) {
   .search-container input {
     width: 230px;
@@ -433,7 +429,7 @@ li {
 @media screen and (max-width: 1535px) and (min-width: 1470px) and (min-height: 798px) {
   .left-end,
   .right-end {
-    gap: 15px; /* Reduce gaps */
+    gap: 15px;
   }
 
   .top-header {
@@ -461,7 +457,7 @@ li {
 
     .cards {
       width: 32%;
-      height: 100px; /* Slightly shorter */
+      height: 100px;
       padding-left: 12px;
 
       img {
@@ -565,7 +561,7 @@ li {
 
   .left-end,
   .right-end {
-    gap: 15px; /* Reduce gaps */
+    gap: 15px;
   }
 
   .top-header {
@@ -593,7 +589,7 @@ li {
 
     .cards {
       width: 32%;
-      height: 70px; /* Slightly shorter */
+      height: 70px;
       padding-left: 12px;
     }
   }
@@ -661,12 +657,12 @@ li {
 /* Medium Screens - 1024px to 1329px */
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
   .search-container input {
-    width: 200px; /* Reduce search width */
+    width: 200px;
   }
 
   .left-end,
   .right-end {
-    gap: 15px; /* Reduce gaps */
+    gap: 15px;
     font-size: 12px;
     select {
       font-size: 12px;
@@ -699,7 +695,7 @@ li {
 
     .cards {
       width: 32%;
-      height: 70px; /* Slightly shorter */
+      height: 70px;
 
       gap: 5px;
 
@@ -852,63 +848,6 @@ li {
 
 /* Small-Medium Screens - 768px to 1023px */
 @media screen and (max-width: 1023px) and (min-width: 768px) {
-  .grid-container {
-    grid-template-columns: 1fr; /* Single column layout */
-    grid-template-rows: auto auto 1fr;
-    grid-template-areas:
-      "header"
-      "sidebar"
-      "main";
-  }
-
-  .sidebar {
-    position: relative; /* Change from fixed to relative */
-    width: 100%;
-    height: auto; /* Remove fixed height */
-    left: 0; /* Reset position */
-    flex-direction: row; /* Horizontal layout */
-    justify-content: space-around;
-    padding: 10px 0;
-  }
-
-  .sidebar-item {
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-
-    > img {
-      position: static; /* Reset logo position */
-      top: 0;
-      width: 100px;
-    }
-  }
-
-  .sidebar-list {
-    width: auto;
-    height: auto;
-    flex-direction: row;
-
-    ul {
-      display: flex;
-      flex-direction: row;
-      gap: 15px;
-      overflow-x: auto; /* Allow horizontal scrolling */
-    }
-
-    ul:last-of-type {
-      margin-top: 0;
-    }
-
-    li {
-      white-space: nowrap;
-      font-size: 11px;
-    }
-  }
-
-  .navbar {
-    padding: 6px 12px;
-  }
-
   .search-container input {
     width: 150px;
   }
@@ -973,45 +912,6 @@ li {
 
 /* Mobile Screens - up to 767px */
 @media screen and (max-width: 767px) {
-  .grid-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto 1fr;
-    grid-template-areas:
-      "header"
-      "sidebar"
-      "main";
-  }
-
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    left: 0;
-    padding: 8px 0;
-  }
-
-  .sidebar-item > img {
-    width: 80px;
-  }
-
-  .sidebar-list {
-    ul {
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    li {
-      font-size: 10px;
-      min-width: fit-content;
-    }
-  }
-
-  .navbar {
-    flex-direction: column;
-    gap: 10px;
-    padding: 8px;
-  }
-
   .left-end,
   .right-end {
     justify-content: center;

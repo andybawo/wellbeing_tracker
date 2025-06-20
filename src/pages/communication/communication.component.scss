@@ -120,7 +120,7 @@
   position: relative;
   bottom: 15px;
   position: relative;
-  top: 5px;
+  top: -5px;
   border-bottom: 2px solid white;
 
   .left-end h3 {
@@ -155,13 +155,12 @@
 .hrm-tab {
   display: flex;
   flex-direction: column;
-  padding: 16px 20px 16px 20px;
+  padding: 8px 20px 8px 20px;
   justify-content: center;
   align-items: center;
   background-color: white;
   height: fit-content;
   position: relative;
-  top: 20px;
   .heading {
     display: flex;
     flex-direction: row;
@@ -196,6 +195,8 @@
       list-style: none;
       font-size: 12px;
       font-weight: 400;
+      position: relative;
+      top: 5px;
     }
     li span {
       font-weight: 600;

@@ -38,8 +38,6 @@
       <i [class]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
     </div>
 
-    <a [routerLink]="['/start/login']">Already have an account? Log in</a>
-
     <div class="bottom-display">
       <button type="submit" [disabled]="isButtonLoading">
         <span *ngIf="!isButtonLoading">Sign Up</span>
@@ -48,6 +46,9 @@
           Signing up...
         </span>
       </button>
+      <a class="create-link" [routerLink]="['/start/login']"
+        >Already have an account? Log in</a
+      >
       <div class="option-divider-grid">
         <div class="line line-left"></div>
         <span class="or-text">Or</span>

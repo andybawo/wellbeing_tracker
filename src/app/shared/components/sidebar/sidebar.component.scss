@@ -21,6 +21,10 @@
 .sidebar-list {
   .active-sidebar {
     font-weight: 800;
+    background-color: #6132a3;
+    height: 36px;
+    padding: 0 5px 0 5px;
+    border-radius: 5px;
   }
 }
 .sidebar-list ul:last-of-type {
@@ -40,7 +44,7 @@
 
 .sidebar-list {
   height: 561px;
-  width: 183px;
+  width: 190px;
   display: flex;
   flex-direction: column;
   // border: 2px solid black;

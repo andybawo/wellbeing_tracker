@@ -7,22 +7,46 @@
           [routerLink]="['/home']"
           routerLinkActive="active-sidebar"
           [routerLinkActiveOptions]="{ exact: true }"
+          #homeLink="routerLinkActive"
         >
-          <img src="/images/tick-square-dash.png" alt="" />Dashboard
+          <img
+            [src]="
+              homeLink.isActive
+                ? '/images/monitor.png'
+                : '/images/monitor (1).png'
+            "
+            alt="Dashboard"
+          />Dashboard
         </li>
         <li
           [routerLink]="['/home/hr-overview']"
           routerLinkActive="active-sidebar"
           [routerLinkActiveOptions]="{ exact: true }"
+          #hrmLink="routerLinkActive"
         >
-          <img src="/images/people-dash.png" alt="" />HR Overview
+          <img
+            [src]="
+              hrmLink.isActive
+                ? '/images/people-filled.png'
+                : '/images/people-dash.png'
+            "
+            alt=""
+          />HR Overview
         </li>
         <li
           [routerLink]="['/home/communication']"
           routerLinkActive="active-sidebar"
           [routerLinkActiveOptions]="{ exact: true }"
+          #comLink="routerLinkActive"
         >
-          <img src="/images/messages-dash.png" alt="" />Communication Tool
+          <img
+            [src]="
+              comLink.isActive
+                ? '/images/messages-filled.png'
+                : '/images/messages-dash.png'
+            "
+            alt=""
+          />Communication Tool
         </li>
 
         <li>

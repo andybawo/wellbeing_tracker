@@ -50,7 +50,7 @@
 
 .or-text {
   color: #555;
-  font-size: 1em;
+
   white-space: nowrap;
   padding: 0 0.5em; /* Adjust padding to control space around 'or' */
   text-align: center; /* Center the 'or' text within its grid cell */
@@ -59,6 +59,10 @@
 .logo-pic {
   position: relative;
   top: 40px;
+}
+
+.create-link {
+  align-self: flex-end;
 }
 
 @media screen and (min-width: 1440px) {
@@ -98,28 +102,7 @@
   .eye-icon {
     position: absolute;
     right: 10px;
-    top: 41%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 16px;
-    }
-  }
-
-  .eye-icon-reset {
-    position: absolute;
-    right: 10px;
-    top: 15%;
+    top: 44%;
     transform: translateY(-50%);
     cursor: pointer;
     color: #666;
@@ -140,8 +123,8 @@
   .bottom-display {
     width: 500px;
     height: 240px;
-    top: -10px;
-    gap: 24px;
+    top: 10px;
+    gap: 8px;
   }
 
   .bottom-display button {
@@ -156,6 +139,9 @@
       top: 10px;
       font-size: 20px;
     }
+  }
+  .or-text {
+    font-size: 18px;
   }
 }
 
@@ -208,7 +194,7 @@
   .eye-icon {
     position: absolute;
     right: 10px;
-    top: 46%;
+    top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
     color: #666;
@@ -229,8 +215,12 @@
   .bottom-display {
     width: 450px;
     height: fit-content;
-    top: -5px;
-    gap: 15px;
+    top: 20px;
+    gap: 8px;
+  }
+
+  .or-text {
+    font-size: 12px;
   }
 
   .bottom-display button {
@@ -279,7 +269,7 @@
   }
 
   .form input {
-    height: 30px;
+    height: 28px;
     font-size: 12px;
     padding-left: 10px;
   }
@@ -292,7 +282,7 @@
   .eye-icon {
     position: absolute;
     right: 10px;
-    top: 50%;
+    top: 51.5%;
     transform: translateY(-50%);
     cursor: pointer;
     color: #666;
@@ -317,8 +307,11 @@
   .bottom-display {
     width: 400px;
     height: fit-content;
-    top: -5px;
-    gap: 10px;
+    top: 15px;
+    gap: 8px;
+  }
+  .or-text {
+    font-size: 12px;
   }
 
   .bottom-display button {

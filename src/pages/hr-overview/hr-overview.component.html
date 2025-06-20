@@ -13,7 +13,7 @@
     <button>Export</button>
   </div>
 </div>
-<hr />
+<!-- <hr /> -->
 
 <div class="hrm-tab">
   <div class="heading">
@@ -113,12 +113,12 @@
     <div class="attendance">
       <h3 style="font-weight: 700">Attendance</h3>
       <div class="attendance-dets">
-        <h2>Total Early Clocking</h2>
+        <h2>Early Clocking</h2>
         <h2 style="justify-self: center">70%</h2>
         <img src="/images/clock-green.png" alt="" />
       </div>
       <div class="attendance-dets">
-        <h2>Total Late Clocking</h2>
+        <h2>Late Clocking</h2>
         <h2 style="justify-self: center">20%</h2>
         <img src="/images/clock.png" alt="" />
       </div>
@@ -128,56 +128,6 @@
         <img src="/images/clock.png" alt="" />
       </div>
     </div>
-    <div class="performance-alert">
-      <div class="box">
-        <h3 style="font-weight: 700">Performance Alert</h3>
-
-        <table>
-          <thead>
-            <th>Employee Name</th>
-            <th>Department</th>
-            <th>Last Performance Score</th>
-            <th>Action Needed</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Nafisa Usman</td>
-              <td>IT</td>
-              <td>70%</td>
-              <td>Manager</td>
-            </tr>
-            <tr>
-              <td>Nafisa Usman</td>
-              <td>IT</td>
-              <td>70%</td>
-              <td>Manager</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="right-side">
-    <div class="attrition-rate">
-      <h3 style="font-weight: 700">Attrition Rate</h3>
-      <div class="values">
-        <div class="pie-chart chart-1">
-          <div class="label label-20">20%</div>
-          <div class="label label-80">80%</div>
-        </div>
-        <ul>
-          <li>
-            <img src="/images/Ellipse green.png" alt="" />Employees still
-            working
-          </li>
-          <li>
-            <img src="/images/Ellipse red.png" alt="" />Employees that left
-          </li>
-        </ul>
-      </div>
-    </div>
-
     <div class="performance">
       <h3 style="font-weight: 700">Performance Trend</h3>
       <div class="values">
@@ -191,6 +141,74 @@
           <li><img src="/images/Ellipse amber.png" alt="" />Medium 20%</li>
           <li><img src="/images/Ellipse red.png" alt="" />Low 10%</li>
         </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-side">
+    <div class="performance-alert">
+      <div class="box">
+        <h3 style="font-weight: 700">Alert Metrics</h3>
+
+        <table>
+          <thead>
+            <th>Employee Name</th>
+            <th>Previous Score</th>
+            <th>Current Score</th>
+            <th>% Change</th>
+            <th>Status</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Nafisa Usman</td>
+              <td>5%</td>
+              <td>30%</td>
+              <td>25%</td>
+              <td
+                class="bg-warning text-dark"
+                style="border-radius: 10px; width: 90px"
+              >
+                Warning
+              </td>
+            </tr>
+            <tr>
+              <td>Nafisa Usman</td>
+              <td>5%</td>
+              <td>30%</td>
+              <td>25%</td>
+              <td
+                class="bg-warning text-dark"
+                style="border-radius: 10px; width: 90px"
+              >
+                Warning
+              </td>
+            </tr>
+            <tr>
+              <td>Nafisa Usman</td>
+              <td>5%</td>
+              <td>30%</td>
+              <td>25%</td>
+              <td
+                class="bg-success text-dark"
+                style="border-radius: 10px; width: 90px"
+              >
+                Normal
+              </td>
+            </tr>
+            <tr>
+              <td>Nafisa Usman</td>
+              <td>5%</td>
+              <td>30%</td>
+              <td>25%</td>
+              <td
+                class="bg-danger text-dark"
+                style="border-radius: 10px; width: 90px"
+              >
+                Critical
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

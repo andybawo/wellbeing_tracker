@@ -17,7 +17,29 @@
 
   --btn-primary-bg: var(--primary-color);
   --btn-secondary-bg: var(--secondary-color);
+  // --bs-warning: #f9b51e;
+  --bs-warning-rgb: 249, 181, 30;
+  --bs-danger: #ff4646;
+  --bs-danger-rgb: 255, 70, 70;
+  --bs-success: #6e9f06;
+  --bs-success-rgb: 110, 159, 6;
 }
+
+// Force the background colors
+// .bg-warning {
+//   background-color: #f9b51e !important;
+//   border-radius: 10px !important;
+// }
+
+// .bg-danger {
+//   background-color: #ff4646 !important;
+//   border-radius: 4px !important;
+// }
+
+// .bg-success {
+//   background-color: #6e9f06 !important;
+//   border-radius: 10px !important;
+// }
 
 h1 {
   font-weight: 400;

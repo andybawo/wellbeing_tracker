@@ -1,4 +1,4 @@
-@use "../../app/shared/styles/shared-styles.scss" as *;
+// @use "../../app/shared/styles/shared-styles.scss" as *;
 
 .code {
   margin-top: 30px;
@@ -22,15 +22,23 @@
 
 .form {
   position: relative;
-  top: 50px;
+  top: -40px;
   margin-top: 60px;
 }
 
 .display {
   width: 89.45%;
+  position: relative;
+  top: 140px;
   h3 {
-    font-size: 20px;
+    font-size: 50px;
   }
+}
+
+.display h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 500;
 }
 
 .otp-input-container {
@@ -62,59 +70,46 @@
 .otp-digit-input:not(:empty) {
   background-color: beige;
 }
+.bottom-display-verify button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 
-@media screen and (min-width: 1530px) {
-  .display {
-    width: 60%;
-    height: 550px;
-  }
-
-  .display h1 {
-    top: 45px;
-    font-size: 32px;
-    line-height: 1.2;
-  }
-
-  .display h3 {
-    font-size: 18px;
-    top: 50px;
-  }
+  width: 100%;
+  height: 48px;
+  border-radius: 5px;
+  border: none;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+}
+.bottom-display-verify {
+  height: 218px;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 20px;
+  position: relative;
+  top: 40px;
 }
 
-/* Standard Laptop Screens (1024px - 1439px) */
-@media screen and (max-width: 1439px) and (min-width: 1328px) {
-  .display {
-    width: 70%;
-    height: 480px;
-  }
-
-  .display h1 {
-    font-size: 30px;
-    line-height: 1.2;
-    top: 15px;
-  }
-
-  .display h4 {
-    font-size: 16px;
-    top: 35px;
-  }
-
-  .display h3 {
-    font-size: 10px;
-    top: 35px;
-  }
-
-  .logo-pic {
-    bottom: 50px;
-  }
-
-  .side-logo {
-    height: 92vh;
-    top: 25px;
-  }
+.bottom-display-verify button:hover {
+  cursor: pointer;
 }
 
-/* Small Laptop/Large Tablet Screens (768px - 1023px) */
+.bottom-display-verify button:nth-child(1) {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.bottom-display-verify button:nth-child(2) {
+  background-color: #3e1f69;
+  color: white;
+}
+
 @media screen and (max-width: 1023px) and (min-width: 768px) {
   .display {
     width: 85%;
@@ -210,7 +205,6 @@
   }
 }
 
-/* Mobile Portrait (320px - 479px) */
 @media screen and (max-width: 479px) {
   .display {
     width: 100%;
@@ -244,7 +238,6 @@
   }
 }
 
-/* Extra Small Mobile (max-width: 320px) */
 @media screen and (max-width: 320px) {
   .display h1 {
     font-size: 18px;
@@ -260,24 +253,24 @@
   }
 }
 
-/* ===== SIGNUP FORM RESPONSIVE STYLES ===== */
-
-/* Large Desktop Screens (1440px and above) */
 @media screen and (min-width: 1430px) {
-  /* Signup Form Styles */
   .display {
     width: 600px;
     height: auto;
+    top: 140px;
   }
 
   .display h3 {
     font-size: 15px;
     top: 50px;
   }
+  .logo-pic {
+    top: 100px;
+  }
 
   .otp-input-container {
     display: flex;
-    gap: 10px; /* Adjust the spacing between the boxes */
+    gap: 10px;
   }
 
   .form .otp-digit-input {
@@ -305,116 +298,35 @@
     background-color: beige;
   }
 
-  .bottom-display {
+  .bottom-display-verify {
     width: 600px;
     height: 240px;
     top: 20px;
     gap: 24px;
   }
 
-  .bottom-display button {
+  .bottom-display-verify button {
     height: 52px;
     font-size: 16px;
-  }
-
-  .modal-load {
-    min-width: 620px;
-    height: 280px;
-    .load-title {
-      h1 {
-        top: 10px;
-        font-size: 20px;
-      }
-    }
   }
 }
 
 /* Standard Laptop Screens (1024px - 1439px) */
 @media screen and (max-width: 1439px) and (min-width: 1324px) {
-  /* Signup Form Styles */
   .display {
     width: 520px;
     height: auto;
   }
   .logo-pic {
-    top: 20px;
+    top: 80px;
   }
 
   .display h1 {
     top: 35px;
+    font-size: 28px;
   }
   .display h3 {
     font-size: 15px;
-    top: 35px;
-  }
-
-  .otp-input-container {
-    display: flex;
-    gap: 10px; /* Adjust the spacing between the boxes */
-  }
-
-  .form .otp-digit-input {
-    width: 14.69%;
-    height: 74px;
-    border: none;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 1.5em;
-    appearance: textfield;
-    -moz-appearance: textfield;
-    background-color: #f3e6f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 5px rgba(200, 150, 197, 0.5);
-    }
-  }
-
-  .otp-digit-input:not(:empty) {
-    background-color: beige;
-  }
-
-  .bottom-display {
-    width: 520px;
-    top: 25px;
-    gap: 20px;
-  }
-
-  .bottom-display button {
-    height: 48px;
-    font-size: 15px;
-  }
-
-  .modal-load {
-    min-width: 560px;
-    height: 260px;
-    .load-title {
-      h1 {
-        top: 10px;
-        font-size: 18px;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1329px) and (min-width: 1024px) {
-  .display {
-    width: 520px;
-    height: auto;
-  }
-  .logo-pic {
-    top: 20px;
-  }
-
-  .display h1 {
-    top: 35px;
-  }
-  .display h3 {
-    font-size: 14px;
     top: 35px;
   }
 
@@ -448,27 +360,84 @@
     background-color: beige;
   }
 
-  .bottom-display {
+  .bottom-display-verify {
     width: 520px;
-    top: 45px;
+    top: 25px;
+    gap: 40px;
+  }
+
+  .bottom-display-verify button {
+    height: 44px;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .display {
+    width: 400px;
+    height: auto;
+    top: 150px;
+  }
+  .logo-pic {
+    top: 80px;
+
+    img {
+      height: 30px;
+    }
+  }
+
+  .display h1 {
+    top: 35px;
+    font-size: 20px;
+  }
+  .display h3 {
+    font-size: 12px;
+    top: 35px;
+  }
+
+  .otp-input-container {
+    display: flex;
+    gap: 10px; /* Adjust the spacing between the boxes */
+  }
+
+  .form .otp-digit-input {
+    width: 14%;
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.5em;
+    appearance: textfield;
+    -moz-appearance: textfield;
+    background-color: #f3e6f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(200, 150, 197, 0.5);
+    }
+  }
+
+  .otp-digit-input:not(:empty) {
+    background-color: beige;
+  }
+
+  .bottom-display-verify {
+    width: 100%;
+    top: 75px;
     gap: 20px;
     height: fit-content;
   }
 
-  .bottom-display button {
-    height: 48px;
+  .bottom-display-verify button {
+    height: 40px;
     font-size: 15px;
   }
-
-  .modal-load {
-    min-width: 560px;
-    height: 260px;
-
-    .load-title {
-      h1 {
-        top: 10px;
-      }
-    }
+  .code a {
+    font-size: 12px;
   }
 }
 
@@ -614,12 +583,6 @@
     height: 48px;
     font-size: 14px;
   }
-
-  .modal-load {
-    min-width: 90%;
-    max-width: 400px;
-    height: 220px;
-  }
 }
 
 /* Mobile Landscape (480px - 599px) */
@@ -693,12 +656,6 @@
     height: 46px;
     font-size: 13px;
     padding: 8px 12px;
-  }
-
-  .modal-load {
-    min-width: 90%;
-    max-width: 350px;
-    height: 200px;
   }
 
   .load-title {
@@ -803,13 +760,6 @@
     padding: 0 5px;
   }
 
-  .modal-load {
-    min-width: 95%;
-    max-width: 300px;
-    height: 180px;
-    padding: 15px;
-  }
-
   .load-title {
     gap: 30px;
   }
@@ -850,11 +800,6 @@
   .bottom-display button {
     height: 42px;
     font-size: 11px;
-  }
-
-  .modal-load {
-    max-width: 280px;
-    height: 160px;
   }
 
   .load-title h1 {

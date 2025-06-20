@@ -30,18 +30,20 @@
     </div>
 
     <div class="link">
-      <a [routerLink]="['/start']">Back</a>
       <a [routerLink]="['/start/forgot-password']">Forgot Password?</a>
     </div>
 
     <div class="bottom-display">
       <button type="submit" [disabled]="isButtonLoading">
-        <span *ngIf="!isButtonLoading">Log In</span>
+        <span *ngIf="!isButtonLoading">Sign In</span>
         <span *ngIf="isButtonLoading" class="button-loader">
           <span class="spinner"></span>
           Logging In...
         </span>
       </button>
+      <a class="create-link" [routerLink]="['/start/signup']"
+        >Don't have an account? Sign Up</a
+      >
       <span>Or</span>
       <button>
         <img

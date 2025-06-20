@@ -3,9 +3,10 @@
   display: flex;
   flex-direction: column;
   width: fit-content;
-  height: 500px;
+  height: 100%;
   justify-content: center;
   justify-self: center;
+  position: relative;
 }
 
 .display h1 {
@@ -20,12 +21,11 @@
   font-weight: 400;
 }
 
-/* Logo */
-.logo-pic {
-  position: relative;
-  bottom: -30px;
-  margin-top: 40px;
+.logo-pic img {
+  height: 35px;
 }
+
+/* Logo */
 
 /* Form */
 .form {
@@ -44,9 +44,8 @@
 }
 
 input {
-  height: 68px;
   border: 1px solid rgb(221, 212, 212);
-  background-color: #f0eeee;
+  background-color: #eee;
   border-radius: 5px;
   padding-left: 80px;
   width: 100%;
@@ -298,45 +297,9 @@ hr {
 /* ===== RESPONSIVE MEDIA QUERIES ===== */
 
 /* Large Desktop Screens (1440px and above) */
-@media screen and (min-width: 1530px) {
-  .display {
-    width: 60%;
-    height: 550px;
-  }
-
-  .display h1 {
-    top: 25px;
-    font-size: 30px;
-    line-height: 1.2;
-  }
-
-  .display h4 {
-    font-size: 18px;
-    top: 45px;
-  }
-}
 
 /* Standard Laptop Screens (1024px - 1439px) */
 @media screen and (max-width: 1439px) and (min-width: 1024px) {
-  .display {
-    width: 70%;
-    height: 480px;
-  }
-
-  .display h1 {
-    font-size: 40px;
-    line-height: 1.2;
-  }
-
-  .display h4 {
-    font-size: 16px;
-    top: 35px;
-  }
-
-  .logo-pic {
-    bottom: 50px;
-  }
-
   .side-logo {
     height: 92vh;
     top: 25px;
@@ -492,238 +455,9 @@ hr {
 /* ===== SIGNUP FORM RESPONSIVE STYLES ===== */
 
 /* Large Desktop Screens (1440px and above) */
-@media screen and (min-width: 1440px) {
-  /* Signup Form Styles */
-  .display {
-    width: 600px;
-    height: auto;
-  }
-
-  .display h3 {
-    font-size: 20px;
-    top: 30px;
-  }
-
-  .form {
-    top: 30px;
-    gap: 12px;
-  }
-
-  .form input {
-    height: 40px;
-    font-size: 16px;
-    padding-left: 10px;
-  }
-
-  .form label {
-    font-size: 14px;
-    font-weight: 300;
-  }
-
-  .eye-icon {
-    position: absolute;
-    right: 10px;
-    top: 42%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 16px;
-    }
-  }
-
-  .eye-icon-login {
-    position: absolute;
-    right: 10px;
-    top: 31.5%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 16px;
-    }
-  }
-  .eye-icon-reset {
-    position: absolute;
-    right: 10px;
-    top: 15%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 16px;
-    }
-  }
-
-  .bottom-display {
-    width: 600px;
-    height: 240px;
-    top: 20px;
-    gap: 24px;
-  }
-
-  .bottom-display button {
-    height: 52px;
-    font-size: 16px;
-  }
-
-  .modal-load {
-    min-width: 620px;
-    height: 280px;
-    h1 {
-      top: 10px;
-      font-size: 20px;
-    }
-  }
-}
 
 /* Standard Laptop Screens (1024px - 1439px) */
-@media screen and (max-width: 1439px) and (min-width: 1328px) {
-  /* Signup Form Styles */
-  .display {
-    width: 520px;
-    height: auto;
-  }
-  .logo-pic {
-    top: 5px;
-  }
 
-  .display h1 {
-    font-size: 20px;
-    top: 5px;
-  }
-  .display h3 {
-    font-size: 18px;
-    top: 5px;
-  }
-
-  .form {
-    top: 10px;
-    gap: 10px;
-  }
-
-  .form input {
-    height: 40px;
-    font-size: 15px;
-    padding-left: 10px;
-  }
-
-  .form label {
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .eye-icon {
-    position: absolute;
-    right: 10px;
-    top: 44%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 16px;
-    }
-  }
-
-  .eye-icon-login {
-    position: absolute;
-    right: 10px;
-    top: 32.5%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 16px;
-    }
-  }
-
-  .eye-icon-reset {
-    position: absolute;
-    right: 10px;
-    top: 15.5%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 16px;
-    }
-  }
-
-  .bottom-display {
-    width: 520px;
-    height: 220px;
-    top: 5px;
-    gap: 20px;
-  }
-
-  .bottom-display button {
-    height: 40px;
-    font-size: 15px;
-  }
-
-  .modal-load {
-    min-width: 560px;
-    height: 260px;
-    h1 {
-      top: 10px;
-      font-size: 20px;
-    }
-  }
-}
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
   .display {
     width: 520px;

@@ -176,6 +176,7 @@ input[type="checkbox"]:focus {
 .bottom button:nth-child(1) {
   cursor: pointer;
   background-color: white;
+  border: 1px black solid;
 
   &:hover {
     background-color: #3e1f69;

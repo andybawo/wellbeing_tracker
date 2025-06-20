@@ -12,6 +12,7 @@
 .display h1 {
   position: relative;
   top: 20px;
+  font-weight: 700;
 }
 
 .display h4 {
@@ -67,7 +68,6 @@ input:focus {
   flex-direction: column;
   margin-top: 30px;
   position: relative;
-  top: 10px;
 }
 
 .select {
@@ -339,16 +339,21 @@ input:focus {
 
   .display h4 {
     font-size: 15px;
-    top: 30px;
+    top: 50px;
+  }
+
+  .display h1 {
+    top: 40px;
+    font-size: 20px;
   }
 
   .form {
-    top: 10px;
+    top: 40px;
     gap: 12px;
   }
 
   .form input {
-    height: 40px;
+    height: 35px;
     font-size: 16px;
     padding-left: 10px;
   }
@@ -368,8 +373,8 @@ input:focus {
   }
 
   .bottom button {
-    height: 40px;
-    font-size: 16px;
+    height: 35px;
+    font-size: 14px;
   }
 
   .modal-load {
@@ -384,18 +389,55 @@ input:focus {
   }
 }
 
+@media screen and (min-width: 1440px) and (min-height: 798px) {
+  .form {
+    top: 50px;
+    gap: 12px;
+  }
+
+  .form input {
+    height: 40px;
+    font-size: 16px;
+    padding-left: 10px;
+  }
+
+  .form label {
+    font-size: 16px;
+    font-weight: 300;
+  }
+  .form-details select {
+    height: 40px;
+    padding-left: 10px;
+  }
+
+  .bottom {
+    width: 100%;
+    gap: 24px;
+  }
+
+  .bottom button {
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
 /* Standard Laptop Screens (1024px - 1439px) */
 @media screen and (max-width: 1439px) and (min-width: 1330px) {
   /* Signup Form Styles */
   .display {
-    width: 490px;
-    height: 590px;
+    width: 450px;
+    height: fit-content;
   }
   .logo-pic {
     top: -10px;
   }
   .display h4 {
     font-size: 15px;
+    top: 30px;
+  }
+
+  .display h1 {
+    font-size: 20px;
     top: 30px;
   }
 
@@ -426,8 +468,8 @@ input:focus {
   }
 
   .bottom button {
-    height: 40px;
-    font-size: 15px;
+    height: 35px;
+    font-size: 12px;
   }
 
   .modal-load {
@@ -444,7 +486,7 @@ input:focus {
 
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
   .display {
-    width: 490px;
+    width: 400px;
     height: fit-content;
   }
   .logo-pic {
@@ -487,8 +529,8 @@ input:focus {
   }
 
   .bottom button {
-    height: 40px;
-    font-size: 15px;
+    height: 35px;
+    font-size: 10px;
   }
 
   .modal-load {

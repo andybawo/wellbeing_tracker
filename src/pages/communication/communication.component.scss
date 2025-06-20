@@ -1,5 +1,7 @@
 @use "../../app/shared/styles/shared-styles.scss" as *;
 
+@use "bootstrap/scss/bootstrap";
+
 .main-content {
   width: 100%;
   display: flex;
@@ -16,15 +18,17 @@
   height: 52.35%;
 
   .middle-content {
-    width: 50%;
+    width: 33.3%;
     background-color: white;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 16px 20px 16px 20px;
     border-radius: 8px;
-
-    .content-table,
+    h3 {
+      font-size: 17px;
+      font-weight: 700;
+    }
     .content-table1 {
       width: 100%;
       height: 48px;
@@ -32,6 +36,23 @@
       border-radius: 8px;
       padding: 10px 16px 10px 16px;
 
+      li {
+        list-style: none;
+        font-size: 12px;
+      }
+    }
+    .content-table {
+      width: 100%;
+      height: 48px;
+      background-color: #f0eeee;
+      border-radius: 8px;
+      padding: 10px 16px 10px 16px;
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
       li {
         list-style: none;
         font-size: 12px;
@@ -59,6 +80,9 @@
   background-color: white;
   border-radius: 8px;
   height: 45.41%;
+  h3 {
+    font-size: 17px;
+  }
 
   .bottom-content-table,
   .bottom-content-table1 {
@@ -70,10 +94,11 @@
 
     ul {
       display: grid;
-      grid-template-columns: 25% 25% 25% 25%;
+      grid-template-columns: 20% 20% 20% 20% 20%;
 
       li {
         list-style: none;
+        font-size: 12px;
       }
     }
     select {
@@ -91,9 +116,12 @@
   justify-content: space-between;
   height: 7%;
   align-items: center;
-  padding: 0 20px 0 20px;
+  padding: 0 20px 10px 20px;
   position: relative;
   bottom: 15px;
+  position: relative;
+  top: 5px;
+  border-bottom: 2px solid white;
 
   .left-end h3 {
     font-weight: 400;
@@ -123,14 +151,6 @@
     cursor: pointer;
   }
 }
-hr {
-  background-color: white;
-  height: 2px;
-  border: none;
-  position: relative;
-  bottom: 12px;
-  width: 100%;
-}
 
 .hrm-tab {
   display: flex;
@@ -140,7 +160,8 @@ hr {
   align-items: center;
   background-color: white;
   height: fit-content;
-
+  position: relative;
+  top: 20px;
   .heading {
     display: flex;
     flex-direction: row;
@@ -158,21 +179,27 @@ hr {
     margin-top: 10px;
   }
 
-  .card,
   .card-com {
     width: 25%;
-    background-color: #f0eeee;
+    background-color: #3e1f69;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
-    height: 76px;
+    height: 65px;
     // justify-content: center;
     align-items: center;
     padding: 16px;
     gap: 20px;
+    color: white;
 
     li {
       list-style: none;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    li span {
+      font-weight: 600;
+      font-size: 15px;
     }
   }
   .card-com {
@@ -193,5 +220,68 @@ hr {
 
   a {
     text-decoration: none;
+  }
+}
+
+.pie-chart {
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+
+/* Chart 1: 120x120 */
+
+/* Chart 2: 200x200 */
+.chart-2 {
+  width: 150px;
+  height: 150px;
+  background: conic-gradient(#e00f0f 0% 30%, #f9b51e 40% 30%, #8fc715 30% 100%);
+}
+
+/* Labels shared */
+.label {
+  position: absolute;
+  font-weight: bold;
+  color: black;
+}
+
+/* Chart 2 Labels */
+.chart-2 .label-10 {
+  top: 45%;
+  right: 10%;
+  font-size: 16px;
+}
+
+.chart-2 .label-20 {
+  top: 10%;
+  left: 55%;
+  font-size: 16px;
+}
+
+.chart-2 .label-70 {
+  bottom: 25%;
+  left: 30%;
+  font-size: 16px;
+}
+.values {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+
+  ul {
+    position: relative;
+    top: 30px;
+  }
+  li {
+    list-style: none;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    line-height: 40px;
   }
 }

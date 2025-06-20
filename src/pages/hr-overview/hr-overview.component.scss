@@ -3,7 +3,7 @@ $danger: #ff4646;
 // $warning: #f9b51e;
 $success: #6e9f06;
 
-@import "bootstrap/scss/bootstrap";
+@use "bootstrap/scss/bootstrap";
 .main-content {
   width: 100%;
   display: flex;
@@ -17,6 +17,7 @@ $success: #6e9f06;
     display: flex;
     flex-direction: row;
     gap: 10px;
+    height: fit-content;
   }
 
   .attendance {
@@ -28,10 +29,20 @@ $success: #6e9f06;
     background-color: white;
     border-radius: 5px;
     height: fit-content;
+
+    h3 {
+      font-weight: 700;
+      font-size: 17px;
+    }
   }
 
   .performance {
     width: 40%;
+    min-height: 100%;
+    h3 {
+      font-size: 17px;
+      font-weight: 700;
+    }
   }
 
   .performance-alert {
@@ -111,6 +122,11 @@ $success: #6e9f06;
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+  }
 }
 
 .right-side {
@@ -240,9 +256,10 @@ $success: #6e9f06;
   justify-content: space-between;
   height: 7%;
   align-items: center;
-  padding: 0 20px 0 20px;
+  padding: 0 20px 10px 20px;
   position: relative;
   bottom: 5px;
+  border-bottom: 2px solid white;
 
   .left-end h3 {
     font-weight: 400;
@@ -272,13 +289,6 @@ $success: #6e9f06;
     cursor: pointer;
   }
 }
-hr {
-  background-color: white;
-  height: 2px;
-  border: none;
-  position: relative;
-  width: 100%;
-}
 
 .hrm-tab {
   display: flex;
@@ -296,8 +306,13 @@ hr {
     align-items: center;
     width: 100%;
 
+    position: relative;
+    bottom: 10px;
     h3 {
       font-size: 15px;
+    }
+    a {
+      font-size: 12px;
     }
   }
 
@@ -309,24 +324,29 @@ hr {
     width: 100%;
   }
 
-  .card,
-  .card-com {
+  .card {
     width: 25%;
     background-color: #3e1f69;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
-    height: 70px;
+    height: 65px;
     // justify-content: center;
     align-items: center;
     padding: 16px;
-    gap: 20px;
     color: white;
 
     li {
       list-style: none;
       top: 8px;
       position: relative;
+      font-size: 10px;
+
+      span:nth-child(1) {
+        color: white;
+        font-weight: 700;
+        font-size: 20px;
+      }
     }
   }
   .card-com {
@@ -348,4 +368,7 @@ hr {
   a {
     text-decoration: none;
   }
+}
+
+@media screen and (max-width: 1535px) and (min-width: 1470px) and (min-height: 798px) {
 }

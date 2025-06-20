@@ -529,8 +529,8 @@ li {
   }
 
   .alerts-tab {
-    padding: 0 10px 20px 10px;
-    min-height: fit-content;
+    padding: 0 10px 50px 10px;
+    min-height: flex 1;
     h3 {
       font-size: 15px;
     }
@@ -538,7 +538,7 @@ li {
       font-size: 14px;
     }
     .alert-tab-content {
-      height: fit-content;
+      height: 100%;
       .content {
         height: 33.3%;
         h2 {

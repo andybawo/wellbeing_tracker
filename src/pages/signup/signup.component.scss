@@ -36,6 +36,13 @@
   }
 }
 
+.form-details {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  flex-direction: column;
+}
+
 .option-divider-grid {
   display: grid;
   grid-template-columns: 1fr auto 1fr; /* Two flexible columns for lines, 'auto' for text */
@@ -63,12 +70,15 @@
 
 .create-link {
   align-self: flex-end;
+  a {
+    font-size: 10px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   /* Signup Form Styles */
   .display {
-    width: 500px;
+    width: 450px;
     height: auto;
     top: 50px;
   }
@@ -86,6 +96,9 @@
   .form {
     top: 50px;
     gap: 12px;
+    a {
+      font-size: 12px;
+    }
   }
 
   .form input {
@@ -102,7 +115,7 @@
   .eye-icon {
     position: absolute;
     right: 10px;
-    top: 44%;
+    top: 40%;
     transform: translateY(-50%);
     cursor: pointer;
     color: #666;
@@ -121,7 +134,7 @@
   }
 
   .bottom-display {
-    width: 500px;
+    width: 450px;
     height: 240px;
     top: 10px;
     gap: 8px;
@@ -148,7 +161,7 @@
 @media screen and (max-width: 1439px) and (min-width: 1328px) {
   /* Signup Form Styles */
   .display {
-    width: 450px;
+    width: 420px;
     height: auto;
     top: 50px;
   }
@@ -194,7 +207,7 @@
   .eye-icon {
     position: absolute;
     right: 10px;
-    top: 50%;
+    top: 46%;
     transform: translateY(-50%);
     cursor: pointer;
     color: #666;
@@ -213,7 +226,7 @@
   }
 
   .bottom-display {
-    width: 450px;
+    width: 420px;
     height: fit-content;
     top: 20px;
     gap: 8px;
@@ -270,19 +283,19 @@
 
   .form input {
     height: 28px;
-    font-size: 12px;
+    font-size: 10px;
     padding-left: 10px;
   }
 
   .form label {
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 300;
   }
 
   .eye-icon {
     position: absolute;
     right: 10px;
-    top: 51.5%;
+    top: 44.5%;
     transform: translateY(-50%);
     cursor: pointer;
     color: #666;

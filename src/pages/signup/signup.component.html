@@ -13,29 +13,35 @@
   <h3>Please enter your details to signup</h3>
 
   <form class="form" [formGroup]="userForm" (ngSubmit)="onUserSave()">
-    <label for="fullName">Full Name</label>
-    <input
-      id="fullName"
-      type="text"
-      formControlName="fullName"
-      placeholder="Enter full name"
-    />
-    <label for="emailAddress">Email Address</label>
-    <input
-      id="emailAddress"
-      type="email"
-      formControlName="emailAddress"
-      placeholder="Enter Email address"
-    />
-    <label for="password">Password</label>
-    <input
-      id="password"
-      [type]="showPassword ? 'text' : 'password'"
-      formControlName="password"
-      placeholder="Enter Password"
-    />
-    <div (click)="togglePasswordVisibility()" class="eye-icon">
-      <i [class]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+    <div class="form-details">
+      <label for="fullName">Full Name</label>
+      <input
+        id="fullName"
+        type="text"
+        formControlName="fullName"
+        placeholder="Enter full name"
+      />
+    </div>
+    <div class="form-details">
+      <label for="emailAddress">Email Address</label>
+      <input
+        id="emailAddress"
+        type="email"
+        formControlName="emailAddress"
+        placeholder="Enter Email address"
+      />
+    </div>
+    <div class="form-details">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        [type]="showPassword ? 'text' : 'password'"
+        formControlName="password"
+        placeholder="Enter Password"
+      />
+      <div (click)="togglePasswordVisibility()" class="eye-icon">
+        <i [class]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+      </div>
     </div>
 
     <div class="bottom-display">
@@ -47,7 +53,7 @@
         </span>
       </button>
       <a class="create-link" [routerLink]="['/start/login']"
-        >Already have an account? Log in</a
+        >Already have an account? Sign in</a
       >
       <div class="option-divider-grid">
         <div class="line line-left"></div>

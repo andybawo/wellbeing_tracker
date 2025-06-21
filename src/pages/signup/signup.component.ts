@@ -31,9 +31,9 @@ export class SignupComponent {
 
   isLoading: boolean = false;
   isButtonLoading: boolean = false;
-  showAlert: boolean = false; // Control alert visibility
-  alertMessage: string = ''; // Alert message
-  alertType: 'success' | 'error' = 'success'; // Alert typ
+  showAlert: boolean = false;
+  alertMessage: string = '';
+  alertType: 'success' | 'error' = 'success';
   showPassword: boolean = false;
 
   constructor(
@@ -43,14 +43,12 @@ export class SignupComponent {
   ) {}
 
   async onUserSave() {
-    // console.log('User save triggered');
-    this.isButtonLoading = true; // Start button loading
+    this.isButtonLoading = true;
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
     if (this.userForm.valid) {
       this.isLoading = true;
       const userData = this.userForm.value;
-      // console.log('User Data stored:', userData);
 
       this.dataService.setUserData(userData);
       this.isLoading = false;
@@ -59,7 +57,7 @@ export class SignupComponent {
         'Signup successful! Please proceed to register your company.';
       this.alertType = 'success';
       setTimeout(() => {
-        this.isButtonLoading = false; // Stop button loading
+        this.isButtonLoading = false;
         this.router.navigate(['/start/registration']);
       }, 500);
     } else {
@@ -79,7 +77,6 @@ export class SignupComponent {
         }
       }
 
-      // console.log('Generated Error Message:', errorMessage);
       this.alertMessage = errorMessage;
       this.alertType = 'error';
       setTimeout(() => {

@@ -26,12 +26,12 @@
 
 .display {
   height: 452px;
-  width: 500px;
+  width: 450px;
 }
 
 .form-details {
   display: flex;
-  gap: 10px;
+  gap: 2px;
   width: 100%;
   flex-direction: column;
 }
@@ -72,7 +72,7 @@ input:focus {
 // }
 
 .form {
-  gap: 5px;
+  gap: 8px;
   display: flex;
   flex-direction: column;
   margin-top: 30px;
@@ -342,7 +342,7 @@ input:focus {
 @media screen and (min-width: 1440px) {
   /* Signup Form Styles */
   .display {
-    width: 500px;
+    width: 450px;
     height: 590px;
   }
 
@@ -368,7 +368,7 @@ input:focus {
   }
 
   .form label {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 300;
   }
   .form-details select {
@@ -438,7 +438,7 @@ input:focus {
 @media screen and (max-width: 1439px) and (min-width: 1330px) {
   /* Signup Form Styles */
   .display {
-    width: 450px;
+    width: 400px;
     height: fit-content;
   }
   .logo-pic {
@@ -472,7 +472,7 @@ input:focus {
   }
 
   .form label {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 300;
   }
 
@@ -500,7 +500,7 @@ input:focus {
 
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
   .display {
-    width: 400px;
+    width: 350px;
     height: fit-content;
   }
   .logo-pic {
@@ -533,14 +533,14 @@ input:focus {
   }
 
   .form label {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 300;
   }
 
   .bottom {
     width: 100%;
     gap: 30px;
-    top: 10px;
+    top: 30px;
   }
 
   .bottom button {

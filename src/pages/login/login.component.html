@@ -12,21 +12,25 @@
   <h3>Please enter your details to signup</h3>
 
   <form class="form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
-    <label for="emailAddress">Email</label>
-    <input
-      formControlName="emailAddress"
-      type="email"
-      placeholder="Enter Email"
-    />
-    <label for="password">Password</label>
-    <input
-      id="password"
-      [type]="showPassword ? 'text' : 'password'"
-      formControlName="password"
-      placeholder="Enter Password"
-    />
-    <div (click)="togglePasswordVisibility()" class="eye-icon-login">
-      <i [class]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+    <div class="form-details">
+      <label for="emailAddress">Email</label>
+      <input
+        formControlName="emailAddress"
+        type="email"
+        placeholder="Enter Email"
+      />
+    </div>
+    <div class="form-details">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        [type]="showPassword ? 'text' : 'password'"
+        formControlName="password"
+        placeholder="Enter Password"
+      />
+      <div (click)="togglePasswordVisibility()" class="eye-icon-login">
+        <i [class]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+      </div>
     </div>
 
     <div class="link">
@@ -42,7 +46,7 @@
         </span>
       </button>
       <a class="create-link" [routerLink]="['/start/signup']"
-        >Don't have an account? Sign Up</a
+        >Do not have an account? Sign Up</a
       >
       <span>Or</span>
       <button>

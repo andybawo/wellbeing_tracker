@@ -81,7 +81,6 @@ export class RegistrationComponent {
 
     const userData = this.dataService.getUserData();
     if (!userData || !userData.emailAddress) {
-      // console.error('User data not found. Please signup again.');
       this.isLoading = false;
       this.showAlert = true;
       this.alertMessage = 'User data not found. Please signup again.';
@@ -90,7 +89,6 @@ export class RegistrationComponent {
       return;
     }
 
-    // Register user (this should trigger the sending of the initial verification code)
     this.authService.registerUser(userData).subscribe({
       next: (res) => {
         this.isLoading = false;
@@ -98,12 +96,9 @@ export class RegistrationComponent {
         this.alertMessage =
           'Company details saved. Please check your email to verify your account.';
         this.alertType = 'success';
-        // Store the JWT token from the registration response
         if (res && res.data) {
           this.dataService.setAuthToken(res.data);
-          // console.log('JWT Token stored:', res.data);
         } else {
-          // console.warn('JWT Token not found in the registration response.');
         }
 
         this.router.navigate(['/start/verify']);
@@ -115,29 +110,7 @@ export class RegistrationComponent {
           err.error?.message ||
           'Company registration failed. Please try again.';
         this.alertType = 'error';
-        // console.error('Company registration error:', err);
       },
     });
   }
 }
-
-// error: (err) => {
-//   const isAlreadyExists =
-//     err.error?.message === 'Email Address already exist' ||
-//     err.status === 409;
-
-//   if (isAlreadyExists) {
-//     console.warn('User already exists, resending verification code...');
-//     this.authService.sendVerification(userData).subscribe({
-//       next: (res) => {
-//         console.log('Verification code resent:', res);
-//         this.router.navigate(['/start/verify']);
-//       },
-//       error: (error) => {
-//         console.error('Error resending verification code:', error);
-//       },
-//     });
-//   } else {
-//     console.error('Error registering user:', err);
-//   }
-// },

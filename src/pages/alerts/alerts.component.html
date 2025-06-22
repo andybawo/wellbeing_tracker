@@ -1,0 +1,327 @@
+<div class="top-header">
+  <div class="left-end">
+    <select name="" id="">
+      <option value="">Today</option>
+    </select>
+
+    <select name="" id="">
+      <option value="">Sentiment Drop</option>
+    </select>
+  </div>
+
+  <div class="right-end">
+    <button>Custom</button>
+    <button>Configure</button>
+  </div>
+</div>
+
+<div class="hrm-tab">
+  <div class="hrm-emp-tab">
+    <div class="card-com">
+      <img src="/images/Frame 114.png" alt="" />
+      <ul>
+        <li>Total Alerts</li>
+        <li
+          style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 5px;
+          "
+        >
+          <span>4</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-com">
+      <img src="/images/Frame 114.png" alt="" />
+      <ul>
+        <li>Unresolved Alerts</li>
+        <li
+          style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 5px;
+          "
+        >
+          <span>3</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-com">
+      <img src="/images/Frame 114.png" alt="" />
+      <ul>
+        <li>Active Alerts</li>
+        <li
+          style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 5px;
+          "
+        >
+          <span>1</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-com">
+      <img src="/images/Frame 114.png" alt="" />
+      <ul>
+        <li>All Alerts</li>
+        <li>
+          <span>2</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="main-content" [ngClass]="{ 'full-view-mode': isInFullView() }">
+  <div *ngIf="!isInFullView()" class="normal-view">
+    <div class="com-middle-section">
+      <div class="middle-content">
+        <div class="heading">
+          <h3>Sentiment Drop Analysis</h3>
+          <a
+            href=""
+            (click)="showFullView('sentiment'); $event.preventDefault()"
+            >View All</a
+          >
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Issues</th>
+              <th>Tools</th>
+              <th>%Change</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="middle-content">
+        <div class="heading">
+          <h3>Micro Insight</h3>
+          <a href="" (click)="showFullView('micro'); $event.preventDefault()"
+            >View All</a
+          >
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Issues</th>
+              <th>Tools</th>
+              <th>%Change</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bottom-content">
+      <div class="heading">
+        <h3>Predictive Alerts</h3>
+        <a href="" (click)="showFullView('predictive'); $event.preventDefault()"
+          >View All</a
+        >
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Issues</th>
+            <th>Tools</th>
+            <th>%Change</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>High Performance</td>
+            <td>HRM</td>
+            <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+            <td>Active</td>
+          </tr>
+          <tr>
+            <td>High Performance</td>
+            <td>HRM</td>
+            <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+            <td>Active</td>
+          </tr>
+          <tr>
+            <td>High Performance</td>
+            <td>HRM</td>
+            <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+            <td>Active</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Sentiment Drop  Full View -->
+  <div *ngIf="isSectionInFullView('sentiment')" class="full-view-container">
+    <div class="full-view-header">
+      <h3>Sentiment Drop Analysis</h3>
+    </div>
+    <div class="full-view-content">
+      <table class="full-view-table">
+        <thead>
+          <tr>
+            <th>Issues</th>
+            <th>Tools</th>
+            <th>%Change</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>High Performance</td>
+            <td>HRM</td>
+            <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+            <td>Active</td>
+          </tr>
+          <tr>
+            <td>High Performance</td>
+            <td>HRM</td>
+            <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+            <td>Active</td>
+          </tr>
+          <tr>
+            <td>High Performance</td>
+            <td>HRM</td>
+            <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+            <td>Active</td>
+          </tr>
+          <tr>
+            <td>High Performance</td>
+            <td>HRM</td>
+            <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+            <td>Active</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="bottom">
+        <button class="back-button" (click)="goBackToNormalView()">Back</button>
+        <span>Page 1 of 1</span>
+        <button class="back-button" (click)="goBackToNormalView()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Micro Insight Full View -->
+  <div *ngIf="isSectionInFullView('micro')" class="full-view-container">
+    <div class="full-view-header">
+      <h3>Micro Insight</h3>
+    </div>
+    <div class="full-view-content">
+      <table class="full-view-table">
+        <thead>
+          <tr>
+            <th>Issues</th>
+            <th>Tools</th>
+            <th>%Change</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>High Performance</td>
+            <td>HRM</td>
+            <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+            <td>Active</td>
+          </tr>
+          <tr>
+            <td>High Performance</td>
+            <td>HRM</td>
+            <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+            <td>Active</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="bottom">
+        <button class="back-button" (click)="goBackToNormalView()">Back</button>
+        <span>Page 1 of 1</span>
+        <button class="back-button" (click)="goBackToNormalView()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Predictive Full view -->
+  <div *ngIf="isSectionInFullView('predictive')" class="full-view-container">
+    <div class="full-view-header">
+      <h3>Predictive Alerts</h3>
+    </div>
+    <div class="full-view-content">
+      <table class="full-view-table">
+        <thead>
+          <tr>
+            <th>Issues</th>
+            <th>Tools</th>
+            <th>%Change</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>High Performance</td>
+            <td>HRM</td>
+            <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+            <td>Active</td>
+          </tr>
+          <tr>
+            <td>High Performance</td>
+            <td>HRM</td>
+            <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+            <td>Active</td>
+          </tr>
+          <tr>
+            <td>High Performance</td>
+            <td>HRM</td>
+            <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+            <td>Active</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="bottom">
+        <button class="back-button" (click)="goBackToNormalView()">Back</button>
+        <span>Page 1 of 1</span>
+        <button class="back-button" (click)="goBackToNormalView()">Next</button>
+      </div>
+    </div>
+  </div>
+</div>

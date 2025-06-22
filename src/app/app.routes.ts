@@ -20,6 +20,7 @@ import { AuthenticationComponent } from '../pages/authentication/authentication.
 import { ResetpasswordComponent } from '../pages/resetpassword/resetpassword.component';
 // import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { AlertsComponent } from '../pages/alerts/alerts.component';
 export const routes: Routes = [
   {
     path: '',
@@ -42,6 +43,10 @@ export const routes: Routes = [
       {
         path: 'hr-overview',
         component: HrOverviewComponent,
+      },
+      {
+        path: 'alerts',
+        component: AlertsComponent,
       },
     ],
   },

@@ -52,7 +52,21 @@
         <li>
           <img src="/images/task-square-dash.png" alt="" />Project Managememt
         </li>
-        <li><img src="/images/sms-tracking-dash.png" alt="" />Alerts</li>
+        <li
+          [routerLink]="['/home/alerts']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+          #alertLink="routerLinkActive"
+        >
+          <img
+            [src]="
+              alertLink.isActive
+                ? '/images/sms-tracking-filled.png'
+                : '/images/sms-tracking-dash.png'
+            "
+            alt=""
+          />Alerts
+        </li>
         <li><img src="/images/integrate-dash.png" alt="" />Integration</li>
         <li><img src="/images/subscription-dash.png" alt="" />Subscription</li>
         <li>

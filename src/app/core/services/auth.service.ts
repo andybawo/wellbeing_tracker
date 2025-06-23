@@ -3,6 +3,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
+interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T;
+  errors: any[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -19,6 +26,12 @@ export class AuthService {
   //user sign up
   registerUser(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/register`, userData);
+  }
+
+  checkEmailExists(email: string): Observable<ApiResponse<boolean>> {
+    return this.http.get<ApiResponse<boolean>>(
+      `${this.apiUrl}/api/Auth/check-email?email=${encodeURIComponent(email)}`
+    );
   }
 
   loginUser(loginData: any): Observable<any> {

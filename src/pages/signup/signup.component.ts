@@ -4,6 +4,8 @@ import {
   FormGroup,
   ReactiveFormsModule,
   Validators,
+  AbstractControl,
+  ValidationErrors,
 } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../app/core/services/auth.service';
@@ -35,6 +37,7 @@ export class SignupComponent {
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
   showPassword: boolean = false;
+  emailChecking: boolean = false;
 
   constructor(
     private router: Router,
@@ -47,19 +50,52 @@ export class SignupComponent {
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
     if (this.userForm.valid) {
-      this.isLoading = true;
-      const userData = this.userForm.value;
+      const email = this.userForm.get('emailAddress')?.value;
 
-      this.dataService.setUserData(userData);
-      this.isLoading = false;
-      this.showAlert = true;
-      this.alertMessage =
-        'Signup successful! Please proceed to register your company.';
-      this.alertType = 'success';
-      setTimeout(() => {
+      try {
+        const emailCheckResponse = await this.authService
+          .checkEmailExists(email)
+          .toPromise();
+
+        if (emailCheckResponse?.data === true) {
+          // Email is already taken
+          this.isLoading = false;
+          this.showAlert = true;
+          this.alertMessage =
+            'This Email Address is already registered. Please use a different email.';
+          this.alertType = 'error';
+          setTimeout(() => {
+            this.isButtonLoading = false;
+            this.showAlert = false;
+          }, 4000);
+          return;
+        }
+
+        this.isLoading = true;
+        const userData = this.userForm.value;
+
+        this.dataService.setUserData(userData);
+        this.isLoading = false;
+        this.showAlert = true;
+        this.alertMessage =
+          'Signup successful! Please proceed to register your company.';
+        this.alertType = 'success';
+        setTimeout(() => {
+          this.isButtonLoading = false;
+          this.router.navigate(['/start/registration']);
+        }, 500);
+      } catch (error) {
+        // Handle email check error
+        this.isLoading = false;
+        this.showAlert = true;
         this.isButtonLoading = false;
-        this.router.navigate(['/start/registration']);
-      }, 500);
+        this.alertMessage =
+          'Unable to verify email availability. Please try again.';
+        this.alertType = 'error';
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 6000);
+      }
     } else {
       this.isLoading = false;
       this.showAlert = true;

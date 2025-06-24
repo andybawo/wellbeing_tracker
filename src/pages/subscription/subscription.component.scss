@@ -16,7 +16,7 @@
 }
 
 .sub-length {
-  height: 55px;
+  height: 40px;
   width: 190px;
   background-color: #f0eeee;
   display: flex;
@@ -29,10 +29,11 @@
 
   button {
     width: 100px;
-    height: 40px;
+    height: 30px;
     border-radius: 25px;
     border: none;
     cursor: pointer;
+    font-size: 12px;
 
     &:hover {
       background-color: white;
@@ -85,18 +86,20 @@
     font-size: 15px;
     color: #5c8503;
     position: relative;
-    bottom: 10px;
+    // bottom: 5px;
   }
   ul {
     display: flex;
     gap: 10px;
     flex-direction: column;
+    position: relative;
+    top: 25px;
   }
   height: 280px;
 }
 
 .packages:hover {
-  background-color: #5c2e9c;
+  background-color: #3e1f69;
   button {
     background-color: white;
     color: black;
@@ -112,7 +115,6 @@
       font-size: 15px;
       color: #b3f524;
       position: relative;
-      bottom: 10px;
     }
     ul {
       display: flex;
@@ -144,7 +146,6 @@
       font-size: 15px;
       color: #b3f524;
       position: relative;
-      bottom: 10px;
     }
     ul {
       display: flex;

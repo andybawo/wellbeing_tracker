@@ -107,18 +107,26 @@
   position: relative;
   bottom: 10px;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 20px;
+}
+
+.info span {
+  position: relative;
+  font-size: 12px;
 }
 
 .info h3 {
   position: relative;
   bottom: 15px;
+  font-size: 12px;
 }
 
 .checkbox-container {
   display: flex;
   align-items: center;
   gap: 10px;
+  position: relative;
+  top: 20px;
 
   input[type="checkbox"] {
     width: 18px;
@@ -160,10 +168,12 @@ input[type="checkbox"]:focus {
   width: 416px;
   height: fit-content;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   position: relative;
   top: 50px;
   align-items: center;
+  gap: 20px;
+  justify-content: center;
 }
 
 .bottom button {
@@ -188,6 +198,11 @@ input[type="checkbox"]:focus {
   background-color: #3e1f69;
   color: white;
   cursor: pointer;
+
+  &:hover {
+    background-color: #5c2e9c;
+    color: white;
+  }
 }
 
 .checkbox-com {
@@ -225,6 +240,8 @@ input[type="checkbox"]:focus {
   flex-direction: column;
   height: 120px;
   justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
 }
 a {
   color: #333;
@@ -247,12 +264,15 @@ a {
   font-size: 15px;
   position: relative;
   top: 20px;
+  width: 100%;
 
   input {
     height: 40px;
-    width: 100%;
+    width: 80%;
     border: 3px solid #f0eeee;
     padding: 10px;
+    display: flex;
+    align-self: flex-end;
   }
 
   label {

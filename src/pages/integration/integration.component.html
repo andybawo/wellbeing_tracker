@@ -56,7 +56,7 @@
       <ng-container [ngSwitch]="selectedModalContent">
         <div *ngSwitchCase="'hrm'">
           <div class="integrate">
-            <img src="/images/logo-mark.png" alt="" />
+            <img src="/images/Subtract.png" alt="" />
             <div class="arrow">
               <img src="/images/new-right.png" alt="" class="arrow-icon" />
               <img src="/images/arrow-left.png" alt="" class="arrow-icon" />
@@ -87,7 +87,7 @@
                   />
                 </div>
                 <div class="api-key-details">
-                  <label for="">Client Secret Key</label>
+                  <label for="">Secret Key</label>
                   <input
                     type="text"
                     placeholder="Enter Secret Key"
@@ -139,7 +139,7 @@
 
         <div *ngSwitchCase="'communication'">
           <div class="integrate">
-            <img src="/images/logo-mark.png" alt="" />
+            <img src="/images/Subtract.png" alt="" />
             <div class="arrow">
               <img src="/images/new-right.png" alt="" />
               <img src="/images/arrow-left.png" alt="" />
@@ -341,7 +341,7 @@
 
         <div *ngSwitchCase="'project'">
           <div class="integrate">
-            <img src="/images/logo-mark.png" alt="" />
+            <img src="/images/Subtract.png" alt="" />
             <div class="arrow">
               <img src="/images/new-right.png" alt="" />
               <img src="/images/arrow-left.png" alt="" />
@@ -394,7 +394,7 @@
                   />
                 </div>
                 <div class="api-key-details">
-                  <label for="">Email Address</label>
+                  <label for="">Email</label>
                   <input
                     type="email"
                     placeholder="Enter Email Address"
@@ -482,7 +482,7 @@
                 "
                 (click)="connectJiraApiKey()"
               >
-                <span *ngIf="!isButtonLoading">Connect With Api Key</span>
+                <span *ngIf="!isButtonLoading">Connect</span>
                 <span *ngIf="isButtonLoading" class="button-loader">
                   <span class="spinner"></span>
                   Integrating...

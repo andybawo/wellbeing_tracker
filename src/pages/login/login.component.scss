@@ -27,6 +27,11 @@
       }
     }
   }
+  span:nth-child(3) {
+    // color: pink;
+    position: relative;
+    top: 10px;
+  }
 }
 
 @keyframes spin {
@@ -55,7 +60,7 @@
 }
 
 .create-link {
-  align-self: flex-end;
+  align-self: center;
 }
 @media screen and (min-width: 1440px) {
   /* Signup Form Styles */
@@ -110,6 +115,12 @@
     i {
       font-size: 16px;
     }
+  }
+
+  .link a {
+    font-size: 12px;
+    bottom: 14px;
+    position: relative;
   }
 
   .bottom-display {
@@ -208,6 +219,8 @@
 
   .link a {
     font-size: 12px;
+    bottom: 16px;
+    position: relative;
   }
 
   .bottom-display .create-link {
@@ -292,7 +305,7 @@
 
   .link a {
     font-size: 10px;
-    bottom: 8px;
+    bottom: 18px;
     position: relative;
   }
 

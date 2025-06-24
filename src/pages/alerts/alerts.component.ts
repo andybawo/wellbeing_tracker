@@ -10,6 +10,16 @@ import { Component } from '@angular/core';
 export class AlertsComponent {
   fullViewSection: string | null = null;
 
+  isModalOpen = false;
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
   showFullView(section: string) {
     this.fullViewSection = section;
   }

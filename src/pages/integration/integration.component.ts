@@ -27,9 +27,9 @@ export class IntegrationComponent {
   isToolinfoOpen: boolean = false;
   isLoading = false;
   shouldOpenModal = false;
-  showAlert: boolean = false; // Control alert visibility
-  alertMessage: string = ''; // Alert message
-  alertType: 'success' | 'error' = 'success'; // Alert typ
+  showAlert: boolean = false;
+  alertMessage: string = '';
+  alertType: 'success' | 'error' = 'success';
   isButtonLoading: boolean = false;
 
   selectedHrTool: string = 'seamless';
@@ -111,7 +111,7 @@ export class IntegrationComponent {
           .connectJiraWithApiKey(this.jiraApiKey, this.jiraApiEmail, token)
           .subscribe({
             next: (response) => {
-              this.isButtonLoading = false; // Stop button loading
+              this.isButtonLoading = false;
 
               this.showAlert = true;
               this.alertMessage = '🎉🎉Jira Successfully Integrated';

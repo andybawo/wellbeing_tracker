@@ -23,6 +23,7 @@ export class SubSuccessfulComponent implements OnInit {
   isLoading: boolean = true;
   isSuccess: boolean = false;
   failureMessage: string = '';
+  isFreeTrialSuccess: boolean = false;
 
   constructor(
     private router: Router,
@@ -37,11 +38,6 @@ export class SubSuccessfulComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      // console.log('=== DEBUGGING QUERY PARAMS ===');
-      // console.log('All query parameters:', params);
-      // console.log('Raw tx_ref:', params['tx_ref']);
-      // console.log('Type of tx_ref:', typeof params['tx_ref']);
-      // console.log('Is tx_ref an array?', Array.isArray(params['tx_ref']));
       const queryPackageId = parseInt(params['packageId'], 10);
       let rawTransactionRef =
         params['tx_ref'] ||
@@ -50,115 +46,151 @@ export class SubSuccessfulComponent implements OnInit {
         params['transaction_id'] ||
         null;
 
-      // console.log('Raw transaction reference:', rawTransactionRef);
-      // console.log('Extracted package ID:', queryPackageId);
+      this.isFreeTrialSuccess = params['isFreeTrialSuccess'] === 'true';
 
-      // Handle cases where the parameter might be an array or comma-separated string
       if (rawTransactionRef) {
         if (Array.isArray(rawTransactionRef)) {
-          // If it's an array, take the first element
           this.transactionRef = rawTransactionRef[0];
-          // console.log(
-          //   'Transaction ref was array, using first element:',
-          //   this.transactionRef
-          // );
         } else if (
           typeof rawTransactionRef === 'string' &&
           rawTransactionRef.includes(',')
         ) {
-          // If it's a comma-separated string, take the first part
           this.transactionRef = rawTransactionRef.split(',')[0].trim();
-          // console.log(
-          //   'Transaction ref was comma-separated, using first part:',
-          //   this.transactionRef
-          // );
         } else {
-          // It's a clean string
           this.transactionRef = rawTransactionRef.trim();
         }
       } else {
         this.transactionRef = null;
       }
 
-      // console.log('Final cleaned transaction reference:', this.transactionRef);
+      // Check if we have valid packageId
+      if (isNaN(queryPackageId)) {
+        this.isLoading = false;
+        this.failureMessage = 'Invalid package information';
+        return;
+      }
 
-      // Now check if both packageId and transactionRef are valid
-      if (!isNaN(queryPackageId) && this.transactionRef) {
-        this.packageId = queryPackageId;
+      this.packageId = queryPackageId;
+
+      if (this.isFreeTrialSuccess) {
+        this.handleFreeTrialSuccess();
+      } else if (this.transactionRef) {
         this.processPayment();
       } else {
-        // console.warn(
-        //   'Package ID or Transaction Reference is missing in query parameters.',
-        //   { packageId: queryPackageId, transactionRef: this.transactionRef }
-        // );
-        this.router.navigate(['/subscription']);
-        return;
+        this.isLoading = false;
+        this.failureMessage = 'No transaction reference found';
+        setTimeout(() => {
+          this.router.navigate(['/subscription']);
+        }, 3000);
       }
     });
   }
 
-  processPayment(): void {
-    if (this.transactionRef && this.packageId) {
-      let cleanRef = this.transactionRef;
-      if (cleanRef.includes(',')) {
-        cleanRef = cleanRef.split(',')[0].trim();
-        // console.log(
-        //   'processPayment: Further cleaned ref from',
-        //   this.transactionRef,
-        //   'to',
-        //   cleanRef
-        // );
-        this.transactionRef = cleanRef; // Update the instance variable
-      }
-      const token = this.dataService.getAuthToken();
-      if (token) {
-        // console.log('Processing payment with:', {
-        //   transactionRef: this.transactionRef,
-        //   packageId: this.packageId,
-        //   token: token ? 'Present' : 'Missing',
-        // });
-        this.paymentService
-          .verifyAndCreateSubscription(
-            this.transactionRef,
-            token,
-            this.packageId
-          )
-          .subscribe({
-            next: (response: any) => {
-              this.isLoading = false;
-              this.failureMessage = response.message || 'Unknown error';
-              // console.log('Payment and subscription result:', response);
-              const isSuccessful =
-                response.success === true ||
-                response.status === true ||
-                response.status === 'true';
-              this.isSuccess = isSuccessful;
-
-              if (isSuccessful) {
-                setTimeout(() => {
-                  this.router.navigate(['/subscription/integration']);
-                }, 5000);
-              } else {
-                this.failureMessage =
-                  response.message || 'Payment verification failed.'; // Display backend message
-                this.isSuccess = false;
-              }
-            },
-            error: (error: any) => {
-              this.isLoading = false;
-              this.isSuccess = false;
-              this.failureMessage =
-                'An unexpected error occurred. Please try again.';
-              // console.error('Error processing payment:', error);
-              this.router.navigate(['/subscription-failed']);
-            },
-          });
-      }
-    } else {
+  handleFreeTrialSuccess(): void {
+    setTimeout(() => {
       this.isLoading = false;
-      // console.warn('Transaction reference or package ID is missing.');
-      alert('Invalid payment information. Please try again.');
-      this.router.navigate(['/subscription']);
+      this.isSuccess = true;
+
+      setTimeout(() => {
+        this.router.navigate(['/subscription/integration']);
+      }, 5000);
+    }, 2000);
+  }
+
+  processPayment(): void {
+    if (!this.transactionRef || !this.packageId) {
+      this.isLoading = false;
+      this.failureMessage = 'Invalid payment information';
+      return;
     }
+
+    let cleanRef = this.transactionRef;
+    if (cleanRef.includes(',')) {
+      cleanRef = cleanRef.split(',')[0].trim();
+      this.transactionRef = cleanRef;
+    }
+
+    const token = this.dataService.getAuthToken();
+    if (!token) {
+      this.isLoading = false;
+      this.failureMessage =
+        'Authentication token not found. Please login again.';
+      setTimeout(() => {
+        this.router.navigate(['/start/signin']);
+      }, 3000);
+      return;
+    }
+
+    // Add a timeout to prevent infinite loading
+    const timeoutId = setTimeout(() => {
+      if (this.isLoading) {
+        this.isLoading = false;
+        this.failureMessage =
+          'Payment verification timed out. Please contact support.';
+      }
+    }, 30000); // 30 second timeout
+
+    this.paymentService
+      .verifyAndCreateSubscription(this.transactionRef, token, this.packageId)
+      .subscribe({
+        next: (response: any) => {
+          clearTimeout(timeoutId);
+
+          this.isLoading = false;
+
+          const isSuccessful =
+            response.success === true ||
+            response.status === true ||
+            response.status === 'true';
+
+          if (isSuccessful) {
+            this.isSuccess = true;
+            this.failureMessage = '';
+
+            setTimeout(() => {
+              this.router.navigate(['/subscription/integration']);
+            }, 5000);
+          } else {
+            this.failureMessage =
+              response.message || 'Payment verification failed.';
+            this.isSuccess = false;
+
+            // Show error for a while then redirect back to subscription
+            setTimeout(() => {
+              this.router.navigate(['/subscription']);
+            }, 5000);
+          }
+        },
+        error: (error: any) => {
+          clearTimeout(timeoutId);
+
+          this.isLoading = false;
+          this.isSuccess = false;
+
+          // More detailed error message
+          if (error.status === 0) {
+            this.failureMessage =
+              'Network error. Please check your connection and try again.';
+          } else if (error.status === 401) {
+            this.failureMessage = 'Authentication failed. Please login again.';
+            setTimeout(() => {
+              this.router.navigate(['/start/signin']);
+            }, 3000);
+            return;
+          } else if (error.status >= 500) {
+            this.failureMessage =
+              'Server error. Please try again later or contact support.';
+          } else {
+            this.failureMessage =
+              error.message ||
+              'An unexpected error occurred. Please try again.';
+          }
+
+          // Redirect back to subscription page after showing error
+          setTimeout(() => {
+            this.router.navigate(['/subscription']);
+          }, 5000);
+        },
+      });
   }
 }

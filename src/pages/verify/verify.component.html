@@ -73,19 +73,8 @@
       >
     </div>
     <div class="bottom-display-verify">
-      <button type="button" [routerLink]="['/start/registration']">Back</button>
+      <button type="button" (click)="goBack()">Back</button>
       <button type="submit">Verify</button>
     </div>
   </form>
-
-  <!-- <div *ngIf="isLoading" class="overlay" (click)="closeModal()"></div>
-  <div class="modal-load" *ngIf="isLoading">
-    <div class="loading-bar-wrapper">
-      <div class="loading-bar"></div>
-    </div>
-    <div class="load-title">
-      <h1>Sending OTP</h1>
-      <h4>Hang on this may take a few seconds</h4>
-    </div>
-  </div> -->
 </div>

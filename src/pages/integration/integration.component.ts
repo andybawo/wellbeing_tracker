@@ -10,13 +10,7 @@ import { SharedModule } from '../../app/shared/shared.module';
 
 @Component({
   selector: 'app-integration',
-  imports: [
-    ModalComponent,
-    CommonModule,
-    RouterModule,
-    FormsModule,
-    SharedModule,
-  ],
+  imports: [CommonModule, RouterModule, FormsModule, SharedModule],
   templateUrl: './integration.component.html',
   styleUrl: './integration.component.scss',
 })
@@ -32,9 +26,9 @@ export class IntegrationComponent {
   alertType: 'success' | 'error' = 'success';
   isButtonLoading: boolean = false;
 
-  selectedHrTool: string = 'seamless';
-  selectedComTools: string = 'slack';
-  selectedProjTools: string = 'jira';
+  selectedHrTool: string = '';
+  selectedComTools: string = '';
+  selectedProjTools: string = '';
 
   jiraApiKey = '';
   jiraApiEmail = '';
@@ -70,9 +64,9 @@ export class IntegrationComponent {
   }
 
   resetModalState() {
-    this.selectedHrTool = 'seamless';
-    this.selectedComTools = 'slack';
-    this.selectedProjTools = 'jira';
+    this.selectedHrTool = '';
+    this.selectedComTools = '';
+    this.selectedProjTools = '';
     this.showApiKeyfield = false;
     this.isToolinfoOpen = false;
     this.jiraApiKey = '';
@@ -92,7 +86,8 @@ export class IntegrationComponent {
   }
 
   toggleApiKeyField(event: Event) {
-    this.showApiKeyfield = (event.target as HTMLInputElement).checked;
+    event.preventDefault(); // Prevent default link behavior
+    this.showApiKeyfield = !this.showApiKeyfield; // Toggle the visibility
   }
 
   openPermission(tool: string) {

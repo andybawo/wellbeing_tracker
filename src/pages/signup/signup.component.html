@@ -13,6 +13,32 @@
   <h3>Please enter your details to signup</h3>
 
   <form class="form" [formGroup]="userForm" (ngSubmit)="onUserSave()">
+    <div class="bottom-display">
+      <button type="button">
+        <div class="logo-box">
+          <img
+            src="/images/Symbol.png"
+            alt="Microsoft Logo"
+            style="width: 20px; height: 20px"
+          />Google
+        </div>
+      </button>
+      <button type="button">
+        <div class="logo-box">
+          <img
+            src="/images/microsoft.png"
+            alt="Microsoft Logo"
+            style="width: 20px; height: 20px"
+          />
+          Microsoft Azure
+        </div>
+      </button>
+      <div class="option-divider-grid">
+        <div class="line line-left"></div>
+        <span class="or-text">Or</span>
+        <div class="line line-right"></div>
+      </div>
+    </div>
     <div class="form-details">
       <label for="fullName">Full Name</label>
       <input
@@ -43,40 +69,16 @@
         <i [class]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
       </div>
     </div>
-
-    <div class="bottom-display">
-      <button type="submit" [disabled]="isButtonLoading">
-        <span *ngIf="!isButtonLoading">Sign Up</span>
-        <span *ngIf="isButtonLoading" class="button-loader">
-          <span class="spinner"></span>
-          Signing up...
-        </span>
-      </button>
-      <a class="create-link" [routerLink]="['/start/login']"
-        >Already have an account? Sign in</a
-      >
-      <div class="option-divider-grid">
-        <div class="line line-left"></div>
-        <span class="or-text">Or</span>
-        <div class="line line-right"></div>
-      </div>
-      <button type="button">
-        <img
-          src="/images/Symbol.png"
-          alt="Microsoft Logo"
-          style="width: 20px; height: 20px"
-        />
-        Google
-      </button>
-      <button type="button">
-        <img
-          src="/images/microsoft.png"
-          alt="Microsoft Logo"
-          style="width: 20px; height: 20px"
-        />
-        Microsoft Azure
-      </button>
-    </div>
+    <button type="submit" [disabled]="isButtonLoading">
+      <span *ngIf="!isButtonLoading">Sign Up</span>
+      <span *ngIf="isButtonLoading" class="button-loader">
+        <span class="spinner"></span>
+        Signing up...
+      </span>
+    </button>
+    <a class="create-link" [routerLink]="['/start/login']"
+      >Already have an account?<span style="color: #3e1f69"> Sign in</span></a
+    >
   </form>
 </div>
 

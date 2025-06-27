@@ -4,7 +4,6 @@ import { Observable, of } from 'rxjs';
 import { switchMap, catchError, tap, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
-// Updated to include both possible response formats
 interface PaymentResponse {
   status?: boolean | string;
   success?: boolean;
@@ -14,6 +13,7 @@ interface PaymentResponse {
         authorization_url?: string;
         access_code?: string;
         reference?: string;
+        link?: string; // For Flutterwave
       }
     | string
     | null;
@@ -30,11 +30,6 @@ export class PaymentService {
 
   /**
    * Initiates a payment transaction with either Paystack or Flutterwave.
-   *
-   * @param gateway The payment gateway to use ('paystack' or 'flutterwave').
-   * @param packageId The ID of the package being purchased.
-   * @param token The user's authentication token.
-   * @returns An Observable containing the payment initiation response.
    */
   initiatePayment(
     gateway: 'paystack' | 'flutterwave',
@@ -49,28 +44,19 @@ export class PaymentService {
       ? this.apiUrl.slice(0, -1)
       : this.apiUrl;
     const url = `${baseUrl}/payment/${gateway}`;
-    const body = {
-      id: packageId,
-    };
 
-    // console.log('Initiate Payment Request Body:', JSON.stringify(body)); // Log the request body
-
+    // Keep original format - send packageId directly as it was working
     return this.http.post<PaymentResponse>(url, packageId, { headers }).pipe(
       tap((response) =>
         console.log('Initiate Payment Success Response:', response)
-      ), // Log successful responses
+      ),
       catchError((error: any) => {
-        // Use 'any' to capture the full error object
-        // console.error(`Error initiating payment with ${gateway}:`, error);
-        // console.error('Full Error Response:', error); // Log the entire error object
-        // console.error(
-        //   'Backend Validation Errors (if any):',
-        //   error?.error?.errors
-        // ); // Keep logging validation errors
-
         return of({
-          status: false, // Assuming your PaymentResponse has a 'status' property
-          message: `Failed to initiate payment with ${gateway}`,
+          status: false,
+          success: false,
+          message: `Failed to initiate payment with ${gateway}: ${
+            error.message || 'Unknown error'
+          }`,
           data: null,
           errors: [error.message || 'Unknown error'],
         });
@@ -80,10 +66,6 @@ export class PaymentService {
 
   /**
    * Verifies a payment transaction using the transaction reference.
-   *
-   * @param transactionRef The transaction reference ID.
-   * @param token The user's authentication token.
-   * @returns An Observable containing the payment verification response.
    */
   verifyPayment(
     transactionRef: string,
@@ -92,23 +74,18 @@ export class PaymentService {
     let cleanRef = transactionRef?.trim();
 
     if (!cleanRef) {
-      // console.error('Invalid transaction reference:', transactionRef);
       return of({
         status: false,
+        success: false,
         message: 'Invalid transaction reference',
         data: null,
         errors: ['Invalid transaction reference'],
       });
     }
 
-    // Additional cleaning in case the reference still contains duplicates
     if (cleanRef.includes(',')) {
       cleanRef = cleanRef.split(',')[0].trim();
-      // console.log('Payment service cleaned duplicate reference:', cleanRef);
     }
-
-    // console.log('Original transactionRef:', transactionRef);
-    // console.log('Cleaned transactionRef:', cleanRef);
 
     const baseUrl = this.apiUrl.endsWith('/')
       ? this.apiUrl.slice(0, -1)
@@ -119,11 +96,6 @@ export class PaymentService {
       'Content-Type': 'application/json',
     });
 
-    // console.log('Payment verification request:', {
-    //   url: verificationUrl,
-    //   transactionRef: cleanRef,
-    //   token: token ? 'Present' : 'Missing',
-    // });
     return this.http
       .post<PaymentResponse>(verificationUrl, {}, { headers })
       .pipe(
@@ -131,10 +103,12 @@ export class PaymentService {
           console.log('Payment verification response:', response)
         ),
         catchError((error) => {
-          // console.error('Error verifying payment:', error);
           return of({
             status: false,
-            message: 'Payment verification failed',
+            success: false,
+            message: `Payment verification failed: ${
+              error.message || 'Unknown error'
+            }`,
             data: null,
             errors: [error.message || 'Unknown error'],
           });
@@ -143,11 +117,7 @@ export class PaymentService {
   }
 
   /**
-   * Creates a new subscription record after successful payment verification.
-   *
-   * @param packageId The ID of the package.
-   * @param token The user's authentication token.
-   * @returns An Observable containing the new subscription response.
+   * Creates a new subscription after payment verification.
    */
   newSubscription(
     packageId: number,
@@ -162,13 +132,8 @@ export class PaymentService {
       'Content-Type': 'application/json',
     });
 
-    // console.log('New subscription request:', {
-    //   url: subscriptionUrl,
-    //   packageId,
-    //   token: token ? 'Present' : 'Missing',
-    // });
+    // Keep original format - send packageId directly like the original code
 
-    // Modified to handle plain text response
     return this.http
       .post(subscriptionUrl, packageId, {
         headers,
@@ -177,21 +142,20 @@ export class PaymentService {
       })
       .pipe(
         map((response: HttpResponse<string>) => {
-          // console.log('Raw subscription response:', response.body);
-          // Convert the text response to our PaymentResponse format
           return {
             status: response.ok,
-            success: response.ok, // Include both status and success for compatibility
+            success: response.ok,
             message: response.body || 'Subscription created successfully',
             data: null,
           } as PaymentResponse;
         }),
         catchError((error) => {
-          // console.error('Error creating new subscription:', error);
           return of({
             status: false,
             success: false,
-            message: 'Failed to create new subscription',
+            message: `Failed to create new subscription: ${
+              error.message || 'Unknown error'
+            }`,
             data: null,
             errors: [error.message || 'Unknown error'],
           });
@@ -200,32 +164,22 @@ export class PaymentService {
   }
 
   /**
-   * Combines payment verification and new subscription creation into a single operation.
-   *
-   * @param transactionRef The transaction reference ID.
-   * @param token The user's authentication token.
-   * @param packageId The ID of the package.
-   * @returns An Observable containing the result of the combined operation.
+   * Verifies payment and creates subscription in sequence.
    */
   verifyAndCreateSubscription(
     transactionRef: string,
     token: string,
     packageId: number
   ): Observable<PaymentResponse> {
-    // console.log('Starting verifyAndCreateSubscription:', {
-    //   transactionRef,
-    //   packageId,
-    //   token: token ? 'Present' : 'Missing',
-    // });
     return this.verifyPayment(transactionRef, token).pipe(
+      tap((verificationResponse) => {
+        console.log('Verification response received:', verificationResponse);
+      }),
       switchMap((verificationResponse: PaymentResponse) => {
-        // Check for both success and status fields to handle inconsistent backend responses
         const isVerified =
           verificationResponse.success === true ||
           verificationResponse.status === true ||
           verificationResponse.status === 'true';
-
-        // console.log('Is payment verified?', isVerified, verificationResponse);
 
         if (isVerified) {
           return this.newSubscription(packageId, token);
@@ -233,20 +187,25 @@ export class PaymentService {
           return of({
             status: false,
             success: false,
-            message: 'Payment verification failed',
+            message:
+              verificationResponse.message || 'Payment verification failed',
             data: null,
             errors: verificationResponse.errors || [
-              'Unknown verification error',
+              'Payment verification failed',
             ],
           });
         }
       }),
+      tap((finalResponse) => {
+        console.log('Final response:', finalResponse);
+      }),
       catchError((error) => {
-        // console.error('Error in verifyAndCreateSubscription:', error);
         return of({
           status: false,
           success: false,
-          message: 'Error processing payment and subscription',
+          message: `Error processing payment and subscription: ${
+            error.message || 'Unknown error'
+          }`,
           data: null,
           errors: [error.message || 'Unknown error'],
         });

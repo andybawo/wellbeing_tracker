@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import {
@@ -59,7 +60,8 @@ export class VerifyComponent {
   constructor(
     private authService: AuthService,
     private dataService: DataService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -169,6 +171,9 @@ export class VerifyComponent {
             this.alertType = 'success';
             this.dataService.setHasRegisteredUser(true); // Mark user as verified
 
+            localStorage.removeItem('signupUserData');
+            localStorage.removeItem('registrationCompanyData');
+
             // Navigate to the subscription page
             this.router.navigate(['/subscription']);
           },
@@ -193,5 +198,8 @@ export class VerifyComponent {
       this.alertType = 'error';
       // console.log('Verification form is invalid');
     }
+  }
+  goBack(): void {
+    this.location.back();
   }
 }

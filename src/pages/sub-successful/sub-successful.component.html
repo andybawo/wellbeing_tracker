@@ -1,27 +1,56 @@
 <div class="subscription">
-  <div *ngIf="isLoading" class="modal-load">
-    <div class="loading-bar-wrapper">
-      <div class="loading-bar"></div>
+  <div class="subscription">
+    <div *ngIf="isLoading" class="modal-load">
+      <div class="loading-bar-wrapper">
+        <div class="loading-bar"></div>
+      </div>
+      <div class="load-title">
+        <h1>
+          {{
+            isFreeTrialSuccess
+              ? "Setting up your free trial"
+              : "Completing payment"
+          }}
+        </h1>
+        <h4>Hang on, this may take a few seconds</h4>
+      </div>
     </div>
-    <div class="load-title">
-      <h1>Completing payment</h1>
-      <h4>Hang on, this may take a few seconds</h4>
+
+    <div *ngIf="isLoading" class="loading-indicator">
+      {{
+        isFreeTrialSuccess
+          ? "Activating your free trial... Please wait."
+          : "Verifying your payment... Please wait."
+      }}
     </div>
-  </div>
-  <div *ngIf="isLoading" class="loading-indicator">
-    Verifying your payment... Please wait.
-  </div>
-  <div *ngIf="isSuccess && !isLoading" class="success-message">
-    <h1>Subscription Successful</h1>
-    <h4>You will be redirected to the integration page shortly....</h4>
-  </div>
-  <div
-    *ngIf="!isLoading && !isSuccess && failureMessage"
-    class="failure-message"
-  >
-    <h1>Subscription Failed</h1>
-    <h4>
-      {{ failureMessage }}
-    </h4>
+
+    <div *ngIf="isSuccess && !isLoading" class="success-message">
+      <h1>
+        {{
+          isFreeTrialSuccess
+            ? "Free Trial Activated!"
+            : "Subscription Successful"
+        }}
+      </h1>
+      <h4>
+        {{
+          isFreeTrialSuccess
+            ? "Your free trial has been successfully activated. You will be redirected to the integration page shortly...."
+            : "You will be redirected to the integration page shortly...."
+        }}
+      </h4>
+    </div>
+
+    <div
+      *ngIf="!isLoading && !isSuccess && failureMessage"
+      class="failure-message"
+    >
+      <h1>
+        {{
+          isFreeTrialSuccess ? "Free Trial Setup Failed" : "Subscription Failed"
+        }}
+      </h1>
+      <h4>{{ failureMessage }}</h4>
+    </div>
   </div>
 </div>

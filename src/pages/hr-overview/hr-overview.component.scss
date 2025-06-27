@@ -337,6 +337,11 @@ $success: #6e9f06;
     padding: 16px;
     color: white;
 
+    ul {
+      position: relative;
+      right: 20px;
+    }
+
     li {
       list-style: none;
       top: 8px;

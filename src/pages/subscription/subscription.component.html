@@ -17,20 +17,25 @@
     <div class="packages-container">
       <div
         class="packages"
-        *ngFor="let package of monthlyPackages"
-        [class.selected]="selectedPackage === package.name?.toLowerCase()"
-        (click)="selectPackageDiv(package.name?.toLowerCase())"
+        *ngFor="let pkg of transformedMonthlyPackages"
+        [class.selected]="selectedPackage === pkg.name?.toLowerCase()"
+        (click)="selectPackageDiv(pkg.name?.toLowerCase())"
       >
-        <span>{{ package.name }}</span>
+        <span>{{ pkg.displayName || pkg.name }}</span>
         <div class="package-details">
           <h1>
-            {{ package.price | currency : "NGN" : "symbol-narrow" : "1.2-2" }}
+            {{
+              pkg.displayPrice
+                ? pkg.displayPrice
+                : (pkg.price | currency : "NGN" : "symbol-narrow" : "1.2-2")
+            }}
           </h1>
-          <h4 *ngIf="package.durationInDays">
-            {{ package.durationInDays }} days
+          <h4 *ngIf="pkg.customText" class="custom-text">
+            {{ pkg.customText }}
           </h4>
+
           <ul>
-            <li *ngFor="let feature of package.features">
+            <li *ngFor="let feature of pkg.features">
               <img src="/images/tick-square.png" alt="" />{{ feature }}
             </li>
           </ul>
@@ -38,8 +43,8 @@
         <div class="sub-button">
           <button
             class="select-plan"
-            [class.active]="selectedPackage === package.name?.toLowerCase()"
-            (click)="selectPlan(package.name?.toLowerCase())"
+            [class.active]="selectedPackage === pkg.name?.toLowerCase()"
+            (click)="selectPlan(pkg.name?.toLowerCase())"
           >
             Select Plan
           </button>
@@ -48,13 +53,14 @@
     </div>
   </ng-container>
 
+  <!-- Loading states -->
   <div *ngIf="isLoading" class="overlay" (click)="closeModal()"></div>
   <div class="modal-load" *ngIf="isLoading">
     <div class="loading-bar-wrapper">
       <div class="loading-bar"></div>
     </div>
     <div class="load-title">
-      <h1>Loading Packages</h1>
+      <h1>Loading packages</h1>
       <h4>Hang on this may take a few seconds</h4>
     </div>
   </div>
@@ -70,6 +76,19 @@
     </div>
   </div>
 
+  <!-- New loading state for free trial -->
+  <div *ngIf="isLoadingFreeTrial" class="overlay" (click)="closeModal()"></div>
+  <div class="modal-load" *ngIf="isLoadingFreeTrial" style="z-index: 9999">
+    <div class="loading-bar-wrapper">
+      <div class="loading-bar"></div>
+    </div>
+    <div class="load-title">
+      <h1>Creating Free Trial</h1>
+      <h4>Setting up your free trial subscription...</h4>
+    </div>
+  </div>
+
+  <!-- Payment modal (only shows for paidpkgs) -->
   <div *ngIf="isModalOpen" class="overlay" (click)="closeModal()"></div>
   <app-modal *ngIf="isModalOpen" (close)="closeModal()">
     <div class="modal-pay">
@@ -105,20 +124,25 @@
     <div class="packages-container">
       <div
         class="packages"
-        *ngFor="let package of yearlyPackages"
-        [class.selected]="selectedPackage === package.name?.toLowerCase()"
-        (click)="selectPackageDiv(package.name?.toLowerCase())"
+        *ngFor="let pkg of transformedYearlyPackages"
+        [class.selected]="selectedPackage === pkg.name?.toLowerCase()"
+        (click)="selectPackageDiv(pkg.name?.toLowerCase())"
       >
-        <span>{{ package.name }}</span>
+        <span>{{ pkg.displayName || pkg.name }}</span>
         <div class="package-details">
           <h1>
-            {{ package.price | currency : "NGN" : "symbol-narrow" : "1.2-2" }}
+            {{
+              pkg.displayPrice
+                ? pkg.displayPrice
+                : (pkg.price | currency : "NGN" : "symbol-narrow" : "1.2-2")
+            }}
           </h1>
-          <h4 *ngIf="package.durationInDays">
-            {{ package.durationInDays }} days
+          <h4 *ngIf="pkg.customText" class="custom-text">
+            {{ pkg.customText }}
           </h4>
+
           <ul>
-            <li *ngFor="let feature of package.features">
+            <li *ngFor="let feature of pkg.features">
               <img src="/images/tick-square.png" alt="" />{{ feature }}
             </li>
           </ul>
@@ -126,8 +150,8 @@
         <div class="sub-button">
           <button
             class="select-plan"
-            [class.active]="selectedPackage === package.name?.toLowerCase()"
-            (click)="selectPlan(package.name?.toLowerCase())"
+            [class.active]="selectedPackage === pkg.name?.toLowerCase()"
+            (click)="selectPlan(pkg.name?.toLowerCase())"
           >
             Select Plan
           </button>

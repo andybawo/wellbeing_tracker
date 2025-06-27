@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormControl,
@@ -11,6 +11,8 @@ import { DataService } from '../../app/core/services/data.service';
 import { LocationService } from '../../app/core/services/location.service';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../app/shared/shared.module';
+import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-registration',
@@ -18,7 +20,7 @@ import { SharedModule } from '../../app/shared/shared.module';
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit, AfterViewInit, OnDestroy {
   companyForm: FormGroup = new FormGroup({
     companyName: new FormControl('', [Validators.required]),
     companyType: new FormControl('', [Validators.required]),
@@ -26,46 +28,156 @@ export class RegistrationComponent {
     country: new FormControl('', [Validators.required]),
     state: new FormControl('', [Validators.required]),
   });
+
   countries: string[] = [];
   states: string[] = [];
   isLoading: boolean = false;
-  showAlert: boolean = false; // Control alert visibility
-  alertMessage: string = ''; // Alert message
-  alertType: 'success' | 'error' = 'success'; // Alert typ
+  showAlert: boolean = false;
+  alertMessage: string = '';
+  alertType: 'success' | 'error' = 'success';
 
-  closeModal() {
-    this.isLoading = false;
-  }
+  private formSubscription?: Subscription;
+  private countrySubscription?: Subscription;
+  private readonly STORAGE_KEY = 'registrationCompanyData';
 
   constructor(
     private authService: AuthService,
     private dataService: DataService,
     private router: Router,
     private locationService: LocationService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    this.loadCountries();
+    this.loadSavedCompanyData();
+  }
+
+  ngAfterViewInit(): void {
+    // Save form data as user types (debounced)
+    this.formSubscription = this.companyForm.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe((value) => {
+        this.saveCompanyData(value);
+      });
+  }
+
+  ngOnDestroy(): void {
+    // Clean up subscriptions
+    if (this.formSubscription) {
+      this.formSubscription.unsubscribe();
+    }
+    if (this.countrySubscription) {
+      this.countrySubscription.unsubscribe();
+    }
+  }
+
+  private loadCountries(): void {
     this.locationService.getCountries().subscribe((countries) => {
       this.countries = countries;
-    });
 
-    this.companyForm
+      // After countries are loaded, set up country change subscription
+      this.setupCountryChangeSubscription();
+
+      // If there's saved data with a country, load states for that country
+      const savedData = this.getSavedCompanyData();
+      if (savedData?.country) {
+        this.loadStatesForCountry(savedData.country);
+      }
+    });
+  }
+
+  private setupCountryChangeSubscription(): void {
+    this.countrySubscription = this.companyForm
       .get('country')
       ?.valueChanges.subscribe((selectedCountry) => {
+        // Only clear state if this is a user-initiated change, not from loading saved data
+        const currentState = this.companyForm.get('state')?.value;
         this.companyForm.get('state')?.setValue('');
         this.states = [];
+
         if (selectedCountry) {
-          this.locationService
-            .getStatesByCountry(selectedCountry)
-            .subscribe((states) => {
-              this.states = states;
-            });
+          this.loadStatesForCountry(selectedCountry);
         }
       });
   }
 
+  private loadStatesForCountry(country: string): void {
+    this.locationService.getStatesByCountry(country).subscribe((states) => {
+      this.states = states;
+
+      // If there's saved state data, restore it after states are loaded
+      const savedData = this.getSavedCompanyData();
+      if (savedData?.state && states.includes(savedData.state)) {
+        this.companyForm
+          .get('state')
+          ?.setValue(savedData.state, { emitEvent: false });
+      }
+    });
+  }
+
+  private getSavedCompanyData(): any {
+    try {
+      const savedData = localStorage.getItem(this.STORAGE_KEY);
+      return savedData ? JSON.parse(savedData) : null;
+    } catch (error) {
+      console.error('Error getting saved company data:', error);
+      return null;
+    }
+  }
+
+  private loadSavedCompanyData(): void {
+    try {
+      const savedCompanyData = localStorage.getItem(this.STORAGE_KEY);
+      if (savedCompanyData) {
+        const companyData = JSON.parse(savedCompanyData);
+        // Load all company data
+        this.companyForm.patchValue(
+          {
+            companyName: companyData.companyName || '',
+            companyType: companyData.companyType || '',
+            companyAddress: companyData.companyAddress || '',
+            country: companyData.country || '',
+            state: companyData.state || '',
+          },
+          { emitEvent: false }
+        );
+      }
+    } catch (error) {
+      console.error('Error loading saved company data:', error);
+      localStorage.removeItem(this.STORAGE_KEY);
+    }
+  }
+
+  private saveCompanyData(companyData: any): void {
+    try {
+      // Save all company form data (no sensitive info to exclude here)
+      if (
+        companyData.companyName ||
+        companyData.companyType ||
+        companyData.companyAddress ||
+        companyData.country ||
+        companyData.state
+      ) {
+        const dataToSave = {
+          companyName: companyData.companyName || '',
+          companyType: companyData.companyType || '',
+          companyAddress: companyData.companyAddress || '',
+          country: companyData.country || '',
+          state: companyData.state || '',
+        };
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(dataToSave));
+      }
+    } catch (error) {
+      console.error('Error saving company data:', error);
+    }
+  }
+
+  closeModal() {
+    this.isLoading = false;
+  }
+
   onCompanyRegister() {
-    // console.log('Company Form Value:', this.companyForm.value);
     if (this.companyForm.invalid) {
-      // console.log('Company form is invalid');
       this.showAlert = true;
       this.alertMessage = 'Please fill in all company details correctly.';
       this.alertType = 'error';
@@ -96,12 +208,18 @@ export class RegistrationComponent {
         this.alertMessage =
           'Company details saved. Please check your email to verify your account.';
         this.alertType = 'success';
+
         if (res && res.data) {
           this.dataService.setAuthToken(res.data);
-        } else {
         }
 
-        this.router.navigate(['/start/verify']);
+        // Clear all temporary data after successful registration
+        // localStorage.removeItem('signupUserData');
+        // localStorage.removeItem(this.STORAGE_KEY);
+
+        setTimeout(() => {
+          this.router.navigate(['/start/verify']);
+        }, 1000);
       },
       error: (err) => {
         this.isLoading = false;
@@ -112,5 +230,10 @@ export class RegistrationComponent {
         this.alertType = 'error';
       },
     });
+  }
+
+  // Method to clear saved data if needed
+  public clearSavedData(): void {
+    localStorage.removeItem(this.STORAGE_KEY);
   }
 }

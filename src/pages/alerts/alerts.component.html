@@ -17,22 +17,86 @@
 
 <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <div class="modal-header">
-      <h3>Create Custom Alert</h3>
-      <h4>Descibe what you want to monitor</h4>
-    </div>
-    <div class="modal-body">
-      <h4>Input Alert Type</h4>
-      <textarea
-        name=""
-        id=""
-        placeholder="E.g Alert me when an employee sentiment drops below 50%"
-      ></textarea>
-    </div>
-    <div class="modal-footer">
-      <button (click)="closeModal()">Cancel</button>
-      <button>Generate</button>
-    </div>
+    <!-- Step 1: Create Custom Alert -->
+    <ng-container *ngIf="modalStep === 'create'">
+      <div class="modal-header">
+        <h3>Create Custom Alert</h3>
+        <h4>Describe what you want to monitor</h4>
+      </div>
+      <div class="modal-body">
+        <h4>Input Alert Type</h4>
+        <textarea
+          [(ngModel)]="alertDescription"
+          name="alertDescription"
+          id="alertDescription"
+          placeholder="E.g. Alert me when employee sentiment in the finance team drops below average for more than 3 days"
+        ></textarea>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()">Cancel</button>
+        <button
+          (click)="goToConfigureStep()"
+          [disabled]="!alertDescription.trim()"
+        >
+          Generate
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- Step 2: Configure Alert -->
+    <ng-container *ngIf="modalStep === 'configure'">
+      <div class="modal-header-alert">
+        <h3>Finance Sentiment Drop</h3>
+        <button class="close-btn" (click)="closeModal()">×</button>
+      </div>
+      <div class="modal-body-alert">
+        <h4>Trigger</h4>
+        <textarea name="" id=""></textarea>
+
+        <div class="category">
+          <label>Category:</label>
+          <p>Communication</p>
+        </div>
+
+        <div class="notification">
+          <label>Notification:</label>
+          <div class="checkbox-group">
+            <div class="alert-option">
+              <input type="checkbox" />
+              <h5>In App</h5>
+            </div>
+            <div class="alert-option">
+              <input type="checkbox" />
+              <h5>Email</h5>
+            </div>
+            <div class="alert-option">
+              <input type="checkbox" />
+              <h5>SMS</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="threshold">
+          <label>Threshold:</label>
+          <div class="threshold-group">
+            <select>
+              <option>Below</option>
+              <option>Above</option>
+            </select>
+            <select>
+              <option>30</option>
+              <option>40</option>
+              <option>50</option>
+              <option>60</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer-alert">
+        <button (click)="goBackToCreateStep()">Back</button>
+        <button class="primary-btn" (click)="activateAlert()">Activate</button>
+      </div>
+    </ng-container>
   </div>
 </div>
 

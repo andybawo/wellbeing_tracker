@@ -1,39 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { IntegrationService } from '../../app/core/services/integration.service';
-import { FormsModule } from '@angular/forms';
-import { DataService } from '../../app/core/services/data.service';
-import { SharedModule } from '../../app/shared/shared.module';
-import { Router } from '@angular/router';
 import {
   IntegrationModalComponent,
   IntegrationCredentials,
   IntegrationModalConfig,
 } from '../../app/shared/integration-modal/integration-modal.component';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../../app/shared/shared.module';
+import { IntegrationService } from '../../app/core/services/integration.service';
+import { DataService } from '../../app/core/services/data.service';
 
 @Component({
-  selector: 'app-integration',
+  selector: 'app-integrate-dash',
   imports: [
+    IntegrationModalComponent,
     CommonModule,
     RouterModule,
-    FormsModule,
     SharedModule,
-    IntegrationModalComponent,
   ],
-  templateUrl: './integration.component.html',
-  styleUrl: './integration.component.scss',
+  templateUrl: './integrate-dash.component.html',
+  styleUrl: './integrate-dash.component.scss',
 })
-export class IntegrationComponent implements OnInit {
-  selectedModalContent = '';
+export class IntegrateDashComponent implements OnInit {
   isModalOpen = false;
-  isLoading = false;
-  shouldOpenModal = false;
+  selectedModalContent = '';
+  isButtonLoading = false;
   showAlert: boolean = false;
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
-  isButtonLoading: boolean = false;
+  modalConfig: IntegrationModalConfig = {};
 
+  // Track integration status
   integratedTools = {
     jira: false,
     slack: false,
@@ -43,49 +40,17 @@ export class IntegrationComponent implements OnInit {
     planner: false,
   };
 
-  // Modal configuration
-  modalConfig: IntegrationModalConfig = {
-    showSelectDropdowns: true,
-    showApiKeyFields: true,
-    availableTools: {
-      hr: ['seamless'],
-      communication: ['slack', 'outlook', 'teams'],
-      project: ['jira', 'planner'],
-    },
-  };
-
   constructor(
     private integrationService: IntegrationService,
-    private dataService: DataService,
-    private router: Router
+    private dataService: DataService
   ) {}
 
   ngOnInit() {
     this.loadIntegrationStatus();
   }
 
-  openModal(content: string) {
-    this.selectedModalContent = content;
-    this.isLoading = true;
-    this.shouldOpenModal = true;
-
-    setTimeout(() => {
-      if (this.shouldOpenModal) {
-        this.isLoading = false;
-        this.isModalOpen = true;
-      }
-    }, 3000);
-  }
-
   onCloseModal() {
-    this.isLoading = false;
     this.isModalOpen = false;
-    this.shouldOpenModal = false;
-  }
-
-  onToolSelectionChange(event: { type: string; tool: string }) {
-    // Handle tool selection changes if needed
-    console.log('Tool selection changed:', event);
   }
 
   onConnectTool(event: {
@@ -132,6 +97,7 @@ export class IntegrationComponent implements OnInit {
     }
 
     switch (`${toolType}-${toolName}`) {
+      case 'hrm-seamless':
       case 'hr-seamless':
         this.connectSeamlessHR(credentials, token);
         break;
@@ -265,26 +231,108 @@ export class IntegrationComponent implements OnInit {
       localStorage.getItem('slack_integrated') === 'true';
     this.integratedTools.seamlessHR =
       localStorage.getItem('seamlessHR_integrated') === 'true';
+    this.integratedTools.outlook =
+      localStorage.getItem('outlook_integrated') === 'true';
+    this.integratedTools.teams =
+      localStorage.getItem('teams_integrated') === 'true';
+    this.integratedTools.planner =
+      localStorage.getItem('planner_integrated') === 'true';
   }
 
-  getIntegratedHRTools(): string[] {
-    const tools: string[] = [];
-    if (this.integratedTools.seamlessHR) tools.push('Seamless HR');
-    return tools;
+  // Helper methods to check integration status for template
+  isToolIntegrated(toolName: string): boolean {
+    return this.integratedTools[toolName as keyof typeof this.integratedTools];
   }
 
-  getIntegratedCommunicationTools(): string[] {
-    const tools: string[] = [];
-    if (this.integratedTools.slack) tools.push('Slack');
-    if (this.integratedTools.outlook) tools.push('Outlook');
-    if (this.integratedTools.teams) tools.push('Teams');
-    return tools;
+  // Method to disconnect a tool
+  disconnectTool(toolName: string) {
+    const toolKey = toolName as keyof typeof this.integratedTools;
+    localStorage.removeItem(`${toolKey}_integrated`);
+    this.integratedTools[toolKey] = false;
+    this.showAlert = true;
+    this.alertMessage = `${toolName} has been disconnected`;
+    this.alertType = 'success';
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 3000);
   }
 
-  getIntegratedProjectTools(): string[] {
-    const tools: string[] = [];
-    if (this.integratedTools.jira) tools.push('Jira');
-    if (this.integratedTools.planner) tools.push('Planner');
-    return tools;
+  // Specific methods for each tool
+  openSeamlessModal() {
+    this.selectedModalContent = 'hrm';
+    this.modalConfig = {
+      showSelectDropdowns: false,
+      showApiKeyFields: true,
+      preSelectedTool: {
+        type: 'hrm',
+        tool: 'seamless',
+      },
+    };
+    this.isModalOpen = true;
+  }
+
+  openSlackModal() {
+    this.selectedModalContent = 'communication';
+    this.modalConfig = {
+      showSelectDropdowns: false,
+      showApiKeyFields: true,
+      preSelectedTool: {
+        type: 'communication',
+        tool: 'slack',
+      },
+    };
+    this.isModalOpen = true;
+  }
+
+  openJiraModal() {
+    this.selectedModalContent = 'project';
+    this.modalConfig = {
+      showSelectDropdowns: false,
+      showApiKeyFields: true,
+      preSelectedTool: {
+        type: 'project',
+        tool: 'jira',
+      },
+    };
+    this.isModalOpen = true;
+  }
+
+  openPlannerModal() {
+    this.selectedModalContent = 'project';
+    this.modalConfig = {
+      showSelectDropdowns: false,
+      showApiKeyFields: true,
+      preSelectedTool: {
+        type: 'project',
+        tool: 'planner',
+      },
+    };
+    this.isModalOpen = true;
+  }
+
+  openTeamsModal() {
+    this.selectedModalContent = 'communication';
+    this.modalConfig = {
+      showSelectDropdowns: false,
+      showApiKeyFields: true,
+      preSelectedTool: {
+        type: 'communication',
+        tool: 'teams',
+      },
+    };
+    this.isModalOpen = true;
+  }
+
+  openOutlookModal() {
+    this.selectedModalContent = 'communication';
+    this.modalConfig = {
+      showSelectDropdowns: false,
+      showApiKeyFields: true,
+      preSelectedTool: {
+        type: 'communication',
+        tool: 'outlook',
+      },
+    };
+    this.isModalOpen = true;
   }
 }

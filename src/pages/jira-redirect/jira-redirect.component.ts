@@ -27,11 +27,7 @@ export class JiraRedirectComponent implements OnInit {
       const code = params['code'];
       const state = params['state'];
 
-      // console.log('Received code:', code);
-      // console.log('Received state:', state);
-
       if (!code) {
-        // console.error('Code is missing from the redirect URL');
         this.error = true;
         this.errorMessage = 'Authorization code is missing';
         this.processing = false;
@@ -47,25 +43,21 @@ export class JiraRedirectComponent implements OnInit {
           .exchangeJiraCodeForToken(code, state, token)
           .subscribe({
             next: (response) => {
-              // console.log('Jira OAuth successful', response);
               this.success = true;
+
+              localStorage.setItem('jira_integrated', 'true');
               setTimeout(() => {
                 this.router.navigate(['/subscription/integration']);
               }, 3000);
-              // Redirect to a success page
-              // Handle success (e.g., store tokens)
             },
             error: (error) => {
-              // console.error('Jira OAuth failed', error);
               this.error = true;
               setTimeout(() => {
-                this.router.navigate(['/subscription/integration']); // Redirect to a failure page
+                this.router.navigate(['/subscription/integration']);
               }, 3000);
-              // Handle error (e.g., show an error message)
             },
           });
       } else {
-        // console.error('Invalid state or missing code');
         this.router.navigate(['/subscription/integration']); // Redirect to a failure page
       }
     });

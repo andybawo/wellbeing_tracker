@@ -35,7 +35,7 @@
   margin-top: 10px;
   display: flex;
   width: 100%;
-  height: fit-content;
+  // height: fit-content;
   background-color: #f0eeee;
   flex-direction: row;
   gap: 10px;
@@ -46,6 +46,11 @@
   display: flex;
   width: 60%;
   gap: 10px;
+  flex: 1;
+}
+
+.tool-box:last-child {
+  flex-grow: 1;
 }
 
 .right-side {
@@ -151,11 +156,11 @@
 .alerts-tab {
   background-color: white;
   border-radius: 5px;
-  height: fit-content;
   padding: 0 20px 16px 20px;
   display: flex;
   flex-direction: column;
   min-height: 375px;
+  flex-grow: 1;
 }
 .alert-tab-content {
   height: 304px;
@@ -617,8 +622,12 @@ li {
   }
 
   .tool-box {
-    max-height: 265px;
+    height: fit-content;
     padding: 10px 15px 10px 15px;
+  }
+
+  .tool-box:last-child {
+    flex-grow: 1;
   }
 
   .comm-dets {

@@ -10,7 +10,6 @@ import { AuthService } from '../../app/core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../app/shared/shared.module';
 import { DataService } from '../../app/core/services/data.service';
-
 @Component({
   selector: 'app-login',
   imports: [RouterModule, ReactiveFormsModule, CommonModule, SharedModule],
@@ -22,7 +21,6 @@ export class LoginComponent {
     emailAddress: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
-
   isLoading: boolean = false;
   isButtonLoading: boolean = false;
   showAlert: boolean = false;
@@ -38,12 +36,10 @@ export class LoginComponent {
       this.router.navigate(['/home']);
     }
   }
-
   onLogin() {
     if (this.loginForm.valid) {
       this.isButtonLoading = true;
       const loginData = this.loginForm.value;
-
       this.authservice.loginUser(loginData).subscribe({
         next: (res) => {
           this.isButtonLoading = false;
@@ -51,13 +47,15 @@ export class LoginComponent {
           if (token) {
             this.dataService.clearData();
             this.authservice.saveToken(token);
+            const storedUser = localStorage.getItem('userData');
+            if (storedUser) {
+              this.dataService.setUserData(JSON.parse(storedUser));
+            }
             this.showAlert = true;
             this.alertMessage = 'Login successful! Redirecting...';
             this.alertType = 'success';
-
             const redirectUrl = localStorage.getItem('redirectUrl') || '/home';
             localStorage.removeItem('redirectUrl');
-
             // Small delay for better UX
             setTimeout(() => {
               this.router.navigate([redirectUrl]);
@@ -66,7 +64,6 @@ export class LoginComponent {
         },
         error: (err) => {
           this.isButtonLoading = false;
-
           if (
             err.error &&
             err.error.message &&
@@ -77,11 +74,9 @@ export class LoginComponent {
                 emailAddress: err.error.data,
               });
             }
-
             this.showAlert = true;
             this.alertMessage = 'Please verify your email to continue.';
             this.alertType = 'error';
-
             setTimeout(() => {
               this.showAlert = false;
               this.router.navigate(['/start/verify']);
@@ -96,13 +91,11 @@ export class LoginComponent {
               this.showAlert = false;
             }, 5000);
           }
-
           console.error('Login error:', err);
         },
       });
     }
   }
-
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }

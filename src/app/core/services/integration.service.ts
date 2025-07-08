@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { v4 as uuidv4 } from 'uuid';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -30,10 +32,6 @@ export class IntegrationService {
     'https://cultural-health.azurewebsites.net/api/Slack/connect/slack/key';
 
   connectSlackwithApi(apiKey: string, jwtToken: string) {
-    // console.log('API Key being sent:', apiKey);
-    // console.log('API Key length:', apiKey.length);
-    // console.log('JWT Token present:', !!jwtToken);
-
     const headers = new HttpHeaders({
       Authorization: `Bearer ${jwtToken}`,
       'Content-Type': 'application/json',
@@ -41,13 +39,6 @@ export class IntegrationService {
     });
 
     const params = new HttpParams().set('key', apiKey);
-    // console.log('Query params:', params.toString());
-
-    // Fixed: Use slackApiKeyEndpoint instead of jiraApiKeyEndpoint
-    // console.log(
-    //   'Full URL will be:',
-    //   `${this.slackApiKeyEndpoint}?${params.toString()}`
-    // );
 
     return this.http.post(this.slackApiKeyEndpoint, null, { headers, params });
   }
@@ -60,11 +51,6 @@ export class IntegrationService {
     clientSecret: string,
     jwtToken: string
   ) {
-    // console.log('Client ID being sent:', clientId);
-    // console.log('Client ID length:', clientId.length);
-    // console.log('Client Secret present:', !!clientSecret);
-    // console.log('JWT Token present:', !!jwtToken);
-
     const headers = new HttpHeaders({
       Authorization: `Bearer ${jwtToken}`,
       'Content-Type': 'application/json',
@@ -76,44 +62,25 @@ export class IntegrationService {
       clientSecret: clientSecret,
     };
 
-    // console.log('Request Body:', requestBody);
-    // console.log('Full URL will be:', this.seamlessIntegrateEndpoint);
-
     return this.http.post(this.seamlessIntegrateEndpoint, requestBody, {
       headers,
     });
   }
 
   connectJiraWithApiKey(apiKey: string, email: string, jwtToken: string) {
-    // console.log('API Key being sent:', apiKey);
-    // console.log('API Key length:', apiKey.length);
-    // console.log('Email being sent:', email);
-    // console.log('JWT Token present:', !!jwtToken);
-
     const headers = new HttpHeaders({
       Authorization: `Bearer ${jwtToken}`,
       'Content-Type': 'application/json',
       Accept: '*/*',
     });
 
-    // Match the exact parameter names and format used in Swagger
     const params = new HttpParams().set('key', apiKey).set('jiraEmail', email);
 
-    // console.log('Query params:', params.toString());
-    // console.log(
-    //   'Full URL will be:',
-    //   `${this.jiraApiKeyEndpoint}?${params.toString()}`
-    // );
-
-    // Check if URL is too long (browsers have limits around 2048-8192 chars)
     const fullUrl = `${this.jiraApiKeyEndpoint}?${params.toString()}`;
-    // console.log('URL length:', fullUrl.length);
 
     if (fullUrl.length > 2048) {
-      // console.warn('URL might be too long for some browsers/servers');
     }
 
-    // Use the same format as the successful Swagger test
     return this.http.post(this.jiraApiKeyEndpoint, null, { headers, params });
   }
 
@@ -125,17 +92,12 @@ export class IntegrationService {
       this.jiraClientId
     }&scope=${encodeURIComponent(
       this.jiraOAuthScope
-      // )}&redirect_uri=${encodeURIComponent(
-      //   this.jiraOAuthRedirectUri
     )}&state=${state}&response_type=code&prompt=consent`;
     localStorage.setItem('jira_oauth_state', state);
     window.location.href = authorizationUrl;
   }
 
   exchangeJiraCodeForToken(code: string, state: string, jwtToken: string) {
-    // console.log('Code being sent:', code);
-    // console.log('State being sent:', state);
-    // console.log('JWT Token:', jwtToken);
     const headers = new HttpHeaders({
       Authorization: `Bearer ${jwtToken}`,
     });
@@ -158,17 +120,12 @@ export class IntegrationService {
       this.slackClientId
     }&scope=${encodeURIComponent(
       this.slackOAuthScope
-      // )}&redirect_uri=${encodeURIComponent(
-      //   this.slackOAuthRedirectUri
     )}&state=${state}&response_type=code`;
     localStorage.setItem('slack_oauth_state', state);
     window.location.href = authorizationUrl;
   }
 
   exchangeSlackCodeForToken(code: string, state: string, jwtToken: string) {
-    // console.log('Code being sent:', code);
-    // console.log('State being sent:', state);
-    // console.log('JWT Token:', jwtToken);
     const headers = new HttpHeaders({
       Authorization: `Bearer ${jwtToken}`,
     });

@@ -75,10 +75,8 @@ export class RegistrationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.locationService.getCountries().subscribe((countries) => {
       this.countries = countries;
 
-      // After countries are loaded, set up country change subscription
       this.setupCountryChangeSubscription();
 
-      // If there's saved data with a country, load states for that country
       const savedData = this.getSavedCompanyData();
       if (savedData?.country) {
         this.loadStatesForCountry(savedData.country);
@@ -90,7 +88,6 @@ export class RegistrationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.countrySubscription = this.companyForm
       .get('country')
       ?.valueChanges.subscribe((selectedCountry) => {
-        // Only clear state if this is a user-initiated change, not from loading saved data
         const currentState = this.companyForm.get('state')?.value;
         this.companyForm.get('state')?.setValue('');
         this.states = [];
@@ -130,7 +127,6 @@ export class RegistrationComponent implements OnInit, AfterViewInit, OnDestroy {
       const savedCompanyData = localStorage.getItem(this.STORAGE_KEY);
       if (savedCompanyData) {
         const companyData = JSON.parse(savedCompanyData);
-        // Load all company data
         this.companyForm.patchValue(
           {
             companyName: companyData.companyName || '',
@@ -150,7 +146,6 @@ export class RegistrationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private saveCompanyData(companyData: any): void {
     try {
-      // Save all company form data (no sensitive info to exclude here)
       if (
         companyData.companyName ||
         companyData.companyType ||
@@ -212,10 +207,6 @@ export class RegistrationComponent implements OnInit, AfterViewInit, OnDestroy {
         if (res && res.data) {
           this.dataService.setAuthToken(res.data);
         }
-
-        // Clear all temporary data after successful registration
-        // localStorage.removeItem('signupUserData');
-        // localStorage.removeItem(this.STORAGE_KEY);
 
         setTimeout(() => {
           this.router.navigate(['/start/verify']);

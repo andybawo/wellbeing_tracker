@@ -21,6 +21,7 @@ import { ResetpasswordComponent } from '../pages/resetpassword/resetpassword.com
 // import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AlertsComponent } from '../pages/alerts/alerts.component';
+import { IntegrateDashComponent } from '../pages/integrate-dash/integrate-dash.component';
 export const routes: Routes = [
   {
     path: '',
@@ -47,6 +48,10 @@ export const routes: Routes = [
       {
         path: 'alerts',
         component: AlertsComponent,
+      },
+      {
+        path: 'integrate-dash',
+        component: IntegrateDashComponent,
       },
     ],
   },

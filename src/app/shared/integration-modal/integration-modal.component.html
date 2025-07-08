@@ -1,0 +1,351 @@
+<div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+  <div
+    *ngIf="isModalOpen"
+    class="modal-content"
+    (click)="$event.stopPropagation()"
+  >
+    <ng-container [ngSwitch]="selectedModalContent">
+      <div *ngSwitchCase="'hrm'">
+        <div class="integrate">
+          <img src="/images/logo-mark.png" alt="" />
+          <div class="arrow">
+            <img src="/images/arrange-circle-2.png" alt="" class="arrow-icon" />
+          </div>
+          <div class="tool-image-placeholder" *ngIf="!selectedHrTool">
+            <img src="/images/Frame121.png" alt="" />
+          </div>
+
+          <img
+            *ngIf="selectedHrTool === 'seamless'"
+            src="/images/Frame 133.png"
+            alt=""
+          />
+        </div>
+        <div class="info">
+          <h1>Connect Tool</h1>
+          <h3>Connect tool to sync data across devices</h3>
+          <div class="select-tool" *ngIf="shouldShowSelectDropdowns">
+            <!-- <label for="hrTool">Select HR Tool:</label> -->
+            <select
+              id="hrTool"
+              [(ngModel)]="selectedHrTool"
+              (change)="toggleToolhr(selectedHrTool)"
+            >
+              <option value="">Select HRM Tool</option>
+              <option value="seamless">Seamless HR</option>
+            </select>
+          </div>
+
+          <ng-container *ngIf="selectedHrTool === 'seamless'">
+            <div class="api-key">
+              <div class="api-key-details">
+                <label for="">Client Id</label>
+                <input
+                  type="text"
+                  placeholder="Enter Client Id"
+                  [(ngModel)]="seamlessClientId"
+                />
+              </div>
+              <div class="api-key-details">
+                <label for="">Secret Key</label>
+                <input
+                  type="text"
+                  placeholder="Enter Secret Key"
+                  [(ngModel)]="seamlessClientSecret"
+                />
+              </div>
+            </div>
+          </ng-container>
+
+          <div class="bottom">
+            <button (click)="closeModal()">Cancel</button>
+
+            <button *ngIf="!selectedHrTool">Connect</button>
+            <button
+              type="submit"
+              [disabled]="isButtonLoading"
+              *ngIf="selectedHrTool === 'seamless'"
+              (click)="connectSeamlessHR()"
+            >
+              <span *ngIf="!isButtonLoading">Connect</span>
+              <span *ngIf="isButtonLoading" class="button-loader">
+                <span class="spinner"></span>
+                Integrating...
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMMUNICATION SECTION-------------------------------------------------------------------------------------- -->
+
+      <div *ngSwitchCase="'communication'">
+        <div class="integrate">
+          <img src="/images/logo-mark.png" alt="" />
+          <div class="arrow">
+            <img src="/images/arrange-circle-2.png" alt="" class="arrow-icon" />
+          </div>
+          <div class="tool-image-placeholder" *ngIf="!selectedComTools">
+            <img src="/images/Frame121.png" alt="" />
+          </div>
+          <img
+            *ngIf="selectedComTools === 'slack'"
+            src="/images/slack.png"
+            alt=""
+          />
+          <img
+            *ngIf="selectedComTools === 'outlook'"
+            src="/images/outlook.png"
+            alt=""
+          />
+          <img
+            *ngIf="selectedComTools === 'teams'"
+            src="/images/Frame 144.png"
+            alt=""
+          />
+        </div>
+
+        <div class="info">
+          <h1>Connect Tool</h1>
+          <h3>Connect tool to sync data across devices</h3>
+          <div class="select-tool" *ngIf="shouldShowSelectDropdowns">
+            <select
+              id="comTool"
+              [(ngModel)]="selectedComTools"
+              (change)="toggleTool(selectedComTools)"
+            >
+              <option value="">Select communication tool</option>
+              <option value="slack">Slack</option>
+              <option value="outlook">Outlook</option>
+              <option value="teams">Teams</option>
+            </select>
+          </div>
+
+          <div class="api-link-container">
+            <a href="#" (click)="toggleApiKeyField($event)">
+              <span>Having issues?</span><span> Link with API Key</span>
+            </a>
+          </div>
+
+          <div
+            class="api-key"
+            *ngIf="selectedComTools === 'slack' && showApiKeyfield"
+          >
+            <div class="api-key-details">
+              <label for="">API Key</label>
+              <input
+                type="text"
+                placeholder="Enter API Key"
+                [(ngModel)]="slackApiKey"
+              />
+            </div>
+
+            <a
+              style="position: relative; top: 20px; text-decoration: underline"
+              href="https://api.slack.com/tutorials/tracks/getting-a-token"
+              >Click here for more information on how to get API Key</a
+            >
+          </div>
+
+          <div class="bottom">
+            <button (click)="closeModal()">Cancel</button>
+            <button *ngIf="!selectedComTools">Connect</button>
+
+            <button
+              type="submit"
+              [disabled]="isButtonLoading"
+              *ngIf="selectedComTools === 'slack' && showApiKeyfield"
+              (click)="connectSlackApiKey()"
+            >
+              <span *ngIf="!isButtonLoading">Connect</span>
+              <span *ngIf="isButtonLoading" class="button-loader">
+                <span class="spinner"></span>
+                Integrating...
+              </span>
+            </button>
+
+            <button
+              *ngIf="selectedComTools === 'slack' && !showApiKeyfield"
+              (click)="allowPermission()"
+            >
+              Connect
+            </button>
+
+            <!-- OUTLOOK______---------------------------------- -->
+            <button
+              type="submit"
+              *ngIf="selectedComTools === 'outlook' && showApiKeyfield"
+              (click)="connectSlackApiKey()"
+            >
+              Connect
+            </button>
+
+            <button
+              *ngIf="selectedComTools === 'outlook' && !showApiKeyfield"
+              (click)="allowPermission()"
+            >
+              Connect
+            </button>
+
+            <!-- TEAMS--------------------------------------- -->
+
+            <button
+              type="submit"
+              *ngIf="selectedComTools === 'teams' && showApiKeyfield"
+              (click)="connectSlackApiKey()"
+            >
+              Connect
+            </button>
+
+            <button
+              *ngIf="selectedComTools === 'teams' && !showApiKeyfield"
+              (click)="allowPermission()"
+            >
+              Connect
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT SECTION--------------------------------------------------------- -->
+
+      <div *ngSwitchCase="'project'">
+        <div class="integrate">
+          <img src="/images/logo-mark.png" alt="" />
+          <div class="arrow">
+            <img src="/images/arrange-circle-2.png" alt="" class="arrow-icon" />
+          </div>
+          <div class="tool-image-placeholder" *ngIf="!selectedProjTools">
+            <img src="/images/Frame121.png" alt="" />
+          </div>
+          <img
+            *ngIf="selectedProjTools === 'jira'"
+            src="/images/jira.png"
+            alt=""
+          />
+          <img
+            *ngIf="selectedProjTools === 'planner'"
+            src="/images/teams.png"
+            alt=""
+          />
+        </div>
+
+        <div class="info">
+          <h1>Connect Tool</h1>
+          <h3>Connect tool to sync data across devices</h3>
+          <div class="select-tool" *ngIf="shouldShowSelectDropdowns">
+            <select
+              id="projTool"
+              [(ngModel)]="selectedProjTools"
+              (change)="toggleToolproj(selectedProjTools)"
+            >
+              <option value="">Select Project Tool</option>
+              <option value="jira">Jira</option>
+              <option value="planner">Planner</option>
+            </select>
+          </div>
+
+          <div class="api-link-container" style="margin-bottom: 40px">
+            <a href="#" (click)="toggleApiKeyField($event)">
+              <span>Having issues?</span><span> Link with API Key</span>
+            </a>
+          </div>
+
+          <div
+            class="api-key"
+            *ngIf="showApiKeyfield && selectedProjTools === 'jira'"
+          >
+            <div class="api-key-details">
+              <label for="">API Key</label>
+              <input
+                type="text"
+                placeholder="Enter API Key"
+                [(ngModel)]="jiraApiKey"
+              />
+            </div>
+            <div class="api-key-details">
+              <label for="">Email</label>
+              <input
+                type="email"
+                placeholder="Enter Email Address"
+                [(ngModel)]="jiraApiEmail"
+              />
+            </div>
+
+            <a href="" class="project-a"
+              >Click here for more information on how to get API Key</a
+            >
+          </div>
+
+          <div
+            class="api-key"
+            *ngIf="showApiKeyfield && selectedProjTools === 'planner'"
+          >
+            <div class="api-key-details">
+              <label for="">API Key</label>
+              <input
+                type="text"
+                placeholder="Enter API Key"
+                [(ngModel)]="jiraApiKey"
+              />
+            </div>
+            <div class="api-key-details">
+              <label for="">Email Address</label>
+              <input
+                type="email"
+                placeholder="Enter Email Address"
+                [(ngModel)]="jiraApiEmail"
+              />
+            </div>
+
+            <a href="">Click here for more information on how to get API Key</a>
+          </div>
+
+          <div class="bottom">
+            <button (click)="closeModal()">Cancel</button>
+            <button *ngIf="!selectedProjTools">Connect</button>
+            <button
+              type="submit"
+              [disabled]="isButtonLoading"
+              *ngIf="selectedProjTools === 'jira' && showApiKeyfield"
+              (click)="connectJiraApiKey()"
+            >
+              <span *ngIf="!isButtonLoading">Connect</span>
+              <span *ngIf="isButtonLoading" class="button-loader">
+                <span class="spinner"></span>
+                Integrating...
+              </span>
+            </button>
+
+            <button
+              *ngIf="selectedProjTools === 'jira' && !showApiKeyfield"
+              (click)="allowPermission()"
+            >
+              Connect
+            </button>
+
+            <!-- PLANNER -->
+            <button
+              type="submit"
+              [disabled]="isButtonLoading"
+              *ngIf="selectedProjTools === 'planner' && showApiKeyfield"
+              (click)="connectJiraApiKey()"
+            >
+              <span *ngIf="!isButtonLoading">Connect</span>
+              <span *ngIf="isButtonLoading" class="button-loader">
+                <span class="spinner"></span>
+                Integrating...
+              </span>
+            </button>
+            <button
+              *ngIf="selectedProjTools === 'planner' && !showApiKeyfield"
+              (click)="allowPermission()"
+            >
+              Connect
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

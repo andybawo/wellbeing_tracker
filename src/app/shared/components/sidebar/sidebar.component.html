@@ -67,7 +67,21 @@
             alt=""
           />Alerts
         </li>
-        <li><img src="/images/integrate-dash.png" alt="" />Integration</li>
+        <li
+          [routerLink]="['/home/integrate-dash']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+          #integrateLink="routerLinkActive"
+        >
+          <img
+            [src]="
+              integrateLink.isActive
+                ? '/images/convertshape.png'
+                : '/images/integrate-dash.png'
+            "
+            alt=""
+          />Integration
+        </li>
         <li><img src="/images/subscription-dash.png" alt="" />Subscription</li>
         <li>
           <img src="/images/user-square-dash.png" alt="" />User Management

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { DataService } from './data.service';
 
 interface ApiResponse<T> {
   success: boolean;
@@ -21,7 +22,7 @@ export class AuthService {
   );
   public isAuthenticated$ = this.isAuthenticatedUser.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private dataService: DataService) {}
 
   //user sign up
   registerUser(userData: any): Observable<any> {
@@ -82,6 +83,10 @@ export class AuthService {
     return this.hasValidToken();
   }
 
+  hasValidSession(): boolean {
+    return this.hasValidToken();
+  }
+
   private hasValidToken(): boolean {
     const token = this.getToken();
     if (!token) return false;
@@ -106,6 +111,7 @@ export class AuthService {
         // Add any other fields from the token you need
       };
       localStorage.setItem('userData', JSON.stringify(userData));
+      this.dataService.setUserData(userData);
     } catch (error) {
       console.error('Error parsing token:', error);
     }
@@ -115,6 +121,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('userData');
     this.isAuthenticatedUser.next(false);
   }
 }

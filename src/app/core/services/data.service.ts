@@ -39,6 +39,11 @@ export class DataService {
     return JSON.parse(localStorage.getItem('hasRegisteredUser') || 'false');
   }
 
+  getCurrentUserEmail(): string | null {
+    const userData = this.getUserData();
+    return userData ? userData.email : null;
+  }
+
   clearData() {
     this.userData = null;
     this.companyData = null;
@@ -50,6 +55,12 @@ export class DataService {
     localStorage.removeItem('hasRegisteredUser');
     localStorage.removeItem('resetEmail');
     localStorage.removeItem('authToken');
+    localStorage.removeItem('seamlessHR_integrated');
+    localStorage.removeItem('slack_integrated');
+    localStorage.removeItem('jira_integrated');
+    // localStorage.removeItem('outlook_integrated');
+    // localStorage.removeItem('teams_integrated');
+    // localStorage.removeItem('planner_integrated');
   }
 
   setAuthToken(token: string) {

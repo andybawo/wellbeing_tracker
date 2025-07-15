@@ -50,17 +50,30 @@ export class SlackOauthRedirectComponent implements OnInit {
 
               localStorage.setItem('slack_integrated', 'true');
 
+              const returnUrl =
+                localStorage.getItem('oauth_return_url') ||
+                '/subscription/integration';
+              localStorage.removeItem('oauth_return_url');
+
               setTimeout(() => {
-                this.router.navigate(['/subscription/integration']);
+                this.router.navigate([returnUrl]);
               }, 3000);
             },
 
             error: (error) => {
-              this.router.navigate(['/subscription/integration']);
+              const returnUrl =
+                localStorage.getItem('oauth_return_url') ||
+                '/subscription/integration';
+              localStorage.removeItem('oauth_return_url');
+              this.router.navigate([returnUrl]);
             },
           });
       } else {
-        this.router.navigate(['/subscription/integration']);
+        const returnUrl =
+          localStorage.getItem('oauth_return_url') ||
+          '/subscription/integration';
+        localStorage.removeItem('oauth_return_url');
+        this.router.navigate([returnUrl]);
       }
     });
   }

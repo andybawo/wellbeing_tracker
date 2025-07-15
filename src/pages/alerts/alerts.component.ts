@@ -10,41 +10,45 @@ import { FormsModule } from '@angular/forms';
 })
 export class AlertsComponent {
   fullViewSection: string | null = null;
+  viewAlertBox = false;
 
   isModalOpen = false;
+  isConfigureModalOpen = false;
   modalStep: 'create' | 'configure' = 'create'; // Track current step
   alertDescription = '';
 
-  // Modal control methods
+  openAlertBox() {
+    this.viewAlertBox = true;
+  }
+
+  closeAlertBox() {
+    this.viewAlertBox = false;
+  }
+
+  openConfigureModal() {
+    this.isConfigureModalOpen = true;
+  }
+
   openModal() {
     this.isModalOpen = true;
-    this.modalStep = 'create'; // Always start with create step
+    this.modalStep = 'create';
   }
 
   closeModal() {
     this.isModalOpen = false;
-    this.modalStep = 'create'; // Reset to first step
-    this.alertDescription = ''; // Clear form data
+    this.modalStep = 'create';
+    this.alertDescription = '';
+    this.isConfigureModalOpen = false;
   }
 
-  // Step navigation methods
   goToConfigureStep() {
-    console.log('Generate clicked, description:', this.alertDescription); // Debug log
-    console.log('Current modal step:', this.modalStep); // Debug log
-
-    // Remove the trim check temporarily for testing
     this.modalStep = 'configure';
-    console.log('Modal step changed to:', this.modalStep); // Debug log
   }
   goBackToCreateStep() {
-    console.log('Back button clicked'); // Debug log
     this.modalStep = 'create';
   }
 
-  // Form submission
   activateAlert() {
-    // Handle alert activation logic here
-    console.log('Alert activated:', this.alertDescription);
     this.closeModal();
   }
 

@@ -22,6 +22,7 @@ import { ResetpasswordComponent } from '../pages/resetpassword/resetpassword.com
 import { AuthGuard } from './core/guards/auth.guard';
 import { AlertsComponent } from '../pages/alerts/alerts.component';
 import { IntegrateDashComponent } from '../pages/integrate-dash/integrate-dash.component';
+import { UserManagementComponent } from '../pages/user-management/user-management.component';
 export const routes: Routes = [
   {
     path: '',
@@ -52,6 +53,10 @@ export const routes: Routes = [
       {
         path: 'integrate-dash',
         component: IntegrateDashComponent,
+      },
+      {
+        path: 'user-management',
+        component: UserManagementComponent,
       },
     ],
   },

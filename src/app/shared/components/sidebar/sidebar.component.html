@@ -83,10 +83,22 @@
           />Integration
         </li>
         <li><img src="/images/subscription-dash.png" alt="" />Subscription</li>
-        <li>
-          <img src="/images/user-square-dash.png" alt="" />User Management
+        <li
+          [routerLink]="['/home/user-management']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+          #userLink="routerLinkActive"
+        >
+          <img
+            [src]="
+              userLink.isActive
+                ? '/images/user-square-filled.png'
+                : '/images/user-search-dash.png'
+            "
+            alt=""
+          />User Management
         </li>
-        <li><img src="/images/user-search-dash.png" alt="" />Audit Logs</li>
+        <li><img src="/images/card (1).png" alt="" />Company Profile</li>
       </ul>
       <ul>
         <li (click)="onLogout()">

@@ -46,19 +46,31 @@ export class JiraRedirectComponent implements OnInit {
               this.success = true;
 
               localStorage.setItem('jira_integrated', 'true');
+              const returnUrl =
+                localStorage.getItem('oauth_return_url') ||
+                '/subscription/integration';
+              localStorage.removeItem('oauth_return_url');
               setTimeout(() => {
-                this.router.navigate(['/subscription/integration']);
+                this.router.navigate([returnUrl]);
               }, 3000);
             },
             error: (error) => {
               this.error = true;
+              const returnUrl =
+                localStorage.getItem('oauth_return_url') ||
+                '/subscription/integration';
+              localStorage.removeItem('oauth_return_url');
               setTimeout(() => {
-                this.router.navigate(['/subscription/integration']);
+                this.router.navigate([returnUrl]);
               }, 3000);
             },
           });
       } else {
-        this.router.navigate(['/subscription/integration']); // Redirect to a failure page
+        const returnUrl =
+          localStorage.getItem('oauth_return_url') ||
+          '/subscription/integration';
+        localStorage.removeItem('oauth_return_url');
+        this.router.navigate([returnUrl]); // Redirect to a failure page
       }
     });
   }

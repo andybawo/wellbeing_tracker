@@ -1,0 +1,247 @@
+<!-- EDIT USER FIELD UPDATE -->
+<div *ngIf="isEditUSerOpen" class="edit-container">
+  <div class="backdrop"></div>
+  <div class="user-header">
+    <div class="profile-pic">
+      <img src="/images/Frame 71.png" alt="" />
+    </div>
+    <div class="profile-details">
+      <div class="name">
+        <h1>{{ currentUser ? getUserFullName(currentUser) : "User Name" }}</h1>
+        <h4>{{ currentUser?.email || "email@example.com" }}</h4>
+      </div>
+      <div class="edit-tools">
+        <span><img src="/images/user-edit.png" alt="" />Edit User</span>
+        <span (click)="deactivateUser()"
+          ><img src="/images/trash.png" alt="" />Delete User</span
+        >
+      </div>
+    </div>
+  </div>
+  <div class="user-details">
+    <div class="info-box">
+      <div class="info">
+        <label for="">First Name</label>
+        <input type="text" [(ngModel)]="editUserForm.firstName" />
+      </div>
+      <div class="info">
+        <label for="">Last Name</label>
+        <input type="text" [(ngModel)]="editUserForm.lastName" />
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="info">
+        <label for="">Email Address</label>
+        <input type="email" [(ngModel)]="editUserForm.email" />
+      </div>
+      <div class="info">
+        <label for="">Phone Number</label>
+        <input type="text" [(ngModel)]="editUserForm.phoneNumber" />
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="info">
+        <label for="">Department</label>
+        <select [(ngModel)]="editUserForm.department">
+          <option value="">Select Department</option>
+          <option *ngFor="let dept of departments" [value]="dept">
+            {{ dept }}
+          </option>
+        </select>
+      </div>
+      <div class="info">
+        <label for="">Role</label>
+        <select [(ngModel)]="editUserForm.role">
+          <option value="">Select Role</option>
+          <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="info">
+        <label for="">Date Added</label>
+        <input
+          type="date"
+          [value]="currentUser ? formatDate(currentUser.dateAdded) : ''"
+          readonly
+        />
+      </div>
+      <div class="info">
+        <label for="">Status</label>
+        <select [(ngModel)]="editUserForm.status">
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="left">
+      <button class="danger-btn" (click)="deactivateUser()">Deactivate</button>
+    </div>
+    <div class="right">
+      <button class="primary-btn" (click)="closeEditUser()">Cancel</button>
+      <button class="secondary-btn" (click)="updateUser()">Save</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isEditUSerOpen" class="main-container">
+  <div class="header">
+    <div class="left-end">
+      <h1>User Management</h1>
+      <h4>Add, edit and delete Users to control access and permissions</h4>
+    </div>
+    <div class="right-end">
+      <button class="secondary-btn" (click)="openModal()">Add User</button>
+    </div>
+  </div>
+  <!-- TABLE WHERE USER DETAILS WILL OCCUPY -->
+  <table>
+    <thead>
+      <tr>
+        <th class="name-column"><h1>Name</h1></th>
+        <th class="email-column">Email</th>
+        <th class="role-column">Role</th>
+        <th class="status-column"><h1>Status</h1></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td class="name-column">
+          <div class="name-content">
+            <img src="/images/Ellipse 7.png" alt="" />
+            <span>{{ getUserFullName(user) }}</span>
+          </div>
+        </td>
+        <td class="email-column">{{ user.email }}</td>
+        <td class="role-column">
+          <div class="role-content">{{ user.role }}</div>
+        </td>
+        <td class="status-column">
+          <div class="status-content">
+            <span [class]="getStatusClass(user.status)">{{ user.status }}</span>
+            <div class="icons">
+              <img src="/images/edit.png" alt="" (click)="openEditUser(user)" />
+              <img src="/images/trash.png" alt="" (click)="openWarning(user)" />
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="users.length === 0">
+        <td colspan="4" style="text-align: center; padding: 20px">
+          No users found. Add a user to get started.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div
+    *ngIf="isModalOpen || isWarningModalOpen || isSuccessModalOpen"
+    class="modal-overlay"
+    (click)="closeModal()"
+  >
+    <!-- Add User field "CREATE" -->
+    <div
+      *ngIf="isModalOpen"
+      class="modal-content"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="header">
+        <div class="left">Add User</div>
+        <button class="close-btn" (click)="closeModal()">×</button>
+      </div>
+      <div class="details">
+        <div class="info-box">
+          <div class="user-dets">
+            <label for="">First Name</label>
+            <input type="text" [(ngModel)]="addUserForm.firstName" />
+          </div>
+          <div class="user-dets">
+            <label for="">Last Name</label>
+            <input type="text" [(ngModel)]="addUserForm.lastName" />
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="user-dets">
+            <label for="">Email Address</label>
+            <input type="email" [(ngModel)]="addUserForm.email" />
+          </div>
+          <div class="user-dets">
+            <label for="">Phone Number</label>
+            <input type="text" [(ngModel)]="addUserForm.phoneNumber" />
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="user-dets">
+            <label for="">Department</label>
+            <select [(ngModel)]="addUserForm.department">
+              <option value="">Select Department</option>
+              <option *ngFor="let dept of departments" [value]="dept">
+                {{ dept }}
+              </option>
+            </select>
+          </div>
+          <div class="user-dets">
+            <label for="">Role</label>
+            <select [(ngModel)]="addUserForm.role">
+              <option value="">Select Role</option>
+              <option *ngFor="let role of roles" [value]="role">
+                {{ role }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-bottom">
+          <button (click)="closeModal()" class="primary-btn">Cancel</button>
+          <button (click)="addUser($event)" class="secondary-btn">Add</button>
+        </div>
+      </div>
+    </div>
+    <!-- WARNING MODAL -->
+    <div
+      *ngIf="isWarningModalOpen"
+      class="warning-modal"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="top">
+        <div class="images" style="background-color: #ffe5e5">
+          <img src="/images/trash-red.png" alt="" />
+        </div>
+        <h1>Warning</h1>
+        <h4>
+          Are you sure you want to remove
+          {{
+            selectedUserForDelete
+              ? getUserFullName(selectedUserForDelete)
+              : "this user"
+          }}
+          from the system?
+        </h4>
+      </div>
+      <div class="bottom-modal">
+        <button (click)="closeModal()" class="primary-btn">Cancel</button>
+        <button class="secondary-btn" (click)="deleteUser()">Delete</button>
+      </div>
+    </div>
+    <!-- SUCCESS MODAL -->
+    <div
+      *ngIf="isSuccessModalOpen"
+      class="warning-modal"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="top">
+        <div class="images" style="background-color: #e3fce4">
+          <img src="/images/tick-circle-green.png" alt="" />
+        </div>
+        <h1>Success</h1>
+        <h4>User saved successfully to the system</h4>
+      </div>
+      <div class="bottom-modal">
+        <button (click)="closeModal()" class="secondary-btn">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -217,10 +217,12 @@ export class IntegrateDashComponent implements OnInit {
   }
 
   connectJiraOAuth() {
+    localStorage.setItem('oauth_return_url', '/home/integrate-dash');
     this.integrationService.initiateJiraOAuth();
   }
 
   connectSlackOAuth() {
+    localStorage.setItem('oauth_return_url', '/home/integrate-dash');
     this.integrationService.initiateSlackOAuth();
   }
 
@@ -244,7 +246,6 @@ export class IntegrateDashComponent implements OnInit {
     return this.integratedTools[toolName as keyof typeof this.integratedTools];
   }
 
-  // Method to disconnect a tool
   disconnectTool(toolName: string) {
     const toolKey = toolName as keyof typeof this.integratedTools;
     localStorage.removeItem(`${toolKey}_integrated`);

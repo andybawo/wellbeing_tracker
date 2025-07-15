@@ -251,10 +251,12 @@ export class IntegrationComponent implements OnInit {
   }
 
   connectJiraOAuth() {
+    localStorage.setItem('oauth_return_url', '/subscription/integration');
     this.integrationService.initiateJiraOAuth();
   }
 
   connectSlackOAuth() {
+    localStorage.setItem('oauth_return_url', '/subscription/integration');
     this.integrationService.initiateSlackOAuth();
   }
 

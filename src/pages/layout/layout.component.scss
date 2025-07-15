@@ -26,7 +26,7 @@
 .main-container {
   grid-area: main; /* Assign the main area in the grid */
   background-color: #f0eeee; /* Main content background color */
-  padding: 16px 16px 0 16px; /* Padding for spacing */
+  padding: 16px 16px 0 16px;
   overflow-y: auto; /* Allow vertical scrolling */
   box-sizing: border-box;
   height: flex 1;

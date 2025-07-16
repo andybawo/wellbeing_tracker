@@ -230,6 +230,15 @@ tbody td {
         border: none;
         background-color: #f0eeee;
         border-radius: 8px;
+        padding: 10px;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+
+        background-image: url("/images/arrow-down1.png");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 15px 15px;
         &:focus {
           outline: none;
         }

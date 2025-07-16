@@ -120,16 +120,13 @@ export class IntegrationModalComponent implements OnInit, OnChanges {
       }
     }
 
-    // If dropdowns are hidden and we have a preselected tool, show API key fields automatically
     if (!this.shouldShowSelectDropdowns && this.config.preSelectedTool) {
       const tool = this.config.preSelectedTool.tool;
-      // Only show API key fields by default for tools that don't support OAuth (like seamless HR)
       this.showApiKeyfield = this.isApiKeyOnlyTool(tool);
     }
   }
 
   private isApiKeyOnlyTool(tool: string): boolean {
-    // Tools that only support API key authentication
     const apiKeyOnlyTools = ['seamless'];
     return apiKeyOnlyTools.includes(tool);
   }
@@ -240,11 +237,11 @@ export class IntegrationModalComponent implements OnInit, OnChanges {
 
   // Getter methods for conditional rendering
   get shouldShowSelectDropdowns(): boolean {
-    return this.config.showSelectDropdowns !== false; // Default to true
+    return this.config.showSelectDropdowns !== false;
   }
 
   get shouldShowApiKeyFields(): boolean {
-    return this.config.showApiKeyFields !== false; // Default to true
+    return this.config.showApiKeyFields !== false;
   }
 
   get availableHrTools(): string[] {

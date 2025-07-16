@@ -39,35 +39,6 @@
   height: 35px;
 }
 
-.start button {
-  width: 200px;
-  height: 48px;
-  border: 1px solid #3e1f69;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.start button:nth-child(1) {
-  background-color: var(--background-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.start button:nth-child(1):hover {
-  background-color: #5c2e9c;
-  color: white;
-}
-.start button:nth-child(2):hover {
-  background-color: #5c2e9c;
-  color: white;
-}
-
-.start button:nth-child(2) {
-  background-color: #3e1f69;
-  color: white;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 /* Responsive Media Queries */
 
 /* Standard Laptop Screens (1024px - 1439px) */
@@ -96,13 +67,6 @@
     top: 150px;
     gap: 40px;
     width: 100%;
-  }
-
-  .start button {
-    width: 180px;
-    height: 45px;
-    font-size: 14px;
-    align-self: flex-start;
   }
 
   .side-logo {
@@ -136,13 +100,6 @@
     top: 100px;
     gap: 40px;
     width: 100%;
-  }
-
-  .start button {
-    width: 180px;
-    height: 45px;
-    font-size: 14px;
-    align-self: flex-start;
   }
 
   .side-logo {
@@ -181,12 +138,6 @@
   .start {
     top: 60px;
     gap: 30px;
-  }
-
-  .start button {
-    width: 160px;
-    height: 42px;
-    font-size: 13px;
   }
 
   .side-logo {
@@ -232,12 +183,6 @@
     top: 40px;
     align-items: center;
   }
-
-  .start button {
-    width: 250px;
-    height: 48px;
-    font-size: 16px;
-  }
 }
 
 /* Mobile Landscape (480px - 599px) */
@@ -276,15 +221,8 @@
     top: 30px;
     align-items: center;
   }
-
-  .start button {
-    width: 220px;
-    height: 46px;
-    font-size: 15px;
-  }
 }
 
-/* Mobile Portrait (320px - 479px) */
 @media screen and (max-width: 479px) {
   .side-logo {
     display: none;
@@ -327,16 +265,8 @@
     top: 25px;
     align-items: center;
   }
-
-  .start button {
-    width: 200px;
-    height: 44px;
-    font-size: 14px;
-    border-radius: 8px;
-  }
 }
 
-/* Extra Small Mobile (max-width: 320px) */
 @media screen and (max-width: 320px) {
   .display h1 {
     font-size: 18px;
@@ -350,17 +280,8 @@
   .logo-pic img {
     max-width: 130px;
   }
-
-  .start button {
-    width: 180px;
-    height: 42px;
-    font-size: 13px;
-  }
 }
 
-/* ===== UTILITY CLASSES FOR BETTER RESPONSIVENESS ===== */
-
-/* Ensure images are responsive */
 img {
   max-width: 100%;
   height: auto;
@@ -378,10 +299,5 @@ img {
   .start button:focus {
     outline: 2px solid #3e1f69;
     outline-offset: 2px;
-  }
-
-  /* Increase touch target size for mobile */
-  .start button {
-    min-height: 44px; /* Apple's recommended minimum touch target */
   }
 }

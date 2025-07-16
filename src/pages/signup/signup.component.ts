@@ -140,9 +140,6 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
       const userData = this.userForm.value;
       this.dataService.setUserData(userData);
 
-      // Keep the data in localStorage for navigation back
-      // Only remove it after final successful registration
-
       this.setAlert(
         'Signup successful! Please proceed to register your company.',
         'success'
@@ -161,7 +158,6 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  // Method to clear saved data (call this only after final successful registration)
   public clearSavedData(): void {
     localStorage.removeItem(this.STORAGE_KEY);
   }

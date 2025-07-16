@@ -65,11 +65,11 @@ export class DataService {
 
   setAuthToken(token: string) {
     localStorage.setItem('authToken', token);
-    this.authToken = token; // Keep the property updated for in-memory access
+    this.authToken = token;
   }
 
   getAuthToken(): string | null {
-    this.authToken = localStorage.getItem('authToken'); //check local storage
+    this.authToken = localStorage.getItem('authToken');
     return this.authToken;
   }
 }

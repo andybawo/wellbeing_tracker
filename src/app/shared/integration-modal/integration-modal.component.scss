@@ -96,36 +96,6 @@
   justify-content: flex-end;
 }
 
-.bottom button {
-  height: 40px;
-  width: 104px;
-  border-radius: 8px;
-  border: none;
-  align-self: self-end;
-}
-
-.bottom button:nth-child(1) {
-  cursor: pointer;
-  background-color: white;
-  border: 1px solid #3e1f69;
-
-  &:hover {
-    background-color: #5c2e9c;
-    color: white;
-  }
-}
-
-.bottom button:nth-child(2) {
-  background-color: #3e1f69;
-  color: white;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #5c2e9c;
-    color: white;
-  }
-}
-
 .api-link-container {
   position: relative;
   top: 10px;
@@ -295,11 +265,6 @@ button[type="submit"] {
         height: 35px;
       }
     }
-  }
-  .bottom button {
-    height: 30px;
-    margin-top: 10px;
-    font-size: 12px;
   }
 
   .permission-header {

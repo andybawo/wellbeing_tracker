@@ -10,7 +10,7 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  @Input() sidebarOpen = false; // Allow parent to control sidebar state
+  @Input() sidebarOpen = false;
 
   @Output() routeChanged = new EventEmitter<string>();
 

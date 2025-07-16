@@ -70,20 +70,18 @@ h4 {
 /* Style for the whole scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
-/* Track (the background) */
 ::-webkit-scrollbar-track {
   background: white;
 }
 
-/* Handle (the draggable part) */
 ::-webkit-scrollbar-thumb {
   background: #5c3c92;
   border-radius: 5px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #5c3c92;
 }
@@ -93,6 +91,7 @@ h4 {
   border-radius: 8px !important;
   border: 1px solid #3e1f69;
   cursor: pointer;
+  font-size: 12px !important;
 
   &:hover {
     background-color: #5c2e9c;
@@ -106,6 +105,7 @@ h4 {
   border: 1px solid #3e1f69;
   cursor: pointer;
   color: white;
+  font-size: 12px !important;
 
   &:hover {
     background-color: #5c2e9c;
@@ -124,11 +124,11 @@ h4 {
 @media screen and (min-width: 1536px) {
   .primary-btn {
     height: 44px;
-    width: 120px;
+    width: 140px;
   }
   .secondary-btn {
     height: 44px;
-    width: 120px;
+    width: 140px;
   }
 
   .danger-btn {
@@ -139,26 +139,26 @@ h4 {
 @media screen and (min-width: 1470px) {
   .primary-btn {
     height: 44px;
-    width: 120px;
+    width: 140px;
   }
   .secondary-btn {
     height: 44px;
-    width: 120px;
+    width: 140px;
   }
 
   .danger-btn {
     height: 44px;
-    width: 120px;
+    width: 140px;
   }
 }
 
 @media screen and (max-width: 1439px) and (min-width: 1328px) {
   .primary-btn {
-    height: 40px;
+    height: 35px;
     width: 115px;
   }
   .secondary-btn {
-    height: 40px;
+    height: 35px;
     width: 115px;
   }
 
@@ -170,15 +170,15 @@ h4 {
 
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
   .primary-btn {
-    height: 35px;
+    height: 30px;
     width: 100px;
   }
   .secondary-btn {
-    height: 35px;
+    height: 30px;
     width: 100px;
   }
   .danger-btn {
-    height: 35px;
+    height: 30px;
     width: 100px;
   }
 }

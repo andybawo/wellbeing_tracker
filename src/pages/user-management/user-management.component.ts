@@ -51,7 +51,6 @@ export class UserManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
-    // Subscribe to users changes
     this.userService.users$.subscribe((users) => {
       this.users = users;
     });
@@ -61,7 +60,6 @@ export class UserManagementComponent implements OnInit {
     this.users = this.userService.getAllUsers();
   }
 
-  // Modal control methods
   openWarning(user: User): void {
     this.selectedUserForDelete = user;
     this.closeModal();
@@ -123,13 +121,11 @@ export class UserManagementComponent implements OnInit {
     };
   }
 
-  // CRUD operations
   addUser(event?: Event): void {
     if (event) {
       event.stopPropagation();
     }
 
-    // Basic validation
     if (
       !this.addUserForm.firstName ||
       !this.addUserForm.lastName ||
@@ -235,7 +231,6 @@ export class UserManagementComponent implements OnInit {
     }
   }
 
-  // Utility methods
   getUserFullName(user: User): string {
     return `${user.firstName} ${user.lastName}`;
   }

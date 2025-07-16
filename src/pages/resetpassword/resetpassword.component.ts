@@ -61,15 +61,10 @@ export class ResetpasswordComponent implements OnInit {
       this.route.queryParams.subscribe((params) => {
         let rawToken = params['token'] || '';
 
-        // Standard URL decode and fix spaces
         this.token = rawToken
           ? decodeURIComponent(rawToken).replace(/ /g, '+')
           : '';
         this.email = params['email'] ? decodeURIComponent(params['email']) : '';
-
-        // console.log('Raw token from params:', rawToken);
-        // console.log('Fixed token:', this.token);
-        // console.log('Email:', this.email);
       });
     }
 
@@ -98,7 +93,6 @@ export class ResetpasswordComponent implements OnInit {
         next: (response) => {
           this.isButtonLoading = false;
           this.showAlert = true;
-          // console.log('Reset password success:', response);
           this.alertMessage =
             'Password reset successfully! Redirecting to login...';
 

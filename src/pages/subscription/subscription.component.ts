@@ -148,7 +148,7 @@ export class SubscriptionComponent implements OnInit {
           this.router.navigate(['/subscription/sub-successful'], {
             queryParams: {
               packageId: numericPackageId,
-              tx_ref: 'free-trial-' + Date.now(), // Generate a unique reference for free trial
+              tx_ref: 'free-trial-' + Date.now(),
               isFreeTrialSuccess: 'true', // Special flag to indicate this is a free trial
             },
           });
@@ -256,9 +256,6 @@ export class SubscriptionComponent implements OnInit {
     }, 100);
   }
 
-  // In your component TypeScript file
-
-  // Create getters for transformed packages
   get transformedMonthlyPackages() {
     return this.monthlyPackages.map((pkg) => this.transformPackage(pkg));
   }
@@ -270,7 +267,6 @@ export class SubscriptionComponent implements OnInit {
   private transformPackage(pkg: any) {
     const transformed = { ...pkg };
 
-    // Override package names
     switch (pkg.name?.toLowerCase()) {
       case 'free trial':
         transformed.displayName = 'Starter';

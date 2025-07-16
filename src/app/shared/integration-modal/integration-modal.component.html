@@ -58,10 +58,13 @@
           </ng-container>
 
           <div class="bottom">
-            <button (click)="closeModal()">Cancel</button>
+            <button class="primary-btn" (click)="closeModal()">Cancel</button>
 
-            <button *ngIf="!selectedHrTool">Connect</button>
+            <button class="secondary-btn" *ngIf="!selectedHrTool">
+              Connect
+            </button>
             <button
+              class="secondary-btn"
               type="submit"
               [disabled]="isButtonLoading"
               *ngIf="selectedHrTool === 'seamless'"
@@ -148,10 +151,13 @@
           </div>
 
           <div class="bottom">
-            <button (click)="closeModal()">Cancel</button>
-            <button *ngIf="!selectedComTools">Connect</button>
+            <button class="primary-btn" (click)="closeModal()">Cancel</button>
+            <button class="secondary-btn" *ngIf="!selectedComTools">
+              Connect
+            </button>
 
             <button
+              class="secondary-btn"
               type="submit"
               [disabled]="isButtonLoading"
               *ngIf="selectedComTools === 'slack' && showApiKeyfield"
@@ -165,6 +171,7 @@
             </button>
 
             <button
+              class="secondary-btn"
               *ngIf="selectedComTools === 'slack' && !showApiKeyfield"
               (click)="allowPermission()"
             >
@@ -173,6 +180,7 @@
 
             <!-- OUTLOOK______---------------------------------- -->
             <button
+              class="secondary-btn"
               type="submit"
               *ngIf="selectedComTools === 'outlook' && showApiKeyfield"
               (click)="connectSlackApiKey()"
@@ -181,6 +189,7 @@
             </button>
 
             <button
+              class="secondary-btn"
               *ngIf="selectedComTools === 'outlook' && !showApiKeyfield"
               (click)="allowPermission()"
             >
@@ -190,6 +199,7 @@
             <!-- TEAMS--------------------------------------- -->
 
             <button
+              class="secondary-btn"
               type="submit"
               *ngIf="selectedComTools === 'teams' && showApiKeyfield"
               (click)="connectSlackApiKey()"
@@ -198,6 +208,7 @@
             </button>
 
             <button
+              class="secondary-btn"
               *ngIf="selectedComTools === 'teams' && !showApiKeyfield"
               (click)="allowPermission()"
             >
@@ -302,9 +313,12 @@
           </div>
 
           <div class="bottom">
-            <button (click)="closeModal()">Cancel</button>
-            <button *ngIf="!selectedProjTools">Connect</button>
+            <button class="primary-btn" (click)="closeModal()">Cancel</button>
+            <button class="secondary-btn" *ngIf="!selectedProjTools">
+              Connect
+            </button>
             <button
+              class="secondary-btn"
               type="submit"
               [disabled]="isButtonLoading"
               *ngIf="selectedProjTools === 'jira' && showApiKeyfield"
@@ -318,6 +332,7 @@
             </button>
 
             <button
+              class="secondary-btn"
               *ngIf="selectedProjTools === 'jira' && !showApiKeyfield"
               (click)="allowPermission()"
             >
@@ -326,6 +341,7 @@
 
             <!-- PLANNER -->
             <button
+              class="secondary-btn"
               type="submit"
               [disabled]="isButtonLoading"
               *ngIf="selectedProjTools === 'planner' && showApiKeyfield"
@@ -338,6 +354,7 @@
               </span>
             </button>
             <button
+              class="secondary-btn"
               *ngIf="selectedProjTools === 'planner' && !showApiKeyfield"
               (click)="allowPermission()"
             >

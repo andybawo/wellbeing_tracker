@@ -69,7 +69,6 @@
 
 /* ===== MEDIA QUERIES FOR DASHBOARD RESPONSIVENESS ===== */
 
-/* Large Screens - 1536px and above (your original design) */
 @media screen and (min-width: 1536px) {
   .grid-container {
     grid-template-columns: 14.45% 85.55%;
@@ -78,7 +77,7 @@
 
   .sidebar {
     width: 222px;
-    left: -222px; /* Match sidebar width for consistency */
+    left: -222px;
   }
 
   .sidebar.open {
@@ -86,19 +85,18 @@
   }
 }
 
-/* Medium-Large Screens - 1328px to 1439px */
 @media screen and (max-width: 1439px) and (min-width: 1328px) {
   .grid-container {
-    grid-template-columns: 16% 84%; /* Slightly wider sidebar */
-    grid-template-rows: 8% 92%; /* Slightly taller header */
+    grid-template-columns: 16% 84%;
+    grid-template-rows: 8% 92%;
   }
 
   .sidebar-list {
-    width: 170px; /* Adjust sidebar content width */
+    width: 170px;
   }
 
   .sidebar-list li {
-    font-size: 12px; /* Slightly smaller font */
+    font-size: 12px;
   }
 
   .sidebar-item {
@@ -112,7 +110,6 @@
   }
 }
 
-/* Medium Screens - 1024px to 1329px */
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
   .grid-container {
     grid-template-columns: 18% 82%;
@@ -145,7 +142,6 @@
   }
 }
 
-/* Small-Medium Screens - 768px to 1023px */
 @media screen and (max-width: 1023px) and (min-width: 768px) {
   .grid-container {
     grid-template-columns: 1fr;

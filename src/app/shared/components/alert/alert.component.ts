@@ -35,10 +35,10 @@ import { Component, Input } from '@angular/core';
         align-items: center;
         justify-content: center;
         margin-top: auto;
-        position: fixed; /* Make it a fixed overlay */
-        top: 0; /* Position it at the top of the viewport */
-        left: 0; /* Position it at the left of the viewport */
-        z-index: 1001; /* Ensure it's above other content (adjust as needed) */
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1001;
       }
     `,
   ],

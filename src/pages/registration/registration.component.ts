@@ -223,7 +223,6 @@ export class RegistrationComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  // Method to clear saved data if needed
   public clearSavedData(): void {
     localStorage.removeItem(this.STORAGE_KEY);
   }

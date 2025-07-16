@@ -20,15 +20,6 @@
     display: flex;
     gap: 16px;
   }
-  .right-end button {
-    width: 160px;
-    height: 40px;
-    background-color: #3e1f69;
-    border-radius: 5px;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
 }
 
 .content-box {
@@ -454,14 +445,8 @@ li {
   .top-header {
     height: 8%;
     margin-bottom: 10px;
-
-    .right-end button {
-      width: 160px;
-      height: 40px;
-    }
   }
 
-  /* Home page adjustments */
   .content-box {
     .left-side {
       width: 58%;
@@ -574,7 +559,6 @@ li {
     gap: 15px;
   }
 }
-/* Medium-Large Screens - 1328px to 1439px */
 @media screen and (max-width: 1439px) and (min-width: 1328px) {
   /* Navbar adjustments */
 
@@ -586,11 +570,6 @@ li {
   .top-header {
     height: 7%;
     margin-bottom: 10px;
-
-    .right-end button {
-      width: 160px;
-      height: 30px;
-    }
   }
 
   /* Home page adjustments */
@@ -688,7 +667,6 @@ li {
   }
 }
 
-/* Medium Screens - 1024px to 1329px */
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
   .search-container input {
     width: 200px;
@@ -706,12 +684,6 @@ li {
   .top-header {
     height: 6.5%;
     margin-bottom: 10px;
-
-    .right-end button {
-      width: 160px;
-      height: 27px;
-      font-size: 12px;
-    }
   }
 
   /* Home page adjustments */
@@ -880,7 +852,6 @@ li {
   }
 }
 
-/* Small-Medium Screens - 768px to 1023px */
 @media screen and (max-width: 1023px) and (min-width: 768px) {
   .search-container input {
     width: 150px;
@@ -889,12 +860,6 @@ li {
   .left-end,
   .right-end {
     gap: 8px;
-  }
-
-  .right-end button {
-    width: 120px;
-    height: 32px;
-    font-size: 12px;
   }
 
   .main-container {
@@ -944,7 +909,6 @@ li {
   }
 }
 
-/* Mobile Screens - up to 767px */
 @media screen and (max-width: 767px) {
   .left-end,
   .right-end {
@@ -1047,15 +1011,9 @@ li {
   }
 }
 
-/* Ultra-wide screens - 1920px and above */
 @media screen and (min-width: 1920px) {
   .top-header {
     height: 80px;
-
-    .right-end button {
-      height: 50px;
-      font-size: 20px;
-    }
   }
 
   .content-box {

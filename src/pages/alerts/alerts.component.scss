@@ -748,32 +748,18 @@ table {
 }
 
 @media screen and (min-width: 1536px) {
-  .right-end button {
-    height: 38px;
-  }
-
   .card-com {
     height: 85px;
   }
 }
 
 @media screen and (max-width: 1439px) and (min-width: 1328px) {
-  .right-end button {
-    height: 30px;
-    font-size: 12px;
-  }
-
   .card-com {
     height: 75px;
   }
 }
 
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
-  .right-end button {
-    height: 30px;
-    font-size: 12px;
-  }
-
   .card-com {
     height: 65px;
 

@@ -53,32 +53,6 @@
         </ng-container>
       </div>
     </div>
-
-    <div *ngIf="isLoading" class="overlay" (click)="onCloseModal()"></div>
-
-    <div class="modal-load" *ngIf="isLoading">
-      <div class="loading-bar-wrapper">
-        <div class="loading-bar"></div>
-      </div>
-      <div class="load-title">
-        <h1>Fetching Data</h1>
-        <h4>Hang on this may take a few seconds</h4>
-      </div>
-      <div class="load-bottom">
-        <button (click)="onCloseModal()">Cancel</button>
-      </div>
-    </div>
-
-    <app-integration-modal
-      [isModalOpen]="isModalOpen"
-      [selectedModalContent]="selectedModalContent"
-      [config]="modalConfig"
-      [isButtonLoading]="isButtonLoading"
-      (closeModalEvent)="onCloseModal()"
-      (connectToolEvent)="onConnectTool($event)"
-      (toolSelectionChange)="onToolSelectionChange($event)"
-    >
-    </app-integration-modal>
   </div>
   <div class="learn">
     <div class="learn-symbol">
@@ -86,8 +60,34 @@
     </div>
 
     <div class="learn-button">
-      <button>Back</button>
-      <button [routerLink]="['/home']">Continue</button>
+      <button class="primary-btn">Back</button>
+      <button class="secondary-btn" [routerLink]="['/home']">Continue</button>
     </div>
   </div>
+
+  <div *ngIf="isLoading" class="overlay" (click)="onCloseModal()"></div>
+
+  <div class="modal-load" *ngIf="isLoading">
+    <div class="loading-bar-wrapper">
+      <div class="loading-bar"></div>
+    </div>
+    <div class="load-title">
+      <h1>Fetching Data</h1>
+      <h4>Hang on this may take a few seconds</h4>
+    </div>
+    <div class="load-bottom">
+      <button (click)="onCloseModal()">Cancel</button>
+    </div>
+  </div>
+
+  <app-integration-modal
+    [isModalOpen]="isModalOpen"
+    [selectedModalContent]="selectedModalContent"
+    [config]="modalConfig"
+    [isButtonLoading]="isButtonLoading"
+    (closeModalEvent)="onCloseModal()"
+    (connectToolEvent)="onConnectTool($event)"
+    (toolSelectionChange)="onToolSelectionChange($event)"
+  >
+  </app-integration-modal>
 </div>

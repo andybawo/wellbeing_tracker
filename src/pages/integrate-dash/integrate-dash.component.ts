@@ -241,7 +241,6 @@ export class IntegrateDashComponent implements OnInit {
       localStorage.getItem('planner_integrated') === 'true';
   }
 
-  // Helper methods to check integration status for template
   isToolIntegrated(toolName: string): boolean {
     return this.integratedTools[toolName as keyof typeof this.integratedTools];
   }

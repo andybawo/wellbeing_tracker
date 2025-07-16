@@ -47,9 +47,10 @@ export class VerifyComponent {
     ]),
   });
   isLoading: boolean = false;
-  showAlert: boolean = false; // Control alert visibility
-  alertMessage: string = ''; // Alert message
-  alertType: 'success' | 'error' = 'success'; // Alert typ
+  showAlert: boolean = false;
+
+  alertMessage: string = '';
+  alertType: 'success' | 'error' = 'success';
   closeModal() {
     this.isLoading = false;
   }
@@ -67,11 +68,9 @@ export class VerifyComponent {
   ngOnInit(): void {
     const userData = this.dataService.getUserData();
     if (userData?.emailAddress) {
-      // Send the verification code when the verify component loads
       this.sendVerificationEmail(userData.emailAddress);
     } else {
-      // console.error('User email not found, cannot send verification code.');
-      this.router.navigate(['/start/signup']); // Or a relevant error route
+      this.router.navigate(['/start/signup']);
     }
   }
   focusNext(event: Event, nextInputName: string) {
@@ -110,7 +109,6 @@ export class VerifyComponent {
         setTimeout(() => {
           this.showAlert = false;
         }, 3000);
-        // console.log('Verification code sent:', res);
       },
       error: (err) => {
         this.isLoading = false;
@@ -121,7 +119,6 @@ export class VerifyComponent {
         setTimeout(() => {
           this.showAlert = false;
         }, 3000);
-        // console.error('Error sending verification code:', err);
       },
     });
   }
@@ -131,7 +128,6 @@ export class VerifyComponent {
     if (userData?.emailAddress) {
       this.sendVerificationEmail(userData.emailAddress);
     } else {
-      // console.error('User email not found, cannot resend verification code.');
       this.showAlert = true;
       this.alertMessage = 'User email not found. Please signup again.';
       this.alertType = 'error';
@@ -149,7 +145,6 @@ export class VerifyComponent {
       const userData = this.dataService.getUserData();
 
       if (!userData || !userData.emailAddress) {
-        // console.error('user data not found');
         this.isLoading = false;
         this.showAlert = true;
         this.alertMessage = 'User data not found. Please signup again.';
@@ -169,12 +164,11 @@ export class VerifyComponent {
             this.showAlert = true;
             this.alertMessage = 'Verification successful!';
             this.alertType = 'success';
-            this.dataService.setHasRegisteredUser(true); // Mark user as verified
+            this.dataService.setHasRegisteredUser(true);
 
             localStorage.removeItem('signupUserData');
             localStorage.removeItem('registrationCompanyData');
 
-            // Navigate to the subscription page
             this.router.navigate(['/subscription']);
           },
           error: (err) => {
@@ -186,7 +180,6 @@ export class VerifyComponent {
             setTimeout(() => {
               this.showAlert = false;
             }, 3000);
-            // console.error('Verification failed:', err);
           },
         });
     } else {
@@ -196,7 +189,6 @@ export class VerifyComponent {
         this.showAlert = false;
       }, 3000);
       this.alertType = 'error';
-      // console.log('Verification form is invalid');
     }
   }
   goBack(): void {

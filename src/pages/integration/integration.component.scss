@@ -19,35 +19,11 @@
   position: relative;
   top: 150px;
   gap: 5px;
+  width: 100%;
   .learn-button {
     display: flex;
     flex-direction: row;
     gap: 30px;
-
-    button {
-      height: 40px;
-      width: 120px;
-      border-radius: 8px;
-      color: black;
-
-      &:nth-child(1) {
-        border: 0.5px solid #3e1f69;
-        background-color: white;
-      }
-
-      &:hover {
-        background-color: #5c2e9c;
-        cursor: pointer;
-      }
-
-      &:nth-child(2) {
-        background-color: #3e1f69;
-        color: white;
-        &:hover {
-          background-color: #5c2e9c;
-        }
-      }
-    }
   }
 
   .learn-symbol {

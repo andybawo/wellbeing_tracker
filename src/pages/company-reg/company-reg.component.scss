@@ -1,4 +1,3 @@
-// Base styles (for 1530px and above)
 .grid-container {
   background-color: white;
   height: 100vh;
@@ -20,7 +19,6 @@
   border-radius: 5px;
 }
 
-// Large Laptops (1200px - 1529px)
 @media screen and (min-width: 1549px) {
   .registration-content {
     width: fit-content;
@@ -28,7 +26,6 @@
   }
 }
 
-// Standard Laptops (1024px - 1199px)
 @media screen and (max-width: 1199px) {
   .registration-content {
     min-width: 680px;
@@ -36,7 +33,6 @@
   }
 }
 
-// Small Laptops / Large Tablets (768px - 1023px)
 @media screen and (max-width: 1023px) {
   .registration-content {
     min-width: 600px;
@@ -46,7 +42,6 @@
   }
 }
 
-// Tablets (600px - 767px)
 @media screen and (max-width: 767px) {
   .grid-container {
     padding: 15px;
@@ -60,7 +55,6 @@
   }
 }
 
-// Large Mobile (480px - 599px)
 @media screen and (max-width: 599px) {
   .grid-container {
     padding: 10px;
@@ -74,7 +68,6 @@
   }
 }
 
-// Small Mobile (320px - 479px)
 @media screen and (max-width: 479px) {
   .grid-container {
     padding: 5px;
@@ -89,7 +82,6 @@
   }
 }
 
-// Extra Small Mobile (below 320px)
 @media screen and (max-width: 319px) {
   .grid-container {
     padding: 2px;

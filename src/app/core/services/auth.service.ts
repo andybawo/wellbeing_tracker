@@ -92,11 +92,10 @@ export class AuthService {
     if (!token) return false;
 
     try {
-      const payload = JSON.parse(atob(token.split('.')[1])); // Decode JWT payload
+      const payload = JSON.parse(atob(token.split('.')[1]));
       const currentTime = Date.now() / 1000;
-      return payload.exp > currentTime; // Check if token is not expired
+      return payload.exp > currentTime;
     } catch (error) {
-      // If token is not a valid JWT or can't be decoded, assume it's valid
       return !!token;
     }
   }
@@ -108,7 +107,6 @@ export class AuthService {
       const userData = {
         email: payload.email,
         fullName: payload.given_name,
-        // Add any other fields from the token you need
       };
       localStorage.setItem('userData', JSON.stringify(userData));
       this.dataService.setUserData(userData);

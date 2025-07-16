@@ -28,9 +28,6 @@ export class PaymentService {
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Initiates a payment transaction with either Paystack or Flutterwave.
-   */
   initiatePayment(
     gateway: 'paystack' | 'flutterwave',
     packageId: number,
@@ -64,9 +61,6 @@ export class PaymentService {
     );
   }
 
-  /**
-   * Verifies a payment transaction using the transaction reference.
-   */
   verifyPayment(
     transactionRef: string,
     token: string
@@ -116,9 +110,6 @@ export class PaymentService {
       );
   }
 
-  /**
-   * Creates a new subscription after payment verification.
-   */
   newSubscription(
     packageId: number,
     token: string
@@ -163,9 +154,6 @@ export class PaymentService {
       );
   }
 
-  /**
-   * Verifies payment and creates subscription in sequence.
-   */
   verifyAndCreateSubscription(
     transactionRef: string,
     token: string,

@@ -121,14 +121,13 @@ export class SubSuccessfulComponent implements OnInit {
       return;
     }
 
-    // Add a timeout to prevent infinite loading
     const timeoutId = setTimeout(() => {
       if (this.isLoading) {
         this.isLoading = false;
         this.failureMessage =
           'Payment verification timed out. Please contact support.';
       }
-    }, 30000); // 30 second timeout
+    }, 30000);
 
     this.paymentService
       .verifyAndCreateSubscription(this.transactionRef, token, this.packageId)
@@ -155,7 +154,6 @@ export class SubSuccessfulComponent implements OnInit {
               response.message || 'Payment verification failed.';
             this.isSuccess = false;
 
-            // Show error for a while then redirect back to subscription
             setTimeout(() => {
               this.router.navigate(['/subscription']);
             }, 5000);
@@ -167,7 +165,6 @@ export class SubSuccessfulComponent implements OnInit {
           this.isLoading = false;
           this.isSuccess = false;
 
-          // More detailed error message
           if (error.status === 0) {
             this.failureMessage =
               'Network error. Please check your connection and try again.';
@@ -186,7 +183,6 @@ export class SubSuccessfulComponent implements OnInit {
               'An unexpected error occurred. Please try again.';
           }
 
-          // Redirect back to subscription page after showing error
           setTimeout(() => {
             this.router.navigate(['/subscription']);
           }, 5000);

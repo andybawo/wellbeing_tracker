@@ -141,15 +141,6 @@
     display: flex;
     gap: 16px;
   }
-  .right-end button {
-    width: 80px;
-    height: 40px;
-    background-color: #3e1f69;
-    border-radius: 5px;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
 }
 
 .hrm-tab {
@@ -242,23 +233,18 @@
   display: inline-block;
 }
 
-/* Chart 1: 120x120 */
-
-/* Chart 2: 200x200 */
 .chart-2 {
   width: 150px;
   height: 150px;
   background: conic-gradient(#e00f0f 0% 30%, #f9b51e 40% 30%, #8fc715 30% 100%);
 }
 
-/* Labels shared */
 .label {
   position: absolute;
   font-weight: bold;
   color: black;
 }
 
-/* Chart 2 Labels */
 .chart-2 .label-10 {
   top: 45%;
   right: 10%;
@@ -320,9 +306,6 @@
     h3 {
       font-size: 12px;
     }
-    .right-end button {
-      height: 35px;
-    }
   }
 }
 
@@ -339,9 +322,6 @@
     font-size: 12px;
     h3 {
       font-size: 12px;
-    }
-    .right-end button {
-      height: 30px;
     }
   }
 

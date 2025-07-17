@@ -49,7 +49,7 @@
           />Communication Tool
         </li>
 
-        <li>
+        <li [routerLink]="['/home/project-management']">
           <img src="/images/task-square-dash.png" alt="" />Project Managememt
         </li>
         <li
@@ -82,7 +82,9 @@
             alt=""
           />Integration
         </li>
-        <li><img src="/images/subscription-dash.png" alt="" />Subscription</li>
+        <li [routerLink]="['/home/subscription-dash']">
+          <img src="/images/subscription-dash.png" alt="" />Subscription
+        </li>
         <li
           [routerLink]="['/home/user-management']"
           routerLinkActive="active-sidebar"
@@ -98,7 +100,9 @@
             alt=""
           />User Management
         </li>
-        <li><img src="/images/card (1).png" alt="" />Company Profile</li>
+        <li [routerLink]="['/home/company-profile']">
+          <img src="/images/card (1).png" alt="" />Company Profile
+        </li>
       </ul>
       <ul>
         <li (click)="onLogout()">

@@ -23,6 +23,9 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { AlertsComponent } from '../pages/alerts/alerts.component';
 import { IntegrateDashComponent } from '../pages/integrate-dash/integrate-dash.component';
 import { UserManagementComponent } from '../pages/user-management/user-management.component';
+import { CompanyProfileComponent } from '../pages/company-profile/company-profile.component';
+import { ProjectManagementComponent } from '../pages/project-management/project-management.component';
+import { SubscriptionDashComponent } from '../pages/subscription-dash/subscription-dash.component';
 export const routes: Routes = [
   {
     path: '',
@@ -57,6 +60,18 @@ export const routes: Routes = [
       {
         path: 'user-management',
         component: UserManagementComponent,
+      },
+      {
+        path: 'company-profile',
+        component: CompanyProfileComponent,
+      },
+      {
+        path: 'project-management',
+        component: ProjectManagementComponent,
+      },
+      {
+        path: 'subscription-dash',
+        component: SubscriptionDashComponent,
       },
     ],
   },

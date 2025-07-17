@@ -233,14 +233,14 @@
   }
 }
 
-@media screen and (min-width: 1706px) {
+@media screen and (min-width: 1706px) and (min-height: 798px) {
   .sidebar {
     width: 250px;
     left: -250px;
   }
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1900px) and (min-height: 798px) {
   .sidebar {
     width: 276px;
     left: -276px;

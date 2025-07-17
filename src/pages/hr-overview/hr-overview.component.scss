@@ -5,6 +5,9 @@ $success: #6e9f06;
 
 @use "bootstrap/scss/bootstrap";
 
+.container {
+  margin: 16px 16px 0 16px;
+}
 .main-content {
   width: 100%;
   display: flex;

@@ -448,8 +448,8 @@ table {
     textarea {
       border: none;
       background-color: #f0eeee;
-      height: auto;
-      min-height: 140px;
+      height: 140px;
+      min-height: 100px;
       font-weight: 300;
       justify-content: flex-start;
       display: flex;
@@ -754,17 +754,43 @@ table {
 }
 
 @media screen and (max-width: 1439px) and (min-width: 1328px) {
+  .modal-content {
+    padding: 30px;
+    width: 450px;
+  }
   .card-com {
     height: 75px;
   }
 }
 
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
-  .card-com {
-    height: 65px;
+  .modal-content {
+    padding: 20px;
+    width: 400px;
 
-    li {
-      font-size: 8px;
+    .modal-body-alert {
+      top: 0;
+      textarea {
+        height: 100px;
+      }
+    }
+
+    .modal-header-alert {
+      h3 {
+        font-size: 15px;
+      }
+
+      .close-btn {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .card-com {
+      height: 65px;
+
+      li {
+        font-size: 8px;
+      }
     }
   }
 }

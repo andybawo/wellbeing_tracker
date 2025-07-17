@@ -91,7 +91,7 @@ h4 {
   border-radius: 8px !important;
   border: 1px solid #3e1f69;
   cursor: pointer;
-  font-size: 12px !important;
+  font-weight: 600;
 
   &:hover {
     background-color: #5c2e9c;
@@ -105,7 +105,7 @@ h4 {
   border: 1px solid #3e1f69;
   cursor: pointer;
   color: white;
-  font-size: 12px !important;
+  font-weight: 600;
 
   &:hover {
     background-color: #5c2e9c;
@@ -125,30 +125,36 @@ h4 {
   .primary-btn {
     height: 44px;
     width: 140px;
+    font-size: 14px !important;
   }
   .secondary-btn {
     height: 44px;
     width: 140px;
+    font-size: 14px !important;
   }
 
   .danger-btn {
     height: 44px;
     width: 120px;
+    font-size: 14px !important;
   }
 }
 @media screen and (min-width: 1470px) {
   .primary-btn {
     height: 44px;
     width: 140px;
+    font-size: 14px !important;
   }
   .secondary-btn {
     height: 44px;
     width: 140px;
+    font-size: 14px !important;
   }
 
   .danger-btn {
     height: 44px;
     width: 140px;
+    font-size: 14px !important;
   }
 }
 
@@ -156,15 +162,18 @@ h4 {
   .primary-btn {
     height: 35px;
     width: 115px;
+    font-size: 12px !important;
   }
   .secondary-btn {
     height: 35px;
     width: 115px;
+    font-size: 12px !important;
   }
 
   .danger-btn {
     height: 40px;
     width: 115px;
+    font-size: 12px !important;
   }
 }
 
@@ -172,13 +181,16 @@ h4 {
   .primary-btn {
     height: 30px;
     width: 100px;
+    font-size: 10px !important;
   }
   .secondary-btn {
     height: 30px;
     width: 100px;
+    font-size: 10px !important;
   }
   .danger-btn {
     height: 30px;
     width: 100px;
+    font-size: 10px !important;
   }
 }

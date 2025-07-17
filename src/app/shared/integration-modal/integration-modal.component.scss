@@ -219,8 +219,16 @@ button[type="submit"] {
 }
 
 //Media Query
+@media screen and (min-width: 1536px) {
+}
+
+@media screen and (max-width: 1439px) and (min-width: 1328px) {
+}
 
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .modal-content {
+    width: 400px;
+  }
   a {
     font-size: 10px;
   }
@@ -235,13 +243,14 @@ button[type="submit"] {
     [src="/images/outlook.png"],
     [src="/images/teams.png"],
     [src="/images/seamless.png"],
-    [src="/images/jira.png"] {
-      height: 6px;
-      width: 60px;
+    [src="/images/jira.png"],
+    [src="/images/Frame 133.png"] {
+      height: 40px;
+      width: 40px;
     }
     .arrow {
       width: 20px;
-      height: 50px;
+      // height: 50px;
     }
   }
 
@@ -257,6 +266,8 @@ button[type="submit"] {
   .api-key {
     height: 70px;
     gap: 8px;
+    position: relative;
+    top: 20px;
     .api-key-details {
       label {
         font-size: 10px;

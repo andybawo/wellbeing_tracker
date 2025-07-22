@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-company-profile',
-  imports: [],
   templateUrl: './company-profile.component.html',
-  styleUrl: './company-profile.component.scss'
+  styleUrls: ['./company-profile.component.scss'],
+  imports: [RouterOutlet]
 })
 export class CompanyProfileComponent {
 

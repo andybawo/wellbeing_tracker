@@ -1,0 +1,1043 @@
+.logo-pic {
+  position: relative;
+  margin-top: 40px;
+}
+
+.display h1:nth-child(2) {
+  font-size: 20px;
+  position: relative;
+  bottom: 20px;
+}
+
+.display h1 {
+  position: relative;
+  top: 20px;
+  font-weight: 700;
+}
+
+.display h4 {
+  position: relative;
+  top: 20px;
+}
+
+// .details h4 {
+//   font-weight: 300;
+// }
+
+.display {
+  height: 452px;
+  width: 450px;
+}
+
+.form-details {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.form-details label {
+  width: 144px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 999; /* Ensure it's below the modal */
+}
+
+.form-details input {
+  width: 100%;
+  height: 48px;
+  border: 1px solid rgb(221, 212, 212);
+  background-color: #f0eeee;
+  border-radius: 5px;
+  padding-left: 20px;
+}
+
+input:focus {
+  border: none;
+  outline: none;
+}
+
+// .form-details input::placeholder {
+//   color: blue;
+//   font-size: 20px;
+// }
+
+.form {
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  position: relative;
+}
+
+.select {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.form-details select {
+  height: 48px;
+  width: 100%;
+  background-color: #f0eeee;
+  border: none;
+  border-radius: 5px;
+  padding-left: 20px;
+  padding-right: 30px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url("/images/arrow-down.png");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 12px 12px;
+}
+
+.bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 40px;
+}
+
+.bottom button {
+  width: 200px;
+  height: 48px;
+  border-radius: 5px;
+  gap: 40px;
+}
+
+.bottom button:hover {
+  cursor: pointer;
+}
+
+.bottom button:nth-child(1) {
+  background-color: white;
+  border: 1px solid #3e1f69;
+}
+
+.bottom button:nth-child(1):hover {
+  background-color: #5c2e9c;
+  color: white;
+}
+
+.bottom button:nth-child(2) {
+  background-color: #3e1f69;
+  border: none;
+  color: white;
+}
+
+/* ==== Responsive Media Queries ==== */
+
+/* ==== Responsive Media Queries ==== */
+@media screen and (min-width: 1530px) {
+  .display {
+    width: 60%;
+    height: 550px;
+  }
+
+  /* Large screens (≤1440px) */
+
+  .display h1 {
+    top: 25px;
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .display h4 {
+    font-size: 18px;
+    top: 45px;
+  }
+}
+
+/* Medium screens (≤1024px - laptops/tablets) */
+
+/* Standard Laptop Screens (1024px - 1439px) */
+@media screen and (max-width: 1439px) and (min-width: 1024px) {
+  .display {
+    width: 70%;
+    height: 480px;
+  }
+
+  .display h1 {
+    font-size: 40px;
+    line-height: 1.2;
+  }
+
+  .display h4 {
+    font-size: 16px;
+    top: 35px;
+  }
+
+  .logo-pic {
+    bottom: 50px;
+  }
+
+  .side-logo {
+    height: 92vh;
+    top: 25px;
+  }
+}
+
+/* Small Laptop/Large Tablet Screens (768px - 1023px) */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+  .display {
+    width: 85%;
+    height: 450px;
+  }
+
+  .display h1 {
+    font-size: 32px;
+    line-height: 1.3;
+  }
+
+  .display h4 {
+    font-size: 15px;
+    top: 30px;
+  }
+
+  .logo-pic {
+    bottom: 40px;
+    margin-top: 30px;
+  }
+
+  .logo-pic img {
+    max-width: 80%;
+    height: auto;
+  }
+
+  .side-logo {
+    height: 90vh;
+    top: 30px;
+    border-radius: 25px;
+  }
+}
+
+/* Tablet Portrait Mode (600px - 767px) */
+@media screen and (max-width: 767px) and (min-width: 600px) {
+  .display {
+    width: 90%;
+    height: auto;
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .display h1 {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .display h4 {
+    font-size: 16px;
+    top: 25px;
+    margin-bottom: 60px;
+  }
+
+  .logo-pic {
+    bottom: 30px;
+    margin-top: 20px;
+  }
+
+  .logo-pic img {
+    max-width: 200px;
+    height: auto;
+  }
+}
+
+/* Mobile Landscape (480px - 599px) */
+@media screen and (max-width: 599px) and (min-width: 480px) {
+  .display {
+    width: 95%;
+    height: auto;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .display h1 {
+    font-size: 24px;
+    line-height: 1.4;
+  }
+
+  .display h4 {
+    font-size: 15px;
+    top: 20px;
+    margin-bottom: 50px;
+  }
+
+  .logo-pic {
+    bottom: 20px;
+    margin-top: 15px;
+  }
+
+  .logo-pic img {
+    max-width: 180px;
+    height: auto;
+  }
+}
+
+/* Mobile Portrait (320px - 479px) */
+@media screen and (max-width: 479px) {
+  .display {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: 30px;
+    padding: 0 10px;
+  }
+
+  .display h1 {
+    font-size: 20px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  .display h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+    top: 15px;
+    padding: 0 10px;
+  }
+
+  .logo-pic {
+    bottom: 15px;
+    margin-top: 10px;
+  }
+
+  .logo-pic img {
+    max-width: 150px;
+    height: auto;
+  }
+}
+
+/* Extra Small Mobile (max-width: 320px) */
+@media screen and (max-width: 320px) {
+  .display h1 {
+    font-size: 18px;
+  }
+
+  .display h4 {
+    font-size: 13px;
+    padding: 0 5px;
+  }
+
+  .logo-pic img {
+    max-width: 130px;
+  }
+}
+
+/* ===== SIGNUP FORM RESPONSIVE STYLES ===== */
+
+/* Large Desktop Screens (1440px and above) */
+@media screen and (min-width: 1440px) {
+  /* Signup Form Styles */
+  .display {
+    width: 450px;
+    height: 590px;
+  }
+
+  .display h4 {
+    font-size: 15px;
+    top: 50px;
+  }
+
+  .display h1 {
+    top: 40px;
+    font-size: 20px;
+  }
+
+  .form {
+    top: 40px;
+    gap: 12px;
+  }
+
+  .form input {
+    height: 35px;
+    font-size: 14px;
+    padding-left: 10px;
+  }
+
+  .form label {
+    font-size: 12px;
+    font-weight: 300;
+  }
+  .form-details select {
+    height: 30px;
+    padding-left: 10px;
+    font-size: 14px;
+  }
+
+  .bottom {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .bottom button {
+    height: 40px;
+    font-size: 14px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .modal-load {
+    min-width: 620px;
+    height: 280px;
+    .load-title {
+      h1 {
+        top: 10px;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) and (min-height: 798px) {
+  .form {
+    top: 50px;
+    gap: 12px;
+  }
+
+  .form input {
+    height: 40px;
+    font-size: 16px;
+    padding-left: 10px;
+  }
+
+  .form label {
+    font-size: 16px;
+    font-weight: 300;
+  }
+  .form-details select {
+    height: 40px;
+    padding-left: 10px;
+    font-size: 16px;
+  }
+
+  .bottom {
+    width: 100%;
+    gap: 19px;
+  }
+
+  .bottom button {
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
+/* Standard Laptop Screens (1024px - 1439px) */
+@media screen and (max-width: 1439px) and (min-width: 1330px) {
+  /* Signup Form Styles */
+  .display {
+    width: 400px;
+    height: fit-content;
+  }
+  .logo-pic {
+    top: -10px;
+  }
+  .display h4 {
+    font-size: 15px;
+    top: 30px;
+  }
+
+  .display h1 {
+    font-size: 20px;
+    top: 30px;
+  }
+
+  .form {
+    top: 10px;
+    gap: 10px;
+  }
+
+  .form input {
+    height: 35px;
+    font-size: 12px;
+    padding-left: 10px;
+  }
+
+  .form-details select {
+    height: 30px;
+    padding-left: 10px;
+    font-size: 12px;
+  }
+
+  .form label {
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  .bottom {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .bottom button {
+    height: 35px;
+    font-size: 12px;
+  }
+
+  .modal-load {
+    min-width: 560px;
+    height: 260px;
+    .load-title {
+      h1 {
+        top: 10px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .display {
+    width: 350px;
+    height: fit-content;
+  }
+  .logo-pic {
+    top: -10px;
+  }
+  .display h4 {
+    font-size: 15px;
+    top: 10px;
+  }
+  .display h1 {
+    font-size: 15px;
+    top: 0px;
+  }
+
+  .form {
+    top: -10px;
+    gap: 10px;
+  }
+
+  .form input {
+    height: 30px;
+    font-size: 10px;
+    padding-left: 10px;
+  }
+
+  .form-details select {
+    height: 30px;
+    padding-left: 10px;
+    font-size: 10px;
+  }
+
+  .form label {
+    font-size: 10px;
+    font-weight: 300;
+  }
+
+  .bottom {
+    width: 100%;
+    gap: 30px;
+    top: 30px;
+  }
+
+  .bottom button {
+    height: 30px;
+    font-size: 10px;
+  }
+
+  .modal-load {
+    min-width: 560px;
+    height: 260px;
+
+    .load-title {
+      h1 {
+        top: 10px;
+      }
+    }
+  }
+}
+
+/* Small Laptop/Large Tablet Screens (768px - 1023px) */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+  /* Signup Form Styles */
+  .display {
+    width: 450px;
+    height: auto;
+  }
+
+  .display h3 {
+    font-size: 20px;
+    top: 55px;
+    text-align: center;
+  }
+
+  .logo-pic {
+    bottom: -20px;
+    text-align: center;
+  }
+
+  .logo-pic img {
+    max-width: 140px;
+    height: auto;
+  }
+
+  .form {
+    top: 65px;
+    gap: 8px;
+  }
+
+  .form input {
+    height: 40px;
+    font-size: 14px;
+    padding-left: 25px;
+  }
+
+  .form label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .bottom-display {
+    width: 450px;
+    height: 200px;
+    top: 35px;
+    gap: 18px;
+  }
+
+  .bottom-display button {
+    height: 46px;
+    font-size: 14px;
+  }
+
+  .modal-load {
+    min-width: 480px;
+    height: 240px;
+  }
+}
+
+/* Tablet Portrait Mode (600px - 767px) */
+@media screen and (max-width: 767px) and (min-width: 599px) {
+  /* Signup Form Styles */
+  .display {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    padding: 0;
+  }
+
+  .display h1 {
+    top: 30px;
+    text-align: center;
+  }
+
+  .display h4 {
+    font-size: 18px;
+    top: 30px;
+    text-align: left;
+  }
+
+  .logo-pic {
+    bottom: -10px;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .logo-pic img {
+    max-width: 120px;
+    height: auto;
+  }
+
+  .form {
+    top: -20px;
+    gap: 8px;
+  }
+
+  .form input {
+    height: 40px;
+    font-size: 16px;
+    padding-left: 20px;
+  }
+
+  .form label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .bottom {
+    width: 100%;
+    height: auto;
+    top: 30px;
+    gap: 16px;
+  }
+
+  .bottom button {
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .modal-load {
+    min-width: 90%;
+    max-width: 400px;
+    height: 220px;
+  }
+}
+
+/* Mobile Landscape (480px - 599px) */
+@media screen and (max-width: 599px) and (min-width: 480px) {
+  /* Signup Form Styles */
+  .display {
+    width: 95%;
+    max-width: 350px;
+    height: auto;
+    padding: 0 15px;
+  }
+
+  .display h4 {
+    font-size: 16px;
+    top: 30px;
+    text-align: center;
+  }
+
+  .display h1 {
+    top: 10px;
+    text-align: center;
+  }
+
+  .logo-pic {
+    bottom: 0px;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .logo-pic img {
+    max-width: 100px;
+    height: auto;
+  }
+
+  .form {
+    top: 40px;
+    gap: 6px;
+  }
+
+  .form input {
+    height: 40px;
+    font-size: 16px;
+    padding-left: 18px;
+  }
+
+  .form label {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .bottom {
+    width: 100%;
+    height: auto;
+    top: 15px;
+    gap: 14px;
+  }
+
+  .bottom button {
+    height: 46px;
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .modal-load {
+    min-width: 90%;
+    max-width: 350px;
+    height: 200px;
+  }
+
+  .load-title {
+    gap: 40px;
+  }
+
+  .load-title h1 {
+    font-size: 18px;
+  }
+
+  .load-title h4 {
+    font-size: 14px;
+  }
+}
+
+/* Mobile Portrait (320px - 479px) */
+@media screen and (max-width: 479px) {
+  /* Signup Form Styles */
+  .display {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    padding: 0 10px;
+  }
+
+  .display h3 {
+    font-size: 15px;
+    top: 25px;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .logo-pic {
+    bottom: 5px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .logo-pic img {
+    max-width: 80px;
+    height: auto;
+  }
+
+  .form {
+    top: 35px;
+    gap: 5px;
+  }
+
+  .form input {
+    height: 40px;
+    font-size: 16px;
+    padding-left: 15px;
+  }
+
+  .form label {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .bottom {
+    width: 100%;
+    height: auto;
+    top: 20px;
+    gap: 12px;
+  }
+
+  .bottom button {
+    height: 44px;
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .option-divider-grid {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .line {
+    height: 1px;
+    background-color: #ddd;
+    flex: 1;
+  }
+
+  .or-text {
+    font-size: 12px;
+    color: #666;
+    padding: 0 5px;
+  }
+
+  .modal-load {
+    min-width: 95%;
+    max-width: 300px;
+    height: 180px;
+    padding: 15px;
+  }
+
+  .load-title {
+    gap: 30px;
+  }
+
+  .load-title h1 {
+    font-size: 16px;
+  }
+
+  .load-title h4 {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .loading-bar-wrapper {
+    width: 90%;
+    height: 6px;
+  }
+}
+
+/* Extra Small Mobile (max-width: 320px) */
+@media screen and (max-width: 320px) {
+  .display {
+    max-width: 280px;
+  }
+
+  .display h3 {
+    font-size: 14px;
+  }
+
+  .logo-pic img {
+    max-width: 70px;
+  }
+
+  .form input {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .form label {
+    font-size: 11px;
+  }
+
+  .bottom button {
+    height: 42px;
+    font-size: 11px;
+  }
+
+  .modal-load {
+    max-width: 280px;
+    height: 160px;
+  }
+
+  .load-title h1 {
+    font-size: 14px;
+  }
+
+  .load-title h4 {
+    font-size: 11px;
+  }
+}
+
+/* ===== SIGNUP FORM SPECIFIC RESPONSIVE UTILITIES ===== */
+
+/* Form validation and accessibility improvements for mobile */
+@media (max-width: 768px) {
+  .form input:focus {
+    outline: 2px solid #3e1f69;
+    outline-offset: 1px;
+    border-color: #3e1f69;
+  }
+
+  .form input::placeholder {
+    font-size: 14px;
+    color: #999;
+  }
+
+  /* Loading spinner adjustments for mobile */
+  .button-loader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff40;
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* Social login button icons spacing for mobile */
+@media (max-width: 599px) {
+  .bottom button img {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Smooth transitions for responsive changes */
+.grid-container,
+.onboard-content,
+.display,
+.start {
+  transition: all 0.3s ease;
+}
+
+/* Focus styles for better accessibility on mobile */
+@media (max-width: 768px) {
+  .start button:focus {
+    outline: 2px solid #3e1f69;
+    outline-offset: 2px;
+  }
+
+  /* Increase touch target size for mobile */
+  .start button {
+    min-height: 44px; /* Apple's recommended minimum touch target */
+  }
+}
+
+.modal-load {
+  min-width: 576px;
+  width: fit-content;
+  height: 260px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: white;
+  // padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  flex-direction: column;
+}
+
+.loading-bar-wrapper {
+  width: 80%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.loading-bar {
+  width: 50%;
+  height: 100%;
+  background-color: #f3e6f5; // Tailwind indigo-600 or change to your theme
+  animation: slide 1.5s infinite ease-in-out;
+}
+
+.load-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

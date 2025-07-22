@@ -1,0 +1,162 @@
+<div class="logo-pic"><img src="/images/logo.png" alt="" /></div>
+
+<div class="main-content">
+  <h2>Powerful Features</h2>
+
+  <div class="duration">
+    <h4>Enjoy our 30 days free trial with full package on each plan</h4>
+    <div class="sub-length">
+      <button [class.active]="!isYearClicked" (click)="closeYear()">
+        Month
+      </button>
+      <button [class.active]="isYearClicked" (click)="openYear()">Year</button>
+    </div>
+  </div>
+
+  <ng-container *ngIf="!isYearClicked">
+    <div class="packages-container">
+      <div
+        class="packages"
+        *ngFor="let pkg of transformedMonthlyPackages"
+        [class.selected]="selectedPackage === pkg.name?.toLowerCase()"
+        (click)="selectPackageDiv(pkg.name?.toLowerCase())"
+      >
+        <span>{{ pkg.displayName || pkg.name }}</span>
+        <div class="package-details">
+          <h1>
+            {{
+              pkg.displayPrice
+                ? pkg.displayPrice
+                : (pkg.price | currency : "NGN" : "symbol-narrow" : "1.2-2")
+            }}
+          </h1>
+          <h4 *ngIf="pkg.customText" class="custom-text">
+            {{ pkg.customText }}
+          </h4>
+
+          <ul>
+            <li *ngFor="let feature of pkg.features">
+              <img src="/images/tick-square.png" alt="" />{{ feature }}
+            </li>
+          </ul>
+        </div>
+        <div class="sub-button">
+          <button
+            class="select-plan"
+            [class.active]="selectedPackage === pkg.name?.toLowerCase()"
+            (click)="selectPlan(pkg.name?.toLowerCase())"
+          >
+            Select Plan
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Loading states -->
+  <div *ngIf="isLoading" class="overlay" (click)="closeModal()"></div>
+  <div class="modal-load" *ngIf="isLoading">
+    <div class="loading-bar-wrapper">
+      <div class="loading-bar"></div>
+    </div>
+    <div class="load-title">
+      <h1>Loading packages</h1>
+      <h4>Hang on this may take a few seconds</h4>
+    </div>
+  </div>
+
+  <div *ngIf="isLoadingpayment" class="overlay" (click)="closeModal()"></div>
+  <div class="modal-load" *ngIf="isLoadingpayment" style="z-index: 9999">
+    <div class="loading-bar-wrapper">
+      <div class="loading-bar"></div>
+    </div>
+    <div class="load-title">
+      <h1>Redirecting to Payment</h1>
+      <h4>Hang on this may take a few seconds</h4>
+    </div>
+  </div>
+
+  <!-- New loading state for free trial -->
+  <div *ngIf="isLoadingFreeTrial" class="overlay" (click)="closeModal()"></div>
+  <div class="modal-load" *ngIf="isLoadingFreeTrial" style="z-index: 9999">
+    <div class="loading-bar-wrapper">
+      <div class="loading-bar"></div>
+    </div>
+    <div class="load-title">
+      <h1>Creating Free Trial</h1>
+      <h4>Setting up your free trial subscription...</h4>
+    </div>
+  </div>
+
+  <!-- Payment modal (only shows for paidpkgs) -->
+  <div *ngIf="isModalOpen" class="overlay" (click)="closeModal()"></div>
+  <app-modal *ngIf="isModalOpen" (close)="closeModal()">
+    <div class="modal-pay">
+      <div class="logo-pic"><img src="/images/logo.png" alt="" /></div>
+
+      <div class="payment-option">
+        <span>Make Payment</span>
+        <div class="payment-card">
+          <h4>Complete purchase with Paystack</h4>
+          <button
+            style="position: relative; left: 10px"
+            (click)="setPaymentGateway('paystack')"
+            [class.active]="selectedGateway === 'paystack'"
+          >
+            Paystack
+          </button>
+        </div>
+        <div class="payment-card">
+          <h4>Complete purchase with Flutterwave</h4>
+
+          <button
+            (click)="setPaymentGateway('flutterwave')"
+            [class.active]="selectedGateway === 'flutterwave'"
+          >
+            Flutterwave
+          </button>
+        </div>
+      </div>
+    </div>
+  </app-modal>
+
+  <ng-container *ngIf="isYearClicked">
+    <div class="packages-container">
+      <div
+        class="packages"
+        *ngFor="let pkg of transformedYearlyPackages"
+        [class.selected]="selectedPackage === pkg.name?.toLowerCase()"
+        (click)="selectPackageDiv(pkg.name?.toLowerCase())"
+      >
+        <span>{{ pkg.displayName || pkg.name }}</span>
+        <div class="package-details">
+          <h1>
+            {{
+              pkg.displayPrice
+                ? pkg.displayPrice
+                : (pkg.price | currency : "NGN" : "symbol-narrow" : "1.2-2")
+            }}
+          </h1>
+          <h4 *ngIf="pkg.customText" class="custom-text">
+            {{ pkg.customText }}
+          </h4>
+
+          <ul>
+            <li *ngFor="let feature of pkg.features">
+              <img src="/images/tick-square.png" alt="" />{{ feature }}
+            </li>
+          </ul>
+        </div>
+        <div class="sub-button">
+          <button
+            class="select-plan"
+            [class.active]="selectedPackage === pkg.name?.toLowerCase()"
+            (click)="selectPlan(pkg.name?.toLowerCase())"
+          >
+            Select Plan
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

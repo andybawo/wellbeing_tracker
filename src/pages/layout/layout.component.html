@@ -1,0 +1,16 @@
+<div class="grid-container">
+  <!-- Header Section -->
+  <header class="header">
+    <app-navbar></app-navbar>
+  </header>
+
+  <!-- Sidebar Section -->
+  <div class="sidebar">
+    <app-sidebar [sidebarOpen]="true"></app-sidebar>
+  </div>
+
+  <!-- Main Content Section -->
+  <main class="main-container">
+    <router-outlet></router-outlet>
+  </main>
+</div>

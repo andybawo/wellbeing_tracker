@@ -1,0 +1,413 @@
+@use "../../app/shared/styles/shared-styles.scss" as *;
+.form {
+  button[type="submit"] {
+    position: relative;
+    min-width: 120px;
+    transition: all 0.3s ease;
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .button-loader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      .spinner {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 0.8s ease-in-out infinite;
+      }
+    }
+  }
+  span:nth-child(3) {
+    // color: pink;
+    position: relative;
+    top: 10px;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.option-divider-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+}
+
+.line {
+  height: 1px;
+  background-color: #ccc;
+}
+
+.or-text {
+  color: #555;
+
+  white-space: nowrap;
+  padding: 0 0.5em;
+  text-align: center;
+}
+
+.logo-box {
+  width: 160px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: fit-content;
+  gap: 5px;
+
+  img {
+    align-self: flex-start;
+  }
+}
+
+.form button {
+  background-color: #3e1f69;
+  color: white;
+  border: 1px solid #3e1f69;
+  width: 100%;
+  height: 45px;
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  justify-content: center;
+  &:hover {
+    cursor: pointer;
+  }
+  button a {
+    position: relative;
+    bottom: 20px;
+  }
+}
+
+.logo-pic {
+  position: relative;
+  top: 30px;
+  margin-top: 10px;
+}
+.link {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  height: 20px;
+  input {
+    height: 12px;
+    align-self: center;
+  }
+  a {
+    color: #3e1f69;
+  }
+}
+
+.check {
+  font-size: 12px;
+  display: flex;
+  gap: 8px;
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #f0eeee;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: pink;
+  }
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
+  }
+
+  &:checked {
+    background-color: #333;
+    outline: invert;
+  }
+}
+
+.form-details {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  flex-direction: column;
+}
+.create-link {
+  align-self: center;
+}
+
+@media screen and (min-width: 1440px) {
+  /* Signup Form Styles */
+  .display {
+    width: 450px;
+    height: auto;
+    top: 70px;
+  }
+
+  .display h3 {
+    font-size: 18px;
+    top: 20px;
+  }
+
+  .display h1 {
+    font-size: 25px;
+    top: 10px;
+  }
+
+  .form {
+    top: 50px;
+    gap: 8px;
+  }
+
+  .form input {
+    height: 35px;
+    font-size: 12px;
+    padding-left: 10px;
+  }
+
+  .form label {
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .eye-icon-login {
+    position: absolute;
+    right: 10px;
+    top: 66.3%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .link a {
+    font-size: 12px;
+    // bottom: 14px;
+    position: relative;
+  }
+
+  .bottom-display {
+    width: 450px;
+    height: fit-content;
+    top: -10px;
+    gap: 10px;
+  }
+
+  .modal-load {
+    min-width: 620px;
+    height: 280px;
+    h1 {
+      top: 10px;
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 1439px) and (min-width: 1328px) {
+  /* Signup Form Styles */
+  .display {
+    width: 400px;
+    height: auto;
+    top: 80px;
+  }
+
+  .logo-pic {
+    top: 40px;
+    img {
+      height: 25px;
+    }
+  }
+
+  .display h3 {
+    font-size: 16px;
+    top: 30px;
+  }
+
+  .display h1 {
+    font-size: 20px;
+    top: 10px;
+    line-height: 1.2;
+  }
+
+  .form {
+    top: 50px;
+    gap: 12px;
+  }
+
+  .form input {
+    height: 35px;
+    font-size: 12px;
+    padding-left: 10px;
+  }
+
+  .form label {
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  .eye-icon-login {
+    position: absolute;
+    right: 10px;
+    top: 64.2%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 14px;
+    }
+  }
+
+  .bottom-display {
+    width: 400px;
+    height: fit-content;
+    top: 10px;
+    gap: 8px;
+  }
+
+  .link a {
+    font-size: 12px;
+    // bottom: 16px;
+    position: relative;
+  }
+
+  .form button {
+    height: 35px;
+    font-size: 16px;
+  }
+
+  .modal-load {
+    min-width: 620px;
+    height: 280px;
+    h1 {
+      top: 10px;
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .display {
+    width: 350px;
+    height: auto;
+    top: 80px;
+  }
+
+  .display h3 {
+    font-size: 12px;
+    top: 30px;
+  }
+
+  .logo-pic {
+    top: 50px;
+    img {
+      height: 20px;
+    }
+  }
+
+  .display h1 {
+    font-size: 20px;
+    top: 10px;
+  }
+
+  .form {
+    top: 40px;
+    gap: 12px;
+  }
+
+  .form input {
+    height: 30px;
+    font-size: 10px;
+    padding-left: 10px;
+  }
+
+  .form label {
+    font-size: 10px;
+    font-weight: 300;
+  }
+
+  .eye-icon-login {
+    position: absolute;
+    right: 10px;
+    top: 63%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+
+    i {
+      font-size: 12px;
+    }
+  }
+
+  .link a {
+    font-size: 10px;
+    // bottom: 18px;
+    position: relative;
+  }
+
+  .bottom-display {
+    width: 350px;
+    height: fit-content;
+    top: 10px;
+    gap: 7px;
+  }
+
+  .form button {
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .modal-load {
+    min-width: 620px;
+    height: 280px;
+    h1 {
+      top: 10px;
+      font-size: 20px;
+    }
+  }
+}

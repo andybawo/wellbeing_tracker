@@ -1,0 +1,303 @@
+/* Display */
+.display {
+  display: flex;
+  flex-direction: column;
+  width: 64.52%;
+  height: 500px;
+  justify-content: center;
+  justify-self: center;
+}
+
+.display h1 {
+  position: relative;
+  font-weight: 700;
+  font-size: 45px;
+}
+
+.display h4 {
+  position: relative;
+  top: 40px;
+  font-weight: 400;
+}
+.logo-pic {
+  position: relative;
+  bottom: 60px;
+  margin-top: 40px;
+}
+
+/* Start */
+.start {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  position: relative;
+  top: 100px;
+  align-self: center;
+}
+
+.logo-pic img {
+  height: 35px;
+}
+
+/* Responsive Media Queries */
+
+/* Standard Laptop Screens (1024px - 1439px) */
+@media screen and (max-width: 1539px) and (min-width: 1324px) {
+  .display {
+    width: 70%;
+    height: 480px;
+  }
+
+  .display h1 {
+    top: 70px;
+    font-size: 45px;
+    line-height: 1.2;
+  }
+
+  .display h4 {
+    font-size: 16px;
+    top: 100px;
+  }
+
+  .logo-pic {
+    bottom: 30px;
+  }
+
+  .start {
+    top: 150px;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .side-logo {
+    height: 92vh;
+    top: 25px;
+  }
+}
+
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .display {
+    width: 70%;
+    height: 480px;
+  }
+
+  .display h1 {
+    top: 30px;
+    font-size: 25px;
+    line-height: 1.2;
+  }
+
+  .display h4 {
+    font-size: 16px;
+    top: 50px;
+  }
+
+  .logo-pic {
+    bottom: 30px;
+  }
+
+  .start {
+    top: 100px;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .side-logo {
+    height: 92vh;
+    top: 25px;
+  }
+}
+
+/* Small Laptop/Large Tablet Screens (768px - 1023px) */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+  .display {
+    width: 85%;
+    height: 450px;
+  }
+
+  .display h1 {
+    font-size: 32px;
+    line-height: 1.3;
+  }
+
+  .display h4 {
+    font-size: 15px;
+    top: 30px;
+  }
+
+  .logo-pic {
+    bottom: 40px;
+    margin-top: 30px;
+  }
+
+  .logo-pic img {
+    max-width: 80%;
+    height: auto;
+  }
+
+  .start {
+    top: 60px;
+    gap: 30px;
+  }
+
+  .side-logo {
+    height: 90vh;
+    top: 30px;
+    border-radius: 25px;
+  }
+}
+
+/* Tablet Portrait Mode (600px - 767px) */
+@media screen and (max-width: 767px) and (min-width: 600px) {
+  .display {
+    width: 90%;
+    height: auto;
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .display h1 {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .display h4 {
+    font-size: 16px;
+    top: 25px;
+    margin-bottom: 60px;
+  }
+
+  .logo-pic {
+    bottom: 30px;
+    margin-top: 20px;
+  }
+
+  .logo-pic img {
+    max-width: 200px;
+    height: auto;
+  }
+
+  .start {
+    flex-direction: column;
+    gap: 20px;
+    top: 40px;
+    align-items: center;
+  }
+}
+
+/* Mobile Landscape (480px - 599px) */
+@media screen and (max-width: 599px) and (min-width: 480px) {
+  .display {
+    width: 95%;
+    height: auto;
+    text-align: center;
+    margin-top: 150px;
+  }
+
+  .display h1 {
+    font-size: 24px;
+    line-height: 1.4;
+  }
+
+  .display h4 {
+    font-size: 15px;
+    top: 20px;
+    margin-bottom: 50px;
+  }
+
+  .logo-pic {
+    bottom: 20px;
+    margin-top: 15px;
+  }
+
+  .logo-pic img {
+    max-width: 180px;
+    height: auto;
+  }
+
+  .start {
+    flex-direction: column;
+    gap: 15px;
+    top: 30px;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .side-logo {
+    display: none;
+  }
+
+  .display {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: 150px;
+    padding: 0 10px;
+  }
+
+  .display h1 {
+    font-size: 20px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  .display h4 {
+    font-size: 14px;
+    top: 15px;
+    margin-bottom: 40px;
+    padding: 0 10px;
+  }
+
+  .logo-pic {
+    bottom: 15px;
+    margin-top: 10px;
+  }
+
+  .logo-pic img {
+    max-width: 150px;
+    height: auto;
+  }
+
+  .start {
+    flex-direction: column;
+    gap: 12px;
+    top: 25px;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .display h1 {
+    font-size: 18px;
+  }
+
+  .display h4 {
+    font-size: 13px;
+    padding: 0 5px;
+  }
+
+  .logo-pic img {
+    max-width: 130px;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Smooth transitions for responsive changes */
+
+.display,
+.start {
+  transition: all 0.3s ease;
+}
+
+/* Focus styles for better accessibility on mobile */
+@media (max-width: 768px) {
+  .start button:focus {
+    outline: 2px solid #3e1f69;
+    outline-offset: 2px;
+  }
+}

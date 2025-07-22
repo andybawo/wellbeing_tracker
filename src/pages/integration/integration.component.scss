@@ -1,0 +1,316 @@
+.integration {
+  width: 1200px;
+  height: 505px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-pic {
+  position: relative;
+  bottom: 60px;
+}
+
+.learn {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  top: 150px;
+  gap: 5px;
+  width: 100%;
+  .learn-button {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .learn-symbol {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+.tool-card {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  position: relative;
+  top: 80px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.tool-card .cards:nth-child(1) {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.tool-card .cards:nth-child(3) {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.tool-card:hover {
+  cursor: pointer;
+}
+
+.logo {
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  background-color: #f0eeee;
+  position: relative;
+  bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+.header {
+  h1 {
+    font-size: 26px;
+    font-weight: 700;
+  }
+}
+
+.cards {
+  width: 33.3%;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid #e5e4e4;
+  gap: 10px;
+}
+
+.integrated-tool {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  h3 {
+    font-size: 12px;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  gap: 10px;
+  font-weight: 600;
+  color: black;
+}
+
+.modal-load {
+  min-width: 576px;
+  width: fit-content;
+  height: 260px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: white;
+  // padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  flex-direction: column;
+}
+
+.loading-bar-wrapper {
+  width: 80%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.loading-bar {
+  width: 50%;
+  height: 100%;
+  background-color: #f3e6f5; // Tailwind indigo-600 or change to your theme
+  animation: slide 1.5s infinite ease-in-out;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.load-bottom {
+  width: 416px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 50px;
+  align-items: center;
+}
+
+.load-bottom button {
+  height: 40px;
+  width: 160px;
+  border-radius: 5px;
+  border: none;
+  background-color: #3e1f69;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  bottom: 30px;
+}
+
+.load-title {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  h1 {
+    font-weight: 600;
+    font-size: 25px;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 999; /* Ensure it's below the modal */
+}
+
+//Media Query
+
+@media screen and (min-width: 1530x) {
+  .integration {
+    width: 1200px;
+    height: 505px;
+  }
+}
+
+@media screen and (max-width: 1439px) and (min-width: 1328px) {
+  .integration {
+    width: 1100px;
+    height: 450px;
+  }
+}
+
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .integration {
+    width: 1000px;
+    height: 400px;
+    bottom: 30px;
+    justify-content: center;
+
+    .header {
+      h1 {
+        font-size: 25px;
+        bottom: 20px;
+      }
+      h4 {
+        font-size: 15px;
+        bottom: 50px;
+      }
+    }
+  }
+
+  a {
+    font-size: 10px;
+  }
+
+  .project-a {
+    font-size: 10px;
+  }
+
+  .integrate {
+    img[src="/images/logo-mark.png"],
+    [src="/images/slack.png"],
+    [src="/images/outlook.png"],
+    [src="/images/teams.png"],
+    [src="/images/seamless.png"],
+    [src="/images/jira.png"] {
+      height: 6px;
+      width: 60px;
+    }
+    .arrow {
+      width: 20px;
+      height: 50px;
+    }
+  }
+
+  .info {
+    h1 {
+      font-size: 16px;
+    }
+    h3 {
+      font-size: 13px;
+    }
+  }
+
+  .api-key {
+    height: 70px;
+    gap: 8px;
+    .api-key-details {
+      label {
+        font-size: 10px;
+      }
+      input {
+        height: 35px;
+      }
+    }
+  }
+  .bottom button {
+    height: 30px;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  .permission-header {
+    h1 {
+      font-size: 14px;
+    }
+    h4 {
+      font-size: 12px;
+    }
+  }
+  .permission-list {
+    ul {
+      li {
+        font-size: 12px;
+      }
+    }
+  }
+  .checkbox-container {
+    span {
+      font-size: 12px;
+    }
+  }
+}

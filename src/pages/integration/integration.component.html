@@ -1,0 +1,93 @@
+<app-alert
+  [message]="alertMessage"
+  [type]="alertType"
+  [visible]="showAlert"
+></app-alert>
+
+<div class="integration">
+  <div class="header">
+    <div class="logo-pic"><img src="/images/logo.png" alt="" /></div>
+
+    <h1>Connect Integrations</h1>
+    <h4>Integrate at least one tool from each category to sync data</h4>
+  </div>
+
+  <div class="tool-card">
+    <div class="cards" (click)="openModal('hrm')">
+      <img src="/images/people20.png" alt="" />
+      <div class="title">
+        HRM Tool <img src="/images/arrow-right.png" alt="" />
+      </div>
+      <div class="integrated-tool">
+        <ng-container *ngIf="getIntegratedHRTools().length > 0">
+          <h3 *ngFor="let tool of getIntegratedHRTools()">{{ tool }}</h3>
+          <img src="/images/tick-circle.png" alt="" />
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="cards" (click)="openModal('communication')">
+      <img src="/images/messages-3 (2).png" alt="" />
+      <div class="title">
+        Communication Tool <img src="/images/arrow-right.png" alt="" />
+      </div>
+      <div class="integrated-tool">
+        <ng-container *ngIf="getIntegratedCommunicationTools().length > 0">
+          <h3 *ngFor="let tool of getIntegratedCommunicationTools()">
+            {{ tool }}
+          </h3>
+          <img src="/images/tick-circle.png" alt="" />
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="cards" (click)="openModal('project')">
+      <img src="/images/task-square20.png" alt="" />
+      <div class="title">
+        Project Tool <img src="/images/arrow-right.png" alt="" />
+      </div>
+      <div class="integrated-tool">
+        <ng-container *ngIf="getIntegratedProjectTools().length > 0">
+          <h3 *ngFor="let tool of getIntegratedProjectTools()">{{ tool }}</h3>
+          <img src="/images/tick-circle.png" alt="" />
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="learn">
+    <div class="learn-symbol">
+      <img src="/images/book.png" alt="" /> Learn More
+    </div>
+
+    <div class="learn-button">
+      <button class="primary-btn">Back</button>
+      <button class="secondary-btn" [routerLink]="['/home']">Continue</button>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="overlay" (click)="onCloseModal()"></div>
+
+  <div class="modal-load" *ngIf="isLoading">
+    <div class="loading-bar-wrapper">
+      <div class="loading-bar"></div>
+    </div>
+    <div class="load-title">
+      <h1>Fetching Data</h1>
+      <h4>Hang on this may take a few seconds</h4>
+    </div>
+    <div class="load-bottom">
+      <button (click)="onCloseModal()">Cancel</button>
+    </div>
+  </div>
+
+  <app-integration-modal
+    [isModalOpen]="isModalOpen"
+    [selectedModalContent]="selectedModalContent"
+    [config]="modalConfig"
+    [isButtonLoading]="isButtonLoading"
+    (closeModalEvent)="onCloseModal()"
+    (connectToolEvent)="onConnectTool($event)"
+    (toolSelectionChange)="onToolSelectionChange($event)"
+  >
+  </app-integration-modal>
+</div>

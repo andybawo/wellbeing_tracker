@@ -1,0 +1,14 @@
+<div class="jira-redirect-container">
+  <div *ngIf="processing" class="processing">
+    <p>Processing Jira authorization...</p>
+  </div>
+  <div *ngIf="success" class="success">
+    <h2>Jira Integration Successful!</h2>
+    <p>You can now access Jira data.</p>
+  </div>
+  <div *ngIf="error" class="error">
+    <h2>Jira Integration Failed</h2>
+    <p>{{ errorMessage }}</p>
+    <a routerLink="/subscription/integration">Try again</a>
+  </div>
+</div>

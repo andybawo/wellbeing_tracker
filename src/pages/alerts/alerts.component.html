@@ -1,0 +1,558 @@
+<div *ngIf="viewAlertBox" class="alert-box">
+  <div class="alert-header">
+    <div class="left-side" (click)="closeAlertBox()">
+      <img src="/images/arrow-down-left.png" alt="" />
+      <p>Back</p>
+    </div>
+    <div class="right-side">
+      <div class="right-box">
+        <select name="" id="">
+          <option value="">Sentiment Drop</option>
+        </select>
+      </div>
+      <button class="add-new"><span>+</span> Add New</button>
+    </div>
+  </div>
+  <div class="alert-content">
+    <div class="alerts">
+      <div class="alert-title">
+        <img src="/images/Ellipse green.png" alt="" />
+        <div class="alert-message">
+          <h2>Message Volume</h2>
+          <p>Trigger alert when message volume is above 30% within 7 days</p>
+        </div>
+      </div>
+      <div class="alert-button">
+        <button class="primary-btn">Deactivate</button>
+        <button class="secondary-btn">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="alerts-container" *ngIf="!viewAlertBox">
+  <div class="top-header">
+    <div class="left-end">
+      <select name="" id="">
+        <option value="">Today</option>
+      </select>
+
+      <select name="" id="">
+        <option value="">Sentiment Drop</option>
+      </select>
+    </div>
+
+    <div class="right-end">
+      <button class="primary-btn" (click)="openConfigureModal()">
+        Configure
+      </button>
+      <button class="secondary-btn" (click)="openModal()">Add New</button>
+    </div>
+  </div>
+
+  <div
+    class="modal-overlay"
+    *ngIf="isModalOpen || isConfigureModalOpen"
+    (click)="closeModal()"
+  >
+    <div
+      class="modal-content"
+      *ngIf="!isModalOpen || isConfigureModalOpen"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="modal-header-alert">
+        <h3>Custom Alert</h3>
+        <button class="close-btn" (click)="closeModal()">×</button>
+      </div>
+      <div class="modal-body-alert">
+        <div class="alert-type">
+          <label>Alert Type</label>
+          <div class="type-category">
+            <p>Finance Sentiment Drop</p>
+          </div>
+        </div>
+
+        <div class="category">
+          <label>Category</label>
+          <div class="type-category">
+            <p>Communication</p>
+          </div>
+        </div>
+
+        <div class="threshold">
+          <label>Threshold:</label>
+          <div class="threshold-group">
+            <select>
+              <option>Below</option>
+              <option>Above</option>
+            </select>
+            <select>
+              <option>30%</option>
+              <option>40%</option>
+              <option>50%</option>
+              <option>60%</option>
+            </select>
+            <select>
+              <option>3 days</option>
+              <option>4 days</option>
+              <option>5 days</option>
+              <option>6 days</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="notification">
+          <label>Notification:</label>
+          <div class="checkbox-group">
+            <div class="alert-option">
+              <input type="checkbox" />
+              <h5>In App</h5>
+            </div>
+            <div class="alert-option">
+              <input type="checkbox" />
+              <h5>Email</h5>
+            </div>
+            <div class="alert-option">
+              <input type="checkbox" />
+              <h5>SMS</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer-alert">
+        <button class="primary-btn" (click)="closeModal()">Cancel</button>
+        <button class="secondary-btn" (click)="openAlertBox()">Add New</button>
+      </div>
+    </div>
+    <div
+      class="modal-content"
+      *ngIf="isModalOpen || !isConfigureModalOpen"
+      (click)="$event.stopPropagation()"
+    >
+      <!-- Step 1: Create Custom Alert -->
+      <ng-container *ngIf="modalStep === 'create'">
+        <div class="modal-header">
+          <h3>Create Custom Alert</h3>
+          <h4>Describe what you want to monitor</h4>
+        </div>
+        <div class="modal-body">
+          <h4>Input Trigger</h4>
+          <textarea
+            [(ngModel)]="alertDescription"
+            name="alertDescription"
+            id="alertDescription"
+            placeholder="E.g. Alert me when employee sentiment in the finance team drops below average for more than 3 days"
+          ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button class="primary-btn" (click)="closeModal()">Cancel</button>
+          <button
+            class="secondary-btn"
+            (click)="goToConfigureStep()"
+            [disabled]="!alertDescription.trim()"
+          >
+            Add New
+          </button>
+        </div>
+      </ng-container>
+
+      <!-- Step 2: Configure Alert -->
+      <ng-container *ngIf="modalStep === 'configure'">
+        <div class="modal-header-alert">
+          <h3>Custom Alert</h3>
+          <button class="close-btn" (click)="closeModal()">×</button>
+        </div>
+        <div class="modal-body-alert">
+          <h4>Trigger</h4>
+          <textarea name="" id=""></textarea>
+
+          <div class="alert-type">
+            <label>Alert Type</label>
+            <div class="type-category">
+              <p>Finance Sentiment Drop</p>
+            </div>
+          </div>
+
+          <div class="category">
+            <label>Category</label>
+            <div class="type-category">
+              <p>Communication</p>
+            </div>
+          </div>
+
+          <div class="threshold">
+            <label>Threshold:</label>
+            <div class="threshold-group">
+              <select>
+                <option>Below</option>
+                <option>Above</option>
+              </select>
+              <select>
+                <option>30%</option>
+                <option>40%</option>
+                <option>50%</option>
+                <option>60%</option>
+              </select>
+              <select>
+                <option>3 days</option>
+                <option>4 days</option>
+                <option>5 days</option>
+                <option>6 days</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="notification">
+            <label>Notification:</label>
+            <div class="checkbox-group">
+              <div class="alert-option">
+                <input type="checkbox" />
+                <h5>In App</h5>
+              </div>
+              <div class="alert-option">
+                <input type="checkbox" />
+                <h5>Email</h5>
+              </div>
+              <div class="alert-option">
+                <input type="checkbox" />
+                <h5>SMS</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer-alert">
+          <button class="primary-btn" (click)="goBackToCreateStep()">
+            Back
+          </button>
+          <button class="secondary-btn" (click)="openAlertBox()">
+            Add New
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="hrm-tab">
+    <div class="hrm-emp-tab">
+      <div class="card-com">
+        <img src="/images/Frame 114.png" alt="" />
+        <ul>
+          <li>Total Alerts</li>
+          <li
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              gap: 5px;
+            "
+          >
+            <span>4</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card-com">
+        <img src="/images/Frame 114.png" alt="" />
+        <ul>
+          <li>Unresolved Alerts</li>
+          <li
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              gap: 5px;
+            "
+          >
+            <span>3</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card-com">
+        <img src="/images/Frame 114.png" alt="" />
+        <ul>
+          <li>Active Alerts</li>
+          <li
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              gap: 5px;
+            "
+          >
+            <span>1</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card-com">
+        <img src="/images/Frame 114.png" alt="" />
+        <ul>
+          <li>All Alerts</li>
+          <li>
+            <span>2</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content" [ngClass]="{ 'full-view-mode': isInFullView() }">
+    <div *ngIf="!isInFullView()" class="normal-view">
+      <div class="com-middle-section">
+        <div class="middle-content">
+          <div class="heading">
+            <h3>Sentiment Drop Analysis</h3>
+            <a
+              href=""
+              (click)="showFullView('sentiment'); $event.preventDefault()"
+              >View All</a
+            >
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Issues</th>
+                <th>Tools</th>
+                <th>%Change</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>High Performance</td>
+                <td>HRM</td>
+                <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+                <td>Active</td>
+              </tr>
+              <tr>
+                <td>High Performance</td>
+                <td>HRM</td>
+                <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+                <td>Active</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="middle-content">
+          <div class="heading">
+            <h3>Micro Insight</h3>
+            <a href="" (click)="showFullView('micro'); $event.preventDefault()"
+              >View All</a
+            >
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Issues</th>
+                <th>Tools</th>
+                <th>%Change</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>High Performance</td>
+                <td>HRM</td>
+                <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+                <td>Active</td>
+              </tr>
+              <tr>
+                <td>High Performance</td>
+                <td>HRM</td>
+                <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+                <td>Active</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="bottom-content">
+          <div class="heading">
+            <h3>Predictive Alerts</h3>
+            <a
+              href=""
+              (click)="showFullView('predictive'); $event.preventDefault()"
+              >View All</a
+            >
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Issues</th>
+                <th>Tools</th>
+                <th>%Change</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>High Performance</td>
+                <td>HRM</td>
+                <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+                <td>Active</td>
+              </tr>
+              <tr>
+                <td>High Performance</td>
+                <td>HRM</td>
+                <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+                <td>Active</td>
+              </tr>
+              <tr>
+                <td>High Performance</td>
+                <td>HRM</td>
+                <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+                <td>Active</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sentiment Drop  Full View -->
+    <div *ngIf="isSectionInFullView('sentiment')" class="full-view-container">
+      <div class="full-view-header">
+        <h3>Sentiment Drop Analysis</h3>
+      </div>
+      <div class="full-view-content">
+        <table class="full-view-table">
+          <thead>
+            <tr>
+              <th>Issues</th>
+              <th>Tools</th>
+              <th>%Change</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="bottom">
+          <button class="back-button" (click)="goBackToNormalView()">
+            Back
+          </button>
+          <span>Page 1 of 1</span>
+          <button class="back-button" (click)="goBackToNormalView()">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Micro Insight Full View -->
+    <div *ngIf="isSectionInFullView('micro')" class="full-view-container">
+      <div class="full-view-header">
+        <h3>Micro Insight</h3>
+      </div>
+      <div class="full-view-content">
+        <table class="full-view-table">
+          <thead>
+            <tr>
+              <th>Issues</th>
+              <th>Tools</th>
+              <th>%Change</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="bottom">
+          <button class="back-button" (click)="goBackToNormalView()">
+            Back
+          </button>
+          <span>Page 1 of 1</span>
+          <button class="back-button" (click)="goBackToNormalView()">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Predictive Full view -->
+    <div *ngIf="isSectionInFullView('predictive')" class="full-view-container">
+      <div class="full-view-header">
+        <h3>Predictive Alerts</h3>
+      </div>
+      <div class="full-view-content">
+        <table class="full-view-table">
+          <thead>
+            <tr>
+              <th>Issues</th>
+              <th>Tools</th>
+              <th>%Change</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>High Performance</td>
+              <td>HRM</td>
+              <td><img src="/images/arrow-down-red.png" alt="" />40%</td>
+              <td>Active</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="bottom">
+          <button class="back-button" (click)="goBackToNormalView()">
+            Back
+          </button>
+          <span>Page 1 of 1</span>
+          <button class="back-button" (click)="goBackToNormalView()">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

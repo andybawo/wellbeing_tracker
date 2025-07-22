@@ -1,0 +1,196 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", "Times New Roman";
+}
+
+:root {
+  --primary-color: #5c3c92;
+  --accent-color: #f39c12;
+
+  --background-color: white;
+  --text-color: #333;
+  --border-color: #ccc;
+
+  --btn-primary-bg: var(--primary-color);
+  --btn-secondary-bg: var(--secondary-color);
+  // --bs-warning: #f9b51e;
+  --bs-warning-rgb: 249, 181, 30;
+  --bs-danger: #ff4646;
+  --bs-danger-rgb: 255, 70, 70;
+  --bs-success: #6e9f06;
+  --bs-success-rgb: 110, 159, 6;
+}
+
+h1 {
+  font-weight: 400;
+}
+
+h3 {
+  font-weight: 200;
+}
+
+h4 {
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "HKNova";
+  src: url("/assets/fonts/HK_Nova_Full_Family/HKNova-Regular.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HKNova";
+  src: url("/assets/fonts/HK_Nova_Full_Family/HKNova-Bold.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HKNova";
+  src: url("/assets/fonts/HK_Nova_Full_Family/HKNova-Italic.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "HKNova";
+  src: url("/assets/fonts/HK_Nova_Full_Family/HKNova-BoldItalic.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Style for the whole scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5c3c92;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5c3c92;
+}
+
+.primary-btn {
+  background-color: white;
+  border-radius: 8px !important;
+  border: 1px solid #3e1f69;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover {
+    background-color: #5c2e9c;
+    color: white;
+  }
+}
+
+.secondary-btn {
+  background-color: #3e1f69;
+  border-radius: 8px !important;
+  border: 1px solid #3e1f69;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+
+  &:hover {
+    background-color: #5c2e9c;
+    color: white;
+  }
+}
+
+.danger-btn {
+  background-color: #ffe5e5;
+  border: none;
+  border-radius: 8px !important;
+  color: #e00f0f;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1536px) {
+  .primary-btn {
+    height: 44px;
+    width: 140px;
+    font-size: 14px !important;
+  }
+  .secondary-btn {
+    height: 44px;
+    width: 140px;
+    font-size: 14px !important;
+  }
+
+  .danger-btn {
+    height: 44px;
+    width: 120px;
+    font-size: 14px !important;
+  }
+}
+@media screen and (min-width: 1470px) {
+  .primary-btn {
+    height: 44px;
+    width: 140px;
+    font-size: 14px !important;
+  }
+  .secondary-btn {
+    height: 44px;
+    width: 140px;
+    font-size: 14px !important;
+  }
+
+  .danger-btn {
+    height: 44px;
+    width: 140px;
+    font-size: 14px !important;
+  }
+}
+
+@media screen and (max-width: 1439px) and (min-width: 1328px) {
+  .primary-btn {
+    height: 35px;
+    width: 115px;
+    font-size: 12px !important;
+  }
+  .secondary-btn {
+    height: 35px;
+    width: 115px;
+    font-size: 12px !important;
+  }
+
+  .danger-btn {
+    height: 40px;
+    width: 115px;
+    font-size: 12px !important;
+  }
+}
+
+@media screen and (max-width: 1329px) and (min-width: 1024px) {
+  .primary-btn {
+    height: 30px;
+    width: 100px;
+    font-size: 10px !important;
+  }
+  .secondary-btn {
+    height: 30px;
+    width: 100px;
+    font-size: 10px !important;
+  }
+  .danger-btn {
+    height: 30px;
+    width: 100px;
+    font-size: 10px !important;
+  }
+}

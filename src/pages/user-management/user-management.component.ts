@@ -151,7 +151,12 @@ export class UserManagementComponent implements OnInit {
       !this.addUserForm.department ||
       !this.addUserForm.role
     ) {
-      alert('Please fill in all required fields');
+      this.showAlert = true;
+      this.alertType = 'error';
+      this.alertMessage = 'Please fill in all required field';
+      setTimeout(() => {
+        this.showAlert = false;
+      }, 3000);
       return;
     }
 
@@ -231,7 +236,7 @@ export class UserManagementComponent implements OnInit {
       } else {
         this.showAlert = true;
         this.alertType = 'error';
-        this.alertMessage = 'User with this Email Address already exists';
+        this.alertMessage = 'There was an error updating user';
         setTimeout(() => {
           this.showAlert = false;
         }, 3000);
@@ -240,7 +245,7 @@ export class UserManagementComponent implements OnInit {
     } catch (error) {
       this.showAlert = true;
       this.alertType = 'error';
-      this.alertMessage = 'User with this Email Address already exists';
+      this.alertMessage = 'There was an error updating user';
       setTimeout(() => {
         this.showAlert = false;
       }, 3000);
@@ -261,7 +266,7 @@ export class UserManagementComponent implements OnInit {
       } else {
         this.showAlert = true;
         this.alertType = 'error';
-        this.alertMessage = 'User with this Email Address already exists';
+        this.alertMessage = 'Error deleting user please try again';
         setTimeout(() => {
           this.showAlert = false;
         }, 3000);
@@ -298,7 +303,14 @@ export class UserManagementComponent implements OnInit {
   }
 
   formatDate(date: Date): string {
-    return date.toLocaleDateString();
+    if (!date) return '';
+
+    const dateObj = date instanceof Date ? date : new Date(date);
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObj.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
   }
 
   getStatusClass(status: string): string {

@@ -100,8 +100,20 @@
             alt=""
           />User Management
         </li>
-        <li [routerLink]="['/home/company-profile']">
-          <img src="/images/card (1).png" alt="" />Company Profile
+        <li
+          [routerLink]="['/home/company-profile']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+          #companyprofileLink="routerLinkActive"
+        >
+          <img
+            [src]="
+              companyprofileLink.isActive
+                ? '/images/card-bold.png'
+                : '/images/card (1).png'
+            "
+            alt=""
+          />Company Profile
         </li>
       </ul>
       <ul>

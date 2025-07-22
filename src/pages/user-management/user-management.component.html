@@ -1,4 +1,11 @@
 <!-- EDIT USER FIELD UPDATE -->
+
+<app-alert
+  [message]="alertMessage"
+  [type]="alertType"
+  [visible]="showAlert"
+></app-alert>
+
 <div *ngIf="isEditUSerOpen" class="edit-container">
   <div class="backdrop"></div>
   <div class="user-header">
@@ -11,7 +18,11 @@
         <h4>{{ currentUser?.email || "email@example.com" }}</h4>
       </div>
       <div class="edit-tools">
-        <span><img src="/images/user-edit.png" alt="" />Edit User</span>
+        <span (click)="toggleEditMode()"
+          ><img src="/images/user-edit.png" alt="" />{{
+            isEditMode ? "Cancel Edit" : "Edit User"
+          }}</span
+        >
         <span (click)="deactivateUser()"
           ><img src="/images/trash.png" alt="" />Delete User</span
         >
@@ -22,27 +33,43 @@
     <div class="info-box">
       <div class="info">
         <label for="">First Name</label>
-        <input type="text" [(ngModel)]="editUserForm.firstName" />
+        <input
+          type="text"
+          [(ngModel)]="editUserForm.firstName"
+          [readOnly]="!isEditMode"
+        />
       </div>
       <div class="info">
         <label for="">Last Name</label>
-        <input type="text" [(ngModel)]="editUserForm.lastName" />
+        <input
+          type="text"
+          [(ngModel)]="editUserForm.lastName"
+          [readOnly]="!isEditMode"
+        />
       </div>
     </div>
     <div class="info-box">
       <div class="info">
         <label for="">Email Address</label>
-        <input type="email" [(ngModel)]="editUserForm.email" />
+        <input
+          type="email"
+          [(ngModel)]="editUserForm.email"
+          [readOnly]="!isEditMode"
+        />
       </div>
       <div class="info">
         <label for="">Phone Number</label>
-        <input type="text" [(ngModel)]="editUserForm.phoneNumber" />
+        <input
+          type="text"
+          [(ngModel)]="editUserForm.phoneNumber"
+          [readOnly]="!isEditMode"
+        />
       </div>
     </div>
     <div class="info-box">
       <div class="info">
         <label for="">Department</label>
-        <select [(ngModel)]="editUserForm.department">
+        <select [(ngModel)]="editUserForm.department" [disabled]="!isEditMode">
           <option value="">Select Department</option>
           <option *ngFor="let dept of departments" [value]="dept">
             {{ dept }}
@@ -51,7 +78,7 @@
       </div>
       <div class="info">
         <label for="">Role</label>
-        <select [(ngModel)]="editUserForm.role">
+        <select [(ngModel)]="editUserForm.role" [disabled]="!isEditMode">
           <option value="">Select Role</option>
           <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
         </select>
@@ -68,7 +95,7 @@
       </div>
       <div class="info">
         <label for="">Status</label>
-        <select [(ngModel)]="editUserForm.status">
+        <select [(ngModel)]="editUserForm.status" [disabled]="!isEditMode">
           <option value="Active">Active</option>
           <option value="Inactive">Inactive</option>
         </select>
@@ -82,7 +109,9 @@
     </div>
     <div class="right">
       <button class="primary-btn" (click)="closeEditUser()">Cancel</button>
-      <button class="secondary-btn" (click)="updateUser()">Save</button>
+      <button class="secondary-btn" (click)="updateUser()" *ngIf="isEditMode">
+        Save
+      </button>
     </div>
   </div>
 </div>

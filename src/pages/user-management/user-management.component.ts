@@ -3,19 +3,25 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../app/core/services/user.service';
 import { User } from '../../app/interfaces/user-interface';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../../app/shared/shared.module';
 
 @Component({
   selector: 'app-user-management',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule, SharedModule],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.scss',
 })
 export class UserManagementComponent implements OnInit {
   // Modal states
   isEditUSerOpen = false;
+  isEditMode = false;
   isModalOpen = false;
   isWarningModalOpen = false;
   isSuccessModalOpen = false;
+  showAlert = false;
+  alertMessage = '';
+  alertType: 'success' | 'error' = 'success';
 
   // User data
   users: User[] = [];
@@ -88,13 +94,19 @@ export class UserManagementComponent implements OnInit {
 
   closeEditUser(): void {
     this.isEditUSerOpen = false;
+    this.isEditMode = false;
     this.currentUser = null;
   }
 
   openEditUser(user: User): void {
     this.currentUser = user;
     this.populateEditForm(user);
+    this.isEditMode = false;
     this.isEditUSerOpen = true;
+  }
+
+  toggleEditMode(): void {
+    this.isEditMode = !this.isEditMode;
   }
 
   // Form methods
@@ -143,7 +155,12 @@ export class UserManagementComponent implements OnInit {
       (user) => user.email === this.addUserForm.email
     );
     if (existingUser) {
-      alert('User with this email already exists');
+      this.showAlert = true;
+      this.alertType = 'error';
+      this.alertMessage = 'User with this Email Address already exists';
+      setTimeout(() => {
+        this.showAlert = false;
+      }, 3000);
       return;
     }
 
@@ -152,7 +169,13 @@ export class UserManagementComponent implements OnInit {
       this.openSuccess();
       this.resetAddUserForm();
     } catch (error) {
-      alert('Error adding user. Please try again.');
+      this.showAlert = true;
+      this.alertType = 'error';
+      this.alertMessage = 'User with this Email Address already exists';
+      setTimeout(() => {
+        this.showAlert = false;
+      }, 3000);
+      return;
     }
   }
 
@@ -168,7 +191,12 @@ export class UserManagementComponent implements OnInit {
       !this.editUserForm.department ||
       !this.editUserForm.role
     ) {
-      alert('Please fill in all required fields');
+      this.showAlert = true;
+      this.alertType = 'error';
+      this.alertMessage = 'User with this Email Address already exists';
+      setTimeout(() => {
+        this.showAlert = false;
+      }, 3000);
       return;
     }
 
@@ -178,7 +206,12 @@ export class UserManagementComponent implements OnInit {
         user.id !== this.currentUser?.id
     );
     if (existingUser) {
-      alert('User with this email already exists');
+      this.showAlert = true;
+      this.alertType = 'error';
+      this.alertMessage = 'User with this Email Address already exists';
+      setTimeout(() => {
+        this.showAlert = false;
+      }, 3000);
       return;
     }
 
@@ -191,10 +224,22 @@ export class UserManagementComponent implements OnInit {
         this.closeEditUser();
         this.openSuccess();
       } else {
-        alert('Error updating user. Please try again.');
+        this.showAlert = true;
+        this.alertType = 'error';
+        this.alertMessage = 'User with this Email Address already exists';
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 3000);
+        return;
       }
     } catch (error) {
-      alert('Error updating user. Please try again.');
+      this.showAlert = true;
+      this.alertType = 'error';
+      this.alertMessage = 'User with this Email Address already exists';
+      setTimeout(() => {
+        this.showAlert = false;
+      }, 3000);
+      return;
     }
   }
 
@@ -209,7 +254,13 @@ export class UserManagementComponent implements OnInit {
         this.closeModal();
         this.selectedUserForDelete = null;
       } else {
-        alert('Error deleting user. Please try again.');
+        this.showAlert = true;
+        this.alertType = 'error';
+        this.alertMessage = 'User with this Email Address already exists';
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 3000);
+        return;
       }
     } catch (error) {
       alert('Error deleting user. Please try again.');
@@ -224,7 +275,13 @@ export class UserManagementComponent implements OnInit {
       if (success) {
         this.closeEditUser();
       } else {
-        alert('Error deactivating user. Please try again.');
+        this.showAlert = true;
+        this.alertType = 'error';
+        this.alertMessage = 'User with this Email Address already exists';
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 3000);
+        return;
       }
     } catch (error) {
       alert('Error deactivating user. Please try again.');

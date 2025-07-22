@@ -23,7 +23,7 @@
             isEditMode ? "Cancel Edit" : "Edit User"
           }}</span
         >
-        <span (click)="deactivateUser()"
+        <span (click)="openWarning(currentUser)"
           ><img src="/images/trash.png" alt="" />Delete User</span
         >
       </div>

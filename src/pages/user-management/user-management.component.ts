@@ -66,9 +66,14 @@ export class UserManagementComponent implements OnInit {
     this.users = this.userService.getAllUsers();
   }
 
-  openWarning(user: User): void {
+  openWarning(user: User | null): void {
+    if (!user) return;
     this.selectedUserForDelete = user;
-    this.closeModal();
+    if (this.isEditUSerOpen) {
+      this.closeEditUser();
+    } else {
+      this.closeModal();
+    }
     this.isWarningModalOpen = true;
   }
 

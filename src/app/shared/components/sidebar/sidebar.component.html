@@ -1,9 +1,126 @@
 <div class="sidebar" [class.open]="sidebarOpen">
-  <button (click)="toggleSidebar()">☰ Toggle Sidebar</button>
-  <ul>
-    <li><a href="#">Dashboard</a></li>
-    <li><a href="#">Profile</a></li>
-    <li><a href="#">Settings</a></li>
-    <li><a href="#">Settings</a></li>
-  </ul>
+  <div class="sidebar-item">
+    <img src="/images/logo-dash.png" alt="" />
+    <div class="sidebar-list">
+      <ul>
+        <li
+          [routerLink]="['/home']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+          #homeLink="routerLinkActive"
+        >
+          <img
+            [src]="
+              homeLink.isActive
+                ? '/images/monitor.png'
+                : '/images/monitor (1).png'
+            "
+            alt=""
+          />Dashboard
+        </li>
+        <li
+          [routerLink]="['/home/hr-overview']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+          #hrmLink="routerLinkActive"
+        >
+          <img
+            [src]="
+              hrmLink.isActive
+                ? '/images/people-filled.png'
+                : '/images/people-dash.png'
+            "
+            alt=""
+          />HR Overview
+        </li>
+        <li
+          [routerLink]="['/home/communication']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+          #comLink="routerLinkActive"
+        >
+          <img
+            [src]="
+              comLink.isActive
+                ? '/images/messages-filled.png'
+                : '/images/messages-dash.png'
+            "
+            alt=""
+          />Communication Tool
+        </li>
+
+        <li [routerLink]="['/home/project-management']">
+          <img src="/images/task-square-dash.png" alt="" />Project Managememt
+        </li>
+        <li
+          [routerLink]="['/home/alerts']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+          #alertLink="routerLinkActive"
+        >
+          <img
+            [src]="
+              alertLink.isActive
+                ? '/images/sms-tracking-filled.png'
+                : '/images/sms-tracking-dash.png'
+            "
+            alt=""
+          />Alerts
+        </li>
+        <li
+          [routerLink]="['/home/integrate-dash']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+          #integrateLink="routerLinkActive"
+        >
+          <img
+            [src]="
+              integrateLink.isActive
+                ? '/images/convertshape.png'
+                : '/images/integrate-dash.png'
+            "
+            alt=""
+          />Integration
+        </li>
+        <li [routerLink]="['/home/subscription-dash']">
+          <img src="/images/subscription-dash.png" alt="" />Subscription
+        </li>
+        <li
+          [routerLink]="['/home/user-management']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+          #userLink="routerLinkActive"
+        >
+          <img
+            [src]="
+              userLink.isActive
+                ? '/images/user-square-filled.png'
+                : '/images/user-search-dash.png'
+            "
+            alt=""
+          />User Management
+        </li>
+        <li
+          [routerLink]="['/home/company-profile']"
+          routerLinkActive="active-sidebar"
+          [routerLinkActiveOptions]="{ exact: true }"
+          #companyprofileLink="routerLinkActive"
+        >
+          <img
+            [src]="
+              companyprofileLink.isActive
+                ? '/images/card-bold.png'
+                : '/images/card (1).png'
+            "
+            alt=""
+          />Company Profile
+        </li>
+      </ul>
+      <ul>
+        <li (click)="onLogout()">
+          <img src="/images/logout-dash.png" alt="" />Logout
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

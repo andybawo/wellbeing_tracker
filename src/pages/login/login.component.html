@@ -1,0 +1,76 @@
+<app-alert
+  [message]="alertMessage"
+  [type]="alertType"
+  [visible]="showAlert"
+></app-alert>
+
+<div class="logo-pic">
+  <img src="/images/logo.png" alt="" />
+</div>
+<div class="display">
+  <h1>Welcome Back!</h1>
+  <h3>Please enter your details to login</h3>
+
+  <form class="form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <div class="bottom-display">
+      <button>
+        <div class="logo-box">
+          <img
+            src="/images/Symbol.png"
+            alt="Microsoft Logo"
+            style="width: 20px; height: 20px"
+          />Google
+        </div>
+      </button>
+      <button>
+        <div class="logo-box">
+          <img
+            src="/images/microsoft.png"
+            alt="Microsoft Logo"
+            style="width: 20px; height: 20px"
+          />Microsoft Azure
+        </div>
+      </button>
+      <div class="option-divider-grid">
+        <div class="line line-left"></div>
+        <span class="or-text">Or</span>
+        <div class="line line-right"></div>
+      </div>
+    </div>
+    <div class="form-details">
+      <label for="emailAddress">Email</label>
+      <input
+        formControlName="emailAddress"
+        type="email"
+        placeholder="Enter Email"
+      />
+    </div>
+    <div class="form-details">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        [type]="showPassword ? 'text' : 'password'"
+        formControlName="password"
+        placeholder="Enter Password"
+      />
+      <div (click)="togglePasswordVisibility()" class="eye-icon-login">
+        <i [class]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+      </div>
+    </div>
+
+    <div class="link">
+      <div class="check"><input type="checkbox" />Remember Me</div>
+      <a [routerLink]="['/start/forgot-password']">Forgot Password?</a>
+    </div>
+    <button type="submit" [disabled]="isButtonLoading">
+      <span *ngIf="!isButtonLoading">Sign In</span>
+      <span *ngIf="isButtonLoading" class="button-loader">
+        <span class="spinner"></span>
+        Logging In...
+      </span>
+    </button>
+    <a class="create-link" [routerLink]="['/start/signup']"
+      >Do not have an account?<span style="color: #3e1f69"> Sign Up</span>
+    </a>
+  </form>
+</div>

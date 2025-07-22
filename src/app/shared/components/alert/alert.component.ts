@@ -14,22 +14,31 @@ import { Component, Input } from '@angular/core';
         background: #d4edda;
         color: black;
         padding: 10px;
-        width: 50%;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         margin: auto;
+        margin-top: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1001;
       }
 
       .error {
         background: #f8d7da;
         color: black;
         padding: 10px;
-        width: 50%;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: auto;
+        margin-top: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1001;
       }
     `,
   ],

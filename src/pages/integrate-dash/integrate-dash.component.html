@@ -1,0 +1,205 @@
+<app-alert
+  [message]="alertMessage"
+  [type]="alertType"
+  [visible]="showAlert"
+></app-alert>
+<div class="integrate-container">
+  <div class="header">
+    <h2>Integrations</h2>
+    <h4>Connect and manage your tools to power real time insights</h4>
+  </div>
+
+  <div class="tool-body">
+    <div class="up-card">
+      <div class="tool-cards">
+        <div class="header">
+          <div class="tool">
+            <div class="frame">
+              <img src="/images/Frame 133.png" alt="" />
+            </div>
+            <h3>Seamless HR</h3>
+          </div>
+          <div class="category">HRM</div>
+        </div>
+        <hr class="custom-hr" />
+        <div class="footer">
+          <h4>Last sync: 2hr</h4>
+          <div class="footer-button">
+            <button>Refresh</button>
+            <button
+              *ngIf="!isToolIntegrated('seamlessHR')"
+              (click)="openSeamlessModal()"
+            >
+              Connect
+            </button>
+            <button
+              *ngIf="isToolIntegrated('seamlessHR')"
+              (click)="disconnectTool('seamlessHR')"
+            >
+              Disconnect
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="tool-cards">
+        <div class="header">
+          <div class="tool">
+            <div class="frame">
+              <img src="/images/Frame 40.png" alt="" />
+            </div>
+            <h3>Slack</h3>
+          </div>
+          <div class="category">Communication</div>
+        </div>
+        <hr class="custom-hr" />
+        <div class="footer">
+          <h4>Last sync: 2hr</h4>
+          <div class="footer-button">
+            <button>Refresh</button>
+            <button
+              *ngIf="!isToolIntegrated('slack')"
+              (click)="openSlackModal()"
+            >
+              Connect
+            </button>
+            <button
+              *ngIf="isToolIntegrated('slack')"
+              (click)="disconnectTool('slack')"
+            >
+              Disconnect
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="tool-cards">
+        <div class="header">
+          <div class="tool">
+            <div class="frame">
+              <img src="/images/Frame 41.png" alt="" />
+            </div>
+            <h3>Teams</h3>
+          </div>
+          <div class="category">Communication</div>
+        </div>
+        <hr class="custom-hr" />
+        <div class="footer">
+          <h4>Last sync: 2hr</h4>
+          <div class="footer-button">
+            <button>Refresh</button>
+            <button
+              *ngIf="!isToolIntegrated('teams')"
+              (click)="openTeamsModal()"
+            >
+              Connect
+            </button>
+            <button
+              *ngIf="isToolIntegrated('teams')"
+              (click)="disconnectTool('teams')"
+            >
+              Disconnect
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="down-card">
+      <div class="tool-cards">
+        <div class="header">
+          <div class="tool">
+            <div class="frame">
+              <img src="/images/Frame 42.png" alt="" />
+            </div>
+            <h3>Outlook</h3>
+          </div>
+          <div class="category">Communication</div>
+        </div>
+        <hr class="custom-hr" />
+        <div class="footer">
+          <h4>Last sync: 2hr</h4>
+          <div class="footer-button">
+            <button>Refresh</button>
+            <button
+              *ngIf="!isToolIntegrated('outlook')"
+              (click)="openOutlookModal()"
+            >
+              Connect
+            </button>
+            <button
+              *ngIf="isToolIntegrated('outlook')"
+              (click)="disconnectTool('outlook')"
+            >
+              Disconnect
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="tool-cards">
+        <div class="header">
+          <div class="tool">
+            <div class="frame">
+              <img src="/images/Frame 43.png" alt="" />
+            </div>
+            <h3>Jira</h3>
+          </div>
+          <div class="category">Project</div>
+        </div>
+        <hr class="custom-hr" />
+        <div class="footer">
+          <h4>Last sync: 2hr</h4>
+          <div class="footer-button">
+            <button>Refresh</button>
+            <button *ngIf="!isToolIntegrated('jira')" (click)="openJiraModal()">
+              Connect
+            </button>
+            <button
+              *ngIf="isToolIntegrated('jira')"
+              (click)="disconnectTool('jira')"
+            >
+              Disconnect
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="tool-cards">
+        <div class="header">
+          <div class="tool">
+            <div class="frame">
+              <img src="/images/Frame 41.png" alt="" />
+            </div>
+            <h3>Planner</h3>
+          </div>
+          <div class="category">Project</div>
+        </div>
+        <hr class="custom-hr" />
+        <div class="footer">
+          <h4>Last sync: 2hr</h4>
+          <div class="footer-button">
+            <button>Refresh</button>
+            <button
+              *ngIf="!isToolIntegrated('project')"
+              (click)="openPlannerModal()"
+            >
+              Connect
+            </button>
+            <button
+              *ngIf="isToolIntegrated('project')"
+              (click)="disconnectTool('project')"
+            >
+              Disconnect
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-integration-modal
+    [isModalOpen]="isModalOpen"
+    [selectedModalContent]="selectedModalContent"
+    [config]="modalConfig"
+    [isButtonLoading]="isButtonLoading"
+    (closeModalEvent)="onCloseModal()"
+    (connectToolEvent)="onConnectTool($event)"
+  >
+  </app-integration-modal>
+</div>

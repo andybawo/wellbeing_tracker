@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-profile',
-    standalone: true,
-    imports: [FormsModule, CommonModule],
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.scss']
+    styleUrl: './profile.component.scss',
+    imports: [CommonModule, ReactiveFormsModule, FormsModule],
 })
 export class ProfileComponent {
   isEditing = false;
@@ -21,11 +20,6 @@ export class ProfileComponent {
     country: 'Nigeria',
     state: 'Abuja'
   };
-
-  setActiveTab(tab: string) {
-    this.activeTab = tab;
-    this.isEditing = false;
-  }
 
   toggleEdit() {
     this.isEditing = !this.isEditing;

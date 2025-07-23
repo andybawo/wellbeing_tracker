@@ -13,6 +13,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProfileLayoutComponent,
     DepartmentComponent,
     ReactiveFormsModule,
-  ],
+  ]
 })
 export class CompanyProfileModule {}

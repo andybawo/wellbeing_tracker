@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DepartmentComponent } from '../department/department.component';
 import { RoleComponent } from '../role/role.component';
+import { ProfileComponent } from "../profile/profile.component";
 
 @Component({
   selector: 'app-profile-layout',
-  imports: [CommonModule, DepartmentComponent, RoleComponent],
+  imports: [CommonModule, DepartmentComponent, RoleComponent, ProfileComponent],
   templateUrl: './profile-layout.component.html',
   styleUrls: ['./profile-layout.component.scss'],
 })

@@ -33,6 +33,7 @@
   position: relative;
   top: 100px;
   align-self: center;
+  width: 100%;
 }
 
 .logo-pic img {
@@ -299,5 +300,12 @@ img {
   .start button:focus {
     outline: 2px solid #3e1f69;
     outline-offset: 2px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .display {
+    position: relative;
+    top: 100px;
   }
 }

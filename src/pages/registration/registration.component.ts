@@ -62,7 +62,6 @@ export class RegistrationComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Clean up subscriptions
     if (this.formSubscription) {
       this.formSubscription.unsubscribe();
     }
@@ -102,7 +101,6 @@ export class RegistrationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.locationService.getStatesByCountry(country).subscribe((states) => {
       this.states = states;
 
-      // If there's saved state data, restore it after states are loaded
       const savedData = this.getSavedCompanyData();
       if (savedData?.state && states.includes(savedData.state)) {
         this.companyForm

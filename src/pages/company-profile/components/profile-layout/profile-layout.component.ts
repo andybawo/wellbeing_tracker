@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DepartmentComponent } from '../department/department.component';
 import { RoleComponent } from '../role/role.component';
-import { ProfileComponent } from "../profile/profile.component";
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-profile-layout',
@@ -12,6 +12,7 @@ import { ProfileComponent } from "../profile/profile.component";
 })
 export class ProfileLayoutComponent {
   isClicked = false;
+  isEditing = false;
 
   currentTab: number = 0;
   activeTab: number = 0;
@@ -45,5 +46,17 @@ export class ProfileLayoutComponent {
 
   onRoleAdded() {
     this.showRoleModal = false;
+  }
+
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
+  }
+
+  onProfileEdited() {
+    this.isEditing = false;
+  }
+
+  cancelEdit() {
+    this.isEditing = false;
   }
 }

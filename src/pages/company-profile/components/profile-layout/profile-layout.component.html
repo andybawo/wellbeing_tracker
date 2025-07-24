@@ -1,0 +1,57 @@
+<div class="nav">
+  <div class="items">
+    <button
+      (click)="changeTab(0)"
+      [ngClass]="{ 'active-tab': activeTab === 0 }"
+    >
+      Profile
+    </button>
+
+    <button
+      (click)="changeTab(1)"
+      [ngClass]="{ 'active-tab': activeTab === 1 }"
+    >
+      Department
+    </button>
+
+    <button
+      (click)="changeTab(2)"
+      [ngClass]="{ 'active-tab': activeTab === 2 }"
+    >
+      Role
+    </button>
+  </div>
+
+  <div class="items-right" *ngIf="currentTab === 0">
+    <img src="/images/edit-2.png" alt="" />
+    <h4>Edit Profile</h4>
+  </div>
+
+  <div class="items-right" *ngIf="currentTab === 1">
+    <h4 (click)="onAddDepartment()">+ Add Department</h4>
+  </div>
+
+  <div class="items-right" *ngIf="currentTab === 2">
+    <h4 (click)="onAddrole()">+ Add Role</h4>
+  </div>
+</div>
+
+<ng-container *ngIf="currentTab === 0">
+  <!-- <app-profile></app-profile> -->
+</ng-container>
+
+<ng-container *ngIf="currentTab === 1">
+  <app-department
+    [showModal]="showDepartmentModal"
+    (modalClosed)="onDepartmentModalClose()"
+    (departmentAdded)="onDepartmentAdded()"
+  ></app-department>
+</ng-container>
+
+<ng-container *ngIf="currentTab === 2">
+  <app-role
+    [showModal]="showRoleModal"
+    (modalClosed)="onRoleModalClose()"
+    (roleAdded)="onRoleAdded()"
+  ></app-role>
+</ng-container>

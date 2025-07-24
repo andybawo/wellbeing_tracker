@@ -63,7 +63,9 @@ export const routes: Routes = [
       {
         path: 'company-profile',
         loadChildren: () =>
-          import('../pages/company-profile/company-profile.module').then((m) => m.CompanyProfileModule),
+          import('../pages/company-profile/company-profile.module').then(
+            (m) => m.CompanyProfileModule
+          ),
       },
       {
         path: 'project-management',

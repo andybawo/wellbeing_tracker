@@ -1,0 +1,42 @@
+.nav {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .items {
+    display: flex;
+    flex-direction: row;
+    button {
+      width: 120px;
+      height: 40px;
+      border-radius: 8px;
+      border: none;
+      background-color: #f0eeee;
+      cursor: pointer;
+      font-weight: 600;
+
+      &.active-tab {
+        border-bottom: 0.5px solid #3e1f69;
+        color: #3e1f69;
+      }
+    }
+  }
+  .items-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    img {
+      height: 20px;
+      width: 20px;
+    }
+
+    h4 {
+      font-size: 14px;
+      color: #3e1f69;
+    }
+  }
+}

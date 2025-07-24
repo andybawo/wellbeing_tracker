@@ -238,12 +238,41 @@
     width: 250px;
     left: -250px;
   }
+  .sidebar-item {
+    position: relative;
+    top: -40px;
+  }
 }
 
 @media screen and (min-width: 1900px) and (min-height: 798px) {
   .sidebar {
     width: 276px;
     left: -276px;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .sidebar-list {
+    width: 225px;
+
+    li {
+      font-size: 16px;
+      gap: 10px;
+    }
+  }
+
+  .sidebar-item {
+    position: relative;
+    top: -80px;
+  }
+}
+
+@media screen and (min-width: 1920px) and (min-height: 798px) {
+  .sidebar {
+    width: 286px;
+    left: -286px;
   }
 
   .sidebar.open {

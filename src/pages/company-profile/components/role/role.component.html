@@ -2,37 +2,33 @@
   <table>
     <thead>
       <tr>
-        <th class="department-column">Department</th>
-        <th class="hod-column">Head of Department</th>
-        <th class="email-column">Email Address of HOD</th>
+        <th class="role-column">Role</th>
+        <th class="description-column">Role Description</th>
+        <th class="permission-column">Permission</th>
         <th class="actions-column"></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dept of department">
-        <td class="department-column">{{ dept.departmentName }}</td>
-        <td class="hod-column">{{ dept.hodName }}</td>
-        <td class="email-column">{{ dept.emailHod }}</td>
+      <tr *ngFor="let rol of role">
+        <td class="role-column">{{ rol.roleName }}</td>
+        <td class="description-column">{{ rol.description }}</td>
+        <td class="permission-column">{{ rol.permissions }}</td>
         <td class="actions-column">
           <div class="status-content">
             <div class="icons">
-              <img
-                src="/images/edit.png"
-                alt=""
-                (click)="openEditModal(dept)"
-              />
+              <img src="/images/edit.png" alt="" (click)="openEditModal(rol)" />
               <img
                 src="/images/trash.png"
                 alt=""
-                (click)="openDeleteModal(dept)"
+                (click)="openDeleteModal(rol)"
               />
             </div>
           </div>
         </td>
       </tr>
-      <tr *ngIf="department.length === 0">
+      <tr *ngIf="role.length === 0">
         <td colspan="4" style="text-align: center; padding: 20px">
-          No departments found. Add a department to get started.
+          No roles found. Add a role to get started.
         </td>
       </tr>
     </tbody>
@@ -46,41 +42,37 @@
     <!-- Add Modal -->
     <div *ngIf="showModal" class="add-modal" (click)="$event.stopPropagation()">
       <div class="header">
-        <div class="left"><h1>Add Department</h1></div>
+        <div class="left"><h1>Add Role</h1></div>
         <button class="close-btn" (click)="closeModal()">×</button>
       </div>
-      <form
-        class="form"
-        [formGroup]="departmentForm"
-        (ngSubmit)="addDepartment()"
-      >
+      <form class="form" [formGroup]="roleForm" (ngSubmit)="addRole()">
         <div class="form-details">
-          <label for="departmentName">Department Name</label>
+          <label for="roleName">Role Name</label>
           <input
             type="text"
-            id="departmentName"
-            formControlName="departmentName"
-            placeholder="Enter department name"
+            id="roleName"
+            formControlName="roleName"
+            placeholder="Enter role"
           />
         </div>
 
         <div class="form-details">
-          <label for="hodName">Head of Department</label>
+          <label for="description">Role Description</label>
           <input
             type="text"
-            id="hodName"
-            formControlName="hodName"
-            placeholder="Enter HOD name"
+            id="description"
+            formControlName="description"
+            placeholder="Describe Role"
           />
         </div>
 
         <div class="form-details">
-          <label for="emailHod">Email Address</label>
+          <label for="permissions">Permission</label>
           <input
-            type="email"
-            id="emailHod"
-            formControlName="emailHod"
-            placeholder="Enter email address"
+            type="text"
+            id="permissions"
+            formControlName="permissions"
+            placeholder="Enter Permissions"
           />
         </div>
 
@@ -91,9 +83,9 @@
           <button
             type="submit"
             class="secondary-btn"
-            [disabled]="departmentForm.invalid"
+            [disabled]="roleForm.invalid"
           >
-            Add Department
+            Add
           </button>
         </div>
       </form>
@@ -106,41 +98,37 @@
       (click)="$event.stopPropagation()"
     >
       <div class="header">
-        <div class="left"><h1>Edit Department</h1></div>
+        <div class="left"><h1>Edit Role</h1></div>
         <button class="close-btn" (click)="closeModal()">×</button>
       </div>
-      <form
-        class="form"
-        [formGroup]="departmentForm"
-        (ngSubmit)="updateDepartment()"
-      >
+      <form class="form" [formGroup]="roleForm" (ngSubmit)="updateRole()">
         <div class="form-details">
-          <label for="editDepartmentName">Department Name</label>
+          <label for="editRoleName">Role Name</label>
           <input
             type="text"
-            id="editDepartmentName"
-            formControlName="departmentName"
-            placeholder="Enter department name"
+            id="editRoleName"
+            formControlName="roleName"
+            placeholder="Enter role"
           />
         </div>
 
         <div class="form-details">
-          <label for="editHodName">Head of Department</label>
+          <label for="editDescription">Role Description</label>
           <input
             type="text"
-            id="editHodName"
-            formControlName="hodName"
-            placeholder="Enter HOD name"
+            id="editDescription"
+            formControlName="description"
+            placeholder="Describe Role"
           />
         </div>
 
         <div class="form-details">
-          <label for="editEmailHod">Email Address</label>
+          <label for="editPermissions">Permission</label>
           <input
             type="email"
-            id="editEmailHod"
-            formControlName="emailHod"
-            placeholder="Enter email address"
+            id="editPermissions"
+            formControlName="permissions"
+            placeholder=""
           />
         </div>
 
@@ -151,7 +139,7 @@
           <button
             class="secondary-btn"
             type="submit"
-            [disabled]="departmentForm.invalid"
+            [disabled]="roleForm.invalid"
           >
             Update
           </button>
@@ -168,15 +156,13 @@
         <h1>Warning</h1>
         <h4>
           Are you sure you want to delete the "{{
-            selectedDepartmentForDelete?.departmentName
-          }}" department ? from the system?
+            selectedRoleForDelete?.roleName
+          }}" role ? from the system?
         </h4>
       </div>
       <div class="bottom-modal">
         <button (click)="closeModal()" class="primary-btn">Cancel</button>
-        <button class="secondary-btn" (click)="deleteDepartment()">
-          Delete
-        </button>
+        <button class="secondary-btn" (click)="deleteRole()">Delete</button>
       </div>
     </div>
 

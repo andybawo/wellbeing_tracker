@@ -210,3 +210,59 @@ tbody td {
   align-items: center;
   z-index: 1000;
 }
+
+.permission-categories {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  cursor: pointer;
+
+  .permission-category {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .category-option {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      align-items: flex-start;
+    }
+
+    .category-header {
+      span {
+        font-size: 12px;
+      }
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .permission-option {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+
+      input {
+        height: 12px;
+        width: 12px;
+      }
+      label {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.dropdown-icon {
+  transition: transform 0.8s ease;
+  width: 16px;
+  height: 16px;
+}
+
+.dropdown-icon.rotated {
+  transform: rotate(180deg);
+}

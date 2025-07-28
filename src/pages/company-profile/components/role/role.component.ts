@@ -17,6 +17,18 @@ import { CommonModule } from '@angular/common';
 import { RoleService } from '../../../../app/core/services/role.service';
 import { Subscription } from 'rxjs';
 
+interface PermissionOption {
+  value: string;
+  label: string;
+  selected: boolean;
+}
+
+interface PermissionCategory {
+  name: string;
+  options: PermissionOption[];
+  isOpen: boolean;
+}
+
 @Component({
   selector: 'app-role',
   imports: [CommonModule, ReactiveFormsModule],
@@ -39,14 +51,54 @@ export class RoleComponent implements OnInit, OnDestroy {
   isDeleteModal = false;
   isSuccessModal = false;
   successMessage = '';
-
   roleForm: FormGroup;
+
+  // Permission categories with checkbox
+  permissionCategories: PermissionCategory[] = [
+    {
+      name: 'User Management',
+      isOpen: false,
+      options: [
+        { value: 'user-create', label: 'Create', selected: false },
+        { value: 'user-edit', label: 'Edit', selected: false },
+        { value: 'user-delete', label: 'Delete', selected: false },
+      ],
+    },
+    {
+      name: 'Subscription',
+      isOpen: false,
+      options: [
+        { value: 'sub-buy-plan', label: 'Buy Plan', selected: false },
+        { value: 'sub-configure', label: 'Configure', selected: false },
+      ],
+    },
+    {
+      name: 'Integration',
+      isOpen: false,
+      options: [
+        { value: 'int-add-tool', label: 'Add Tool', selected: false },
+        {
+          value: 'int-activate',
+          label: 'Activate/Deactivate',
+          selected: false,
+        },
+      ],
+    },
+    {
+      name: 'Alert',
+      isOpen: false,
+      options: [
+        { value: 'alert-custom', label: 'Custom', selected: false },
+        { value: 'alert-configure', label: 'Configure', selected: false },
+      ],
+    },
+  ];
 
   constructor(private fb: FormBuilder, private roleService: RoleService) {
     this.roleForm = this.fb.group({
       roleName: ['', [Validators.required, Validators.minLength(2)]],
       description: ['', [Validators.required, Validators.minLength(2)]],
-      permissions: ['', [Validators.required, Validators.minLength(2)]],
+      permissions: [[], [Validators.required]],
     });
   }
 
@@ -64,20 +116,30 @@ export class RoleComponent implements OnInit, OnDestroy {
 
   openModal() {
     this.roleForm.reset();
+    this.resetPermissionSelections();
   }
 
   openEditModal(rol: companyRole) {
     this.currentRole = rol;
     this.isEditModal = true;
+
+    // Reset all permissions
+    this.resetPermissionSelections();
+
+    // Set selected permissions based on current role
+    if (rol.permissions && Array.isArray(rol.permissions)) {
+      this.setSelectedPermissions(rol.permissions);
+    }
+
     this.roleForm.patchValue({
       roleName: rol.roleName,
       description: rol.description,
-      permissions: rol.permissions,
+      permissions: rol.permissions || [],
     });
   }
 
   openDeleteModal(rol: companyRole) {
-    this, (this.selectedRoleForDelete = rol);
+    this.selectedRoleForDelete = rol;
     this.isDeleteModal = true;
   }
 
@@ -90,7 +152,13 @@ export class RoleComponent implements OnInit, OnDestroy {
 
   addRole() {
     if (this.roleForm.valid) {
-      const newRole = this.roleService.addRole(this.roleForm.value);
+      const selectedPermissions = this.getSelectedPermissions();
+      const roleData = {
+        ...this.roleForm.value,
+        permissions: selectedPermissions,
+      };
+      const newRole = this.roleService.addRole(roleData);
+      this.resetPermissionSelections(); // Reset after adding
       this.showSuccessModal('Role added successfully');
       this.roleAdded.emit(newRole);
     }
@@ -102,16 +170,22 @@ export class RoleComponent implements OnInit, OnDestroy {
 
   updateRole() {
     if (this.roleForm.valid && this.currentRole) {
+      const selectedPermissions = this.getSelectedPermissions();
+      const roleData = {
+        ...this.roleForm.value,
+        permissions: selectedPermissions,
+      };
+
       const success = this.roleService.updateRole(
         this.currentRole.id,
-        this.roleForm.value
+        roleData
       );
-
       if (success) {
+        this.resetPermissionSelections(); // Reset after updating
         this.showSuccessModal('Role Updated successfully');
         this.roleUpdated.emit({
           ...this.currentRole,
-          ...this.roleForm.value,
+          ...roleData,
         });
       }
     }
@@ -136,10 +210,85 @@ export class RoleComponent implements OnInit, OnDestroy {
     this.currentRole = null;
     this.selectedRoleForDelete = null;
     this.roleForm.reset();
+    this.resetPermissionSelections();
     this.modalClosed.emit();
   }
 
   getFormControl(controlName: string) {
     return this.roleForm.get(controlName);
+  }
+
+  // Permission management methods
+  toggleDropdown(categoryIndex: number, event: Event) {
+    event.stopPropagation();
+    this.permissionCategories[categoryIndex].isOpen =
+      !this.permissionCategories[categoryIndex].isOpen;
+  }
+
+  onPermissionChange(categoryIndex: number, optionIndex: number) {
+    this.permissionCategories[categoryIndex].options[optionIndex].selected =
+      !this.permissionCategories[categoryIndex].options[optionIndex].selected;
+
+    // Update form control
+    const selectedPermissions = this.getSelectedPermissions();
+    this.roleForm.patchValue({ permissions: selectedPermissions });
+  }
+
+  getSelectedPermissions(): string[] {
+    const selected: string[] = [];
+    this.permissionCategories.forEach((category) => {
+      category.options.forEach((option) => {
+        if (option.selected) {
+          selected.push(option.value);
+        }
+      });
+    });
+    return selected;
+  }
+
+  getSelectedPermissionsDisplay(): string {
+    return '';
+  }
+
+  resetPermissionSelections() {
+    this.permissionCategories.forEach((category) => {
+      category.isOpen = false;
+      category.options.forEach((option) => {
+        option.selected = false;
+      });
+    });
+  }
+
+  setSelectedPermissions(permissions: string[]) {
+    this.permissionCategories.forEach((category) => {
+      category.options.forEach((option) => {
+        option.selected = permissions.includes(option.value);
+      });
+    });
+  }
+
+  formatPermissionsForDisplay(permissions: any): string {
+    if (!permissions) return 'No permissions';
+    if (Array.isArray(permissions)) {
+      if (permissions.length === 0) return 'No permissions';
+
+      // Find the permission labels and display them
+      const labels: string[] = [];
+      for (let category of this.permissionCategories) {
+        for (let option of category.options) {
+          if (permissions.includes(option.value)) {
+            labels.push(option.label);
+          }
+        }
+      }
+      return labels.length > 0 ? labels.join(', ') : permissions.join(', ');
+    }
+    return 'No permissions';
+  }
+
+  closeAllDropdowns() {
+    this.permissionCategories.forEach((category) => {
+      category.isOpen = false;
+    });
   }
 }

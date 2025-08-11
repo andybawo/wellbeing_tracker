@@ -7,6 +7,7 @@
   height: 8.3%;
   align-items: center;
   padding: 10px 20px 10px 20px;
+  border-radius: 8px;
 
   .left-end h3 {
     font-weight: 700;
@@ -65,6 +66,9 @@
   a {
     text-decoration: none;
     font-size: 12px;
+    &:active {
+      color: black;
+    }
   }
 }
 
@@ -147,7 +151,7 @@
 .alerts-tab {
   background-color: white;
   border-radius: 5px;
-  padding: 0 20px 16px 20px;
+  padding: 10px 20px 16px 20px;
   display: flex;
   flex-direction: column;
   min-height: 375px;
@@ -170,7 +174,7 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  padding: 0 10px 0 10px;
+  padding: 10px 10px 0 10px;
 
   h2 {
     font-weight: 400;
@@ -390,7 +394,6 @@ li {
   margin-top: 10px;
   height: fit-content;
 }
-/* ===== MEDIA QUERIES FOR DASHBOARD RESPONSIVENESS ===== */
 
 @media screen and (min-width: 1536px) {
   .search-container input {
@@ -560,8 +563,6 @@ li {
   }
 }
 @media screen and (max-width: 1439px) and (min-width: 1328px) {
-  /* Navbar adjustments */
-
   .left-end,
   .right-end {
     gap: 15px;
@@ -572,7 +573,6 @@ li {
     margin-bottom: 10px;
   }
 
-  /* Home page adjustments */
   .content-box {
     .left-side {
       width: 58%;
@@ -682,11 +682,10 @@ li {
   }
 
   .top-header {
-    height: 6.5%;
+    height: 8%;
     margin-bottom: 10px;
   }
 
-  /* Home page adjustments */
   .content-box {
     .left-side {
       width: 58%;

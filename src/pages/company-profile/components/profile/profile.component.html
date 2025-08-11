@@ -6,10 +6,10 @@
     </div>
     <div class="company-name">
       <div class="name">
-        <h1>{{ companyData.name }}</h1>
+        <h1>{{ companyData.companyName }}</h1>
       </div>
       <div class="email">
-        <h4>{{ companyData.email }}</h4>
+        <h4>{{ companyEmail }}</h4>
       </div>
     </div>
   </div>
@@ -19,17 +19,19 @@
         <div class="form-details">
           <label for="">Name</label>
           <input
-            [(ngModel)]="companyData.name"
+            [(ngModel)]="companyData.companyName"
             [readOnly]="!allowEdit"
             type="text"
+            name="companyName"
           />
         </div>
         <div class="form-details">
           <label for="">Company Type</label>
           <input
-            [(ngModel)]="companyData.type"
+            [(ngModel)]="companyData.companyType"
             [readOnly]="!allowEdit"
             type="text"
+            name="companyType"
           />
         </div>
       </div>
@@ -38,17 +40,19 @@
         <div class="form-details">
           <label for="">Email Address</label>
           <input
-            [(ngModel)]="companyData.email"
+            [(ngModel)]="companyEmail"
             [readOnly]="!allowEdit"
             type="email"
+            name="companyEmail"
           />
         </div>
         <div class="form-details">
           <label for="">Address</label>
           <input
-            [(ngModel)]="companyData.address"
+            [(ngModel)]="companyData.companyAddress"
             [readOnly]="!allowEdit"
             type="text"
+            name="companyAddress"
           />
         </div>
       </div>
@@ -60,6 +64,7 @@
             [(ngModel)]="companyData.country"
             [disabled]="!allowEdit"
             (ngModelChange)="onCountryChange()"
+            name="country"
           >
             <option value="" disabled>
               {{ loadingCountries ? "Loading countries..." : "Select Country" }}
@@ -74,6 +79,7 @@
           <select
             [(ngModel)]="companyData.state"
             [disabled]="!allowEdit || !companyData.country"
+            name="state"
           >
             <option value="" disabled>
               {{

@@ -145,10 +145,10 @@ table {
   position: relative;
   top: -5px;
   border-bottom: 2px solid white;
-  position: sticky;
-  z-index: 1000;
-  top: 0;
-  background-color: #f0eeee;
+  // position: sticky;
+  // z-index: 1000;
+  // top: 0;
+  // background-color: #f0eeee;
 
   .left-end {
     display: flex;
@@ -178,9 +178,9 @@ table {
   background-color: #f0eeee;
   height: fit-content;
   position: relative;
-  position: sticky;
-  z-index: 1000;
-  top: 47px;
+  // position: sticky;
+  // z-index: 1000;
+  // top: 47px;
 
   .hrm-emp-tab {
     display: flex;
@@ -242,14 +242,12 @@ table {
   }
 }
 
-/* Labels shared */
 .label {
   position: absolute;
   font-weight: bold;
   color: black;
 }
 
-/* Full view mode styles */
 .main-content.full-view-mode {
   width: 100%;
   height: fit-content;
@@ -706,6 +704,10 @@ table {
     height: auto;
     padding-left: 12px;
     padding-right: 12px;
+    padding-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 
     .alerts {
       display: flex;

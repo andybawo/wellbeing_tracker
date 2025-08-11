@@ -34,7 +34,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: LayoutComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -69,7 +69,10 @@ export const routes: Routes = [
       },
       {
         path: 'project-management',
-        component: ProjectManagementComponent,
+        loadChildren: () =>
+          import('../pages/project-management/project-management.module').then(
+            (m) => m.ProjectManagementModule
+          ),
       },
       {
         path: 'subscription-dash',

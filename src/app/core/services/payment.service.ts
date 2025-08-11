@@ -42,7 +42,6 @@ export class PaymentService {
       : this.apiUrl;
     const url = `${baseUrl}/payment/${gateway}`;
 
-    // Keep original format - send packageId directly as it was working
     return this.http.post<PaymentResponse>(url, packageId, { headers }).pipe(
       tap((response) =>
         console.log('Initiate Payment Success Response:', response)
@@ -122,8 +121,6 @@ export class PaymentService {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
-
-    // Keep original format - send packageId directly like the original code
 
     return this.http
       .post(subscriptionUrl, packageId, {

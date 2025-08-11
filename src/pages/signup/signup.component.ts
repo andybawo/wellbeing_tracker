@@ -53,7 +53,6 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    // Use debounceTime to avoid excessive localStorage writes
     this.formSubscription = this.userForm.valueChanges
       .pipe(debounceTime(300))
       .subscribe((value) => {
@@ -62,7 +61,6 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Clean up subscription to prevent memory leaks
     if (this.formSubscription) {
       this.formSubscription.unsubscribe();
     }
@@ -73,12 +71,11 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
       const savedUserData = localStorage.getItem(this.STORAGE_KEY);
       if (savedUserData) {
         const userData = JSON.parse(savedUserData);
-        // Explicitly set the form values, ensuring password is always empty
         this.userForm.patchValue(
           {
             fullName: userData.fullName || '',
             emailAddress: userData.emailAddress || '',
-            password: '', // Always clear password for security
+            password: '',
           },
           { emitEvent: false }
         );

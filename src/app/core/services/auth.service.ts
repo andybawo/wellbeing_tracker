@@ -104,6 +104,7 @@ export class AuthService {
     localStorage.setItem('authToken', token);
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
+      console.log('Complete JWT Payload:', payload);
       const userData = {
         email: payload.email,
         fullName: payload.given_name,

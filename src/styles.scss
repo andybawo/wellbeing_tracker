@@ -5,6 +5,18 @@
   font-family: "Poppins", "Times New Roman";
 }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --primary-color: #5c3c92;
   --accent-color: #f39c12;

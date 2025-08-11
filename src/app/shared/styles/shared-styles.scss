@@ -1,4 +1,3 @@
-/* Display */
 .display {
   display: flex;
   flex-direction: column;
@@ -25,9 +24,6 @@
   height: 35px;
 }
 
-/* Logo */
-
-/* Form */
 .form {
   display: flex;
   flex-direction: column;
@@ -57,7 +53,6 @@ input {
   }
 }
 
-/* Bottom Display */
 .bottom-display {
   height: 218px;
   width: 560px;
@@ -212,13 +207,6 @@ input {
   }
 }
 
-//Media Queries//
-
-/* ===== RESPONSIVE MEDIA QUERIES ===== */
-
-/* Large Desktop Screens (1440px and above) */
-
-/* Standard Laptop Screens (1024px - 1439px) */
 @media screen and (max-width: 1439px) and (min-width: 1024px) {
   .side-logo {
     height: 92vh;
@@ -226,7 +214,6 @@ input {
   }
 }
 
-/* Small Laptop/Large Tablet Screens (768px - 1023px) */
 @media screen and (max-width: 1023px) and (min-width: 768px) {
   .display {
     width: 85%;
@@ -260,7 +247,6 @@ input {
   }
 }
 
-/* Tablet Portrait Mode (600px - 767px) */
 @media screen and (max-width: 767px) and (min-width: 600px) {
   .display {
     width: 90%;
@@ -291,7 +277,6 @@ input {
   }
 }
 
-/* Mobile Landscape (480px - 599px) */
 @media screen and (max-width: 599px) and (min-width: 480px) {
   .display {
     width: 95%;
@@ -322,7 +307,6 @@ input {
   }
 }
 
-/* Mobile Portrait (320px - 479px) */
 @media screen and (max-width: 479px) {
   .display {
     width: 100%;
@@ -356,7 +340,6 @@ input {
   }
 }
 
-/* Extra Small Mobile (max-width: 320px) */
 @media screen and (max-width: 320px) {
   .display h1 {
     font-size: 18px;
@@ -371,12 +354,6 @@ input {
     max-width: 130px;
   }
 }
-
-/* ===== SIGNUP FORM RESPONSIVE STYLES ===== */
-
-/* Large Desktop Screens (1440px and above) */
-
-/* Standard Laptop Screens (1024px - 1439px) */
 
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
   .display {
@@ -498,9 +475,7 @@ input {
   }
 }
 
-/* Small Laptop/Large Tablet Screens (768px - 1023px) */
 @media screen and (max-width: 1023px) and (min-width: 768px) {
-  /* Signup Form Styles */
   .display {
     width: 450px;
     height: auto;
@@ -598,9 +573,7 @@ input {
   }
 }
 
-/* Tablet Portrait Mode (600px - 767px) */
 @media screen and (max-width: 767px) and (min-width: 600px) {
-  /* Signup Form Styles */
   .display {
     width: 90%;
     max-width: 400px;
@@ -707,9 +680,7 @@ input {
   }
 }
 
-/* Mobile Landscape (480px - 599px) */
 @media screen and (max-width: 599px) and (min-width: 480px) {
-  /* Signup Form Styles */
   .display {
     width: 95%;
     max-width: 350px;
@@ -829,9 +800,7 @@ input {
   }
 }
 
-/* Mobile Portrait (320px - 479px) */
 @media screen and (max-width: 479px) {
-  /* Signup Form Styles */
   .display {
     width: 100%;
     max-width: 300px;
@@ -973,7 +942,6 @@ input {
   }
 }
 
-/* Extra Small Mobile (max-width: 320px) */
 @media screen and (max-width: 320px) {
   .display {
     max-width: 280px;
@@ -1057,9 +1025,6 @@ input {
   }
 }
 
-/* ===== SIGNUP FORM SPECIFIC RESPONSIVE UTILITIES ===== */
-
-/* Form validation and accessibility improvements for mobile */
 @media (max-width: 768px) {
   .form input:focus {
     outline: 2px solid #3e1f69;
@@ -1072,7 +1037,6 @@ input {
     color: #999;
   }
 
-  /* Loading spinner adjustments for mobile */
   .button-loader {
     display: flex;
     align-items: center;
@@ -1098,7 +1062,6 @@ input {
   }
 }
 
-/* Social login button icons spacing for mobile */
 @media (max-width: 599px) {
   .bottom-display button img {
     width: 16px !important;
@@ -1106,15 +1069,11 @@ input {
   }
 }
 
-/* ===== UTILITY CLASSES FOR BETTER RESPONSIVENESS ===== */
-
-/* Ensure images are responsive */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Smooth transitions for responsive changes */
 .grid-container,
 .onboard-content,
 .display,
@@ -1122,16 +1081,14 @@ img {
   transition: all 0.3s ease;
 }
 
-/* Focus styles for better accessibility on mobile */
 @media (max-width: 768px) {
   .start button:focus {
     outline: 2px solid #3e1f69;
     outline-offset: 2px;
   }
 
-  /* Increase touch target size for mobile */
   .start button {
-    min-height: 44px; /* Apple's recommended minimum touch target */
+    min-height: 44px;
   }
 }
 

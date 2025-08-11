@@ -272,7 +272,7 @@ export class RoleComponent implements OnInit, OnDestroy {
     if (Array.isArray(permissions)) {
       if (permissions.length === 0) return 'No permissions';
 
-      // Find the permission labels and display them
+      //This is to Find the permission labels and display them
       const labels: string[] = [];
       for (let category of this.permissionCategories) {
         for (let option of category.options) {

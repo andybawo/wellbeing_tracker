@@ -4,6 +4,7 @@ import { ProfileLayoutComponent } from './components/profile-layout/profile-layo
 import { CompanyProfileRoutingModule } from './company-profile-routing.module';
 import { DepartmentComponent } from './components/department/department.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RoleComponent } from './components/role/role.component';
 
 @NgModule({
   declarations: [],
@@ -12,7 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CompanyProfileRoutingModule,
     ProfileLayoutComponent,
     DepartmentComponent,
+    RoleComponent,
     ReactiveFormsModule,
-  ]
+  ],
 })
 export class CompanyProfileModule {}

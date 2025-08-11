@@ -17,7 +17,7 @@
     <div class="packages-container">
       <div
         class="packages"
-        *ngFor="let pkg of transformedMonthlyPackages"
+        *ngFor="let pkg of transformedMonthlyPackages; let i = index"
         [class.selected]="selectedPackage === pkg.name?.toLowerCase()"
         (click)="selectPackageDiv(pkg.name?.toLowerCase())"
       >
@@ -42,7 +42,7 @@
         </div>
         <div class="sub-button">
           <button
-            class="select-plan"
+            [class]="i === 2 ? 'primary-btn' : 'secondary-btn'"
             [class.active]="selectedPackage === pkg.name?.toLowerCase()"
             (click)="selectPlan(pkg.name?.toLowerCase())"
           >
@@ -124,7 +124,7 @@
     <div class="packages-container">
       <div
         class="packages"
-        *ngFor="let pkg of transformedYearlyPackages"
+        *ngFor="let pkg of transformedYearlyPackages; let i = index"
         [class.selected]="selectedPackage === pkg.name?.toLowerCase()"
         (click)="selectPackageDiv(pkg.name?.toLowerCase())"
       >
@@ -149,7 +149,7 @@
         </div>
         <div class="sub-button">
           <button
-            class="select-plan"
+            [class]="i === 2 ? 'primary-btn' : 'secondary-btn'"
             [class.active]="selectedPackage === pkg.name?.toLowerCase()"
             (click)="selectPlan(pkg.name?.toLowerCase())"
           >

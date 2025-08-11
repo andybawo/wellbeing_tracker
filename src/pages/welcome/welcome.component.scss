@@ -1,4 +1,3 @@
-/* Grid Container */
 .grid-container {
   background-color: white;
   height: 100vh;
@@ -8,7 +7,6 @@
   padding: 0;
 }
 
-/* Onboarding Content */
 .onboard-content {
   background-color: var(--background-color);
   border-radius: 0 68px 68px 0;
@@ -20,7 +18,6 @@
   grid-area: main;
 }
 
-/* Side Logo */
 .side-logo {
   background-color: #f3e6f5;
   border-radius: 32px;
@@ -34,9 +31,6 @@
   top: 20px;
 }
 
-/* ===== RESPONSIVE MEDIA QUERIES ===== */
-
-/* Large Desktop Screens (1440px and above) */
 @media screen and (min-width: 1440px) {
   .grid-container {
     grid-template-columns: 42% 56%;
@@ -44,7 +38,6 @@
   }
 }
 
-/* Standard Laptop Screens (1024px - 1439px) */
 @media screen and (max-width: 1539px) and (min-width: 1024px) {
   .grid-container {
     grid-template-columns: 48% 50%;
@@ -57,7 +50,6 @@
   }
 }
 
-/* Small Laptop/Large Tablet Screens (768px - 1023px) */
 @media screen and (max-width: 1023px) and (min-width: 768px) {
   .grid-container {
     grid-template-columns: 55% 40%;
@@ -75,7 +67,6 @@
   }
 }
 
-/* Tablet Portrait Mode (600px - 767px) */
 @media screen and (max-width: 767px) and (min-width: 600px) {
   .grid-container {
     grid-template-columns: 1fr;
@@ -96,7 +87,6 @@
   }
 }
 
-/* Mobile Landscape (480px - 599px) */
 @media screen and (max-width: 599px) and (min-width: 480px) {
   .grid-container {
     grid-template-columns: 1fr;
@@ -117,7 +107,6 @@
   }
 }
 
-/* Mobile Portrait (320px - 479px) */
 @media screen and (max-width: 479px) {
   .grid-container {
     grid-template-columns: 1fr;
@@ -138,15 +127,11 @@
   }
 }
 
-/* ===== UTILITY CLASSES FOR BETTER RESPONSIVENESS ===== */
-
-/* Ensure images are responsive */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Smooth transitions for responsive changes */
 .grid-container,
 .onboard-content {
   transition: all 0.3s ease;

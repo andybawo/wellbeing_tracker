@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-project-management',
-  imports: [],
+  imports: [RouterOutlet],
   templateUrl: './project-management.component.html',
-  styleUrl: './project-management.component.scss'
+  styleUrl: './project-management.component.scss',
 })
-export class ProjectManagementComponent {
-
-}
+export class ProjectManagementComponent {}

@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-project-layout',
   imports: [],
   templateUrl: './project-layout.component.html',
-  styleUrl: './project-layout.component.scss'
+  styleUrl: './project-layout.component.scss',
 })
-export class ProjectLayoutComponent {
-
-}
+export class ProjectLayoutComponent {}

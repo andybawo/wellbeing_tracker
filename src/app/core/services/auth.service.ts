@@ -57,9 +57,23 @@ export class AuthService {
 
   //Company Registration
   registerCompany(companyData: { [key: string]: any }): Observable<any> {
+    const token = this.getToken();
+
+    if (!token) {
+      throw new Error('No authentication token found. Please login again.');
+    }
+
+    // ✅ JWT token for authentication
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    // ✅ Complete payload including email fields (as per Swagger)
     return this.http.post(
       `${this.apiUrl}/api/Company/registerCompany`,
-      companyData
+      companyData, // This should include userEmailAddress & companyEmailAddress
+      { headers }
     );
   }
 

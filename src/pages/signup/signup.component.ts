@@ -119,8 +119,10 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     const email = this.userForm.get('emailAddress')?.value;
+    const userData = this.userForm.value;
 
     try {
+      // Check if email already exists
       const emailCheckResponse = await this.authService
         .checkEmailExists(email)
         .toPromise();
@@ -134,8 +136,21 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
         return;
       }
 
-      const userData = this.userForm.value;
-      this.dataService.setUserData(userData);
+      // Register the user (only once)
+      const signupRes = await this.authService
+        .registerUser(userData)
+        .toPromise();
+      // Save user info from backend response or JWT (if available)
+      // If backend returns a JWT, decode and save relevant info, else save form data
+      if (signupRes && signupRes.data) {
+        // If JWT, decode and extract user info (pseudo-code, replace with actual decode if needed)
+        // const decoded = decodeJwt(signupRes.data);
+        // this.dataService.setUserData({ emailAddress: decoded.email, fullName: decoded.name });
+        this.dataService.setUserData(userData); // fallback: save form data
+        this.dataService.setAuthToken(signupRes.data);
+      } else {
+        this.dataService.setUserData(userData);
+      }
 
       this.setAlert(
         'Signup successful! Please proceed to register your company.',
@@ -147,10 +162,7 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
         this.router.navigate(['/start/registration']);
       }, 500);
     } catch (error) {
-      this.setAlert(
-        'Unable to verify email availability. Please try again.',
-        'error'
-      );
+      this.setAlert('Unable to complete signup. Please try again.', 'error');
       this.isButtonLoading = false;
     }
   }

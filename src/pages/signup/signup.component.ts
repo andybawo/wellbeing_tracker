@@ -89,13 +89,10 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private saveUserData(userData: any): void {
     try {
-      // Only save if form has some data (excluding password for security)
       if (userData.fullName || userData.emailAddress) {
-        // Create a copy without the password for security reasons
         const dataToSave = {
           fullName: userData.fullName || '',
           emailAddress: userData.emailAddress || '',
-          // Intentionally exclude password
         };
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(dataToSave));
       }
@@ -140,13 +137,9 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
       const signupRes = await this.authService
         .registerUser(userData)
         .toPromise();
-      // Save user info from backend response or JWT (if available)
-      // If backend returns a JWT, decode and save relevant info, else save form data
+
       if (signupRes && signupRes.data) {
-        // If JWT, decode and extract user info (pseudo-code, replace with actual decode if needed)
-        // const decoded = decodeJwt(signupRes.data);
-        // this.dataService.setUserData({ emailAddress: decoded.email, fullName: decoded.name });
-        this.dataService.setUserData(userData); // fallback: save form data
+        this.dataService.setUserData(userData);
         this.dataService.setAuthToken(signupRes.data);
       } else {
         this.dataService.setUserData(userData);

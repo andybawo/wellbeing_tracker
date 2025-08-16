@@ -23,7 +23,6 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { AlertsComponent } from '../pages/alerts/alerts.component';
 import { IntegrateDashComponent } from '../pages/integrate-dash/integrate-dash.component';
 import { UserManagementComponent } from '../pages/user-management/user-management.component';
-import { ProjectManagementComponent } from '../pages/project-management/project-management.component';
 import { SubscriptionDashComponent } from '../pages/subscription-dash/subscription-dash.component';
 export const routes: Routes = [
   {

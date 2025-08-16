@@ -1,1 +1,154 @@
-<p>view-projects works!</p>
+<div class="view-project-container">
+  <div class="project-header">
+    <div class="project-title">
+      <img src="/images/arrow-left-dark.png" alt="" />
+      <h1>Project Name 1</h1>
+    </div>
+    <div class="status-cards">
+      <div class="card">
+        <img src="/images/Frame 114 (2).png" alt="" />
+        <ul>
+          <li>Done</li>
+          <li
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              gap: 5px;
+            "
+          >
+            <span>20%</span>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <img src="/images/Frame 114 (2).png" alt="" />
+        <ul>
+          <li>In-Progress</li>
+          <li
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              gap: 5px;
+            "
+          >
+            <span>40%</span>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <img src="/images/Frame 114 (2).png" alt="" />
+        <ul>
+          <li>T0-do</li>
+          <li
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              gap: 5px;
+            "
+          >
+            <span>40%</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="task-timeline">
+    <div class="task-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Assignee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Task 1</td>
+            <td>Team Lead</td>
+          </tr>
+          <tr>
+            <td>Task 2</td>
+            <td>Developer</td>
+          </tr>
+          <tr>
+            <td>Task 2</td>
+            <td>Developer</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="timeline-card">
+      <h1>Timeline</h1>
+      <div class="status-card">
+        <div class="status">
+          <h3>On Track</h3>
+          <div class="bar">
+            <div class="fill status-1"></div>
+          </div>
+          <h1>1</h1>
+        </div>
+        <div class="status">
+          <h3>Ongoing</h3>
+          <div class="bar">
+            <div class="fill status-2"></div>
+          </div>
+          <h1>0</h1>
+        </div>
+        <div class="status">
+          <h3>At risk</h3>
+          <div class="bar">
+            <div class="fill status-3"></div>
+          </div>
+          <h1>0</h1>
+        </div>
+        <div class="status">
+          <h3>Overdue</h3>
+          <div class="bar">
+            <div class="fill status-4"></div>
+          </div>
+          <h1>0</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="alert-metrics">
+    <div class="alert-box">
+      <h1>Alert Metrics</h1>
+      <table>
+        <thead>
+          <th>Engagement Metrics</th>
+          <th>Previous Score</th>
+          <th>Current Score</th>
+          <th>% Change</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ongoing</td>
+            <td>5</td>
+            <td>7</td>
+            <td>40%</td>
+            <td class="status warning">Warning</td>
+          </tr>
+          <tr>
+            <td>At Risk</td>
+            <td>10</td>
+            <td>12</td>
+            <td>20%</td>
+            <td class="status normal">Critical</td>
+          </tr>
+          <tr>
+            <td>Overdue</td>
+            <td>15</td>
+            <td>15</td>
+            <td>0%</td>
+            <td class="status critical">Normal</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

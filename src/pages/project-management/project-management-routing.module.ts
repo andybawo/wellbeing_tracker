@@ -19,7 +19,7 @@ const routes: Routes = [
         component: ProjectListComponent,
       },
       {
-        path: 'view-project',
+        path: 'view-projects',
         component: ViewProjectsComponent,
       },
     ],

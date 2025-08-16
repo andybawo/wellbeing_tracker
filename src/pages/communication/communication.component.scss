@@ -71,39 +71,96 @@
   grid-template-columns: 30% 23.33% 23.33% 23.33%;
 }
 
-.bottom-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 8px 16px 16px 16px;
+.alert-metrics {
   background-color: white;
-  border-radius: 8px;
-  height: 45.41%;
-  h3 {
-    font-size: 17px;
+  width: 100%;
+  height: auto;
+  padding: 16px 20px 16px 20px;
+  h1 {
+    font-size: 16px;
+    font-weight: 600;
   }
 
-  .bottom-content-table,
-  .bottom-content-table1 {
-    height: 48px;
+  .alert-box {
+    border: 1px solid #f0eeee;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    background-color: #f0eeee;
-    border-radius: 8px;
-    padding: 10px 16px 10px 16px;
 
-    ul {
-      display: grid;
-      grid-template-columns: 20% 20% 20% 20% 20%;
+    table {
+      text-align: center;
+      width: 100%;
 
-      li {
-        list-style: none;
+      th {
+        font-weight: 700;
+        color: #000000;
         font-size: 12px;
+        width: fit-content;
+        min-width: 90px;
+        align-items: center;
+
+        &:first-child {
+          text-align: left;
+          width: 146px;
+        }
       }
-    }
-    select {
-      border: none;
-      background-color: #f0eeee;
+      td {
+        font-size: 12px;
+        text-align: center;
+        min-width: 90px;
+
+        &:first-child {
+          text-align: left;
+          width: 146px;
+        }
+
+        &.status {
+          border-radius: 20px;
+          width: 90px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &.warning {
+            background-color: #f9f2e0;
+          }
+          &.normal {
+            background-color: #e3fce4;
+          }
+          &.critical {
+            background-color: #ffe5e5;
+          }
+        }
+      }
+
+      thead {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 40px;
+        background-color: #f0eeee;
+        align-items: center;
+        border-radius: 5px;
+        opacity: 40%;
+        padding: 16px 20px 16px 20px;
+      }
+      tbody {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      tr {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 40px;
+        align-items: center;
+        padding: 8px 20px 8px 20px;
+        border-bottom: 1px solid #f0eeee;
+      }
     }
   }
 }

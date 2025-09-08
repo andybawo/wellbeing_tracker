@@ -11,9 +11,11 @@ import { CommonModule } from '@angular/common';
 })
 export class ProjectListComponent implements OnInit {
   projectData: any = null;
+  summary: any = null;
   loading = true;
   error: string | null = null;
   constructor(private dashboardService: DashboardService) {}
+
   ngOnInit(): void {
     this.dashboardService.getProjects(2).subscribe({
       next: (res) => {
@@ -27,6 +29,17 @@ export class ProjectListComponent implements OnInit {
       error: (err) => {
         this.error = 'Error fetching project data';
         this.loading = false;
+      },
+    });
+
+    this.dashboardService.getSummary(2).subscribe({
+      next: (res) => {
+        if (res && res.success) {
+          this.summary = res.data;
+        }
+      },
+      error: (err) => {
+        // Optionally handle summary error
       },
     });
   }

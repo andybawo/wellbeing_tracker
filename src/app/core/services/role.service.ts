@@ -1,84 +1,69 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { companyRole } from '../../interfaces/user-interface';
+import {
+  companyRole,
+  DeleteRoleResponse,
+  RoleApiResponse,
+} from '../../interfaces/user-interface';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoleService {
-  private readonly STORAGE_KEY = 'roles';
-  private rolesSubject = new BehaviorSubject<companyRole[]>([]);
-  public roles$ = this.rolesSubject.asObservable();
+  private apiUrl = environment.apiUrl;
+  constructor(private http: HttpClient, private dataService: DataService) {}
 
-  constructor() {
-    this.loadRolesFromStorage();
+  private getAuthHeaders(): HttpHeaders {
+    const token = this.dataService.getAuthToken();
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
   }
 
-  private loadRolesFromStorage(): void {
-    const storedRoles = localStorage.getItem(this.STORAGE_KEY);
-    if (storedRoles) {
-      const roles = JSON.parse(storedRoles);
-      this.rolesSubject.next(roles);
-    }
+  addRole(roles: Partial<companyRole>): Observable<any> {
+    return this.http.post(`${this.apiUrl}/api/Admin/add-role`, roles, {
+      headers: this.getAuthHeaders(),
+    });
   }
 
-  private saveRolesToStorage(roles: companyRole[]): void {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(roles));
-    this.rolesSubject.next(roles);
+  updateRole(roles: {
+    roleId: string;
+    roleName: string;
+    roleDescription: string;
+  }): Observable<any> {
+    return this.http.put(`${this.apiUrl}/api/Admin/update-role`, roles, {
+      headers: this.getAuthHeaders(),
+    });
   }
 
-  getAllRoles(): companyRole[] {
-    return this.rolesSubject.value;
+  getRole(): Observable<RoleApiResponse> {
+    return this.http.get<RoleApiResponse>(
+      `${this.apiUrl}/api/Admin/get-all-roles`,
+      {
+        headers: this.getAuthHeaders(),
+      }
+    );
   }
 
-  getRoleById(id: string): companyRole | undefined {
-    return this.rolesSubject.value.find((rol) => rol.id === id);
+  getRoleById(id: string): Observable<RoleApiResponse> {
+    return this.http.get<RoleApiResponse>(
+      `${this.apiUrl}/api/Admin/get-role-by-id?roleId=${id}`,
+      {
+        headers: this.getAuthHeaders(),
+      }
+    );
   }
 
-  addRole(roleData: Omit<companyRole, 'id'>): companyRole {
-    const newRole: companyRole = {
-      ...roleData,
-      id: this.generateId(),
-    };
-
-    const currentRoles = this.rolesSubject.value;
-    const updatedRoles = [...currentRoles, newRole];
-    this.saveRolesToStorage(updatedRoles);
-
-    return newRole;
-  }
-
-  updateRole(id: string, roleData: Partial<companyRole>): boolean {
-    const currentRoles = this.rolesSubject.value;
-    const roleIndex = currentRoles.findIndex((rol) => rol.id === id);
-
-    if (roleIndex === -1) {
-      return false;
-    }
-
-    const updatedRoles = [...currentRoles];
-    updatedRoles[roleIndex] = {
-      ...updatedRoles[roleIndex],
-      ...roleData,
-    };
-    this.saveRolesToStorage(updatedRoles);
-
-    return true;
-  }
-
-  deleteRole(id: string): boolean {
-    const currentRoles = this.rolesSubject.value;
-    const filteredRoles = currentRoles.filter((rol) => rol.id !== id);
-
-    if (filteredRoles.length === currentRoles.length) {
-      return false;
-    }
-
-    this.saveRolesToStorage(filteredRoles);
-    return true;
-  }
-
-  private generateId(): string {
-    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  deleteRole(id: string): Observable<DeleteRoleResponse> {
+    return this.http.delete<DeleteRoleResponse>(
+      `${this.apiUrl}/api/Admin/delete-role?roleId=${id}`,
+      {
+        headers: this.getAuthHeaders(),
+      }
+    );
   }
 }

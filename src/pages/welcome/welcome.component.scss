@@ -9,12 +9,12 @@
 
 .onboard-content {
   background-color: var(--background-color);
-  border-radius: 0 68px 68px 0;
+  // border-radius: 0 68px 68px 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   height: 100vh;
+  gap: 60px;
   grid-area: main;
 }
 

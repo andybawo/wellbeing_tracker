@@ -12,10 +12,14 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { companyRole } from '../../../../app/interfaces/user-interface';
+import {
+  companyRole,
+  RoleApiResponse,
+} from '../../../../app/interfaces/user-interface';
 import { CommonModule } from '@angular/common';
 import { RoleService } from '../../../../app/core/services/role.service';
 import { Subscription } from 'rxjs';
+import { SharedModule } from '../../../../app/shared/shared.module';
 
 interface PermissionOption {
   value: string;
@@ -50,6 +54,7 @@ export class RoleComponent implements OnInit, OnDestroy {
   isEditModal = false;
   isDeleteModal = false;
   isSuccessModal = false;
+  isButtonLoading = false;
   successMessage = '';
   roleForm: FormGroup;
 
@@ -97,21 +102,32 @@ export class RoleComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private roleService: RoleService) {
     this.roleForm = this.fb.group({
       roleName: ['', [Validators.required, Validators.minLength(2)]],
-      description: ['', [Validators.required, Validators.minLength(2)]],
-      permissions: [[], [Validators.required]],
+      roleDescription: ['', [Validators.required, Validators.minLength(2)]],
+      permissions: [''],
     });
   }
 
   ngOnInit() {
-    this.roleSubscription = this.roleService.roles$.subscribe((roles) => {
-      this.role = roles;
-    });
+    this.fetchRoles();
   }
 
   ngOnDestroy() {
     if (this.roleSubscription) {
       this.roleSubscription.unsubscribe();
     }
+  }
+
+  fetchRoles() {
+    this.roleSubscription = this.roleService.getRole().subscribe({
+      next: (res: RoleApiResponse) => {
+        if (res.success) {
+          this.role = res.data || [];
+        }
+      },
+      error: (err) => {
+        console.error('Fetch roles error:', err);
+      },
+    });
   }
 
   openModal() {
@@ -133,12 +149,17 @@ export class RoleComponent implements OnInit, OnDestroy {
 
     this.roleForm.patchValue({
       roleName: rol.roleName,
-      description: rol.description,
+      description: rol.roleDescription,
       permissions: rol.permissions || [],
     });
   }
 
   openDeleteModal(rol: companyRole) {
+    console.log('Opening delete modal for role:', rol); // Debug log
+    if (!rol || !rol.roleId) {
+      console.error('Invalid role object:', rol);
+      return;
+    }
     this.selectedRoleForDelete = rol;
     this.isDeleteModal = true;
   }
@@ -157,10 +178,15 @@ export class RoleComponent implements OnInit, OnDestroy {
         ...this.roleForm.value,
         permissions: selectedPermissions,
       };
-      const newRole = this.roleService.addRole(roleData);
-      this.resetPermissionSelections(); // Reset after adding
-      this.showSuccessModal('Role added successfully');
-      this.roleAdded.emit(newRole);
+      this.isButtonLoading = true;
+      this.roleService.addRole(this.roleForm.value).subscribe({
+        next: (res) => {
+          this.showSuccessModal('Role added successfully to the system');
+          this.isButtonLoading = false;
+          this.fetchRoles();
+          this.roleAdded.emit(res);
+        },
+      });
     }
   }
 
@@ -172,34 +198,50 @@ export class RoleComponent implements OnInit, OnDestroy {
     if (this.roleForm.valid && this.currentRole) {
       const selectedPermissions = this.getSelectedPermissions();
       const roleData = {
+        roleId: this.currentRole.roleId,
         ...this.roleForm.value,
         permissions: selectedPermissions,
       };
+      this.isButtonLoading = true;
+      const updatePayload = {
+        roleId: this.currentRole.roleId,
+        roleName: this.roleForm.value.roleName,
+        roleDescription: this.roleForm.value.roleDescription,
+        permissions: selectedPermissions,
+      };
 
-      const success = this.roleService.updateRole(
-        this.currentRole.id,
-        roleData
-      );
-      if (success) {
-        this.resetPermissionSelections(); // Reset after updating
-        this.showSuccessModal('Role Updated successfully');
-        this.roleUpdated.emit({
-          ...this.currentRole,
-          ...roleData,
-        });
-      }
+      this.roleService.updateRole(updatePayload).subscribe({
+        next: (res) => {
+          this.showSuccessModal('Role updated successfully');
+          this.isButtonLoading = false;
+          this.fetchRoles();
+          this.roleUpdated.emit(res);
+        },
+      });
     }
   }
 
   deleteRole() {
-    if (this.selectedRoleForDelete) {
-      const success = this.roleService.deleteRole(
-        this.selectedRoleForDelete.id
-      );
-      if (success) {
-        this.roleDeleted.emit(this.selectedRoleForDelete.id);
-        this.closeModal();
-      }
+    const rol = this.selectedRoleForDelete;
+    if (rol && rol.roleId) {
+      this.isButtonLoading = true;
+      this.roleService.deleteRole(rol.roleId).subscribe({
+        next: (res) => {
+          this.isButtonLoading = false;
+          this.closeModal();
+          this.role = this.role.filter((r) => r.roleId !== rol.roleId);
+          this.showSuccessModal('Role deleted successfully');
+          this.roleDeleted.emit(rol.roleId);
+        },
+        error: (err) => {
+          console.error('Delete role error:', err);
+          this.isButtonLoading = false;
+
+          alert(err?.error?.message || 'Failed to delete role.');
+        },
+      });
+    } else {
+      console.error('No valid role selected for deletion');
     }
   }
 

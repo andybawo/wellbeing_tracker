@@ -1,8 +1,13 @@
 <div class="view-project-container">
   <div class="project-header">
     <div class="project-title">
-      <img src="/images/arrow-left-dark.png" alt="" />
-      <h1>Project Name 1</h1>
+      <img
+        src="/images/arrow-left-dark.png"
+        alt=""
+        [routerLink]="['/home/project-management/project-list']"
+        style="cursor: pointer"
+      />
+      <h1>{{ projectDetails?.data?.projectName }}</h1>
     </div>
     <div class="status-cards">
       <div class="card">
@@ -17,7 +22,7 @@
               gap: 5px;
             "
           >
-            <span>20%</span>
+            <span>{{ projectDetails?.data?.donePercent || 0 }}%</span>
           </li>
         </ul>
       </div>
@@ -33,7 +38,7 @@
               gap: 5px;
             "
           >
-            <span>40%</span>
+            <span>{{ projectDetails?.data?.inProgressPercent || 0 }}%</span>
           </li>
         </ul>
       </div>
@@ -49,7 +54,7 @@
               gap: 5px;
             "
           >
-            <span>40%</span>
+            <span>{{ projectDetails?.data?.toDoPercent || 0 }}%</span>
           </li>
         </ul>
       </div>
@@ -65,17 +70,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Task 1</td>
-            <td>Team Lead</td>
+          <tr *ngIf="!projectDetails?.data?.tasks?.length">
+            <td colspan="2" style="text-align: left">No tasks assigned</td>
           </tr>
-          <tr>
-            <td>Task 2</td>
-            <td>Developer</td>
-          </tr>
-          <tr>
-            <td>Task 2</td>
-            <td>Developer</td>
+          <tr *ngFor="let task of projectDetails?.data?.tasks">
+            <td>{{ task?.taskName }}</td>
+            <td>{{ task?.taskAssignee }}</td>
           </tr>
         </tbody>
       </table>
@@ -86,30 +86,42 @@
         <div class="status">
           <h3>On Track</h3>
           <div class="bar">
-            <div class="fill status-1"></div>
+            <div
+              class="fill status-1"
+              [ngStyle]="{ width: getPercent('onTrack') + '%' }"
+            ></div>
           </div>
-          <h1>1</h1>
+          <h1>{{ projectDetails?.data?.onTrack || 0 }}</h1>
         </div>
         <div class="status">
           <h3>Ongoing</h3>
           <div class="bar">
-            <div class="fill status-2"></div>
+            <div
+              class="fill status-2"
+              [ngStyle]="{ width: getPercent('ongoing') + '%' }"
+            ></div>
           </div>
-          <h1>0</h1>
+          <h1>{{ projectDetails?.data?.ongoing || 0 }}</h1>
         </div>
         <div class="status">
           <h3>At risk</h3>
           <div class="bar">
-            <div class="fill status-3"></div>
+            <div
+              class="fill status-3"
+              [ngStyle]="{ width: getPercent('atRisk') + '%' }"
+            ></div>
           </div>
-          <h1>0</h1>
+          <h1>{{ projectDetails?.data?.atRisk || 0 }}</h1>
         </div>
         <div class="status">
           <h3>Overdue</h3>
           <div class="bar">
-            <div class="fill status-4"></div>
+            <div
+              class="fill status-4"
+              [ngStyle]="{ width: getPercent('overdue') + '%' }"
+            ></div>
           </div>
-          <h1>0</h1>
+          <h1>{{ projectDetails?.data?.overdue || 0 }}</h1>
         </div>
       </div>
     </div>

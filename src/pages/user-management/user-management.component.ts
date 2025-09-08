@@ -5,6 +5,10 @@ import { UserService } from '../../app/core/services/user.service';
 import { User } from '../../app/interfaces/user-interface';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../app/shared/shared.module';
+import { companyDepartment } from '../../app/interfaces/user-interface';
+import { companyRole } from '../../app/interfaces/user-interface';
+import { DepartmentService } from '../../app/core/services/department.service';
+import { RoleService } from '../../app/core/services/role.service';
 
 @Component({
   selector: 'app-user-management',
@@ -13,6 +17,8 @@ import { SharedModule } from '../../app/shared/shared.module';
   styleUrl: './user-management.component.scss',
 })
 export class UserManagementComponent implements OnInit {
+  department: companyDepartment[] = [];
+  role: companyRole[] = [];
   // Modal states
   isEditUSerOpen = false;
   isEditMode = false;
@@ -50,15 +56,37 @@ export class UserManagementComponent implements OnInit {
   };
 
   // Available options
-  departments = ['IT', 'HR', 'Finance', 'Marketing', 'Operations'];
-  roles = ['Manager', 'HR', 'Project Manager', 'Developer', 'Analyst'];
+  // departments = ['IT', 'HR', 'Finance', 'Marketing', 'Operations'];
+  // roles = ['Manager', 'HR', 'Project Manager', 'Developer', 'Analyst'];
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private departmentService: DepartmentService,
+    private roleService: RoleService
+  ) {}
 
   ngOnInit(): void {
     this.loadUsers();
     this.userService.users$.subscribe((users) => {
       this.users = users;
+    });
+    this.fetchDepartments();
+    this.fetchRoles();
+  }
+
+  fetchDepartments() {
+    this.departmentService.getAllDepartments().subscribe({
+      next: (res) => {
+        this.department = res.data || [];
+      },
+    });
+  }
+
+  fetchRoles() {
+    this.roleService.getRole().subscribe({
+      next: (res) => {
+        this.role = res.data || [];
+      },
     });
   }
 

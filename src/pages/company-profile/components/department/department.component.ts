@@ -16,12 +16,18 @@ import { companyDepartment } from '../../../../app/interfaces/user-interface';
 import { CommonModule } from '@angular/common';
 import { DepartmentService } from '../../../../app/core/services/department.service';
 import { Subscription } from 'rxjs';
+import {
+  DepartmentApiResponse,
+  CompanyUsersApiResponse,
+  DeleteCompanyResponse,
+} from '../../../../app/interfaces/user-interface';
+import { SharedModule } from '../../../../app/shared/shared.module';
 
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
   styleUrl: './department.component.scss',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, SharedModule],
 })
 export class DepartmentComponent implements OnInit, OnDestroy {
   department: companyDepartment[] = [];
@@ -39,8 +45,16 @@ export class DepartmentComponent implements OnInit, OnDestroy {
   isDeleteModal = false;
   isSuccessModal = false;
   successMessage = '';
+  showAlert: boolean = false;
+  alertMessage: string = '';
+  alertType: 'success' | 'error' = 'success';
+  isButtonLoading: boolean = false;
+
+  companyUsers: any[] = [];
+  showHodDropdown: boolean = false;
 
   departmentForm: FormGroup;
+  departmentFormUpdate: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -48,23 +62,76 @@ export class DepartmentComponent implements OnInit, OnDestroy {
   ) {
     this.departmentForm = this.fb.group({
       departmentName: ['', [Validators.required, Validators.minLength(2)]],
-      hodName: ['', [Validators.required, Validators.minLength(2)]],
-      emailHod: ['', [Validators.required, Validators.email]],
+      hodName: [''],
+      // emailHod: ['', [Validators.required, Validators.email]],
+    });
+    this.departmentFormUpdate = this.fb.group({
+      departmentName: ['', [Validators.required, Validators.minLength(2)]],
+      headOfDepartmentName: [
+        '',
+        [Validators.required, Validators.minLength(2)],
+      ],
+      // emailHod: ['', [Validators.required, Validators.email]],
     });
   }
 
   ngOnInit() {
-    this.departmentSubscription = this.departmentService.departments$.subscribe(
-      (departments) => {
-        this.department = departments;
-      }
-    );
+    this.fetchDepartments();
+    this.fetchCompanyUsers();
   }
 
   ngOnDestroy() {
     if (this.departmentSubscription) {
       this.departmentSubscription.unsubscribe();
     }
+  }
+
+  fetchDepartments() {
+    this.departmentSubscription = this.departmentService
+      .getAllDepartments()
+      .subscribe({
+        next: (res: DepartmentApiResponse) => {
+          this.department = res.data || [];
+        },
+        error: (err) => {
+          // handle error
+        },
+      });
+  }
+
+  fetchCompanyUsers() {
+    this.departmentSubscription = this.departmentService
+      .getAllCompUsers()
+      .subscribe({
+        next: (res: CompanyUsersApiResponse) => {
+          this.companyUsers = res.data || [];
+        },
+        error: (err) => {
+          // handle error
+        },
+      });
+  }
+
+  getHodEmail(hodName: string): string | undefined {
+    const user = this.companyUsers.find((u) => u.fullName === hodName);
+    return user ? user.emailAddress : '';
+  }
+
+  onHodInputFocus() {
+    this.showHodDropdown = true;
+  }
+
+  selectHod(name: string, mode: 'add' | 'edit' = 'add') {
+    if (mode === 'add') {
+      this.departmentForm.get('hodName')?.setValue(name);
+    } else {
+      this.departmentFormUpdate.get('headOfDepartmentName')?.setValue(name);
+    }
+    this.showHodDropdown = false;
+  }
+
+  onHodInputBlur() {
+    setTimeout(() => (this.showHodDropdown = false), 200); // Delay to allow click
   }
 
   openAddModal() {
@@ -74,10 +141,9 @@ export class DepartmentComponent implements OnInit, OnDestroy {
   openEditModal(dept: companyDepartment) {
     this.currentDepartment = dept;
     this.isEditModal = true;
-    this.departmentForm.patchValue({
+    this.departmentFormUpdate.patchValue({
       departmentName: dept.departmentName,
-      hodName: dept.hodName,
-      emailHod: dept.emailHod,
+      headOfDepartmentName: dept.hodName,
     });
   }
 
@@ -95,11 +161,29 @@ export class DepartmentComponent implements OnInit, OnDestroy {
 
   addDepartment() {
     if (this.departmentForm.valid) {
-      const newDepartment = this.departmentService.addDepartment(
-        this.departmentForm.value
-      );
-      this.showSuccessModal('Department added successfully to the system');
-      this.departmentAdded.emit(newDepartment);
+      this.isButtonLoading = true;
+      this.departmentService
+        .addDepartment(this.departmentForm.value)
+        .subscribe({
+          next: (res) => {
+            this.showSuccessModal(
+              'Department added successfully to the system'
+            );
+            this.isButtonLoading = false;
+            this.fetchDepartments();
+            this.departmentAdded.emit(res);
+          },
+          error: (err) => {
+            this.isButtonLoading = false;
+
+            this.showAlert = true;
+            this.alertMessage = err?.error?.message || 'An error occurred.';
+            this.alertType = 'error';
+            setTimeout(() => {
+              this.showAlert = false;
+            }, 3000);
+          },
+        });
     }
   }
 
@@ -108,32 +192,62 @@ export class DepartmentComponent implements OnInit, OnDestroy {
   }
 
   updateDepartment() {
-    if (this.departmentForm.valid && this.currentDepartment) {
-      const success = this.departmentService.updateDepartment(
-        this.currentDepartment.id,
-        this.departmentForm.value
-      );
-
-      if (success) {
-        this.showSuccessModal('Department updated successfully');
-        this.departmentUpdated.emit({
-          ...this.currentDepartment,
-          ...this.departmentForm.value,
-        });
-      }
+    if (this.departmentFormUpdate.valid && this.currentDepartment) {
+      this.isButtonLoading = true;
+      const updatePayload = {
+        departmentId: this.currentDepartment.id,
+        departmentName: this.departmentFormUpdate.value.departmentName,
+        headOfDepartmentName:
+          this.departmentFormUpdate.value.headOfDepartmentName,
+      };
+      this.departmentService.updateDepartment(updatePayload).subscribe({
+        next: (res) => {
+          this.isButtonLoading = false;
+          this.showSuccessModal('Department updated successfully');
+          this.fetchDepartments();
+          this.departmentUpdated.emit({
+            id: updatePayload.departmentId,
+            departmentName: updatePayload.departmentName,
+            hodName: updatePayload.headOfDepartmentName,
+          });
+        },
+        error: (err) => {
+          this.isButtonLoading = false;
+          this.showAlert = true;
+          this.alertMessage = 'Head of Department is not registered in Company';
+          this.alertType = 'error';
+          setTimeout(() => {
+            this.showAlert = false;
+          }, 2000);
+        },
+      });
     }
   }
 
   deleteDepartment() {
-    if (this.selectedDepartmentForDelete) {
-      const success = this.departmentService.deleteDepartment(
-        this.selectedDepartmentForDelete.id
-      );
+    const dept = this.selectedDepartmentForDelete;
+    if (dept) {
+      this.isButtonLoading = true;
 
-      if (success) {
-        this.departmentDeleted.emit(this.selectedDepartmentForDelete.id);
-        this.closeModal();
-      }
+      this.departmentService.deleteDepartment(dept.id).subscribe({
+        next: () => {
+          this.isButtonLoading = false;
+          this.closeModal();
+          this.department = this.department.filter((d) => d.id !== dept.id);
+          this.showSuccessModal('Department deleted successfully');
+          this.departmentDeleted.emit(dept.id);
+        },
+        error: (err) => {
+          console.error('Delete error:', err);
+          this.isButtonLoading = false;
+
+          this.showAlert = true;
+          this.alertMessage =
+            err?.error?.message || 'Failed to delete department.';
+          this.alertType = 'error';
+          setTimeout(() => (this.showAlert = false), 3000);
+        },
+      });
     }
   }
 

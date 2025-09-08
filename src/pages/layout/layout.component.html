@@ -1,14 +1,12 @@
-<div class="grid-container">
+<div class="grid-container" [class.sidebar-collapsed]="!sidebarOpen">
   <!-- Header Section -->
   <header class="header">
-    <app-navbar></app-navbar>
+    <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
   </header>
-
   <!-- Sidebar Section -->
   <div class="sidebar">
-    <app-sidebar [sidebarOpen]="true"></app-sidebar>
+    <app-sidebar [sidebarOpen]="sidebarOpen"></app-sidebar>
   </div>
-
   <!-- Main Content Section -->
   <main class="main-container">
     <router-outlet></router-outlet>

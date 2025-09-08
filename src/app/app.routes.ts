@@ -24,6 +24,7 @@ import { AlertsComponent } from '../pages/alerts/alerts.component';
 import { IntegrateDashComponent } from '../pages/integrate-dash/integrate-dash.component';
 import { UserManagementComponent } from '../pages/user-management/user-management.component';
 import { SubscriptionDashComponent } from '../pages/subscription-dash/subscription-dash.component';
+import { IntegrationGuard } from './core/guards/integration.guard';
 export const routes: Routes = [
   {
     path: '',
@@ -33,7 +34,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: LayoutComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, IntegrationGuard],
     children: [
       {
         path: '',

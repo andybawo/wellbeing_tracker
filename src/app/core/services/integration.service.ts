@@ -24,7 +24,7 @@ export class IntegrationService {
   private slackClientId = '8902772966210.8893672806710';
   private slackOAuthRedirectUri = `${window.location.origin}/subscription/slack-redirect`;
   private slackOAuthScope =
-    'channels:history channels:read groups:history groups:read mpim:history mpim:read reactions:read usergroups:read users:read users:read.email';
+    'channels:history channels:read groups:history groups:read mpim:history mpim:read reactions:read usergroups:read users:read users:read.email channels:manage calls:read im:read';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -131,7 +131,7 @@ export class IntegrationService {
     });
     const params = new HttpParams().set('code', code).set('state', state);
     return this.http.post(
-      `${this.apiUrl}/api/Slack/connect/Slack/OAuth`,
+      `${this.apiUrl}/api/Slack/connect/slack/OAuth`,
       {
         code,
         state,

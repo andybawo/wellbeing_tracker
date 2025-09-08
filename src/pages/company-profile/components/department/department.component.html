@@ -1,3 +1,9 @@
+<app-alert
+  [message]="alertMessage"
+  [type]="alertType"
+  [visible]="showAlert"
+></app-alert>
+
 <div class="main-container">
   <table>
     <thead>
@@ -12,7 +18,7 @@
       <tr *ngFor="let dept of department">
         <td class="department-column">{{ dept.departmentName }}</td>
         <td class="hod-column">{{ dept.hodName }}</td>
-        <td class="email-column">{{ dept.emailHod }}</td>
+        <td class="email-column">{{ getHodEmail(dept.hodName) }}</td>
         <td class="actions-column">
           <div class="status-content">
             <div class="icons">
@@ -70,19 +76,33 @@
             type="text"
             id="hodName"
             formControlName="hodName"
+            (focus)="onHodInputFocus()"
+            (blur)="onHodInputBlur()"
             placeholder="Enter HOD name"
+            autocomplete="off"
           />
+          <ul
+            *ngIf="showHodDropdown && companyUsers.length"
+            class="dropdown-list"
+          >
+            <li
+              *ngFor="let user of companyUsers"
+              (mousedown)="selectHod(user.fullName, 'add')"
+            >
+              {{ user.fullName }}
+            </li>
+          </ul>
         </div>
 
-        <div class="form-details">
-          <label for="emailHod">Email Address</label>
-          <input
-            type="email"
-            id="emailHod"
-            formControlName="emailHod"
-            placeholder="Enter email address"
-          />
-        </div>
+        <!-- <div class="form-details">
+      <label for="emailHod">Email Address</label>
+      <input
+        type="email"
+        id="emailHod"
+        formControlName="emailHod"
+        placeholder="Enter email address"
+      />
+    </div> -->
 
         <div class="form-actions">
           <button type="button" class="primary-btn" (click)="closeModal()">
@@ -93,7 +113,11 @@
             class="secondary-btn"
             [disabled]="departmentForm.invalid"
           >
-            Add Department
+            <span *ngIf="!isButtonLoading">Add Department</span>
+            <span *ngIf="isButtonLoading" class="button-loader">
+              <span class="spinner"></span>
+              Adding...
+            </span>
           </button>
         </div>
       </form>
@@ -111,7 +135,7 @@
       </div>
       <form
         class="form"
-        [formGroup]="departmentForm"
+        [formGroup]="departmentFormUpdate"
         (ngSubmit)="updateDepartment()"
       >
         <div class="form-details">
@@ -129,20 +153,34 @@
           <input
             type="text"
             id="editHodName"
-            formControlName="hodName"
+            formControlName="headOfDepartmentName"
+            (focus)="onHodInputFocus()"
+            (blur)="onHodInputBlur()"
             placeholder="Enter HOD name"
+            autocomplete="off"
           />
+          <ul
+            *ngIf="showHodDropdown && companyUsers.length"
+            class="dropdown-list"
+          >
+            <li
+              *ngFor="let user of companyUsers"
+              (mousedown)="selectHod(user.fullName, 'edit')"
+            >
+              {{ user.fullName }}
+            </li>
+          </ul>
         </div>
 
-        <div class="form-details">
-          <label for="editEmailHod">Email Address</label>
-          <input
-            type="email"
-            id="editEmailHod"
-            formControlName="emailHod"
-            placeholder="Enter email address"
-          />
-        </div>
+        <!-- <div class="form-details">
+      <label for="editEmailHod">Email Address</label>
+      <input
+        type="email"
+        id="editEmailHod"
+        formControlName="emailHod"
+        placeholder="Enter email address"
+      />
+    </div> -->
 
         <div class="form-actions">
           <button class="primary-btn" type="button" (click)="closeModal()">
@@ -151,16 +189,25 @@
           <button
             class="secondary-btn"
             type="submit"
-            [disabled]="departmentForm.invalid"
+            [disabled]="departmentFormUpdate.invalid"
           >
-            Update
+            <span *ngIf="!isButtonLoading">Update</span>
+            <span *ngIf="isButtonLoading" class="button-loader">
+              <span class="spinner"></span>
+              Updating...
+            </span>
           </button>
         </div>
       </form>
     </div>
 
+  
     <!-- Delete Confirmation Modal -->
-    <div *ngIf="isDeleteModal" class="warning-modal">
+    <div
+      *ngIf="isDeleteModal"
+      class="warning-modal"
+      (click)="$event.stopPropagation()"
+    >
       <div class="top">
         <div class="images" style="background-color: #ffe5e5">
           <img src="/images/trash-red.png" alt="" />
@@ -171,16 +218,29 @@
             selectedDepartmentForDelete?.departmentName
           }}" department from the system?
         </h4>
+        
       </div>
       <div class="bottom-modal">
         <button (click)="closeModal()" class="primary-btn">Cancel</button>
-        <button class="secondary-btn" (click)="deleteDepartment()">
-          Delete
+        <button
+          type="submit"
+          class="secondary-btn"
+          (click)="deleteDepartment()"
+        >
+          <span *ngIf="!isButtonLoading">Delete</span>
+          <span *ngIf="isButtonLoading" class="button-loader">
+            <span class="spinner"></span>
+            Deleting...
+          </span>
         </button>
       </div>
     </div>
 
-    <div *ngIf="isSuccessModal" class="warning-modal">
+    <div
+      *ngIf="isSuccessModal"
+      class="warning-modal"
+      (click)="$event.stopPropagation()"
+    >
       <div class="top">
         <div class="images" style="background-color: #e3fce4">
           <img src="/images/tick-circle-green.png" alt="" />

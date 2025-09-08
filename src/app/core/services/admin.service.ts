@@ -1,6 +1,3 @@
-// ==========================================
-// 8. ADMIN SERVICE FOR INCOMPLETE REGISTRATIONS
-// ==========================================
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -38,9 +35,6 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  // ==========================================
-  // INCOMPLETE REGISTRATION MANAGEMENT
-  // ==========================================
   getIncompleteRegistrations(): Observable<IncompleteRegistration[]> {
     return this.http.get<IncompleteRegistration[]>(
       `${this.apiUrl}/api/Admin/incomplete-registrations`
@@ -102,9 +96,6 @@ export class AdminService {
     );
   }
 
-  // ==========================================
-  // AUTOMATED CLEANUP SCHEDULING
-  // ==========================================
   scheduleAutomaticCleanup(config: {
     enabled: boolean;
     daysBeforeCleanup: number;
@@ -118,7 +109,3 @@ export class AdminService {
     return this.http.get(`${this.apiUrl}/api/Admin/cleanup-schedule`);
   }
 }
-
-// ==========================================
-// ADMIN COMPONENT EXAMPLE
-// ==========================================

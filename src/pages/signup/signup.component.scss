@@ -41,6 +41,35 @@
   gap: 2px;
   width: 100%;
   flex-direction: column;
+
+  &.password-field {
+    position: relative; // Only add this to the password form-details
+  }
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: calc(50% + 10px);
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: #333;
+  }
+
+  i {
+    font-size: 16px;
+  }
+}
+
+input {
+  padding-right: 40px;
 }
 
 .option-divider-grid {
@@ -61,11 +90,6 @@
   white-space: nowrap;
   padding: 0 0.5em;
   text-align: center;
-}
-
-.logo-pic {
-  position: relative;
-  top: 40px;
 }
 
 .logo-box {
@@ -110,21 +134,21 @@
   .display {
     width: 450px;
     height: auto;
-    top: 80px;
+    // top: 80px;
   }
 
   .display h3 {
     font-size: 18px;
-    top: 20px;
+    // top: 20px;
   }
 
   .display h1 {
     font-size: 25px;
-    top: 10px;
+    // top: 10px;
   }
 
   .form {
-    top: 50px;
+    // top: 50px;
     gap: 12px;
     a {
       font-size: 12px;
@@ -142,31 +166,10 @@
     font-weight: 600;
   }
 
-  .eye-icon {
-    position: absolute;
-    right: 10px;
-    top: 74.5%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 16px;
-    }
-  }
-
   .bottom-display {
-    width: 450px;
+    width: 100%;
     height: fit-content;
-    top: 10px;
+    // top: 10px;
     gap: 8px;
   }
 
@@ -192,29 +195,21 @@
   .display {
     width: 420px;
     height: auto;
-    top: 70px;
-  }
-
-  .logo-pic {
-    top: 35px;
-
-    img {
-      height: 25px;
-    }
+    // top: 70px;
   }
 
   .display h3 {
     font-size: 16px;
-    top: 20px;
+    // top: 20px;
   }
 
   .display h1 {
     font-size: 20px;
-    top: 10px;
+    // top: 10px;
   }
 
   .form {
-    top: 40px;
+    // top: 40px;
     gap: 12px;
   }
 
@@ -233,31 +228,10 @@
     font-size: 12px;
   }
 
-  .eye-icon {
-    position: absolute;
-    right: 10px;
-    top: 75%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 16px;
-    }
-  }
-
   .bottom-display {
-    width: 420px;
+    width: 100%;
     height: fit-content;
-    top: 20px;
+    // top: 20px;
     gap: 8px;
   }
 
@@ -287,31 +261,23 @@
 
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
   .display {
-    width: 400px;
+    width: 350px;
     height: auto;
-    top: 70px;
+    // top: 70px;
   }
 
   .display h3 {
     font-size: 12px;
-    top: 20px;
-  }
-
-  .logo-pic {
-    top: 40px;
-
-    img {
-      height: 20px;
-    }
+    // top: 20px;
   }
 
   .display h1 {
     font-size: 20px;
-    top: 10px;
+    // top: 10px;
   }
 
   .form {
-    top: 30px;
+    // top: 30px;
     gap: 12px;
   }
 
@@ -326,27 +292,6 @@
     font-weight: 600;
   }
 
-  .eye-icon {
-    position: absolute;
-    right: 10px;
-    top: 75%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 12px;
-    }
-  }
-
   .form a {
     font-size: 10px;
   }
@@ -357,9 +302,9 @@
   }
 
   .bottom-display {
-    width: 400px;
+    width: 100%;
     height: fit-content;
-    top: 15px;
+    // top: 15px;
     gap: 8px;
   }
   .or-text {
@@ -382,11 +327,11 @@
 }
 
 @media screen and (min-width: 1915px) {
-  .logo-pic {
-    top: 80px;
-  }
+  // .logo-pic {
+  //   top: 80px;
+  // }
 
-  .display {
-    top: 140px;
-  }
+  // .display {
+  //   top: 140px;
+  // }
 }

@@ -71,8 +71,8 @@
         <label for="">Department</label>
         <select [(ngModel)]="editUserForm.department" [disabled]="!isEditMode">
           <option value="">Select Department</option>
-          <option *ngFor="let dept of departments" [value]="dept">
-            {{ dept }}
+          <option *ngFor="let dept of department">
+            {{ dept.departmentName }}
           </option>
         </select>
       </div>
@@ -80,7 +80,7 @@
         <label for="">Role</label>
         <select [(ngModel)]="editUserForm.role" [disabled]="!isEditMode">
           <option value="">Select Role</option>
-          <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+          <option *ngFor="let roles of role">{{ roles.roleName }}</option>
         </select>
       </div>
     </div>
@@ -208,8 +208,8 @@
             <label for="">Department</label>
             <select [(ngModel)]="addUserForm.department">
               <option value="">Select Department</option>
-              <option *ngFor="let dept of departments" [value]="dept">
-                {{ dept }}
+              <option *ngFor="let dept of department">
+                {{ dept.departmentName }}
               </option>
             </select>
           </div>
@@ -217,8 +217,8 @@
             <label for="">Role</label>
             <select [(ngModel)]="addUserForm.role">
               <option value="">Select Role</option>
-              <option *ngFor="let role of roles" [value]="role">
-                {{ role }}
+              <option *ngFor="let roles of role">
+                {{ roles.roleName }}
               </option>
             </select>
           </div>

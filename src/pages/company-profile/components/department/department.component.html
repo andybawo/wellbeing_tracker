@@ -17,7 +17,7 @@
     <tbody>
       <tr *ngFor="let dept of department">
         <td class="department-column">{{ dept.departmentName }}</td>
-        <td class="hod-column">{{ dept.hodName }}</td>
+        <td class="hod-column">{{ getHodDisplayName(dept.hodName) }}</td>
         <td class="email-column">{{ getHodEmail(dept.hodName) }}</td>
         <td class="actions-column">
           <div class="status-content">
@@ -74,8 +74,8 @@
           <label for="hodName">Head of Department</label>
           <input
             type="text"
-            id="hodName"
-            formControlName="hodName"
+            id="hodDisplayName"
+            formControlName="hodDisplayName"
             (focus)="onHodInputFocus()"
             (blur)="onHodInputBlur()"
             placeholder="Enter HOD name"
@@ -87,7 +87,7 @@
           >
             <li
               *ngFor="let user of companyUsers"
-              (mousedown)="selectHod(user.fullName, 'add')"
+              (mousedown)="selectHod(user, 'add')"
             >
               {{ user.fullName }}
             </li>
@@ -152,8 +152,8 @@
           <label for="editHodName">Head of Department</label>
           <input
             type="text"
-            id="editHodName"
-            formControlName="headOfDepartmentName"
+            id="editHodDisplayName"
+            formControlName="hodDisplayName"
             (focus)="onHodInputFocus()"
             (blur)="onHodInputBlur()"
             placeholder="Enter HOD name"
@@ -201,7 +201,6 @@
       </form>
     </div>
 
-  
     <!-- Delete Confirmation Modal -->
     <div
       *ngIf="isDeleteModal"
@@ -218,7 +217,6 @@
             selectedDepartmentForDelete?.departmentName
           }}" department from the system?
         </h4>
-        
       </div>
       <div class="bottom-modal">
         <button (click)="closeModal()" class="primary-btn">Cancel</button>

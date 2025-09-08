@@ -63,6 +63,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
     this.departmentForm = this.fb.group({
       departmentName: ['', [Validators.required, Validators.minLength(2)]],
       hodName: [''],
+      hodDisplayName: [''],
       // emailHod: ['', [Validators.required, Validators.email]],
     });
     this.departmentFormUpdate = this.fb.group({
@@ -71,6 +72,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
         '',
         [Validators.required, Validators.minLength(2)],
       ],
+      hodDisplayName: [''],
       // emailHod: ['', [Validators.required, Validators.email]],
     });
   }
@@ -93,9 +95,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
         next: (res: DepartmentApiResponse) => {
           this.department = res.data || [];
         },
-        error: (err) => {
-          // handle error
-        },
+        error: (err) => {},
       });
   }
 
@@ -106,32 +106,57 @@ export class DepartmentComponent implements OnInit, OnDestroy {
         next: (res: CompanyUsersApiResponse) => {
           this.companyUsers = res.data || [];
         },
-        error: (err) => {
-          // handle error
-        },
+        error: (err) => {},
       });
   }
 
   getHodEmail(hodName: string): string | undefined {
-    const user = this.companyUsers.find((u) => u.fullName === hodName);
-    return user ? user.emailAddress : '';
+    const userByUsername = this.companyUsers.find(
+      (u) => u.username === hodName
+    );
+    if (userByUsername) {
+      return userByUsername.emailAddress;
+    }
+
+    const userByFullName = this.companyUsers.find(
+      (u) => u.fullName === hodName
+    );
+    return userByFullName ? userByFullName.emailAddress : '';
+  }
+
+  getHodDisplayName(hodIdentifier: string): string {
+    const userByUsername = this.companyUsers.find(
+      (u) => u.username === hodIdentifier
+    );
+    if (userByUsername) {
+      return userByUsername.fullName;
+    }
+
+    const userByFullName = this.companyUsers.find(
+      (u) => u.fullName === hodIdentifier
+    );
+    return userByFullName ? userByFullName.fullName : hodIdentifier;
   }
 
   onHodInputFocus() {
     this.showHodDropdown = true;
   }
 
-  selectHod(name: string, mode: 'add' | 'edit' = 'add') {
+  selectHod(user: any, mode: 'add' | 'edit' = 'add') {
     if (mode === 'add') {
-      this.departmentForm.get('hodName')?.setValue(name);
+      this.departmentForm.get('hodName')?.setValue(user.username);
+      this.departmentForm.get('hodDisplayName')?.setValue(user.fullName);
     } else {
-      this.departmentFormUpdate.get('headOfDepartmentName')?.setValue(name);
+      this.departmentFormUpdate
+        .get('headOfDepartmentName')
+        ?.setValue(user.username);
+      this.departmentFormUpdate.get('hodDisplayName')?.setValue(user.fullName);
     }
     this.showHodDropdown = false;
   }
 
   onHodInputBlur() {
-    setTimeout(() => (this.showHodDropdown = false), 200); // Delay to allow click
+    setTimeout(() => (this.showHodDropdown = false), 200);
   }
 
   openAddModal() {
@@ -141,9 +166,15 @@ export class DepartmentComponent implements OnInit, OnDestroy {
   openEditModal(dept: companyDepartment) {
     this.currentDepartment = dept;
     this.isEditModal = true;
+
+    const user = this.companyUsers.find(
+      (u) => u.username === dept.hodName || u.fullName === dept.hodName
+    );
+
     this.departmentFormUpdate.patchValue({
       departmentName: dept.departmentName,
-      headOfDepartmentName: dept.hodName,
+      headOfDepartmentName: user ? user.username : dept.hodName,
+      hodDisplayName: user ? user.fullName : dept.hodName,
     });
   }
 
@@ -162,6 +193,10 @@ export class DepartmentComponent implements OnInit, OnDestroy {
   addDepartment() {
     if (this.departmentForm.valid) {
       this.isButtonLoading = true;
+      const payload = {
+        departmentName: this.departmentForm.value.departmentName,
+        hodName: this.departmentForm.value.hodName,
+      };
       this.departmentService
         .addDepartment(this.departmentForm.value)
         .subscribe({

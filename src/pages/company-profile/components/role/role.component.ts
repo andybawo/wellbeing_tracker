@@ -217,7 +217,15 @@ export class RoleComponent implements OnInit, OnDestroy {
           this.fetchRoles();
           this.roleUpdated.emit(res);
         },
+        error: (err) => {
+          console.error('Update role error:', err);
+          this.isButtonLoading = false;
+
+          alert(err?.error?.message || 'Failed to update role.');
+        },
       });
+    } else {
+      console.error('No valid role selected for update');
     }
   }
 

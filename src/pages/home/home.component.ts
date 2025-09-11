@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../app/shared/shared.module';
 
 @Component({
   selector: 'app-home',
-  imports: [SharedModule],
+  imports: [SharedModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

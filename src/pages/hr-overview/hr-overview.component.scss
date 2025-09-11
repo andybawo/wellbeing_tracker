@@ -53,6 +53,8 @@ $success: #6e9f06;
     height: flex 1;
     width: 100%;
     background-color: white;
+    border-radius: 8px;
+    padding-top: 16px;
   }
 
   .attendance-dets {
@@ -185,7 +187,6 @@ $success: #6e9f06;
   display: inline-block;
 }
 
-/* Chart 1: 120x120 */
 .chart-1 {
   position: relative;
   top: 10px;
@@ -194,21 +195,18 @@ $success: #6e9f06;
   background: conic-gradient(#e00f0f 0% 20%, #8fc715 20% 100%);
 }
 
-/* Chart 2: 200x200 */
 .chart-2 {
   width: 170px;
   height: 170px;
   background: conic-gradient(#e00f0f 0% 10%, #f9b51e 10% 30%, #8fc715 30% 100%);
 }
 
-/* Labels shared */
 .label {
   position: absolute;
   font-weight: bold;
   color: black;
 }
 
-/* Chart 1 Labels */
 .chart-1 .label-20 {
   top: 20%;
   right: 15%;
@@ -221,7 +219,6 @@ $success: #6e9f06;
   font-size: 12px;
 }
 
-/* Chart 2 Labels */
 .chart-2 .label-10 {
   top: 35%;
   right: 10%;
@@ -242,7 +239,7 @@ $success: #6e9f06;
 
 .performance {
   background-color: white;
-  padding: 10px 20px 10px 20px;
+  padding: 16px 20px 10px 20px;
   border-radius: 5px;
   .values {
     margin-top: 10px;
@@ -296,6 +293,7 @@ $success: #6e9f06;
   align-items: center;
   background-color: white;
   height: fit-content;
+  border-radius: 8px;
 
   .heading {
     display: flex;

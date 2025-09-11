@@ -133,12 +133,10 @@ export class ResetpasswordComponent implements OnInit {
     });
   }
 
-  // Getter for easy access to form controls in template
   get newPassword() {
     return this.resetForm.get('newPassword');
   }
 
-  // Method to get password validation errors for display
   getPasswordErrors(): string[] {
     const errors: string[] = [];
     const passwordControl = this.newPassword;

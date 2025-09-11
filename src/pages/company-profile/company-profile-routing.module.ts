@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileLayoutComponent } from './components/profile-layout/profile-layout.component';
 import { DepartmentComponent } from './components/department/department.component';
+import { RoleComponent } from './components/role/role.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'department',
     component: DepartmentComponent,
+  },
+  {
+    path: 'role',
+    component: RoleComponent,
   },
 ];
 

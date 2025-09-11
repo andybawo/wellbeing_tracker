@@ -7,8 +7,7 @@
 }
 
 .registration-content {
-  width: fit-content;
-  min-width: 890px;
+  width: 100%;
   height: fit-content;
   min-height: 100vh;
   align-items: center;
@@ -19,12 +18,12 @@
   border-radius: 5px;
 }
 
-@media screen and (min-width: 1549px) {
-  .registration-content {
-    width: fit-content;
-    padding: 20px;
-  }
-}
+// @media screen and (min-width: 1549px) {
+//   .registration-content {
+//     width: fit-content;
+//     padding: 20px;
+//   }
+// }
 
 @media screen and (max-width: 1199px) {
   .registration-content {

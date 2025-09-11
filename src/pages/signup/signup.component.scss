@@ -107,7 +107,6 @@
 }
 
 @media screen and (min-width: 1440px) {
-  /* Signup Form Styles */
   .display {
     width: 450px;
     height: auto;
@@ -140,7 +139,7 @@
 
   .form label {
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 600;
   }
 
   .eye-icon {
@@ -190,7 +189,6 @@
 }
 
 @media screen and (max-width: 1439px) and (min-width: 1328px) {
-  /* Signup Form Styles */
   .display {
     width: 420px;
     height: auto;
@@ -228,7 +226,7 @@
 
   .form label {
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 600;
   }
 
   .form a {
@@ -325,7 +323,7 @@
 
   .form label {
     font-size: 10px;
-    font-weight: 300;
+    font-weight: 600;
   }
 
   .eye-icon {
@@ -380,5 +378,15 @@
       top: 10px;
       font-size: 20px;
     }
+  }
+}
+
+@media screen and (min-width: 1915px) {
+  .logo-pic {
+    top: 80px;
+  }
+
+  .display {
+    top: 140px;
   }
 }

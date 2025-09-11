@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { LocationService } from '../../../../app/core/services/location.service';
+import { DataService } from '../../../../app/core/services/data.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,28 +15,61 @@ export class ProfileComponent implements OnInit {
   @Output() profileEdited = new EventEmitter<any>();
 
   companyData = {
-    name: 'Quocreo Technology Limited',
-    type: 'Technology',
-    email: 'Quocreo.ng@outlook.com',
-    address: 'Nusaiba Towers, Ahmadu Bello Way',
-    country: 'Nigeria',
-    state: 'Abuja',
+    companyName: '',
+    companyType: '',
+    companyAddress: '',
+    country: '',
+    state: '',
   };
+
+  companyEmail: string = 'Loading...';
 
   countries: string[] = [];
   states: string[] = [];
   loadingCountries = false;
   loadingStates = false;
+  loadingCompanyData = false;
 
   private originalData = { ...this.companyData };
 
-  constructor(private locationService: LocationService) {}
+  constructor(
+    private locationService: LocationService,
+    private dataService: DataService
+  ) {}
 
   ngOnInit() {
+    this.loadCompanyData();
     this.loadCountries();
-    if (this.companyData.country) {
-      this.loadStates(this.companyData.country);
+
+    const userData = this.dataService.getUserData();
+    this.companyEmail = userData?.email || 'Unknown User';
+  }
+
+  loadCompanyData() {
+    this.loadingCompanyData = true;
+    const companyData = this.dataService.getCompanyData();
+
+    if (companyData) {
+      this.companyData = {
+        companyName: companyData.companyName || '',
+        companyType: companyData.companyType || '',
+        // email: companyData.email || '',
+        companyAddress: companyData.companyAddress || '',
+        country: companyData.country || '',
+        state: companyData.state || '',
+      };
+      this.originalData = { ...this.companyData };
+
+      if (this.companyData.country) {
+        this.loadStates(this.companyData.country);
+      }
+
+      // console.log('Company data loaded:', this.companyData);
+    } else {
+      // console.log('No company data found in localStorage');
     }
+
+    this.loadingCompanyData = false;
   }
 
   loadCountries() {
@@ -46,7 +80,7 @@ export class ProfileComponent implements OnInit {
         this.loadingCountries = false;
       },
       error: (error) => {
-        console.error('Error loading countries:', error);
+        // console.error('Error loading countries:', error);
         this.loadingCountries = false;
         this.countries = ['Nigeria', 'Ghana', 'Kenya', 'South Africa'];
       },
@@ -64,13 +98,12 @@ export class ProfileComponent implements OnInit {
       next: (states) => {
         this.states = states;
         this.loadingStates = false;
-
         if (states.length > 0 && !states.includes(this.companyData.state)) {
           this.companyData.state = '';
         }
       },
       error: (error) => {
-        console.error('Error loading states:', error);
+        // console.error('Error loading states:', error);
         this.loadingStates = false;
         this.states = [];
       },
@@ -83,14 +116,14 @@ export class ProfileComponent implements OnInit {
   }
 
   saveChanges() {
-    this.originalData = { ...this.companyData };
-    console.log('Profile updated:', this.companyData);
+    // TODO: Implement when API endpoint is available
+    // console.log('Update functionality not yet implemented');
     this.profileEdited.emit();
   }
 
   cancelEdit() {
     this.companyData = { ...this.originalData };
-    console.log('Edit cancelled, data restored');
+    // console.log('Edit cancelled, data restored');
     this.profileEdited.emit();
   }
 }

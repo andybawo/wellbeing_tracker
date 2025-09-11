@@ -25,9 +25,15 @@ export class DataService {
 
   setCompanyData(data: any) {
     this.companyData = data;
+
+    localStorage.setItem('companyData', JSON.stringify(data));
   }
 
   getCompanyData(): any {
+    if (!this.companyData) {
+      const storedCompany = localStorage.getItem('companyData');
+      this.companyData = storedCompany ? JSON.parse(storedCompany) : null;
+    }
     return this.companyData;
   }
 
@@ -50,6 +56,7 @@ export class DataService {
     localStorage.removeItem('hasRegisteredUser');
     this.authToken = null;
     localStorage.removeItem('userData');
+    localStorage.removeItem('companyData');
     localStorage.removeItem('userInfo');
     localStorage.removeItem('fullName');
     localStorage.removeItem('hasRegisteredUser');

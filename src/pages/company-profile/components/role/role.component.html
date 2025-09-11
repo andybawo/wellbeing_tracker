@@ -12,7 +12,9 @@
       <tr *ngFor="let rol of role">
         <td class="role-column">{{ rol.roleName }}</td>
         <td class="description-column">{{ rol.description }}</td>
-        <td class="permission-column">{{ rol.permissions }}</td>
+        <td class="permission-column">
+          {{ formatPermissionsForDisplay(rol.permissions) }}
+        </td>
         <td class="actions-column">
           <div class="status-content">
             <div class="icons">
@@ -67,13 +69,48 @@
         </div>
 
         <div class="form-details">
-          <label for="permissions">Permission</label>
-          <input
-            type="text"
-            id="permissions"
-            formControlName="permissions"
-            placeholder="Enter Permissions"
-          />
+          <label for="permissions">Permissions</label>
+          <div class="permission-dropdown-container">
+            <div class="permission-display" (click)="$event.stopPropagation()">
+              {{ getSelectedPermissionsDisplay() }}
+            </div>
+
+            <div class="permission-categories">
+              <div
+                *ngFor="let category of permissionCategories; let i = index"
+                class="permission-category"
+              >
+                <div
+                  class="category-header"
+                  (click)="toggleDropdown(i, $event)"
+                >
+                  <img
+                    src="/images/arrow-down.png"
+                    alt="dropdown arrow"
+                    class="dropdown-icon"
+                    [class.rotated]="category.isOpen"
+                  />
+                  <span>{{ category.name }}</span>
+                </div>
+
+                <div *ngIf="category.isOpen" class="category-options">
+                  <div
+                    *ngFor="let option of category.options; let j = index"
+                    class="permission-option"
+                    (click)="onPermissionChange(i, j)"
+                  >
+                    <input
+                      type="checkbox"
+                      [checked]="option.selected"
+                      (click)="$event.stopPropagation()"
+                      (change)="onPermissionChange(i, j)"
+                    />
+                    <label>{{ option.label }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="form-actions">
@@ -123,13 +160,48 @@
         </div>
 
         <div class="form-details">
-          <label for="editPermissions">Permission</label>
-          <input
-            type="email"
-            id="editPermissions"
-            formControlName="permissions"
-            placeholder=""
-          />
+          <label for="editPermissions">Permissions</label>
+          <div class="permission-dropdown-container">
+            <div class="permission-display" (click)="$event.stopPropagation()">
+              {{ getSelectedPermissionsDisplay() }}
+            </div>
+
+            <div class="permission-categories">
+              <div
+                *ngFor="let category of permissionCategories; let i = index"
+                class="permission-category"
+              >
+                <div
+                  class="category-header"
+                  (click)="toggleDropdown(i, $event)"
+                >
+                  <img
+                    src="/images/arrow-down.png"
+                    alt="dropdown arrow"
+                    class="dropdown-icon"
+                    [class.rotated]="category.isOpen"
+                  />
+                  <span>{{ category.name }}</span>
+                </div>
+
+                <div *ngIf="category.isOpen" class="category-options">
+                  <div
+                    *ngFor="let option of category.options; let j = index"
+                    class="permission-option"
+                    (click)="onPermissionChange(i, j)"
+                  >
+                    <input
+                      type="checkbox"
+                      [checked]="option.selected"
+                      (click)="$event.stopPropagation()"
+                      (change)="onPermissionChange(i, j)"
+                    />
+                    <label>{{ option.label }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="form-actions">

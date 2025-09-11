@@ -1,0 +1,60 @@
+.top-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 7%;
+  align-items: center;
+  padding: 0 20px 10px 20px;
+  position: relative;
+  bottom: 5px;
+  border-bottom: 2px solid white;
+  // position: sticky;
+  // z-index: 1000;
+  // top: 0;
+
+  .left-end h3 {
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #3e1f69;
+    font-size: 15px;
+  }
+
+  .right-end select {
+    border: none;
+    background-color: #f0eeee;
+  }
+
+  .right-end {
+    display: flex;
+    gap: 16px;
+  }
+}
+.secondary-btn {
+  background-color: #3f1d75;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #5a28a5;
+  }
+}
+
+
+
+
+
+
+
+
+
+

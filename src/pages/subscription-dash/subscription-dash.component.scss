@@ -95,29 +95,28 @@
   flex-direction: column;
   padding: 20px;
   cursor: pointer;
-  &:nth-child(3) {
-    // background-color: #3e1f69;
-    padding-bottom: 40px;
-    h1,
-    ul {
-      color: black;
-    }
-    h4 {
-      color: #6e9f06;
-    }
-    height: 420px;
-    span {
-      background-color: #3e1f69;
-      border: 1px solid white;
-      color: white;
-    }
-  }
+  // &:nth-child(3) {
+  //   // background-color: #3e1f69;
+  //   padding-bottom: 40px;
+  //   h1,
+  //   ul {
+  //     color: black;
+  //   }
+  //   h4 {
+  //     color: #6e9f06;
+  //   }
+  //   height: 420px;
+  //   span {
+  //     background-color: #dcdcdc;
+  //     color: black;
+  //   }
+  // }
 
   span {
     width: fit-content;
     min-width: 100px;
     height: 50px;
-    background-color: #f0eeee;
+    background-color: #dcdcdc;
     border-radius: 25px;
     display: flex;
     align-items: center;

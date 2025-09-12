@@ -21,7 +21,7 @@
         [class.selected]="selectedPackage === pkg.name?.toLowerCase()"
         (click)="selectPackageDiv(pkg.name?.toLowerCase())"
       >
-        <span>{{ pkg.displayName || pkg.name }}</span>
+        <span class="package-name">{{ pkg.displayName || pkg.name }}</span>
         <div class="package-details">
           <h1>
             {{

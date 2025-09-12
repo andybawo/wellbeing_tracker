@@ -59,7 +59,6 @@ export class SubscriptionDashComponent implements OnInit {
   loadPackages(): void {
     this.packagesService.getPackages().subscribe({
       next: (response) => {
-        console.log('Packages response:', response);
         this.isLoading = false;
         this.packages = response.data;
         this.filterPackages();

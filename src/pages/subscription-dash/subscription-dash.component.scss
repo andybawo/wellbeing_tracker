@@ -1039,7 +1039,6 @@ li {
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   max-width: 350px;
   margin: auto;
   text-align: center;
@@ -1125,4 +1124,42 @@ li {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.2;
+}
+
+.packages-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  position: relative;
+  align-items: center;
+}
+
+.package-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 350px;
+  width: 25%;
+  text-align: center;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  order: 0;
+}
+
+.packages {
+  display: flex;
+  width: 25%;
+  height: 400px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  flex-direction: column;
+  padding: 20px;
+  cursor: pointer;
+  order: 1;
+}
+
+.package-footer {
+  margin-top: auto;
 }

@@ -19,6 +19,7 @@ import {
 
 import { registerLocaleData } from '@angular/common';
 import localeNg from '@angular/common/locales/en-NG';
+import { Observable, EMPTY, map } from 'rxjs';
 registerLocaleData(localeNg, 'ng');
 
 @Component({
@@ -35,7 +36,10 @@ export class SubscriptionDashComponent implements OnInit {
   isLoadingpayment: boolean = false;
   isLoadingFreeTrial: boolean = false;
 
+
+
   packages: any[] = [];
+  userPackage: { packageName: string; daysUsed: number; expirationDate: string } | null = null;
   monthlyPackages: any[] = [];
   yearlyPackages: any[] = [];
 
@@ -61,6 +65,7 @@ export class SubscriptionDashComponent implements OnInit {
       next: (response) => {
         this.isLoading = false;
         this.packages = response.data;
+        this.loadUserDetails()
         this.filterPackages();
       },
       error: (error) => {
@@ -69,19 +74,76 @@ export class SubscriptionDashComponent implements OnInit {
     });
   }
 
-  filterPackages(): void {
-    this.monthlyPackages = this.packages.filter(
-      (pkg) =>
-        pkg.durationInDays === 30 && !pkg.name.toLowerCase().includes('yearly')
-    );
+  loadUserDetails(): Observable<any> {
+    const token = this.dataService.getAuthToken();
+    if (!token) {
+      this.isLoading = false;
+      alert('You are not authenticated. Please complete registration process.');
+      this.router.navigate(['/start/signup']);
+      return EMPTY;
+    }
 
-    this.yearlyPackages = this.packages.filter(
-      (pkg) =>
-        pkg.durationInDays === 365 ||
-        pkg.name.toLowerCase().includes('yearly') ||
-        pkg.name.toLowerCase() === 'free trial'
+    return this.paymentService.getUserDetails(token).pipe(
+      map(response => response.data)
     );
   }
+
+
+
+  filterPackages(): void {
+    this.loadUserDetails().subscribe(userDetails => {
+      this.userPackage = userDetails.subscriptionDetails;
+      this.monthlyPackages = this.packages.filter(
+        (pkg) =>
+          pkg.durationInDays === 30 &&
+          !pkg.name.toLowerCase().includes('yearly')
+      );
+
+      this.yearlyPackages = this.packages.filter(
+        (pkg) =>
+          pkg.durationInDays === 365 ||
+          pkg.name.toLowerCase().includes('yearly') ||
+          pkg.name.toLowerCase() === 'free trial' &&
+          pkg.name !== userDetails.subscriptionDetails.packageName
+      );
+    });
+  }
+  filterTransformedPackages(pkg:any){
+    return pkg.filter(
+      (element:any) =>
+        element.name !== this.userPackage?.packageName
+    )
+  }
+
+  getBillingCycle(date: string, daysUsed: number): string {
+    const expirationDate = new Date(date)
+    const today = new Date();
+    const daysRemaining = Math.max(
+      0,
+      Math.round((expirationDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+    );
+    const totalDays = daysUsed + daysRemaining;
+    if (totalDays >= 360 && totalDays <= 370) {
+      return "Yearly";
+    }
+    return "Monthly";
+  }
+  getTotalDays(date:string,daysUsed:number):number{
+    const expirationDate = new Date(date)
+    const today = new Date();
+    const daysRemaining = Math.max(
+      0,
+      Math.round((expirationDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+    );
+    const totalDays = daysUsed + daysRemaining;
+    return totalDays;
+  }
+  calculateBillingPercentage(date:string,daysUsed:number){
+    const totalDays = this.getTotalDays(date,daysUsed);
+    const percentage = (daysUsed/totalDays) * 100;
+    return percentage;
+  }
+
 
   openYear(): void {
     this.isYearClicked = true;
@@ -94,6 +156,8 @@ export class SubscriptionDashComponent implements OnInit {
   selectPackageDiv(packageName: string): void {
     this.selectedPackage = packageName;
   }
+
+
 
   selectPlan(packageName: string): void {
     this.selectedPackage = packageName;
@@ -110,7 +174,8 @@ export class SubscriptionDashComponent implements OnInit {
       } else {
         this.openModal();
       }
-    } else {
+    }
+     else {
       alert('Error: Could not find package information.');
     }
   }

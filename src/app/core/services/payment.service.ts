@@ -59,6 +59,24 @@ export class PaymentService {
       })
     );
   }
+    // Get user details
+  getUserDetails(token:string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.get(`${this.apiUrl}/api/Admin/get-user-details`,{ headers }).pipe(
+      catchError((error:any)=>{
+        return of({
+          status:false,
+          success: false,
+          message:`Failed to fetch user details : ${error.message}`,
+          data: null,
+          errors: [error.message || 'Unknown error'],
+        })
+      })
+    );
+  }
 
   verifyPayment(
     transactionRef: string,

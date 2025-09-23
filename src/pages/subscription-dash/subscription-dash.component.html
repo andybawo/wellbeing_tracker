@@ -16,13 +16,54 @@
   </div>
 
   <ng-container *ngIf="!isYearClicked">
+
+
     <div class="packages-container">
+      <div *ngIf="userPackage as pkg" class="package-card">
+        <h2 class="title">Current Plan</h2>
+        <div class="package-details">
+          <div class="package-header">
+            <h1 class="package-name">{{ pkg.packageName }}</h1>
+            <span class="status active">Active</span>
+          </div>
+
+          <p class="renew-text">Renews {{ pkg.expirationDate | date: 'MMMM d, y' }}</p>
+          <p class="usage-text">{{ pkg.daysUsed }} / {{getTotalDays(userPackage.expirationDate,userPackage.daysUsed)}} days used</p>
+
+        <div class="progress-container">
+          <div
+            class="radial-progress"
+            [style.--value]="calculateBillingPercentage(userPackage.expirationDate,userPackage.daysUsed) + '%'"
+            [attr.aria-valuenow]="calculateBillingPercentage(userPackage.expirationDate,userPackage.daysUsed)"
+            role="progressbar"
+            [attr.aria-valuemin]="0"
+            [attr.aria-valuemax]="100">
+            {{calculateBillingPercentage(userPackage.expirationDate,userPackage.daysUsed)}}%
+          </div>
+          <div class="progress-text">
+            Billed<br>{{getBillingCycle(userPackage.expirationDate,userPackage.daysUsed)}}
+          </div>
+        </div>
+        </div>
+
+        <div class="package-footer">
+          <button
+            [class]="'btn'"
+            [class.active]="selectedPackage === pkg.packageName.toLowerCase()"
+            (click)="selectPlan(pkg.packageName.toLowerCase())"
+          >
+            Renew
+          </button>
+        </div>
+      </div>
+
       <div
         class="packages"
-        *ngFor="let pkg of transformedMonthlyPackages; let i = index"
+        *ngFor="let pkg of filterTransformedPackages(transformedMonthlyPackages); let i = index"
         [class.selected]="selectedPackage === pkg.name?.toLowerCase()"
         (click)="selectPackageDiv(pkg.name?.toLowerCase())"
       >
+
         <span class="package-name">{{ pkg.displayName || pkg.name }}</span>
         <div class="package-details">
           <h1>
@@ -124,9 +165,48 @@
 
   <ng-container *ngIf="isYearClicked">
     <div class="packages-container">
+      <div *ngIf="userPackage as pkg" class="package-card">
+        <h2 class="title">Current Plan</h2>
+        <div class="package-details">
+          <div class="package-header">
+            <h1 class="package-name">{{ pkg.packageName }}</h1>
+            <span class="status active">Active</span>
+          </div>
+
+          <p class="renew-text">Renews {{ pkg.expirationDate | date: 'MMMM d, y' }}</p>
+          <p class="usage-text">{{ pkg.daysUsed }} / {{getTotalDays(userPackage.expirationDate,userPackage.daysUsed)}}  days used</p>
+
+
+        <div class="progress-container">
+          <div
+            class="radial-progress"
+            [style.--value]="calculateBillingPercentage(userPackage.expirationDate,userPackage.daysUsed) + '%'"
+            [attr.aria-valuenow]="calculateBillingPercentage(userPackage.expirationDate,userPackage.daysUsed)"
+            role="progressbar"
+            [attr.aria-valuemin]="0"
+            [attr.aria-valuemax]="100">
+            {{calculateBillingPercentage(userPackage.expirationDate,userPackage.daysUsed)}}%
+          </div>
+          <div class="progress-text">
+            Billed<br>{{getBillingCycle(userPackage.expirationDate,userPackage.daysUsed)}}
+          </div>
+        </div>
+        </div>
+
+        <div class="package-footer">
+          <button
+            [class]="'btn'"
+            [class.active]="selectedPackage === pkg.packageName.toLowerCase()"
+            (click)="selectPlan(pkg.packageName.toLowerCase())"
+          >
+            Renew
+          </button>
+        </div>
+      </div>
+
       <div
         class="packages"
-        *ngFor="let pkg of transformedYearlyPackages; let i = index"
+        *ngFor="let pkg of filterTransformedPackages(transformedYearlyPackages); let i = index"
         [class.selected]="selectedPackage === pkg.name?.toLowerCase()"
         (click)="selectPackageDiv(pkg.name?.toLowerCase())"
       >
@@ -162,6 +242,5 @@
     </div>
   </ng-container>
 </div>
-
 </div>
 

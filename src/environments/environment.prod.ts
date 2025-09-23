@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://cultural-health.azurewebsites.net',
+  apiUrl: 'https://insytha.azurewebsites.net',
 };

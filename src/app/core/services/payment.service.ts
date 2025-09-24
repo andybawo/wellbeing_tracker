@@ -110,19 +110,9 @@ export class PaymentService {
       'Content-Type': 'application/json',
     });
 
-    // Add extensive debugging
-    console.log('=== NEW SUBSCRIPTION DEBUG ===');
-    console.log('PackageId:', packageId, 'Type:', typeof packageId);
-    console.log('Token:', token ? 'Present' : 'Missing');
-    console.log('URL:', subscriptionUrl);
-    console.log('Headers:', headers);
-    console.log('Request Body:', packageId);
-    console.log('==============================');
-
     return this.http
       .post<PaymentResponse>(subscriptionUrl, packageId, {
         headers,
-        // Add observe: 'response' to see full HTTP response
         observe: 'response',
       })
       .pipe(

@@ -1,12 +1,15 @@
-<!-- EDIT USER FIELD UPDATE -->
-
+<!-- EDIT USER MODAL -->
 <app-alert
   [message]="alertMessage"
   [type]="alertType"
   [visible]="showAlert"
 ></app-alert>
 
-<div *ngIf="isEditUSerOpen" class="edit-container">
+<div
+  *ngIf="isEditUSerOpen"
+  class="edit-container"
+  (click)="$event.stopPropagation()"
+>
   <div class="backdrop"></div>
   <div class="user-header">
     <div class="profile-pic">
@@ -15,107 +18,124 @@
     <div class="profile-details">
       <div class="name">
         <h1>{{ currentUser ? getUserFullName(currentUser) : "User Name" }}</h1>
-        <h4>{{ currentUser?.email || "email@example.com" }}</h4>
+        <h4>{{ currentUser?.emailAddress || "email@example.com" }}</h4>
       </div>
       <div class="edit-tools">
-        <span (click)="toggleEditMode()"
-          ><img src="/images/user-edit.png" alt="" />{{
-            isEditMode ? "Cancel Edit" : "Edit User"
-          }}</span
-        >
-        <span (click)="openWarning(currentUser)"
-          ><img src="/images/trash.png" alt="" />Delete User</span
-        >
+        <span (click)="toggleEditMode()">
+          <img src="/images/user-edit.png" alt="" />
+          {{ isEditMode ? "Cancel Edit" : "Edit User" }}
+        </span>
+        <span (click)="openWarning(currentUser)">
+          <img src="/images/trash.png" alt="" />Delete User
+        </span>
       </div>
     </div>
   </div>
   <div class="user-details">
-    <div class="info-box">
-      <div class="info">
-        <label for="">First Name</label>
-        <input
-          type="text"
-          [(ngModel)]="editUserForm.firstName"
-          [readOnly]="!isEditMode"
-        />
+    <form class="form" [formGroup]="userFormUpdate" (ngSubmit)="updateUser()">
+      <div class="info-box">
+        <div class="info">
+          <label for="editUserFirstName">First Name</label>
+          <input
+            type="text"
+            id="editUserFirstName"
+            formControlName="firstName"
+            [readOnly]="!isEditMode"
+          />
+        </div>
+        <div class="info">
+          <label for="editUserLastName">Last Name</label>
+          <input
+            type="text"
+            id="editUserLastName"
+            formControlName="lastName"
+            [readOnly]="!isEditMode"
+          />
+        </div>
       </div>
-      <div class="info">
-        <label for="">Last Name</label>
-        <input
-          type="text"
-          [(ngModel)]="editUserForm.lastName"
-          [readOnly]="!isEditMode"
-        />
+      <div class="info-box">
+        <div class="info">
+          <label for="editUserEmail">Email Address</label>
+          <input
+            type="email"
+            id="editUserEmail"
+            formControlName="emailAddress"
+            [readOnly]="!isEditMode"
+          />
+        </div>
+        <div class="info">
+          <label for="editUserPhone">Phone Number</label>
+          <input
+            type="text"
+            id="editUserPhone"
+            formControlName="phoneNumber"
+            [readOnly]="!isEditMode"
+          />
+        </div>
       </div>
-    </div>
-    <div class="info-box">
-      <div class="info">
-        <label for="">Email Address</label>
-        <input
-          type="email"
-          [(ngModel)]="editUserForm.email"
-          [readOnly]="!isEditMode"
-        />
+      <div class="info-box">
+        <div class="info">
+          <label for="editUserDepartment">Department</label>
+          <select id="editUserDepartment" formControlName="departmentId">
+            <option value="">Select Department</option>
+            <option *ngFor="let dept of department" [value]="dept.id">
+              {{ dept.departmentName }}
+            </option>
+          </select>
+        </div>
+        <div class="info">
+          <label for="editUserRole">Role</label>
+          <select id="editUserRole" formControlName="roleId">
+            <option value="">Select Role</option>
+            <option *ngFor="let r of role" [value]="r.roleId">
+              {{ r.roleName }}
+            </option>
+          </select>
+        </div>
       </div>
-      <div class="info">
-        <label for="">Phone Number</label>
-        <input
-          type="text"
-          [(ngModel)]="editUserForm.phoneNumber"
-          [readOnly]="!isEditMode"
-        />
+      <div class="info-box">
+        <div class="info">
+          <label>Status</label>
+          <input
+            type="text"
+            [class]="getStatusClass(userFormUpdate.value.isActive)"
+            [value]="userFormUpdate.value.isActive ? 'Active' : 'Inactive'"
+            readonly
+            tabindex="-1"
+          />
+        </div>
       </div>
-    </div>
-    <div class="info-box">
-      <div class="info">
-        <label for="">Department</label>
-        <select [(ngModel)]="editUserForm.department" [disabled]="!isEditMode">
-          <option value="">Select Department</option>
-          <option *ngFor="let dept of department">
-            {{ dept.departmentName }}
-          </option>
-        </select>
+      <div class="bottom">
+        <div class="left">
+          <button
+            [disabled]="!isEditMode"
+            [ngClass]="
+              userFormUpdate.value.isActive ? 'danger-btn' : 'success-btn'
+            "
+            (click)="toggleActiveStatus($event)"
+            type="button"
+          >
+            {{ userFormUpdate.value.isActive ? "Deactivate" : "Activate" }}
+          </button>
+        </div>
+        <div class="right">
+          <button class="primary-btn" (click)="closeEditUser()" type="button">
+            Cancel
+          </button>
+          <button *ngIf="isEditMode" type="submit" class="secondary-btn">
+            <span *ngIf="!isButtonLoading">Save</span>
+            <span *ngIf="isButtonLoading" class="button-loader">
+              <span class="spinner"></span>
+              Saving...
+            </span>
+          </button>
+        </div>
       </div>
-      <div class="info">
-        <label for="">Role</label>
-        <select [(ngModel)]="editUserForm.role" [disabled]="!isEditMode">
-          <option value="">Select Role</option>
-          <option *ngFor="let roles of role">{{ roles.roleName }}</option>
-        </select>
-      </div>
-    </div>
-    <div class="info-box">
-      <div class="info">
-        <label for="">Date Added</label>
-        <input
-          type="date"
-          [value]="currentUser ? formatDate(currentUser.dateAdded) : ''"
-          readonly
-        />
-      </div>
-      <div class="info">
-        <label for="">Status</label>
-        <select [(ngModel)]="editUserForm.status" [disabled]="!isEditMode">
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-        </select>
-      </div>
-    </div>
-  </div>
-
-  <div class="bottom">
-    <div class="left">
-      <button class="danger-btn" (click)="deactivateUser()">Deactivate</button>
-    </div>
-    <div class="right">
-      <button class="primary-btn" (click)="closeEditUser()">Cancel</button>
-      <button class="secondary-btn" (click)="updateUser()" *ngIf="isEditMode">
-        Save
-      </button>
-    </div>
+    </form>
   </div>
 </div>
 
+<!-- MAIN USER TABLE AND ADD USER MODAL -->
 <div *ngIf="!isEditUSerOpen" class="main-container">
   <div class="header">
     <div class="left-end">
@@ -126,7 +146,7 @@
       <button class="secondary-btn" (click)="openModal()">Add User</button>
     </div>
   </div>
-  <!-- TABLE WHERE USER DETAILS WILL OCCUPY -->
+  <!-- TABLE -->
   <table>
     <thead>
       <tr>
@@ -136,7 +156,6 @@
         <th class="status-column"><h1>Status</h1></th>
       </tr>
     </thead>
-
     <tbody>
       <tr *ngFor="let user of users">
         <td class="name-column">
@@ -145,13 +164,24 @@
             <span>{{ getUserFullName(user) }}</span>
           </div>
         </td>
-        <td class="email-column">{{ user.email }}</td>
+        <td class="email-column">
+          <div class="email-content">{{ user.emailAddress }}</div>
+        </td>
         <td class="role-column">
-          <div class="role-content">{{ user.role }}</div>
+          <div class="role-content">
+            {{ getRoleName(user.roleId) }}
+          </div>
         </td>
         <td class="status-column">
           <div class="status-content">
-            <span [class]="getStatusClass(user.status)">{{ user.status }}</span>
+            <span
+              [ngClass]="{
+                'active-status': user.isActive,
+                'inactive-status': !user.isActive
+              }"
+            >
+              {{ user.isActive ? "Active" : "Inactive" }}
+            </span>
             <div class="icons">
               <img src="/images/edit.png" alt="" (click)="openEditUser(user)" />
               <img src="/images/trash.png" alt="" (click)="openWarning(user)" />
@@ -167,12 +197,13 @@
     </tbody>
   </table>
 
+  <!-- MODALS -->
   <div
     *ngIf="isModalOpen || isWarningModalOpen || isSuccessModalOpen"
     class="modal-overlay"
     (click)="closeModal()"
   >
-    <!-- Add User field "CREATE" -->
+    <!-- ADD USER MODAL -->
     <div
       *ngIf="isModalOpen"
       class="modal-content"
@@ -183,50 +214,73 @@
         <button class="close-btn" (click)="closeModal()">×</button>
       </div>
       <div class="details">
-        <div class="info-box">
-          <div class="user-dets">
-            <label for="">First Name</label>
-            <input type="text" [(ngModel)]="addUserForm.firstName" />
+        <form class="form" [formGroup]="userForm" (ngSubmit)="addUser()">
+          <div class="info-box">
+            <div class="user-dets">
+              <label for="addFirstName">First Name</label>
+              <input
+                id="addFirstName"
+                type="text"
+                formControlName="firstName"
+              />
+            </div>
+            <div class="user-dets">
+              <label for="addLastName">Last Name</label>
+              <input id="addLastName" type="text" formControlName="lastName" />
+            </div>
           </div>
-          <div class="user-dets">
-            <label for="">Last Name</label>
-            <input type="text" [(ngModel)]="addUserForm.lastName" />
+          <div class="info-box">
+            <div class="user-dets">
+              <label for="addEmail">Email Address</label>
+              <input
+                id="addEmail"
+                type="email"
+                formControlName="emailAddress"
+              />
+            </div>
+            <div class="user-dets">
+              <label for="addPhone">Phone Number</label>
+              <input id="addPhone" type="text" formControlName="phoneNumber" />
+            </div>
           </div>
-        </div>
-        <div class="info-box">
-          <div class="user-dets">
-            <label for="">Email Address</label>
-            <input type="email" [(ngModel)]="addUserForm.email" />
+          <div class="info-box">
+            <div class="user-dets">
+              <label for="addDepartment">Department</label>
+              <select id="addDepartment" formControlName="departmentId">
+                <option value="">Select Department</option>
+                <option *ngFor="let dept of department" [value]="dept.id">
+                  {{ dept.departmentName }}
+                </option>
+              </select>
+            </div>
+            <div class="user-dets">
+              <label for="addRole">Role</label>
+              <select id="addRole" formControlName="roleId">
+                <option value="">Select Role</option>
+                <option *ngFor="let r of role" [value]="r.roleId">
+                  {{ r.roleName }}
+                </option>
+              </select>
+            </div>
           </div>
-          <div class="user-dets">
-            <label for="">Phone Number</label>
-            <input type="text" [(ngModel)]="addUserForm.phoneNumber" />
+          <div class="modal-bottom">
+            <button type="button" (click)="closeModal()" class="primary-btn">
+              Cancel
+            </button>
+
+            <button
+              [disabled]="userForm.invalid || isButtonLoading"
+              type="submit"
+              class="secondary-btn"
+            >
+              <span *ngIf="!isButtonLoading">Add</span>
+              <span *ngIf="isButtonLoading" class="button-loader">
+                <span class="spinner"></span>
+                Adding...
+              </span>
+            </button>
           </div>
-        </div>
-        <div class="info-box">
-          <div class="user-dets">
-            <label for="">Department</label>
-            <select [(ngModel)]="addUserForm.department">
-              <option value="">Select Department</option>
-              <option *ngFor="let dept of department">
-                {{ dept.departmentName }}
-              </option>
-            </select>
-          </div>
-          <div class="user-dets">
-            <label for="">Role</label>
-            <select [(ngModel)]="addUserForm.role">
-              <option value="">Select Role</option>
-              <option *ngFor="let roles of role">
-                {{ roles.roleName }}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="modal-bottom">
-          <button (click)="closeModal()" class="primary-btn">Cancel</button>
-          <button (click)="addUser($event)" class="secondary-btn">Add</button>
-        </div>
+        </form>
       </div>
     </div>
     <!-- WARNING MODAL -->
@@ -252,7 +306,13 @@
       </div>
       <div class="bottom-modal">
         <button (click)="closeModal()" class="primary-btn">Cancel</button>
-        <button class="secondary-btn" (click)="deleteUser()">Delete</button>
+        <button (click)="deleteUser()" class="secondary-btn">
+          <span *ngIf="!isButtonLoading">Delete</span>
+          <span *ngIf="isButtonLoading" class="button-loader">
+            <span class="spinner"></span>
+            Deleting...
+          </span>
+        </button>
       </div>
     </div>
     <!-- SUCCESS MODAL -->
@@ -266,7 +326,7 @@
           <img src="/images/tick-circle-green.png" alt="" />
         </div>
         <h1>Success</h1>
-        <h4>User saved successfully to the system</h4>
+        <h4>{{ successMessage }}</h4>
       </div>
       <div class="bottom-modal">
         <button (click)="closeModal()" class="secondary-btn">Close</button>

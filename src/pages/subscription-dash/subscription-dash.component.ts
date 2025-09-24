@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-subscription-dash',
   imports: [],
   templateUrl: './subscription-dash.component.html',
-  styleUrl: './subscription-dash.component.scss'
+  styleUrl: './subscription-dash.component.scss',
 })
-export class SubscriptionDashComponent {
-
-}
+export class SubscriptionDashComponent {}

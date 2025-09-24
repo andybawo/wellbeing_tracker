@@ -1,14 +1,38 @@
 export interface User {
   id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-  department: string;
-  role: string;
-  dateAdded: Date;
-  status: 'Active' | 'Inactive';
-  profilePicture?: string;
+  firstName?: string;
+  lastName?: string;
+  fullName?: string;
+  emailAddress: string;
+  phoneNumber?: string;
+  departmentId?: string;
+  roleId?: string;
+  isActive?: boolean;
+  username?: string;
+}
+
+export interface EditRequestWrapper {
+  editRequest: {
+    userId: string;
+    firstName: string;
+    lastName: string;
+    emailAddress: string;
+    phoneNumber: string;
+    departmentId: string;
+    roleId: string;
+    isActive: boolean;
+  };
+}
+export interface UserApiResponse {
+  success: boolean;
+  message: string;
+  data: boolean;
+}
+
+export interface DeleteUserResponse {
+  success: boolean;
+  message: string;
+  data: boolean;
 }
 
 export interface companyDepartment {
@@ -49,6 +73,7 @@ export interface DeleteRoleResponse {
 }
 
 export interface companyRole {
+  id: string;
   roleId: string;
   roleName: string;
   roleDescription: string;

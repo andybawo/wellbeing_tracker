@@ -13,7 +13,7 @@ import { tap } from 'rxjs/operators';
 export class IntegrationService {
   private apiUrl = environment.apiUrl;
   private jiraApiKeyEndpoint =
-    'https://cultural-health.azurewebsites.net/api/Jira/connect/Jira/key';
+    'https://insytha.azurewebsites.net/api/Jira/connect/Jira/key';
   private jiraOAuthAuthorizeUrl = 'https://auth.atlassian.com/authorize';
   private jiraClientId = 'gWwrLlmqy36TJ0P4GKALS6W74LCaosUq';
   private jiraOAuthRedirectUri = `${window.location.origin}/subscription/jira-redirect`;
@@ -29,7 +29,7 @@ export class IntegrationService {
   constructor(private http: HttpClient, private router: Router) {}
 
   private slackApiKeyEndpoint =
-    'https://cultural-health.azurewebsites.net/api/Slack/connect/slack/key';
+    'https://insytha.azurewebsites.net/api/Slack/connect/slack/key';
 
   connectSlackwithApi(apiKey: string, jwtToken: string) {
     const headers = new HttpHeaders({
@@ -44,7 +44,7 @@ export class IntegrationService {
   }
 
   private seamlessIntegrateEndpoint =
-    'https://cultural-health.azurewebsites.net/api/SeamlessHR/connect/seamlessHR/key';
+    'https://insytha.azurewebsites.net/api/SeamlessHR/connect/seamlessHR/key';
 
   connectSeamlessHRWithCredentials(
     clientId: string,

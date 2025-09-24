@@ -165,7 +165,7 @@
           >
             <li
               *ngFor="let user of companyUsers"
-              (mousedown)="selectHod(user.fullName, 'edit')"
+              (mousedown)="selectHod(user, 'edit')"
             >
               {{ user.fullName }}
             </li>

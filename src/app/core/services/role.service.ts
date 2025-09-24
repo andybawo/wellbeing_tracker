@@ -60,9 +60,10 @@ export class RoleService {
 
   deleteRole(id: string): Observable<DeleteRoleResponse> {
     return this.http.delete<DeleteRoleResponse>(
-      `${this.apiUrl}/api/Admin/delete-role?roleId=${id}`,
+      `${this.apiUrl}/api/Admin/delete-role`,
       {
         headers: this.getAuthHeaders(),
+        body: id, // 👈 here we pass the string in the request body
       }
     );
   }

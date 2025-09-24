@@ -140,7 +140,7 @@ export class SubscriptionDashComponent implements OnInit {
   }
   calculateBillingPercentage(date:string,daysUsed:number){
     const totalDays = this.getTotalDays(date,daysUsed);
-    const percentage = (daysUsed/totalDays) * 100;
+    const percentage = parseFloat(((daysUsed / totalDays) * 100).toFixed(2));
     return percentage;
   }
 

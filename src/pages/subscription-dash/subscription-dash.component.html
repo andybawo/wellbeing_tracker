@@ -38,7 +38,7 @@
             role="progressbar"
             [attr.aria-valuemin]="0"
             [attr.aria-valuemax]="100">
-            {{calculateBillingPercentage(userPackage.expirationDate,userPackage.daysUsed)}}%
+            <!-- {{calculateBillingPercentage(userPackage.expirationDate,userPackage.daysUsed)}}% -->
           </div>
           <div class="progress-text">
             Billed<br>{{getBillingCycle(userPackage.expirationDate,userPackage.daysUsed)}}
@@ -185,7 +185,7 @@
             role="progressbar"
             [attr.aria-valuemin]="0"
             [attr.aria-valuemax]="100">
-            {{calculateBillingPercentage(userPackage.expirationDate,userPackage.daysUsed)}}%
+            <!-- {{calculateBillingPercentage(userPackage.expirationDate,userPackage.daysUsed)}}% -->
           </div>
           <div class="progress-text">
             Billed<br>{{getBillingCycle(userPackage.expirationDate,userPackage.daysUsed)}}

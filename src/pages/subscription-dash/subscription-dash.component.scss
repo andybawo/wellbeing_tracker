@@ -1028,7 +1028,7 @@ li {
 
 .progress-text {
   position: absolute;
-  right: -80px;
+  right: -70px;
   top: 50%;
   transform: translateY(-50%);
   color: #6B7280;
@@ -1101,7 +1101,7 @@ li {
   display: flex;
   align-items: center;
   position: relative;
-  width: 10rem;
+  width: 7rem;
 }
 
 .radial-progress {
@@ -1124,6 +1124,7 @@ li {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.2;
+  text-align: left;
 }
 
 .packages-container {

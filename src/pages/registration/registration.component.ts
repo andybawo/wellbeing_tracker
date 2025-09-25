@@ -169,6 +169,8 @@ export class RegistrationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isLoading = false;
   }
 
+  // Fixed registration.component.ts - onCompanyRegister method
+
   onCompanyRegister() {
     if (this.companyForm.invalid) {
       this.showAlert = true;
@@ -180,10 +182,20 @@ export class RegistrationComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    this.isLoading = true;
-    const companyData = this.companyForm.value;
-    this.dataService.setCompanyData(companyData);
+    // Check if user is authenticated
+    if (!this.authService.isLoggedIn()) {
+      this.showAlert = true;
+      this.alertMessage = 'Authentication expired. Please signup again.';
+      this.alertType = 'error';
+      setTimeout(() => {
+        this.router.navigate(['/start/signup']);
+      }, 2000);
+      return;
+    }
 
+    this.isLoading = true;
+
+    // GET USER DATA - Required by backend API
     const userData = this.dataService.getUserData();
     if (!userData || !userData.emailAddress) {
       this.isLoading = false;
@@ -194,31 +206,50 @@ export class RegistrationComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    this.authService.registerUser(userData).subscribe({
-      next: (res) => {
+    // COMPLETE PAYLOAD: Backend expects both JWT auth AND email fields in body
+    const companyData = {
+      companyName: this.companyForm.value.companyName,
+      companyAddress: this.companyForm.value.companyAddress,
+      country: this.companyForm.value.country,
+      state: this.companyForm.value.state,
+      companyType: this.companyForm.value.companyType,
+      userEmailAddress: userData.emailAddress, // ✅ Required by backend
+      companyEmailAddress: userData.emailAddress, // ✅ Required by backend
+    };
+
+    console.log('Company registration payload:', companyData);
+
+    this.authService.registerCompany(companyData).subscribe({
+      next: (companyRes) => {
+        console.log('Company registered successfully:', companyRes);
         this.isLoading = false;
         this.showAlert = true;
         this.alertMessage =
-          'Company details saved. Please check your email to verify your account.';
+          'Registration successful! Please check your email to verify your account.';
         this.alertType = 'success';
 
-        if (res && res.data) {
-          this.dataService.setAuthToken(res.data);
-        }
+        // Clear saved data
+        this.clearSavedData();
+        localStorage.removeItem('signupUserData');
 
         setTimeout(() => {
           this.router.navigate(['/start/verify']);
         }, 1000);
       },
       error: (err) => {
-        this.isLoading = false;
-        this.showAlert = true;
-        this.alertMessage =
-          err.error?.message ||
-          'Company registration failed. Please try again.';
-        this.alertType = 'error';
+        console.error('Company registration failed:', err);
+        this.handleRegistrationError(
+          err.error?.message || 'Company registration failed. Please try again.'
+        );
       },
     });
+  }
+
+  private handleRegistrationError(message: string) {
+    this.isLoading = false;
+    this.showAlert = true;
+    this.alertMessage = message;
+    this.alertType = 'error';
   }
 
   public clearSavedData(): void {

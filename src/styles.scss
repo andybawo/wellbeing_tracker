@@ -18,7 +18,7 @@ body {
 }
 
 :root {
-  --primary-color: #5c3c92;
+  --primary-color: #3e1f69;
   --accent-color: #f39c12;
 
   --background-color: white;
@@ -79,7 +79,6 @@ h4 {
   font-style: italic;
 }
 
-/* Style for the whole scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -133,6 +132,14 @@ h4 {
   cursor: pointer;
 }
 
+.success-btn {
+  background-color: #edfcee;
+  border: none;
+  border-radius: 8px !important;
+  color: black;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 1536px) {
   .primary-btn {
     height: 44px;
@@ -146,6 +153,37 @@ h4 {
   }
 
   .danger-btn {
+    height: 44px;
+    width: 120px;
+    font-size: 14px !important;
+  }
+
+  .success-btn {
+    height: 44px;
+    width: 120px;
+    font-size: 14px !important;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .primary-btn {
+    height: 44px;
+    width: 140px;
+    font-size: 14px !important;
+  }
+  .secondary-btn {
+    height: 44px;
+    width: 140px;
+    font-size: 14px !important;
+  }
+
+  .danger-btn {
+    height: 44px;
+    width: 120px;
+    font-size: 14px !important;
+  }
+
+  .success-btn {
     height: 44px;
     width: 120px;
     font-size: 14px !important;
@@ -164,6 +202,12 @@ h4 {
   }
 
   .danger-btn {
+    height: 44px;
+    width: 140px;
+    font-size: 14px !important;
+  }
+
+  .success-btn {
     height: 44px;
     width: 140px;
     font-size: 14px !important;
@@ -187,9 +231,15 @@ h4 {
     width: 115px;
     font-size: 12px !important;
   }
+
+  .success-btn {
+    height: 40px;
+    width: 115px;
+    font-size: 12px !important;
+  }
 }
 
-@media screen and (max-width: 1329px) and (min-width: 1024px) {
+@media screen and (max-width: 768px) {
   .primary-btn {
     height: 30px;
     width: 100px;
@@ -204,5 +254,63 @@ h4 {
     height: 30px;
     width: 100px;
     font-size: 10px !important;
+  }
+}
+
+@media screen and (max-width: 1329px) and (min-width: 769px) {
+  .primary-btn {
+    height: 30px;
+    width: 100px;
+    font-size: 10px !important;
+  }
+  .secondary-btn {
+    height: 30px;
+    width: 100px;
+    font-size: 10px !important;
+  }
+  .danger-btn {
+    height: 30px;
+    width: 100px;
+    font-size: 10px !important;
+  }
+
+  .success-btn {
+    height: 30px;
+    width: 100px;
+    font-size: 10px !important;
+  }
+}
+
+button {
+  position: relative;
+  width: 120px;
+  transition: all 0.3s ease;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .button-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 0.8s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }

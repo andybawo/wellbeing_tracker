@@ -1,11 +1,16 @@
 .grid-container {
   display: grid;
-  grid-template-columns: 14.45% 85.55%;
-  grid-template-rows: 7.54% 92.46%;
+  grid-template-columns: 222px 1fr;
+  grid-template-rows: 64px 1fr;
   grid-template-areas:
     "sidebar header"
     "sidebar main";
   height: 100vh;
+  transition: grid-template-columns 0.6s ease;
+
+  &.sidebar-collapsed {
+    grid-template-columns: 64px 1fr;
+  }
 }
 
 .header {
@@ -26,101 +31,69 @@
   padding: 16px 20px 0 20px;
   overflow-y: auto;
   box-sizing: border-box;
-  height: flex 1;
+  min-width: 0;
 }
 
-@media screen and (min-width: 1536px) {
+// Responsive adjustments
+@media screen and (max-width: 1439px) and (min-width: 1024px) {
   .grid-container {
-    grid-template-columns: 14.45% 85.55%;
-    grid-template-rows: 7.54% 92.46%;
-  }
-
-  .sidebar {
-    width: 222px;
-    left: -222px;
-  }
-
-  .sidebar.open {
-    left: 0;
+    grid-template-columns: 222px 1fr;
+    grid-template-rows: 56px 1fr;
   }
 }
 
-@media screen and (max-width: 1439px) and (min-width: 1328px) {
+@media screen and (max-width: 1023px) {
   .grid-container {
-    grid-template-columns: 16% 84%;
-    grid-template-rows: 8% 92%;
-  }
-
-  .sidebar {
-    width: 200px;
-    left: -200px;
-  }
-
-  .sidebar.open {
-    left: 0;
-  }
-
-  .main-container {
-    padding: 10px 10px 0 10px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 56px auto 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main";
   }
 }
 
-@media screen and (max-width: 1329px) and (min-width: 1024px) {
-  .grid-container {
-    grid-template-columns: 18% 82%;
-    grid-template-rows: 9% 91%;
+// .sidebar.open {
+//   left: 0;
+// }
+
+.sidebar-list {
+  width: 150px;
+  height: 500px;
+
+  ul {
+    gap: 20px;
   }
 
-  .main-container {
-    padding: 10px 10px 0 10px;
+  li {
+    font-size: 12px;
+    gap: 6px;
   }
-  .sidebar {
-    width: 180px;
-    left: -180px;
-  }
+}
 
-  .sidebar.open {
-    left: 0;
-  }
+.sidebar-item > img {
+  top: -40px;
+  width: 120px;
+}
 
-  .sidebar-list {
-    width: 150px;
-    height: 500px;
+.navbar {
+  padding: 8px 15px;
+}
 
-    ul {
-      gap: 20px;
-    }
+.search-container input {
+  width: 180px;
+  height: 18px;
+}
 
-    li {
-      font-size: 12px;
-      gap: 6px;
-    }
-  }
+.left-end,
+.right-end {
+  gap: 12px;
+}
 
-  .sidebar-item > img {
-    top: -40px;
-    width: 120px;
-  }
-
-  .navbar {
-    padding: 8px 15px;
-  }
-
-  .search-container input {
-    width: 180px;
-    height: 18px;
-  }
-
-  .left-end,
-  .right-end {
-    gap: 12px;
-  }
-
-  .right-end button {
-    width: 140px;
-    height: 35px;
-    font-size: 14px;
-  }
+.right-end button {
+  width: 140px;
+  height: 35px;
+  font-size: 14px;
 }
 
 @media screen and (max-width: 1023px) and (min-width: 768px) {
@@ -132,73 +105,7 @@
       "sidebar"
       "main";
   }
-
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    left: 0;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 10px 0;
-  }
-
-  .sidebar-item {
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-
-    > img {
-      position: static;
-      top: 0;
-      width: 100px;
-    }
-  }
-
-  .sidebar-list {
-    width: auto;
-    height: auto;
-    flex-direction: row;
-
-    ul {
-      display: flex;
-      flex-direction: row;
-      gap: 15px;
-      overflow-x: auto;
-    }
-
-    ul:last-of-type {
-      margin-top: 0;
-    }
-
-    li {
-      white-space: nowrap;
-      font-size: 11px;
-    }
-  }
-
-  .navbar {
-    padding: 6px 12px;
-  }
-
-  .search-container input {
-    width: 150px;
-  }
-
-  .left-end,
-  .right-end {
-    gap: 8px;
-  }
-
-  .right-end button {
-    width: 120px;
-    height: 32px;
-    font-size: 12px;
-  }
-
-  .main-container {
-    padding: 12px;
-  }
+  // Sidebar styles moved to sidebar.component.scss
 }
 
 @media screen and (max-width: 767px) {
@@ -210,58 +117,15 @@
       "sidebar"
       "main";
   }
-
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    left: 0;
-    padding: 8px 0;
-  }
-
-  .sidebar-item > img {
-    width: 80px;
-  }
-
-  .sidebar-list {
-    ul {
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    li {
-      font-size: 10px;
-      min-width: fit-content;
-    }
-  }
-
-  .navbar {
-    flex-direction: column;
-    gap: 10px;
-    padding: 8px;
-  }
-
-  .left-end,
-  .right-end {
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .search-container input {
-    width: 200px;
-  }
-
-  .main-container {
-    padding: 8px;
-  }
+  // Sidebar styles moved to sidebar.component.scss
 }
 
-@media screen and (min-width: 1920px) {
-  .grid-container {
-    max-width: 1920px;
-    margin: 0 auto;
-  }
-  .main-container {
-    padding: 25px 16px 0 25px;
-  }
-}
+// @media screen and (min-width: 1920px) {
+//   .grid-container {
+//     max-width: 1920px;
+//     margin: 0 auto;
+//   }
+//   .main-container {
+//     padding: 25px 16px 0 25px;
+//   }
+// }

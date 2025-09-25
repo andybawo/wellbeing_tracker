@@ -8,14 +8,21 @@ const routes: Routes = [
   {
     path: '',
     component: ProjectLayoutComponent,
-  },
-  {
-    path: '',
-    component: ProjectListComponent,
-  },
-  {
-    path: '',
-    component: ViewProjectsComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'project-list',
+        pathMatch: 'full',
+      },
+      {
+        path: 'project-list',
+        component: ProjectListComponent,
+      },
+      {
+        path: 'view-projects/:id',
+        component: ViewProjectsComponent,
+      },
+    ],
   },
 ];
 

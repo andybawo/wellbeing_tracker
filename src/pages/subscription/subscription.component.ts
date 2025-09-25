@@ -139,12 +139,11 @@ export class SubscriptionComponent implements OnInit {
       next: (response: any) => {
         this.isLoadingFreeTrial = false;
 
-        const isSuccessful =
-          response.success === true ||
-          response.status === true ||
-          response.status === 'true';
+        // Use the same simple success check as your working GitHub code
+        const isSuccessful = response.success === true;
 
-        if (isSuccessful) {
+        if (isSuccessful && response.data) {
+          this.authService.saveToken(response.data);
           this.router.navigate(['/subscription/sub-successful'], {
             queryParams: {
               packageId: numericPackageId,

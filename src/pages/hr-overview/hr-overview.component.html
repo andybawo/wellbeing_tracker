@@ -46,11 +46,29 @@
             gap: 5px;
           "
         >
-          <span>250</span>
+          <span>{{ hrmData?.headcount ?? "_" }}</span>
           <span style="font-size: 10px"> Employees</span>
         </li>
       </ul>
     </div>
+    <div class="card">
+      <img src="/images/Frame 114.png" alt="" />
+      <ul>
+        <li>Attendance</li>
+        <li
+          style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 5px;
+          "
+        >
+          <span>{{ hrmData?.attendance ?? "_" }}</span>
+          <span style="font-size: 10px"> Employees</span>
+        </li>
+      </ul>
+    </div>
+
     <div class="card">
       <img src="/images/Frame 114.png" alt="" />
       <ul>
@@ -63,8 +81,8 @@
             gap: 5px;
           "
         >
-          <span>20%</span>
-          <span style="font-size: 10px"> Employees</span>
+          <span>{{ hrmData?.abesenteeism ?? "_" }}</span>
+          <span style="font-size: 10px"> Average</span>
         </li>
       </ul>
     </div>
@@ -81,25 +99,7 @@
             gap: 5px;
           "
         >
-          <span>10%</span>
-          <span style="font-size: 10px"> Average</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <img src="/images/Frame 114.png" alt="" />
-      <ul>
-        <li>Performance Alert</li>
-        <li
-          style="
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 5px;
-          "
-        >
-          <span>2</span>
+          <span>{{ hrmData?.attritionRate ?? "_" }}</span>
           <span style="font-size: 10px">Issues</span>
         </li>
       </ul>
@@ -163,57 +163,21 @@
               <td>5%</td>
               <td>30%</td>
               <td>25%</td>
-              <td
-                style="
-                  border-radius: 20px;
-                  width: 90px;
-                  height: 36px;
-                  background-color: #f9f2e0;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                "
-              >
-                Warning
-              </td>
+              <td class="status warning">Warning</td>
             </tr>
             <tr>
               <td>Nafisa Usman</td>
               <td>5%</td>
               <td>30%</td>
               <td>25%</td>
-              <td
-                style="
-                  border-radius: 20px;
-                  width: 90px;
-                  height: 36px;
-                  background-color: #e3fce4;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                "
-              >
-                Normal
-              </td>
+              <td class="status normal">Normal</td>
             </tr>
             <tr>
               <td>Nafisa Usman</td>
               <td>5%</td>
               <td>30%</td>
               <td>25%</td>
-              <td
-                style="
-                  border-radius: 20px;
-                  width: 90px;
-                  height: 36px;
-                  background-color: #ffe5e5;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                "
-              >
-                Critical
-              </td>
+              <td class="status critical">Critical</td>
             </tr>
           </tbody>
         </table>

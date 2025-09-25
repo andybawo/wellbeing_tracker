@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './verify.component.scss',
 })
 export class VerifyComponent {
+  isButtonLoading: boolean = false;
   verifyForm: FormGroup = new FormGroup({
     digit1: new FormControl('', [
       Validators.required,
@@ -99,10 +100,10 @@ export class VerifyComponent {
   }
 
   sendVerificationEmail(email: string) {
-    this.isLoading = true;
+    this.isButtonLoading = true;
     this.authService.sendVerification(email).subscribe({
       next: (res) => {
-        this.isLoading = false;
+        this.isButtonLoading = false;
         this.showAlert = true;
         this.alertMessage = 'Verification code Sent successfully.';
         this.alertType = 'success';
@@ -140,12 +141,12 @@ export class VerifyComponent {
 
   onVerifyCode() {
     if (this.verifyForm.valid) {
-      this.isLoading = true;
+      this.isButtonLoading = true;
       const verificationCode = Object.values(this.verifyForm.value).join('');
       const userData = this.dataService.getUserData();
 
       if (!userData || !userData.emailAddress) {
-        this.isLoading = false;
+        this.isButtonLoading = false;
         this.showAlert = true;
         this.alertMessage = 'User data not found. Please signup again.';
         this.alertType = 'error';
@@ -168,6 +169,9 @@ export class VerifyComponent {
 
             localStorage.removeItem('signupUserData');
             localStorage.removeItem('registrationCompanyData');
+            setTimeout(() => {
+              this.showAlert = false;
+            }, 3000);
 
             this.router.navigate(['/subscription']);
           },

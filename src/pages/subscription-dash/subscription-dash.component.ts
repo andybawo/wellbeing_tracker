@@ -26,8 +26,9 @@ registerLocaleData(localeNg, 'ng');
   selector: 'app-subscription-dash',
   imports: [CommonModule, ModalComponent, RouterModule],
   templateUrl: './subscription-dash.component.html',
-  styleUrl: './subscription-dash.component.scss'
+  styleUrl: './subscription-dash.component.scss',
 })
+
 export class SubscriptionDashComponent implements OnInit {
   isClicked = false;
   isYearClicked = false;
@@ -358,3 +359,4 @@ export class SubscriptionDashComponent implements OnInit {
     return transformed;
   }
 }
+

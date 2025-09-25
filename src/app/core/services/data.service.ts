@@ -12,14 +12,18 @@ export class DataService {
 
   setUserData(data: any) {
     this.userData = data;
-    localStorage.setItem('userData', JSON.stringify(data));
+    try {
+      localStorage.setItem('userData', JSON.stringify(data));
+    } catch (e) {
+      // fallback: clear if can't save
+      localStorage.removeItem('userData');
+    }
   }
 
   getUserData(): any {
-    if (!this.userData) {
-      const storedUser = localStorage.getItem('userData');
-      this.userData = storedUser ? JSON.parse(storedUser) : null;
-    }
+    // Always try to get from localStorage for reliability
+    const storedUser = localStorage.getItem('userData');
+    this.userData = storedUser ? JSON.parse(storedUser) : null;
     return this.userData;
   }
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DataService } from '../../../core/services/data.service';
 import { SignupComponent } from '../../../../pages/signup/signup.component';
@@ -11,6 +11,7 @@ import { SignupComponent } from '../../../../pages/signup/signup.component';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
+  @Output() toggleSidebar = new EventEmitter<void>();
   userFullName: string = 'Loading....';
 
   constructor(private dataService: DataService) {}

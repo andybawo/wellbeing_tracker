@@ -89,13 +89,10 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private saveUserData(userData: any): void {
     try {
-      // Only save if form has some data (excluding password for security)
       if (userData.fullName || userData.emailAddress) {
-        // Create a copy without the password for security reasons
         const dataToSave = {
           fullName: userData.fullName || '',
           emailAddress: userData.emailAddress || '',
-          // Intentionally exclude password
         };
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(dataToSave));
       }
@@ -119,8 +116,10 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     const email = this.userForm.get('emailAddress')?.value;
+    const userData = this.userForm.value;
 
     try {
+      // Check if email already exists
       const emailCheckResponse = await this.authService
         .checkEmailExists(email)
         .toPromise();
@@ -134,8 +133,17 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
         return;
       }
 
-      const userData = this.userForm.value;
-      this.dataService.setUserData(userData);
+      // Register the user (only once)
+      const signupRes = await this.authService
+        .registerUser(userData)
+        .toPromise();
+
+      if (signupRes && signupRes.data) {
+        this.dataService.setUserData(userData);
+        this.dataService.setAuthToken(signupRes.data);
+      } else {
+        this.dataService.setUserData(userData);
+      }
 
       this.setAlert(
         'Signup successful! Please proceed to register your company.',
@@ -147,10 +155,7 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
         this.router.navigate(['/start/registration']);
       }, 500);
     } catch (error) {
-      this.setAlert(
-        'Unable to verify email availability. Please try again.',
-        'error'
-      );
+      this.setAlert('Unable to complete signup. Please try again.', 'error');
       this.isButtonLoading = false;
     }
   }

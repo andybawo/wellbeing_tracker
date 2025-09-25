@@ -27,7 +27,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 15px;
+    gap: 8px;
+    justify-content: center;
     cursor: pointer;
     img {
       height: 20px;

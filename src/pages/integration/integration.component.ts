@@ -12,6 +12,10 @@ import {
   IntegrationModalConfig,
 } from '../../app/shared/integration-modal/integration-modal.component';
 
+import { DashboardService } from '../../app/core/services/dashboard.service';
+import { AuthService } from '../../app/core/services/auth.service';
+import { UserIntegrations } from '../../app/interfaces/user-interface';
+
 @Component({
   selector: 'app-integration',
   imports: [
@@ -33,6 +37,7 @@ export class IntegrationComponent implements OnInit {
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
   isButtonLoading: boolean = false;
+  userIntegrations: UserIntegrations = {} as UserIntegrations;
 
   integratedTools = {
     jira: false,
@@ -57,11 +62,20 @@ export class IntegrationComponent implements OnInit {
   constructor(
     private integrationService: IntegrationService,
     private dataService: DataService,
-    private router: Router
+    private router: Router,
+    private dashboardService: DashboardService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
-    this.loadIntegrationStatus();
+    const token = this.authService.getToken();
+    if (token) {
+      this.authService.getUserDetails(token).subscribe((response) => {
+        if (response.success && response) {
+          this.userIntegrations = response.data;
+        }
+      });
+    }
   }
 
   openModal(content: string) {
@@ -271,22 +285,38 @@ export class IntegrationComponent implements OnInit {
 
   getIntegratedHRTools(): string[] {
     const tools: string[] = [];
-    if (this.integratedTools.seamlessHR) tools.push('Seamless HR');
+    if (this.userIntegrations.isSeamlessHRConnected) tools.push('seamless');
     return tools;
   }
 
   getIntegratedCommunicationTools(): string[] {
     const tools: string[] = [];
-    if (this.integratedTools.slack) tools.push('Slack');
-    if (this.integratedTools.outlook) tools.push('Outlook');
-    if (this.integratedTools.teams) tools.push('Teams');
+    if (this.userIntegrations.isSlackConnected) tools.push('slack');
+    if (this.userIntegrations.isOutlookConnected) tools.push('outlook');
+    if (this.userIntegrations.isTeamsConnected) tools.push('teams');
     return tools;
   }
 
   getIntegratedProjectTools(): string[] {
     const tools: string[] = [];
-    if (this.integratedTools.jira) tools.push('Jira');
-    if (this.integratedTools.planner) tools.push('Planner');
+    if (this.userIntegrations.isJiraConnected) tools.push('Jira');
+    if (this.userIntegrations.isPlannerConnected) tools.push('Planner');
     return tools;
+  }
+
+  continueToHome() {
+    this.isButtonLoading = true;
+    this.dashboardService.clearCache();
+    this.dashboardService.syncData().subscribe({
+      next: () => {
+        this.isButtonLoading = false;
+        this.router.navigate(['/home']);
+      },
+      error: () => {
+        this.isButtonLoading = false;
+        // Optionally handle sync error, then navigate anyway
+        this.router.navigate(['/home']);
+      },
+    });
   }
 }

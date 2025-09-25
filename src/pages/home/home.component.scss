@@ -15,6 +15,7 @@
 
   .right-end select {
     border: none;
+    background: none;
   }
 
   .right-end {
@@ -84,7 +85,6 @@
     font-size: 15px;
   }
   position: relative;
-  top: 16px;
 }
 .seamlesshr-tool,
 .communication-tool,
@@ -141,7 +141,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-height: 240px;
   height: auto;
+  gap: 16px;
+  padding: 16px 20px 16px 20px;
 
   background-color: white;
   border-radius: 5px;
@@ -151,20 +154,21 @@
 .alerts-tab {
   background-color: white;
   border-radius: 5px;
-  padding: 10px 20px 16px 20px;
+  padding: 16px 20px 16px 20px;
   display: flex;
   flex-direction: column;
   min-height: 375px;
   flex-grow: 1;
+  gap: 20px;
 }
 .alert-tab-content {
-  height: 304px;
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
   position: relative;
-  top: 30px;
+  flex-grow: 1;
 }
 
 .content {
@@ -174,7 +178,7 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  padding: 10px 10px 0 10px;
+  padding: 12px 16px 12px 16px;
 
   h2 {
     font-weight: 400;
@@ -425,19 +429,19 @@ li {
   .proj-status {
     width: 340px;
   }
-  .integrate-tab {
-    height: fit-content;
-    min-height: 205px;
-    padding: 0 20px 16px 20px;
-  }
+  // .integrate-tab {
+  //   height: fit-content;
+  //   min-height: 205px;
+  //   padding: 0 20px 16px 20px;
+  // }
 }
 
-@media screen and (min-width: 1470px) and (min-height: 634px) and (max-height: 728px) {
-  .integrate-tab {
-    padding: 0 10px 10px 10px;
-    height: fit-content;
-    min-height: 225px;
-  }
+@media screen and (min-width: 1470px) {
+  // .integrate-tab {
+  //   padding: 0 10px 10px 10px;
+  //   height: auto;
+  //   min-height: 225px;
+  // }
 }
 @media screen and (max-width: 1535px) and (min-width: 1470px) and (min-height: 729px) and (max-height: 800px) {
   .left-end,
@@ -528,15 +532,13 @@ li {
     }
   }
 
-  .integrate-tab {
-    padding: 0 10px 10px 10px;
-    height: fit-content;
-    min-height: 240px;
-  }
+  // .integrate-tab {
+  //   padding: 0 10px 10px 10px;
+  //   height: fit-content;
+  //   min-height: 240px;
+  // }
 
   .alerts-tab {
-    padding: 0 10px 50px 10px;
-    min-height: flex 1;
     h3 {
       font-size: 15px;
     }
@@ -544,9 +546,7 @@ li {
       font-size: 14px;
     }
     .alert-tab-content {
-      height: 100%;
       .content {
-        height: 33.3%;
         h2 {
           font-size: 18px;
         }
@@ -632,15 +632,13 @@ li {
     font-size: 12px;
   }
 
-  .integrate-tab {
-    padding: 0 10px 10px 10px;
-    height: fit-content;
-    min-height: 205px;
-  }
+  // .integrate-tab {
+  //   padding: 0 10px 10px 10px;
+  //   height: fit-content;
+  //   min-height: 205px;
+  // }
 
   .alerts-tab {
-    padding: 0 10px 10px 10px;
-    min-height: fit-content;
     h3 {
       font-size: 14px;
     }
@@ -821,30 +819,30 @@ li {
     }
   }
 
-  .alerts-tab {
-    padding: 0 10px 16px 10px;
-    min-height: fit-content;
-    h3 {
-      font-size: 12px;
-    }
-    a {
-      font-size: 12px;
-    }
+  // .alerts-tab {
+  //   padding: 0 10px 16px 10px;
+  //   min-height: fit-content;
+  //   h3 {
+  //     font-size: 12px;
+  //   }
+  //   a {
+  //     font-size: 12px;
+  //   }
 
-    .alert-tab-content {
-      height: 260px;
-      .content {
-        height: 28%;
-        h2 {
-          font-size: 10px;
-        }
-        ul li:first-child {
-          font-weight: 700;
-          font-size: 12px;
-        }
-      }
-    }
-  }
+  //   .alert-tab-content {
+  //     height: 260px;
+  //     .content {
+  //       height: 28%;
+  //       h2 {
+  //         font-size: 10px;
+  //       }
+  //       ul li:first-child {
+  //         font-weight: 700;
+  //         font-size: 12px;
+  //       }
+  //     }
+  //   }
+  // }
 
   .tables {
     gap: 15px;
@@ -1103,31 +1101,31 @@ li {
     }
   }
 
-  .alerts-tab {
-    .alerts-title {
-      h3 {
-        font-size: 25px;
-      }
-      a {
-        font-size: 20px;
-      }
-    }
-    .alert-tab-content {
-      height: fit-content;
-    }
-    .content {
-      height: 95px;
-      top: 20px;
-      h2 {
-        font-size: 18px;
-      }
-      .content-list {
-        ul li {
-          font-size: 15px;
-        }
-      }
-    }
-  }
+  // .alerts-tab {
+  //   .alerts-title {
+  //     h3 {
+  //       font-size: 25px;
+  //     }
+  //     a {
+  //       font-size: 20px;
+  //     }
+  //   }
+  //   .alert-tab-content {
+  //     height: fit-content;
+  //   }
+  //   .content {
+  //     height: 95px;
+  //     top: 20px;
+  //     h2 {
+  //       font-size: 18px;
+  //     }
+  //     .content-list {
+  //       ul li {
+  //         font-size: 15px;
+  //       }
+  //     }
+  //   }
+  // }
 
   .integrate-tab {
     .tab-title {
@@ -1140,7 +1138,7 @@ li {
     }
     height: fit-content;
     min-height: 250px;
-    padding: 0 20px 16px 20px;
+    // padding: 0 20px 16px 20px;
 
     .tools-integrated {
       height: 160px;

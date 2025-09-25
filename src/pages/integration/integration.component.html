@@ -61,7 +61,13 @@
 
     <div class="learn-button">
       <button class="primary-btn">Back</button>
-      <button class="secondary-btn" [routerLink]="['/home']">Continue</button>
+      <button class="secondary-btn spinner" (click)="continueToHome()">
+        <span *ngIf="!isButtonLoading">Continue</span>
+        <span *ngIf="isButtonLoading" class="button-loader">
+          <span class="spinner"></span>
+          syncing data...
+        </span>
+      </button>
     </div>
   </div>
 

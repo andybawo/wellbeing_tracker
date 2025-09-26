@@ -32,7 +32,8 @@
                 "glob": "**/*",
                 "input": "node_modules/@fortawesome/fontawesome-free/webfonts",
                 "output": "./webfonts/"
-              }
+              },
+              "src/assets"
             ],
             "styles": ["src/styles.scss"],
             "scripts": []
@@ -100,7 +101,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/assets"
             ],
             "styles": ["src/styles.scss"],
             "scripts": []

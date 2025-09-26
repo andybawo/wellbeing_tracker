@@ -9,20 +9,24 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let rol of role">
-        <td class="role-column">{{ rol.roleName }}</td>
-        <td class="description-column">{{ rol.description }}</td>
+      <tr *ngFor="let roles of role">
+        <td class="role-column">{{ roles.roleName }}</td>
+        <td class="description-column">{{ roles.roleDescription }}</td>
         <td class="permission-column">
-          {{ formatPermissionsForDisplay(rol.permissions) }}
+          {{ formatPermissionsForDisplay(roles.permissions) }}
         </td>
         <td class="actions-column">
           <div class="status-content">
             <div class="icons">
-              <img src="/images/edit.png" alt="" (click)="openEditModal(rol)" />
+              <img
+                src="/images/edit.png"
+                alt=""
+                (click)="openEditModal(roles)"
+              />
               <img
                 src="/images/trash.png"
                 alt=""
-                (click)="openDeleteModal(rol)"
+                (click)="openDeleteModal(roles)"
               />
             </div>
           </div>
@@ -59,11 +63,11 @@
         </div>
 
         <div class="form-details">
-          <label for="description">Role Description</label>
+          <label for="roleDescription">Role Description</label>
           <input
             type="text"
-            id="description"
-            formControlName="description"
+            id="roleDescription"
+            formControlName="roleDescription"
             placeholder="Describe Role"
           />
         </div>
@@ -122,7 +126,11 @@
             class="secondary-btn"
             [disabled]="roleForm.invalid"
           >
-            Add
+            <span *ngIf="!isButtonLoading">Add Role</span>
+            <span *ngIf="isButtonLoading" class="button-loader">
+              <span class="spinner"></span>
+              Adding...
+            </span>
           </button>
         </div>
       </form>
@@ -154,7 +162,7 @@
           <input
             type="text"
             id="editDescription"
-            formControlName="description"
+            formControlName="roleDescription"
             placeholder="Describe Role"
           />
         </div>
@@ -208,19 +216,23 @@
           <button class="primary-btn" type="button" (click)="closeModal()">
             Cancel
           </button>
-          <button
-            class="secondary-btn"
-            type="submit"
-            [disabled]="roleForm.invalid"
-          >
-            Update
+          <button type="submit" class="secondary-btn">
+            <span *ngIf="!isButtonLoading">Update</span>
+            <span *ngIf="isButtonLoading" class="button-loader">
+              <span class="spinner"></span>
+              Updating...
+            </span>
           </button>
         </div>
       </form>
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div *ngIf="isDeleteModal" class="warning-modal">
+    <div
+      *ngIf="isDeleteModal"
+      class="warning-modal"
+      (click)="$event.stopPropagation()"
+    >
       <div class="top">
         <div class="images" style="background-color: #ffe5e5">
           <img src="/images/trash-red.png" alt="" />
@@ -234,7 +246,13 @@
       </div>
       <div class="bottom-modal">
         <button (click)="closeModal()" class="primary-btn">Cancel</button>
-        <button class="secondary-btn" (click)="deleteRole()">Delete</button>
+        <button type="submit" class="secondary-btn" (click)="deleteRole()">
+          <span *ngIf="!isButtonLoading">Delete</span>
+          <span *ngIf="isButtonLoading" class="button-loader">
+            <span class="spinner"></span>
+            Deleting...
+          </span>
+        </button>
       </div>
     </div>
 

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { DataService } from './data.service';
+import { DashboardService } from './dashboard.service';
 
 interface ApiResponse<T> {
   success: boolean;
@@ -22,7 +23,31 @@ export class AuthService {
   );
   public isAuthenticated$ = this.isAuthenticatedUser.asObservable();
 
-  constructor(private http: HttpClient, private dataService: DataService) {}
+  constructor(
+    private http: HttpClient,
+    private dataService: DataService,
+    private dashboardService: DashboardService
+  ) {}
+
+  getUserEmail(): string | null {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      try {
+        const parsed = JSON.parse(userData);
+        if (parsed.email) {
+          return parsed.email;
+        }
+      } catch {}
+    }
+    const token = this.getToken();
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload.email || null;
+      } catch {}
+    }
+    return null;
+  }
 
   //user sign up
   registerUser(userData: any): Observable<any> {
@@ -57,9 +82,21 @@ export class AuthService {
 
   //Company Registration
   registerCompany(companyData: { [key: string]: any }): Observable<any> {
+    const token = this.getToken();
+
+    if (!token) {
+      throw new Error('No authentication token found. Please login again.');
+    }
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
     return this.http.post(
       `${this.apiUrl}/api/Company/registerCompany`,
-      companyData
+      companyData,
+      { headers }
     );
   }
 
@@ -122,5 +159,46 @@ export class AuthService {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userData');
     this.isAuthenticatedUser.next(false);
+    this.dashboardService.clearCache();
+  }
+
+  getUserDetails(token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.get(`${this.apiUrl}/api/Admin/get-user-details`, {
+      headers,
+    });
+  }
+
+  getCompanyDetail(): Observable<any> {
+    const token = this.getToken();
+    if (!token) {
+      throw new Error('No authentication token found. Please login again.');
+    }
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.get(`${this.apiUrl}/api/Company/fetchCompanyDetail`, {
+      headers,
+    });
+  }
+
+  updateCompanyDetail(companyData: any): Observable<any> {
+    const token = this.getToken();
+    if (!token) {
+      throw new Error('No authentication token found. Please login again.');
+    }
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.put(
+      `${this.apiUrl}/api/Company/updateCompany`,
+      companyData,
+      { headers }
+    );
   }
 }

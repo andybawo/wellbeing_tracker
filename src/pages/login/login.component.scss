@@ -95,11 +95,6 @@
   }
 }
 
-.logo-pic {
-  position: relative;
-  top: 30px;
-  margin-top: 10px;
-}
 .link {
   display: flex;
   flex-direction: row;
@@ -149,6 +144,35 @@
   gap: 2px;
   width: 100%;
   flex-direction: column;
+
+  &.password-field {
+    position: relative;
+  }
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: calc(50% + 10px);
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: #333;
+  }
+
+  i {
+    font-size: 16px;
+  }
+}
+
+input {
+  padding-right: 40px;
 }
 .create-link {
   align-self: center;
@@ -158,21 +182,21 @@
   .display {
     width: 450px;
     height: auto;
-    top: 70px;
+    // top: 70px;
   }
 
   .display h3 {
     font-size: 18px;
-    top: 20px;
+    // top: 20px;
   }
 
   .display h1 {
     font-size: 25px;
-    top: 10px;
+    // top: 10px;
   }
 
   .form {
-    top: 50px;
+    // top: 50px;
     gap: 8px;
   }
 
@@ -187,27 +211,6 @@
     font-weight: 600;
   }
 
-  .eye-icon-login {
-    position: absolute;
-    right: 10px;
-    top: 66.3%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 16px;
-    }
-  }
-
   .link a {
     font-size: 12px;
     // bottom: 14px;
@@ -215,9 +218,9 @@
   }
 
   .bottom-display {
-    width: 450px;
+    width: 100%;
     height: fit-content;
-    top: -10px;
+    // top: -10px;
     gap: 10px;
   }
 
@@ -235,29 +238,22 @@
   .display {
     width: 400px;
     height: auto;
-    top: 80px;
-  }
-
-  .logo-pic {
-    top: 40px;
-    img {
-      height: 25px;
-    }
+    // top: 80px;
   }
 
   .display h3 {
     font-size: 16px;
-    top: 30px;
+    // top: 30px;
   }
 
   .display h1 {
     font-size: 20px;
-    top: 10px;
+    // top: 10px;
     line-height: 1.2;
   }
 
   .form {
-    top: 50px;
+    // top: 50px;
     gap: 12px;
   }
 
@@ -272,31 +268,10 @@
     font-weight: 600;
   }
 
-  .eye-icon-login {
-    position: absolute;
-    right: 10px;
-    top: 64.2%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 14px;
-    }
-  }
-
   .bottom-display {
-    width: 400px;
+    width: 100%;
     height: fit-content;
-    top: 10px;
+    // top: 10px;
     gap: 8px;
   }
 
@@ -325,28 +300,18 @@
   .display {
     width: 350px;
     height: auto;
-    top: 80px;
+    // top: 80px;
   }
 
   .display h3 {
     font-size: 12px;
-    top: 30px;
-  }
-
-  .logo-pic {
-    top: 50px;
-    img {
-      height: 20px;
-    }
   }
 
   .display h1 {
     font-size: 20px;
-    top: 10px;
   }
 
   .form {
-    top: 40px;
     gap: 12px;
   }
 
@@ -361,27 +326,6 @@
     font-weight: 600;
   }
 
-  .eye-icon-login {
-    position: absolute;
-    right: 10px;
-    top: 63%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      color: #333;
-    }
-
-    i {
-      font-size: 12px;
-    }
-  }
-
   .link a {
     font-size: 10px;
     // bottom: 18px;
@@ -389,9 +333,9 @@
   }
 
   .bottom-display {
-    width: 350px;
+    width: 100%;
     height: fit-content;
-    top: 10px;
+    // top: 10px;
     gap: 7px;
   }
 

@@ -4,82 +4,88 @@
   [visible]="showAlert"
 ></app-alert>
 
-<div class="logo-pic">
-  <img src="/images/logo.png" alt="" />
-</div>
-<div class="display">
-  <h1>Welcome !</h1>
+<div class="main-wrapper">
+  <div class="logo-pic">
+    <img src="/images/logo.png" alt="" />
+  </div>
+  <div class="display">
+    <div class="display-header">
+      <h1>Welcome !</h1>
 
-  <h3>Please enter your details to signup</h3>
+      <h3>Please enter your details to signup</h3>
+    </div>
 
-  <form class="form" [formGroup]="userForm" (ngSubmit)="onUserSave()">
-    <div class="bottom-display">
-      <button type="button">
-        <div class="logo-box">
-          <img
-            src="/images/Symbol.png"
-            alt="Microsoft Logo"
-            style="width: 20px; height: 20px"
-          />Google
+    <form class="form" [formGroup]="userForm" (ngSubmit)="onUserSave()">
+      <div class="bottom-display">
+        <button type="button">
+          <div class="logo-box">
+            <img
+              src="/images/Symbol.png"
+              alt="Microsoft Logo"
+              style="width: 20px; height: 20px"
+            />Google
+          </div>
+        </button>
+        <button type="button">
+          <div class="logo-box">
+            <img
+              src="/images/microsoft.png"
+              alt="Microsoft Logo"
+              style="width: 20px; height: 20px"
+            />
+            Microsoft Azure
+          </div>
+        </button>
+        <div class="option-divider-grid">
+          <div class="line line-left"></div>
+          <span class="or-text">Or</span>
+          <div class="line line-right"></div>
         </div>
-      </button>
-      <button type="button">
-        <div class="logo-box">
-          <img
-            src="/images/microsoft.png"
-            alt="Microsoft Logo"
-            style="width: 20px; height: 20px"
+      </div>
+      <div class="form-details">
+        <label for="fullName">Full Name</label>
+        <input
+          id="fullName"
+          type="text"
+          formControlName="fullName"
+          placeholder="Enter full name"
+        />
+      </div>
+      <div class="form-details">
+        <label for="emailAddress">Email Address</label>
+        <input
+          id="emailAddress"
+          type="email"
+          formControlName="emailAddress"
+          placeholder="Enter Email address"
+        />
+      </div>
+      <div class="form-details password-field">
+        <label for="password">Password</label>
+        <div class="password-container">
+          <input
+            id="password"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Enter Password"
           />
-          Microsoft Azure
+          <div (click)="togglePasswordVisibility()" class="eye-icon">
+            <i [class]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+          </div>
         </div>
+      </div>
+      <button type="submit" [disabled]="isButtonLoading">
+        <span *ngIf="!isButtonLoading">Sign Up</span>
+        <span *ngIf="isButtonLoading" class="button-loader">
+          <span class="spinner"></span>
+          Signing up...
+        </span>
       </button>
-      <div class="option-divider-grid">
-        <div class="line line-left"></div>
-        <span class="or-text">Or</span>
-        <div class="line line-right"></div>
-      </div>
-    </div>
-    <div class="form-details">
-      <label for="fullName">Full Name</label>
-      <input
-        id="fullName"
-        type="text"
-        formControlName="fullName"
-        placeholder="Enter full name"
-      />
-    </div>
-    <div class="form-details">
-      <label for="emailAddress">Email Address</label>
-      <input
-        id="emailAddress"
-        type="email"
-        formControlName="emailAddress"
-        placeholder="Enter Email address"
-      />
-    </div>
-    <div class="form-details">
-      <label for="password">Password</label>
-      <input
-        id="password"
-        [type]="showPassword ? 'text' : 'password'"
-        formControlName="password"
-        placeholder="Enter Password"
-      />
-      <div (click)="togglePasswordVisibility()" class="eye-icon">
-        <i [class]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
-      </div>
-    </div>
-    <button type="submit" [disabled]="isButtonLoading">
-      <span *ngIf="!isButtonLoading">Sign Up</span>
-      <span *ngIf="isButtonLoading" class="button-loader">
-        <span class="spinner"></span>
-        Signing up...
-      </span>
-    </button>
-    <a class="create-link" [routerLink]="['/start/login']"
-      >Already have an account?<span style="color: #3e1f69"> Sign in</span></a
-    >
-  </form>
+      <a class="create-link" [routerLink]="['/start/login']"
+        >Already have an account?<span style="color: #3e1f69"> Sign in</span></a
+      >
+    </form>
+  </div>
 </div>
 
 <div class="modal-load" *ngIf="isLoading">

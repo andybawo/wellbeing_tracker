@@ -142,7 +142,8 @@ export class SubSuccessfulComponent implements OnInit {
             response.status === true ||
             response.status === 'true';
 
-          if (isSuccessful) {
+          if (isSuccessful && response.data) {
+            this.authService.saveToken(response.data);
             this.isSuccess = true;
             this.failureMessage = '';
 
@@ -187,6 +188,28 @@ export class SubSuccessfulComponent implements OnInit {
             this.router.navigate(['/subscription']);
           }, 5000);
         },
+      });
+  }
+
+  processExtension(): void {
+    const token = this.authService.getToken();
+    if (!token || !this.transactionRef || !this.packageId) return;
+
+    this.paymentService
+      .verifyAndExtendSubscription(this.transactionRef, token, this.packageId)
+      .subscribe((response: any) => {
+        const isSuccessful =
+          response.success === true ||
+          response.status === true ||
+          response.status === 'true';
+
+        if (isSuccessful && response.data) {
+          this.authService.saveToken(response.data);
+          this.router.navigate(['/home']);
+        } else {
+          alert(response.message || 'Subscription extension failed.');
+          this.router.navigate(['/subscription']);
+        }
       });
   }
 }

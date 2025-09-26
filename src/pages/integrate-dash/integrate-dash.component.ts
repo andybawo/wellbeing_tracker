@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../app/shared/shared.module';
 import { IntegrationService } from '../../app/core/services/integration.service';
 import { DataService } from '../../app/core/services/data.service';
+import { DashboardService } from '../../app/core/services/dashboard.service';
 
 @Component({
   selector: 'app-integrate-dash',
@@ -29,6 +30,7 @@ export class IntegrateDashComponent implements OnInit {
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
   modalConfig: IntegrationModalConfig = {};
+  summary: any = null;
 
   // Track integration status
   integratedTools = {
@@ -42,11 +44,16 @@ export class IntegrateDashComponent implements OnInit {
 
   constructor(
     private integrationService: IntegrationService,
-    private dataService: DataService
+    private dataService: DataService,
+    private dashboardService: DashboardService
   ) {}
 
   ngOnInit() {
-    this.loadIntegrationStatus();
+    this.dashboardService.getSummary(2).subscribe({
+      next: (res) => {
+        this.summary = res.data; // or just res, depending on your API
+      },
+    });
   }
 
   onCloseModal() {
@@ -241,8 +248,24 @@ export class IntegrateDashComponent implements OnInit {
       localStorage.getItem('planner_integrated') === 'true';
   }
 
-  isToolIntegrated(toolName: string): boolean {
-    return this.integratedTools[toolName as keyof typeof this.integratedTools];
+  isToolIntegrated(tool: string): boolean {
+    if (!this.summary) return false;
+    switch (tool) {
+      case 'seamlessHR':
+        return !!this.summary.isSeamlessHrConnected;
+      case 'slack':
+        return !!this.summary.isSlackConnected;
+      case 'teams':
+        return !!this.summary.isTeamsConnected;
+      case 'outlook':
+        return !!this.summary.isOutlookConnected;
+      case 'jira':
+        return !!this.summary.isJiraConnected;
+      case 'project':
+        return !!this.summary.isPlannerConnected;
+      default:
+        return false;
+    }
   }
 
   disconnectTool(toolName: string) {

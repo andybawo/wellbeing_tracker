@@ -1,3 +1,7 @@
+<!-- <div *ngIf="loading" class="loading-indicator">Loading data...</div>
+<div *ngIf="!loading && syncing" class="loading-indicator">
+  Syncing fresh data...
+</div> -->
 <div class="top-header">
   <div class="left-end">
     <h3><img src="/images/filter-square.png" alt="" />Today</h3>
@@ -40,7 +44,7 @@
         </div>
       </div>
     </h2>
-    <a href="">Integrate</a>
+    <a href="#">Integrate</a>
   </div>
   <div class="hrm-emp-tab">
     <div class="card-com">
@@ -55,7 +59,7 @@
             gap: 5px;
           "
         >
-          <span>Teams</span>
+          <span>{{ communicationData?.popularTool }}</span>
         </li>
       </ul>
     </div>
@@ -72,7 +76,7 @@
             gap: 5px;
           "
         >
-          <span>Design Teams</span>
+          <span>{{ communicationData?.topChannel }}</span>
         </li>
       </ul>
     </div>
@@ -89,7 +93,7 @@
             gap: 5px;
           "
         >
-          <span>Project</span>
+          <span>{{ communicationData?.lowChannel }}</span>
         </li>
       </ul>
     </div>
@@ -99,29 +103,30 @@
 <div class="main-content">
   <div class="com-middle-section">
     <div class="middle-content">
-      <h3>Message Volume</h3>
-      <div class="content-table">
-        <ul>
-          <li>Message Volume</li>
-          <li style="justify-self: end">1000</li>
-        </ul>
+      <div class="workspace-header">
+        <h2 class="workspace-title">Message Volume</h2>
       </div>
-      <div class="content-table">
-        <ul>
-          <li>Total Messages</li>
-          <li style="justify-self: end">1000</li>
-        </ul>
-      </div>
-      <div class="content-table">
-        <ul>
-          <li>Time Period</li>
-          <li style="justify-self: end">1 day</li>
-        </ul>
-      </div>
+
+      <table class="workspace-table">
+        <tbody class="workspace-table-body">
+          <tr class="workspace-row">
+            <td class="workspace-name">Message Volume</td>
+            <td>{{ communicationData?.messageVolume }}</td>
+          </tr>
+          <tr class="workspace-row">
+            <td class="workspace-name">Total Users</td>
+            <td>{{ communicationData?.totalUsers }}</td>
+          </tr>
+          <tr class="workspace-row">
+            <td class="workspace-name">Time Period</td>
+            <td>1 day</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="middle-content">
-      <h3>Performance Trend</h3>
+      <h3>Sentiment Trend</h3>
       <div class="values">
         <div class="pie-chart chart-2">
           <div class="label label-10">20%</div>
@@ -137,95 +142,88 @@
     </div>
 
     <div class="middle-content">
-      <h3 style="font-weight: 700">Workspaces</h3>
-      <div class="content-table1">
-        <ul>
-          <li>Positive</li>
-          <li style="justify-self: end">70%</li>
-          <li style="justify-self: end">
-            <img src="/images/arrow-up.png" alt="" />
-          </li>
-        </ul>
+      <div class="workspace-header">
+        <h2 class="workspace-title">Workspaces</h2>
       </div>
-      <div class="content-table1">
-        <ul>
-          <li>Neutral</li>
-          <li style="justify-self: end">25%</li>
-          <li style="justify-self: end">
-            <img src="/images/arrow-right-com.png" alt="" />
-          </li>
-        </ul>
-      </div>
-      <div class="content-table1">
-        <ul>
-          <li>Negative</li>
-          <li style="justify-self: end">5%</li>
-          <li style="justify-self: end">
-            <img src="/images/arrow-down-down.png" alt="" />
-          </li>
-        </ul>
-      </div>
+
+      <table class="workspace-table">
+        <thead>
+          <tr>
+            <th>Available</th>
+            <th>Total No.</th>
+            <th>Volume</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="workspace-table-body">
+          <tr class="workspace-row">
+            <td class="workspace-name">Active Workspaces</td>
+            <td>{{ communicationData?.activeChannelCount }}</td>
+            <td class="dropdown-cell">
+              <span class="volume-number">{{
+                communicationData?.activeChannelMessage
+              }}</span>
+            </td>
+            <td>
+              <div class="dropdown-arrow"></div>
+            </td>
+          </tr>
+          <tr class="workspace-row">
+            <td class="workspace-name inactive-workspace">
+              Inactive Workspaces
+            </td>
+            <td class="inactive-workspace">
+              {{ communicationData?.inactiveChannelCount }}
+            </td>
+            <td class="dropdown-cell">
+              <span class="volume-number">{{
+                communicationData?.inactiveChannelMessage
+              }}</span>
+            </td>
+            <td>
+              <div class="dropdown-arrow"></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <div class="bottom-content">
-    <h3 style="font-weight: 700">Alert Metrics</h3>
-
-    <div
-      class="bottom-content-table1"
-      style="background-color: white; height: 40px"
-    >
-      <ul>
-        <li>Employee Name</li>
-        <li style="justify-self: center">Previous Score</li>
-        <li style="justify-self: center">Current Score</li>
-        <li style="justify-self: center">% Change</li>
-        <li style="justify-self: center">Status</li>
-      </ul>
-    </div>
-
-    <div class="bottom-content-table">
-      <ul>
-        <li>Nafisat Abubakar</li>
-        <li style="justify-self: center">1250</li>
-        <li style="justify-self: center">1000</li>
-        <li style="justify-self: center">
-          <img src="/images/arrow-down-red.png" alt="" />250
-        </li>
-        <li
-          style="
-            justify-self: center;
-            border-radius: 10px;
-            width: fit-content;
-            padding: 0 10px 0 10px;
-          "
-          class="bg-danger text-dark"
-        >
-          Critical
-        </li>
-      </ul>
-    </div>
-
-    <div class="bottom-content-table">
-      <ul>
-        <li>Nafisat Abubakar</li>
-        <li style="justify-self: center">1250</li>
-        <li style="justify-self: center">1000</li>
-        <li style="justify-self: center">
-          <img src="/images/arrow-down-red.png" alt="" />250
-        </li>
-        <li
-          style="
-            justify-self: center;
-            border-radius: 10px;
-            width: fit-content;
-            padding: 0 10px 0 10px;
-          "
-          class="bg-danger text-dark"
-        >
-          Critical
-        </li>
-      </ul>
+  <div class="alert-metrics">
+    <div class="alert-box">
+      <h1>Alert Metrics</h1>
+      <table>
+        <thead>
+          <th>Engagement Metrics</th>
+          <th>Previous Score</th>
+          <th>Current Score</th>
+          <th>% Change</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ongoing</td>
+            <td>5</td>
+            <td>7</td>
+            <td>40%</td>
+            <td class="status warning">Warning</td>
+          </tr>
+          <tr>
+            <td>At Risk</td>
+            <td>10</td>
+            <td>12</td>
+            <td>20%</td>
+            <td class="status normal">Critical</td>
+          </tr>
+          <tr>
+            <td>Overdue</td>
+            <td>15</td>
+            <td>15</td>
+            <td>0%</td>
+            <td class="status critical">Normal</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

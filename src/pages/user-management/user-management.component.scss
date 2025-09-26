@@ -103,6 +103,14 @@ tbody td {
     align-items: center;
     display: flex;
     justify-content: center;
+
+    &.active-status {
+      background-color: #edfcee;
+    }
+
+    &.inactive-status {
+      background-color: #ffe5e5;
+    }
   }
 
   .icons {
@@ -124,6 +132,9 @@ tbody td {
 
 .email-column {
   width: 28%;
+  .email-content {
+    text-align: left;
+  }
 }
 
 .role-column {
@@ -214,6 +225,7 @@ tbody td {
     height: fit-content;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 24px;
     width: 100%;
 
@@ -222,7 +234,12 @@ tbody td {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      width: 50%;
+      width: calc(50% - 12px);
+      flex: 0 0 calc(50% - 12px);
+
+      &:only-child {
+        width: 100%;
+      }
       label {
         font-weight: 500;
       }
@@ -259,13 +276,20 @@ tbody td {
   }
 }
 
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .bottom {
   display: flex;
   width: 80%;
   flex-direction: row;
   justify-content: space-between;
   position: relative;
-  bottom: 30px;
+  // bottom: 30px;
 
   .right {
     display: flex;

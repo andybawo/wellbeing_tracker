@@ -2,10 +2,11 @@
 .display {
   display: flex;
   flex-direction: column;
-  width: 64.52%;
-  height: 500px;
+  width: fit-content;
+  height: 100%;
   justify-content: center;
   justify-self: center;
+  gap: 60px;
 }
 
 .display h1 {
@@ -16,13 +17,21 @@
 
 .display h4 {
   position: relative;
-  top: 40px;
+  // top: 40px;
   font-weight: 400;
 }
-.logo-pic {
-  position: relative;
-  bottom: 60px;
-  margin-top: 40px;
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 140px;
+  align-items: center;
+  width: 100%;
+
+  .logo-pic {
+    display: flex;
+    align-self: flex-start;
+  }
 }
 
 /* Start */
@@ -31,7 +40,7 @@
   flex-direction: row;
   gap: 50px;
   position: relative;
-  top: 100px;
+  // top: 100px;
   align-self: center;
   width: 100%;
 }
@@ -43,21 +52,21 @@
 /* Responsive Media Queries */
 
 /* Standard Laptop Screens (1024px - 1439px) */
-@media screen and (max-width: 1539px) and (min-width: 1324px) {
+@media screen and (min-width: 1530px) {
   .display {
-    width: 70%;
-    height: 480px;
+    width: 450px;
+    height: auto;
   }
 
   .display h1 {
-    top: 70px;
+    // top: 70px;
     font-size: 45px;
     line-height: 1.2;
   }
 
   .display h4 {
     font-size: 16px;
-    top: 100px;
+    // top: 100px;
   }
 
   .logo-pic {
@@ -65,32 +74,46 @@
   }
 
   .start {
-    top: 150px;
+    // top: 150px;
     gap: 40px;
     width: 100%;
   }
+}
 
-  .side-logo {
-    height: 92vh;
-    top: 25px;
+@media screen and (max-width: 1529px) and (min-width: 1328px) {
+  .main-wrapper {
+    gap: 100px;
+  }
+  .display {
+    width: 400px;
+    height: auto;
+  }
+
+  .display h1 {
+    font-size: 35px;
   }
 }
 
 @media screen and (max-width: 1329px) and (min-width: 1024px) {
   .display {
-    width: 70%;
-    height: 480px;
+    width: 350px;
+    height: auto;
+    gap: 60px;
+  }
+
+  .main-wrapper {
+    gap: 100px;
   }
 
   .display h1 {
-    top: 30px;
-    font-size: 25px;
+    // top: 30px;
+    font-size: 30px;
     line-height: 1.2;
   }
 
   .display h4 {
-    font-size: 16px;
-    top: 50px;
+    font-size: 12px;
+    // top: 50px;
   }
 
   .logo-pic {
@@ -98,14 +121,9 @@
   }
 
   .start {
-    top: 100px;
+    // top: 100px;
     gap: 40px;
     width: 100%;
-  }
-
-  .side-logo {
-    height: 92vh;
-    top: 25px;
   }
 }
 
@@ -125,10 +143,9 @@
     font-size: 15px;
     top: 30px;
   }
-
   .logo-pic {
-    bottom: 40px;
-    margin-top: 30px;
+    display: flex;
+    align-self: flex-start;
   }
 
   .logo-pic img {
@@ -137,14 +154,8 @@
   }
 
   .start {
-    top: 60px;
+    // top: 60px;
     gap: 30px;
-  }
-
-  .side-logo {
-    height: 90vh;
-    top: 30px;
-    border-radius: 25px;
   }
 }
 
@@ -181,7 +192,7 @@
   .start {
     flex-direction: column;
     gap: 20px;
-    top: 40px;
+    // top: 40px;
     align-items: center;
   }
 }
@@ -219,16 +230,12 @@
   .start {
     flex-direction: column;
     gap: 15px;
-    top: 30px;
+    // top: 30px;
     align-items: center;
   }
 }
 
 @media screen and (max-width: 479px) {
-  .side-logo {
-    display: none;
-  }
-
   .display {
     width: 100%;
     height: auto;
@@ -263,7 +270,7 @@
   .start {
     flex-direction: column;
     gap: 12px;
-    top: 25px;
+    // top: 25px;
     align-items: center;
   }
 }
@@ -293,19 +300,4 @@ img {
 .display,
 .start {
   transition: all 0.3s ease;
-}
-
-/* Focus styles for better accessibility on mobile */
-@media (max-width: 768px) {
-  .start button:focus {
-    outline: 2px solid #3e1f69;
-    outline-offset: 2px;
-  }
-}
-
-@media (min-width: 1700px) {
-  .display {
-    position: relative;
-    top: 100px;
-  }
 }

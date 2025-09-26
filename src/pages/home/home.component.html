@@ -24,7 +24,9 @@
           <img src="/images/Frame 114 (1).png" alt="" />
           <ul>
             <li>Headcount</li>
-            <li><span>250</span> <span> Employees</span></li>
+            <li>
+              <span>{{ summary?.headcount }}</span> <span> Employees</span>
+            </li>
           </ul>
         </div>
 
@@ -32,7 +34,9 @@
           <img src="/images/Frame 114.png" alt="" />
           <ul>
             <li>Absenteeism</li>
-            <li><span>20%</span> <span> Employees</span></li>
+            <li>
+              <span>{{ summary?.absenteeism }}</span> <span> Employees</span>
+            </li>
           </ul>
         </div>
 
@@ -40,7 +44,9 @@
           <img src="/images/Frame 114.png" alt="" />
           <ul>
             <li>Attrition Rate</li>
-            <li><span>10%</span> <span> Average</span></li>
+            <li>
+              <span>{{ summary?.attritionRate }}</span> <span> Average</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -53,23 +59,44 @@
       </div>
 
       <div class="proj-dets">
-        <h2>7% <span>Percentage Change</span></h2>
+        <h2>{{ summary?.percentageChange }}% <span>Percentage Change</span></h2>
 
         <div class="proj-visual-dets">
-          <div class="green"></div>
-          <div class="amber"></div>
-          <div class="red"></div>
+          <div
+            class="green"
+            [ngStyle]="{ width: getProjPercent('toDoStatus') + '%' }"
+          ></div>
+          <div
+            class="amber"
+            [ngStyle]="{ width: getProjPercent('inProgressStatus') + '%' }"
+          ></div>
+          <div
+            class="red"
+            [ngStyle]="{ width: getProjPercent('doneStatus') + '%' }"
+          ></div>
         </div>
 
         <div class="proj-status">
           <ul>
-            <li><img src="/images/Ellipse green.png" alt="" />Active-70%</li>
+            <li>
+              <img src="/images/Ellipse green.png" alt="" />Active-{{
+                getProjPercent("toDoStatus")
+              }}%
+            </li>
           </ul>
           <ul>
-            <li><img src="/images/Ellipse amber.png" alt="" />Pending-25%</li>
+            <li>
+              <img src="/images/Ellipse amber.png" alt="" />Pending-{{
+                getProjPercent("inProgressStatus")
+              }}%
+            </li>
           </ul>
           <ul>
-            <li><img src="/images/Ellipse red.png" alt="" />Inactive-5%</li>
+            <li>
+              <img src="/images/Ellipse red.png" alt="" />Inactive-{{
+                getProjPercent("doneStatus")
+              }}%
+            </li>
           </ul>
         </div>
       </div>
@@ -83,24 +110,56 @@
 
       <div class="comm-dets">
         <div class="circle-container">
-          <div class="circle workspace">
-            <span class="value">10</span>
+          <div
+            class="circle workspace"
+            [ngStyle]="{
+              background: getChannelGradient(
+                summary?.activeChannels,
+                summary?.inactiveChannels
+              )
+            }"
+          >
+            <span class="value">{{
+              (summary?.activeChannels || 0) + (summary?.inactiveChannels || 0)
+            }}</span>
           </div>
           <h2>Workspaces</h2>
           <ul>
-            <li><img src="/images/Ellipse green.png" alt="" />Active - 6</li>
-            <li><img src="/images/Ellipse 10 (2).png" alt="" />Inactive - 4</li>
+            <li>
+              <img src="/images/Ellipse green.png" alt="" />Active -
+              {{ summary?.activeChannels }}
+            </li>
+            <li>
+              <img src="/images/Ellipse 10 (2).png" alt="" />Inactive -
+              {{ summary?.inactiveChannels }}
+            </li>
           </ul>
         </div>
 
         <div class="circle-container">
-          <div class="circle message">
-            <span class="value">1000</span>
+          <div
+            class="circle message"
+            [ngStyle]="{
+              background: getMessageGradient(
+                summary?.slackMessages,
+                summary?.teamsMessages
+              )
+            }"
+          >
+            <span class="value"
+              >{{
+                (summary?.slackMessages || 0) + (summary?.teamsMessages || 0)
+              }}
+            </span>
           </div>
           <h2>Message Volume</h2>
           <ul>
-            <li><img src="/images/Ellipse 10.png" alt="" />Slack</li>
-            <li><img src="/images/Ellipse 10 (1).png" alt="" />Teams</li>
+            <li *ngIf="summary?.isSlackConnected">
+              <img src="/images/Ellipse 10.png" alt="" />Slack
+            </li>
+            <li *ngIf="summary?.isTeamsConnected">
+              <img src="/images/Ellipse 10 (1).png" alt="" />Teams
+            </li>
           </ul>
         </div>
 
@@ -138,8 +197,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngIf="summary?.isSeamlessHrConnected">
                 <td class="connected">Connected</td>
+              </tr>
+              <tr *ngIf="!summary?.isSeamlessHrConnected">
+                <td class="disconnected">Disconnected</td>
               </tr>
             </tbody>
           </table>
@@ -155,7 +217,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngIf="!summary?.isTeamsConnected">
+                  <td class="disconnected">Disconnected</td>
+                </tr>
+                <tr *ngIf="summary?.isTeamsConnected">
                   <td class="connected">Connected</td>
                 </tr>
               </tbody>
@@ -167,8 +232,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngIf="!summary?.isSlackConnected">
                   <td class="disconnected">Disconnected</td>
+                </tr>
+                <tr *ngIf="summary?.isSlackConnected">
+                  <td class="connected">Connected</td>
                 </tr>
               </tbody>
             </table>
@@ -179,8 +247,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngIf="!summary?.isOutlookConnected">
                   <td class="disconnected">Disconnected</td>
+                </tr>
+                <tr *ngIf="summary?.isOutlookConnected">
+                  <td class="connected">Connected</td>
                 </tr>
               </tbody>
             </table>
@@ -196,8 +267,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngIf="summary?.isJiraConnected">
                   <td class="connected">Connected</td>
+                </tr>
+                <tr *ngIf="!summary?.isJiraConnected">
+                  <td class="disconnected">Disconnected</td>
                 </tr>
               </tbody>
             </table>
@@ -208,8 +282,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngIf="!summary?.isPlannerConnected">
                   <td class="disconnected">Disconnected</td>
+                </tr>
+                <tr *ngIf="summary?.isPlannerConnected">
+                  <td class="connected">Connected</td>
                 </tr>
               </tbody>
             </table>

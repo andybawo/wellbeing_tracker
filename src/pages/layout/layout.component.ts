@@ -10,7 +10,7 @@ import { SharedModule } from '../../app/shared/shared.module';
   styleUrl: './layout.component.scss',
 })
 export class LayoutComponent {
-  sidebarOpen = false;
+  sidebarOpen = true;
 
   router = inject(Router);
 

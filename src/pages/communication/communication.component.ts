@@ -17,9 +17,8 @@ export class CommunicationComponent implements OnInit {
   constructor(private dashboardService: DashboardService) {}
 
   ngOnInit(): void {
-    // Only fetch cached data on component load
     this.loading = true;
-    this.dashboardService.getCommunication(2).subscribe({
+    this.dashboardService.getCommunication(0).subscribe({
       next: (res) => {
         if (res && res.success) {
           this.communicationData = res.data;
@@ -33,5 +32,30 @@ export class CommunicationComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
+
+  getSentimentGradient(
+    positive: number = 0,
+    negative: number = 0,
+    neutral: number = 0
+  ): string {
+    const total = (positive || 0) + (negative || 0) + (neutral || 0);
+    if (!total) {
+      return 'conic-gradient(#e0e0e0 0% 100%)';
+    }
+
+    const positivePercent = (positive / total) * 100;
+    const negativePercent = (negative / total) * 100;
+    const neutralPercent = (neutral / total) * 100;
+
+    const positiveEnd = positivePercent;
+    const negativeEnd = positiveEnd + negativePercent;
+    const neutralEnd = 100;
+
+    return `conic-gradient(
+    #5c8503 0% ${positiveEnd}%,
+    #e00f0f ${positiveEnd}% ${negativeEnd}%,
+    #f9b51e ${negativeEnd}% ${neutralEnd}%
+  )`;
   }
 }

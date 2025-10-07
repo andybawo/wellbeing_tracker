@@ -339,20 +339,12 @@
   height: 110px;
   margin: 0 auto 20px;
   border-radius: 50%;
-  background: conic-gradient(#7cb342 0% 60%, #e0e0e0 60% 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   top: 5px;
 }
 
-.circle.message {
-  background: conic-gradient(#63c1a0 0% 80%, #464eb8 80% 100%);
-}
-
-.circle.sentiment {
-  background: conic-gradient(#5c8503 0% 60%, #f9b51e 15% 75%, #e00f0f 75% 100%);
-}
 .circle::before {
   content: "";
   position: absolute;

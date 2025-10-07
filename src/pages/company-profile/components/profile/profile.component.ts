@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { LocationService } from '../../../../app/core/services/location.service';
 import { DataService } from '../../../../app/core/services/data.service';
 import { AuthService } from '../../../../app/core/services/auth.service';
+import { InsythaSkeletonLoaderComponent } from '../../../../app/shared/components/insytha-skeleton-loader/insytha-skeleton-loader.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, InsythaSkeletonLoaderComponent],
 })
 export class ProfileComponent implements OnInit {
   @Input() allowEdit = false;
@@ -29,6 +30,7 @@ export class ProfileComponent implements OnInit {
   loadingCountries = false;
   loadingStates = false;
   loadingCompanyData = false;
+  loadingData = true;
 
   private originalData = { ...this.companyData };
   userEmail: string | null = null;
@@ -46,6 +48,7 @@ export class ProfileComponent implements OnInit {
   }
 
   loadCompanyData() {
+    this.loadingData = true;
     this.loadingCompanyData = true;
     this.authService.getCompanyDetail().subscribe({
       next: (response: any) => {
@@ -63,6 +66,7 @@ export class ProfileComponent implements OnInit {
           if (this.companyData.country) {
             this.loadStates(this.companyData.country);
           }
+          this.loadingData = false;
         }
         this.loadingCompanyData = false;
       },

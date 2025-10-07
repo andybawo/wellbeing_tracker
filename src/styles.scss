@@ -140,7 +140,7 @@ h4 {
   cursor: pointer;
 }
 
-@media screen and (min-width: 1536px) {
+@media screen and (max-width: 1536px) and (min-width: 1471px) {
   .primary-btn {
     height: 44px;
     width: 140px;
@@ -165,7 +165,7 @@ h4 {
   }
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1537px) {
   .primary-btn {
     height: 44px;
     width: 140px;
@@ -189,7 +189,7 @@ h4 {
     font-size: 14px !important;
   }
 }
-@media screen and (min-width: 1470px) {
+@media screen and (max-width: 1470px) and (min-width: 1440px) {
   .primary-btn {
     height: 44px;
     width: 140px;

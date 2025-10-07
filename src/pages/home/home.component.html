@@ -141,14 +141,15 @@
             class="circle message"
             [ngStyle]="{
               background: getMessageGradient(
-                summary?.slackMessages,
-                summary?.teamsMessages
+                summary?.slackMessageVolume,
+                summary?.teamsMessageVolume
               )
             }"
           >
             <span class="value"
               >{{
-                (summary?.slackMessages || 0) + (summary?.teamsMessages || 0)
+                (summary?.slackMessageVolume || 0) +
+                  (summary?.teamsMessageVolume || 0)
               }}
             </span>
           </div>
@@ -164,16 +165,36 @@
         </div>
 
         <div class="circle-container">
-          <div class="circle sentiment">
-            <span class="value">80%</span>
+          <div
+            class="circle sentiment"
+            [ngStyle]="{
+              background: getSentimentGradient(
+                summary?.positiveSentiment,
+                summary?.negativeSentiment,
+                summary?.neutralSentiment
+              )
+            }"
+          >
+            <span class="value">{{
+              (summary?.positiveSentiment || 0) +
+                (summary?.negativeSentiment || 0) +
+                (summary?.neutralSentiment || 0)
+            }}</span>
           </div>
           <h2>Sentiment Trends</h2>
           <ul>
             <li>
-              <img src="/images/Ellipse green.png" alt="" />Positive - 60%
+              <img src="/images/Ellipse green.png" alt="" />Positive -
+              {{ summary?.positiveSentiment || 0 }}
             </li>
-            <li><img src="/images/Ellipse amber.png" alt="" />Neutral - 10%</li>
-            <li><img src="/images/Ellipse red.png" alt="" />Negative - 10%</li>
+            <li>
+              <img src="/images/Ellipse red.png" alt="" />Negative -
+              {{ summary?.negativeSentiment || 0 }}
+            </li>
+            <li>
+              <img src="/images/Ellipse amber.png" alt="" />Neutral -
+              {{ summary?.neutralSentiment || 0 }}
+            </li>
           </ul>
         </div>
       </div>

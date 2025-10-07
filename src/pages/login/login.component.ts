@@ -198,7 +198,7 @@ export class LoginComponent {
                         'Subscription has expired. Subscribe to a package to continue';
                       this.alertType = 'error';
                       setTimeout(() => {
-                        this.router.navigate(['/subscription'], {
+                        this.router.navigate(['/home/subscription-dash'], {
                           queryParams: { expired: 'true' },
                         });
                       }, 2000);

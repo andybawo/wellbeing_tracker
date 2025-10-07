@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { RoleService } from '../../../../app/core/services/role.service';
 import { Subscription } from 'rxjs';
 import { SharedModule } from '../../../../app/shared/shared.module';
+import { InsythaSkeletonLoaderComponent } from '../../../../app/shared/components/insytha-skeleton-loader/insytha-skeleton-loader.component';
 
 interface PermissionOption {
   value: string;
@@ -35,7 +36,7 @@ interface PermissionCategory {
 
 @Component({
   selector: 'app-role',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, InsythaSkeletonLoaderComponent],
   templateUrl: './role.component.html',
   styleUrl: './role.component.scss',
 })
@@ -57,6 +58,7 @@ export class RoleComponent implements OnInit, OnDestroy {
   isButtonLoading = false;
   successMessage = '';
   roleForm: FormGroup;
+  loadingData = true;
 
   // Permission categories with checkbox
   permissionCategories: PermissionCategory[] = [
@@ -118,10 +120,12 @@ export class RoleComponent implements OnInit, OnDestroy {
   }
 
   fetchRoles() {
+    this.loadingData = true;
     this.roleSubscription = this.roleService.getRole().subscribe({
       next: (res: RoleApiResponse) => {
         if (res.success) {
           this.role = res.data || [];
+          this.loadingData = false;
         }
       },
       error: (err) => {

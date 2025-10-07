@@ -21,6 +21,7 @@ import { companyRole } from '../../app/interfaces/user-interface';
 import { DepartmentService } from '../../app/core/services/department.service';
 import { RoleService } from '../../app/core/services/role.service';
 import { Subscription } from 'rxjs';
+import { InsythaSkeletonLoaderComponent } from '../../app/shared/components/insytha-skeleton-loader/insytha-skeleton-loader.component';
 
 @Component({
   selector: 'app-user-management',
@@ -30,6 +31,7 @@ import { Subscription } from 'rxjs';
     RouterModule,
     SharedModule,
     ReactiveFormsModule,
+    InsythaSkeletonLoaderComponent,
   ],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.scss',
@@ -48,6 +50,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   alertMessage = '';
   alertType: 'success' | 'error' = 'success';
   isButtonLoading: boolean = false;
+  loadingData = true;
 
   // User data
   users: User[] = [];
@@ -112,10 +115,12 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   }
 
   fetchUsers() {
+    this.loadingData = true;
     this.userSubscription = this.departmentService.getAllCompUsers().subscribe({
       next: (res: CompanyUsersApiResponse) => {
         this.users = (res.data || []).map((u) => {
           const [firstName, ...rest] = (u.fullName || '').split(' ');
+          this.loadingData = false;
           return {
             ...u,
             firstName,
@@ -124,7 +129,9 @@ export class UserManagementComponent implements OnInit, OnDestroy {
           };
         });
       },
-      error: (err) => {},
+      error: (err) => {
+        this.loadingData = false;
+      },
     });
   }
 

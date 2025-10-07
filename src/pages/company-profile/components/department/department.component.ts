@@ -22,12 +22,18 @@ import {
   DeleteCompanyResponse,
 } from '../../../../app/interfaces/user-interface';
 import { SharedModule } from '../../../../app/shared/shared.module';
+import { InsythaSkeletonLoaderComponent } from '../../../../app/shared/components/insytha-skeleton-loader/insytha-skeleton-loader.component';
 
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
   styleUrl: './department.component.scss',
-  imports: [CommonModule, ReactiveFormsModule, SharedModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SharedModule,
+    InsythaSkeletonLoaderComponent,
+  ],
 })
 export class DepartmentComponent implements OnInit, OnDestroy {
   department: companyDepartment[] = [];
@@ -49,6 +55,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
   isButtonLoading: boolean = false;
+  loadingData = true;
 
   companyUsers: any[] = [];
   showHodDropdown: boolean = false;
@@ -89,13 +96,17 @@ export class DepartmentComponent implements OnInit, OnDestroy {
   }
 
   fetchDepartments() {
+    this.loadingData = true;
     this.departmentSubscription = this.departmentService
       .getAllDepartments()
       .subscribe({
         next: (res: DepartmentApiResponse) => {
           this.department = res.data || [];
+          this.loadingData = false;
         },
-        error: (err) => {},
+        error: (err) => {
+          this.loadingData = false;
+        },
       });
   }
 

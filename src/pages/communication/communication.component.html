@@ -128,15 +128,39 @@
     <div class="middle-content">
       <h3>Sentiment Trend</h3>
       <div class="values">
-        <div class="pie-chart chart-2">
-          <div class="label label-10">20%</div>
-          <div class="label label-20">10%</div>
-          <div class="label label-70">70%</div>
+        <div
+          class="pie-chart chart-2"
+          [ngStyle]="{
+            background: getSentimentGradient(
+              communicationData?.positiveSentiment,
+              communicationData?.negativeSentiment,
+              communicationData?.neutralSentiment
+            )
+          }"
+        >
+          <!-- <div class="label label-10">
+            {{ communicationData?.positiveSentiment || 0 }}
+          </div>
+          <div class="label label-20">
+            {{ communicationData?.negativeSentiment || 0 }}
+          </div>
+          <div class="label label-70">
+            {{ communicationData?.neutralSentiment || 0 }}
+          </div> -->
         </div>
         <ul>
-          <li><img src="/images/Ellipse green.png" alt="" />High 70&</li>
-          <li><img src="/images/Ellipse amber.png" alt="" />Medium 20%</li>
-          <li><img src="/images/Ellipse red.png" alt="" />Low 10%</li>
+          <li>
+            <img src="/images/Ellipse green.png" alt="" />Positive -
+            {{ communicationData?.positiveSentiment || 0 }}
+          </li>
+          <li>
+            <img src="/images/Ellipse red.png" alt="" />Negative -
+            {{ communicationData?.negativeSentiment || 0 }}
+          </li>
+          <li>
+            <img src="/images/Ellipse amber.png" alt="" />Neutral -
+            {{ communicationData?.neutralSentiment || 0 }}
+          </li>
         </ul>
       </div>
     </div>

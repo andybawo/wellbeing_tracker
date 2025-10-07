@@ -8,35 +8,50 @@
         <th class="actions-column"></th>
       </tr>
     </thead>
+    <ng-container *ngIf="loadingData">
+      <tr>
+        <td colspan="5">
+          <app-insytha-skeleton-loader
+            [count]="1"
+            [height]="'15rem'"
+            [width]="'100%'"
+            [border_radius]="'1rem'"
+          ></app-insytha-skeleton-loader>
+        </td>
+      </tr>
+    </ng-container>
+
     <tbody>
-      <tr *ngFor="let roles of role">
-        <td class="role-column">{{ roles.roleName }}</td>
-        <td class="description-column">{{ roles.roleDescription }}</td>
-        <td class="permission-column">
-          {{ formatPermissionsForDisplay(roles.permissions) }}
-        </td>
-        <td class="actions-column">
-          <div class="status-content">
-            <div class="icons">
-              <img
-                src="/images/edit.png"
-                alt=""
-                (click)="openEditModal(roles)"
-              />
-              <img
-                src="/images/trash.png"
-                alt=""
-                (click)="openDeleteModal(roles)"
-              />
+      <ng-container *ngIf="!loadingData">
+        <tr *ngFor="let roles of role">
+          <td class="role-column">{{ roles.roleName }}</td>
+          <td class="description-column">{{ roles.roleDescription }}</td>
+          <td class="permission-column">
+            {{ formatPermissionsForDisplay(roles.permissions) }}
+          </td>
+          <td class="actions-column">
+            <div class="status-content">
+              <div class="icons">
+                <img
+                  src="/images/edit.png"
+                  alt=""
+                  (click)="openEditModal(roles)"
+                />
+                <img
+                  src="/images/trash.png"
+                  alt=""
+                  (click)="openDeleteModal(roles)"
+                />
+              </div>
             </div>
-          </div>
-        </td>
-      </tr>
-      <tr *ngIf="role.length === 0">
-        <td colspan="4" style="text-align: center; padding: 20px">
-          No roles found. Add a role to get started.
-        </td>
-      </tr>
+          </td>
+        </tr>
+        <tr *ngIf="role.length === 0">
+          <td colspan="4" style="text-align: center; padding: 20px">
+            No roles found. Add a role to get started.
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 

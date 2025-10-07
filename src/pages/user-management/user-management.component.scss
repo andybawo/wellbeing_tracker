@@ -140,10 +140,7 @@ tbody td {
 .role-column {
   width: 23%;
   text-align: center;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
+  padding-left: 50px;
   .role-content {
     background-color: #f8edfa;
     height: 36px;
@@ -152,6 +149,7 @@ tbody td {
     align-items: center;
     justify-content: center;
     border-radius: 20px;
+    margin: 0 auto;
   }
 }
 
@@ -248,7 +246,7 @@ tbody td {
         border: none;
         background-color: #f0eeee;
         border-radius: 8px;
-        padding: 10px;
+        // padding: 10px;
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -264,7 +262,7 @@ tbody td {
 
       input {
         width: 100%;
-        padding: 14px;
+        // padding: 14px;
         background-color: #f0eeee;
         border-radius: 8px;
         border: none;
@@ -445,7 +443,7 @@ tbody td {
     }
   }
 }
-@media screen and (min-width: 1470px) {
+@media screen and (min-width: 1440px) {
   .backdrop {
     height: 106px;
   }
@@ -479,14 +477,16 @@ tbody td {
     }
     select {
       height: 40px;
+      padding: 10px;
     }
     input {
       height: 40px;
+      padding: 10px;
     }
   }
 }
 
-@media screen and (max-width: 1439px) and (min-width: 1328px) {
+@media screen and (max-width: 1440px) and (min-width: 1328px) {
   .backdrop {
     height: 90px;
   }
@@ -526,10 +526,14 @@ tbody td {
       font-size: 10px;
     }
     select {
-      height: 33px;
+      height: 35px;
+      padding: 8px;
+      font-size: 10px;
     }
     input {
-      height: 33px;
+      height: 35px;
+      padding: 8px;
+      font-size: 10px;
     }
   }
   .bottom {
@@ -578,10 +582,14 @@ tbody td {
       font-size: 10px;
     }
     select {
-      height: 25px;
+      height: 30px;
+      font-size: 10px;
+      padding: 5px;
     }
     input {
-      height: 25px;
+      height: 30px;
+      font-size: 10px;
+      padding: 8px;
     }
   }
   .bottom {

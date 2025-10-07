@@ -156,45 +156,67 @@
         <th class="status-column"><h1>Status</h1></th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <td class="name-column">
-          <div class="name-content">
-            <img src="/images/Ellipse 7.png" alt="" />
-            <span>{{ getUserFullName(user) }}</span>
-          </div>
+    <ng-container *ngIf="loadingData">
+      <tr>
+        <td colspan="5">
+          <app-insytha-skeleton-loader
+            [count]="1"
+            [height]="'15rem'"
+            [width]="'100%'"
+            [border_radius]="'1rem'"
+          ></app-insytha-skeleton-loader>
         </td>
-        <td class="email-column">
-          <div class="email-content">{{ user.emailAddress }}</div>
-        </td>
-        <td class="role-column">
-          <div class="role-content">
-            {{ getRoleName(user.roleId) }}
-          </div>
-        </td>
-        <td class="status-column">
-          <div class="status-content">
-            <span
-              [ngClass]="{
-                'active-status': user.isActive,
-                'inactive-status': !user.isActive
-              }"
-            >
-              {{ user.isActive ? "Active" : "Inactive" }}
-            </span>
-            <div class="icons">
-              <img src="/images/edit.png" alt="" (click)="openEditUser(user)" />
-              <img src="/images/trash.png" alt="" (click)="openWarning(user)" />
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="!loadingData">
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td class="name-column">
+            <div class="name-content">
+              <img src="/images/Ellipse 7.png" alt="" />
+              <span>{{ getUserFullName(user) }}</span>
             </div>
-          </div>
-        </td>
-      </tr>
-      <tr *ngIf="users.length === 0">
-        <td colspan="4" style="text-align: center; padding: 20px">
-          No users found. Add a user to get started.
-        </td>
-      </tr>
-    </tbody>
+          </td>
+          <td class="email-column">
+            <div class="email-content">{{ user.emailAddress }}</div>
+          </td>
+          <td class="role-column">
+            <div class="role-content">
+              {{ getRoleName(user.roleId) }}
+            </div>
+          </td>
+          <td class="status-column">
+            <div class="status-content">
+              <span
+                [ngClass]="{
+                  'active-status': user.isActive,
+                  'inactive-status': !user.isActive
+                }"
+              >
+                {{ user.isActive ? "Active" : "Inactive" }}
+              </span>
+              <div class="icons">
+                <img
+                  src="/images/edit.png"
+                  alt=""
+                  (click)="openEditUser(user)"
+                />
+                <img
+                  src="/images/trash.png"
+                  alt=""
+                  (click)="openWarning(user)"
+                />
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="users.length === 0">
+          <td colspan="4" style="text-align: center; padding: 20px">
+            No users found. Add a user to get started.
+          </td>
+        </tr>
+      </tbody>
+    </ng-container>
   </table>
 
   <!-- MODALS -->

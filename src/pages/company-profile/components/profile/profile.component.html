@@ -1,102 +1,124 @@
 <div class="main-container">
-  <div class="header">
-    <div class="company-logo">
-      <img src="/images/Ellipse 77.png" alt="" />
-      <img src="images/edit-2.png" alt="" />
-    </div>
-    <div class="company-name">
-      <div class="name">
-        <h1>{{ companyData.companyName }}</h1>
+  <ng-container *ngIf="loadingData">
+    <app-insytha-skeleton-loader
+      [count]="1"
+      [height]="'5rem'"
+      [width]="'100%'"
+      [border_radius]="'1rem'"
+    ></app-insytha-skeleton-loader>
+  </ng-container>
+  <ng-container *ngIf="!loadingData">
+    <div class="header">
+      <div class="company-logo">
+        <img src="/images/Ellipse 77.png" alt="" />
+        <img src="images/edit-2.png" alt="" />
       </div>
-      <div class="email">
-        <h4>{{ companyData.companyEmail }}</h4>
+      <div class="company-name">
+        <div class="name">
+          <h1>{{ companyData.companyName }}</h1>
+        </div>
+        <div class="email">
+          <h4>{{ companyData.companyEmail }}</h4>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
   <div class="company-details">
-    <div class="form">
-      <div class="form-row">
-        <div class="form-details">
-          <label for="">Name</label>
-          <input
-            [(ngModel)]="companyData.companyName"
-            [readOnly]="!allowEdit"
-            type="text"
-            name="companyName"
-          />
+    <ng-container *ngIf="loadingData">
+      <app-insytha-skeleton-loader
+        [count]="1"
+        [height]="'10rem'"
+        [width]="'100%'"
+        [border_radius]="'1rem'"
+      ></app-insytha-skeleton-loader>
+    </ng-container>
+    <ng-container *ngIf="!loadingData">
+      <div class="form">
+        <div class="form-row">
+          <div class="form-details">
+            <label for="">Name</label>
+            <input
+              [(ngModel)]="companyData.companyName"
+              [readOnly]="!allowEdit"
+              type="text"
+              name="companyName"
+            />
+          </div>
+          <div class="form-details">
+            <label for="">Company Type</label>
+            <input
+              [(ngModel)]="companyData.companyType"
+              [readOnly]="!allowEdit"
+              type="text"
+              name="companyType"
+            />
+          </div>
         </div>
-        <div class="form-details">
-          <label for="">Company Type</label>
-          <input
-            [(ngModel)]="companyData.companyType"
-            [readOnly]="!allowEdit"
-            type="text"
-            name="companyType"
-          />
-        </div>
-      </div>
 
-      <div class="form-row">
-        <div class="form-details">
-          <label for="">Email Address</label>
-          <input
-            [(ngModel)]="companyData.companyEmail"
-            [readOnly]="!allowEdit"
-            type="email"
-            name="companyEmail"
-          />
+        <div class="form-row">
+          <div class="form-details">
+            <label for="">Email Address</label>
+            <input
+              [(ngModel)]="companyData.companyEmail"
+              [readOnly]="!allowEdit"
+              type="email"
+              name="companyEmail"
+            />
+          </div>
+          <div class="form-details">
+            <label for="">Address</label>
+            <input
+              [(ngModel)]="companyData.companyAddress"
+              [readOnly]="!allowEdit"
+              type="text"
+              name="companyAddress"
+            />
+          </div>
         </div>
-        <div class="form-details">
-          <label for="">Address</label>
-          <input
-            [(ngModel)]="companyData.companyAddress"
-            [readOnly]="!allowEdit"
-            type="text"
-            name="companyAddress"
-          />
-        </div>
-      </div>
 
-      <div class="form-row">
-        <div class="form-details">
-          <label for="">Country</label>
-          <select
-            [(ngModel)]="companyData.country"
-            [disabled]="!allowEdit"
-            (ngModelChange)="onCountryChange()"
-            name="country"
-          >
-            <option value="" disabled>
-              {{ loadingCountries ? "Loading countries..." : "Select Country" }}
-            </option>
-            <option *ngFor="let country of countries" [value]="country">
-              {{ country }}
-            </option>
-          </select>
-        </div>
-        <div class="form-details">
-          <label for="">State</label>
-          <select
-            [(ngModel)]="companyData.state"
-            [disabled]="!allowEdit || !companyData.country"
-            name="state"
-          >
-            <option value="" disabled>
-              {{
-                loadingStates
-                  ? "Loading states..."
-                  : companyData.country
-                  ? "Select State"
-                  : "Select country first"
-              }}
-            </option>
-            <option *ngFor="let state of states" [value]="state">
-              {{ state }}
-            </option>
-          </select>
+        <div class="form-row">
+          <div class="form-details">
+            <label for="">Country</label>
+            <select
+              [(ngModel)]="companyData.country"
+              [disabled]="!allowEdit"
+              (ngModelChange)="onCountryChange()"
+              name="country"
+            >
+              <option value="" disabled>
+                {{
+                  loadingCountries ? "Loading countries..." : "Select Country"
+                }}
+              </option>
+              <option *ngFor="let country of countries" [value]="country">
+                {{ country }}
+              </option>
+            </select>
+          </div>
+          <div class="form-details">
+            <label for="">State</label>
+            <select
+              [(ngModel)]="companyData.state"
+              [disabled]="!allowEdit || !companyData.country"
+              name="state"
+            >
+              <option value="" disabled>
+                {{
+                  loadingStates
+                    ? "Loading states..."
+                    : companyData.country
+                    ? "Select State"
+                    : "Select country first"
+                }}
+              </option>
+              <option *ngFor="let state of states" [value]="state">
+                {{ state }}
+              </option>
+            </select>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 
   <div *ngIf="allowEdit" class="bottom">

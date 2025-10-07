@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
         const payload = JSON.parse(atob(token.split('.')[1]));
         const subscriptionExpiryDate = payload.Subscription_Expires_At;
 
-        // Check if subscription exists and is not the default date
+        //This is how we Check if subscription exists and is not the default date
         if (
           !subscriptionExpiryDate ||
           subscriptionExpiryDate === '1/1/0001 12:00:00 AM'
@@ -50,25 +50,26 @@ export class HomeComponent implements OnInit {
           return;
         }
 
-        // Check if subscription has expired
+        //this is how we Check if subscription has expired
         const expiryDate = new Date(subscriptionExpiryDate);
         const now = new Date();
 
         if (expiryDate < now) {
           console.error('Subscription expired');
-          this.router.navigate(['/subscription'], {
+          this.router.navigate(['/home/subscription-dash'], {
             queryParams: { expired: 'true' },
           });
           return;
         }
 
         // Only proceed to load data if subscription is valid
-        if (!HomeComponent.dataInitialized || isPageRefresh) {
-          this.loadFreshData();
-          HomeComponent.dataInitialized = true;
-        } else {
-          this.loadCachedData();
-        }
+        // if (!HomeComponent.dataInitialized || isPageRefresh) {
+        //   this.loadFreshData();
+        //   HomeComponent.dataInitialized = true;
+        // } else {
+        //   this.loadCachedData();
+        // }
+        this.loadSummaryData();
       } catch (error) {
         console.error('Error checking subscription:', error);
         this.router.navigate(['/subscription']);
@@ -81,42 +82,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  loadFreshData() {
+  loadSummaryData() {
     this.syncing = true;
-
-    this.dashboardService.syncData().subscribe({
-      next: (syncResponse) => {
-        console.log('Data sync complete:', syncResponse);
-
-        this.dashboardService.getSummary(2).subscribe({
-          next: (summaryRes) => {
-            this.syncing = false;
-            if (summaryRes && summaryRes.success) {
-              this.summary = summaryRes.data;
-            } else {
-              this.summaryError =
-                summaryRes?.message || 'Failed to load summary data.';
-            }
-          },
-
-          error: (err) => {
-            this.syncing = false;
-            this.summaryError = 'Error fetching summary data.';
-            console.error('Summary error:', err);
-          },
-        });
-      },
-      error: (syncError) => {
-        this.syncing = false;
-        this.syncError = 'Failed to sync with integrated tools.';
-        console.error('Sync error:', syncError);
-      },
-    });
-  }
-
-  loadCachedData() {
-    this.syncing = true;
-    this.dashboardService.getSummaryCached(2).subscribe({
+    this.summaryError = null;
+    this.dashboardService.getSummary(0).subscribe({
       next: (summaryRes) => {
         this.syncing = false;
         if (summaryRes && summaryRes.success) {
@@ -134,6 +103,59 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // loadFreshData() {
+  //   this.syncing = true;
+
+  //   this.dashboardService.syncData().subscribe({
+  //     next: (syncResponse) => {
+  //       console.log('Data sync complete:', syncResponse);
+
+  //       this.dashboardService.getSummary(2).subscribe({
+  //         next: (summaryRes) => {
+  //           this.syncing = false;
+  //           if (summaryRes && summaryRes.success) {
+  //             this.summary = summaryRes.data;
+  //           } else {
+  //             this.summaryError =
+  //               summaryRes?.message || 'Failed to load summary data.';
+  //           }
+  //         },
+
+  //         error: (err) => {
+  //           this.syncing = false;
+  //           this.summaryError = 'Error fetching summary data.';
+  //           console.error('Summary error:', err);
+  //         },
+  //       });
+  //     },
+  //     error: (syncError) => {
+  //       this.syncing = false;
+  //       this.syncError = 'Failed to sync with integrated tools.';
+  //       console.error('Sync error:', syncError);
+  //     },
+  //   });
+  // }
+
+  // loadCachedData() {
+  //   this.syncing = true;
+  //   this.dashboardService.getSummaryCached(2).subscribe({
+  //     next: (summaryRes) => {
+  //       this.syncing = false;
+  //       if (summaryRes && summaryRes.success) {
+  //         this.summary = summaryRes.data;
+  //       } else {
+  //         this.summaryError =
+  //           summaryRes?.message || 'Failed to load summary data.';
+  //       }
+  //     },
+  //     error: (err) => {
+  //       this.syncing = false;
+  //       this.summaryError = 'Error fetching summary data.';
+  //       console.error('Summary error:', err);
+  //     },
+  //   });
+  // }
+
   getChannelGradient(active: number = 0, inactive: number = 0): string {
     const total = (active || 0) + (inactive || 0);
     if (!total) {
@@ -150,9 +172,35 @@ export class HomeComponent implements OnInit {
     }
     const slackPercent = Math.round((slack / total) * 100);
     const teamsPercent = Math.round((teams / total) * 100);
-    return `conic-gradient(#7cb342 0% ${slackPercent}%, #e0e0e0 ${slackPercent}% ${
+    return `conic-gradient(#63c1a0 0% ${slackPercent}%, #e0e0e0 ${slackPercent}% ${
       slackPercent + teamsPercent
     }%)`;
+  }
+
+  getSentimentGradient(
+    positive: number = 0,
+    negative: number = 0,
+    neutral: number = 0
+  ): string {
+    const total = (positive || 0) + (negative || 0) + (neutral || 0);
+    if (!total) {
+      return 'conic-gradient(#e0e0e0 0% 100%)';
+    }
+
+    const positivePercent = (positive / total) * 100;
+    const negativePercent = (negative / total) * 100;
+    const neutralPercent = (neutral / total) * 100;
+
+    // Calculate cumulative percentages
+    const positiveEnd = positivePercent;
+    const negativeEnd = positiveEnd + negativePercent;
+    const neutralEnd = 100; // Always ends at 100%
+
+    return `conic-gradient(
+    #5c8503 0% ${positiveEnd}%,
+    #e00f0f ${positiveEnd}% ${negativeEnd}%,
+    #f9b51e ${negativeEnd}% ${neutralEnd}%
+  )`;
   }
   toggleAlert() {
     this.showAlert = !this.showAlert;

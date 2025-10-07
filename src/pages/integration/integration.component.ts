@@ -314,7 +314,6 @@ export class IntegrationComponent implements OnInit {
       },
       error: () => {
         this.isButtonLoading = false;
-        // Optionally handle sync error, then navigate anyway
         this.router.navigate(['/home']);
       },
     });

@@ -14,34 +14,49 @@
         <th class="actions-column"></th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let dept of department">
-        <td class="department-column">{{ dept.departmentName }}</td>
-        <td class="hod-column">{{ getHodDisplayName(dept.hodName) }}</td>
-        <td class="email-column">{{ getHodEmail(dept.hodName) }}</td>
-        <td class="actions-column">
-          <div class="status-content">
-            <div class="icons">
-              <img
-                src="/images/edit.png"
-                alt=""
-                (click)="openEditModal(dept)"
-              />
-              <img
-                src="/images/trash.png"
-                alt=""
-                (click)="openDeleteModal(dept)"
-              />
+    <ng-container *ngIf="loadingData">
+      <tr>
+        <td colspan="5">
+          <app-insytha-skeleton-loader
+            [count]="1"
+            [height]="'15rem'"
+            [width]="'100%'"
+            [border_radius]="'1rem'"
+          ></app-insytha-skeleton-loader>
+        </td>
+      </tr>
+    </ng-container>
+
+    <ng-container *ngIf="!loadingData">
+      <tbody>
+        <tr *ngFor="let dept of department">
+          <td class="department-column">{{ dept.departmentName }}</td>
+          <td class="hod-column">{{ getHodDisplayName(dept.hodName) }}</td>
+          <td class="email-column">{{ getHodEmail(dept.hodName) }}</td>
+          <td class="actions-column">
+            <div class="status-content">
+              <div class="icons">
+                <img
+                  src="/images/edit.png"
+                  alt=""
+                  (click)="openEditModal(dept)"
+                />
+                <img
+                  src="/images/trash.png"
+                  alt=""
+                  (click)="openDeleteModal(dept)"
+                />
+              </div>
             </div>
-          </div>
-        </td>
-      </tr>
-      <tr *ngIf="department.length === 0">
-        <td colspan="4" style="text-align: center; padding: 20px">
-          No departments found. Add a department to get started.
-        </td>
-      </tr>
-    </tbody>
+          </td>
+        </tr>
+        <tr *ngIf="department.length === 0">
+          <td colspan="4" style="text-align: center; padding: 20px">
+            No departments found. Add a department to get started.
+          </td>
+        </tr>
+      </tbody>
+    </ng-container>
   </table>
 
   <div
